@@ -16,11 +16,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy static site
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy built site
         run: |
           set -euo pipefail
           rsync -a --delete --omit-dir-times \
-            --exclude .git \
-            --exclude .github \
-            "$GITHUB_WORKSPACE/" /srv/domse-dev-site/
+            "$GITHUB_WORKSPACE/dist/" /srv/domse-dev-site/
           printf '%s' "$GITHUB_SHA" > /srv/domse-dev-site/.deployed-revision

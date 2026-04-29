@@ -1,0 +1,5 @@
+Contact: https://github.com/domse321
+Preferred-Languages: de, en
+Canonical: https://domse.dev/.well-known/security.txt
+Policy: https://domse.dev/
+Expires: 2027-04-29T23:59:59Z
