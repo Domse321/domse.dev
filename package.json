@@ -19,5 +19,6 @@
     "tailwindcss": "^3.4.17",
     "postcss": "^8.4.49",
     "autoprefixer": "^10.4.20"
-  }
+  },
+  "description": "Personal portfolio website for Domse321, featuring gaming content, Steam profile highlights, code snippets, and a small AI-backed interaction layer."
 }

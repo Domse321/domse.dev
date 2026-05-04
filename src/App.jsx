@@ -125,7 +125,7 @@
                   <div className="relative group/avatar">
                     <div className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-b from-[#57cbde] to-[#2a475e] p-[2px] rounded-none shadow-lg overflow-hidden">
                         <img 
-                          src="./ppsteam.GIF" 
+                          src="/assets/ppsteam.GIF" 
                           onError={(e) => {
                             e.target.src = "https://api.dicebear.com/7.x/avataaars/svg?seed=Domse321&backgroundColor=171a21";
                             e.target.alt = "Placeholder Avatar";
@@ -180,7 +180,7 @@
                       {/* Rust */}
                       <div className="bg-[#1b2838]/50 p-3 flex items-center gap-4 hover:bg-[#2a475e]/40 transition-colors cursor-default group/game border-l-2 border-transparent hover:border-[#57cbde]">
                          <div className="w-24 h-10 bg-slate-700 overflow-hidden relative shadow-md">
-                            <img src="./rust.jpg" onError={(e) => e.target.src = "https://placehold.co/600x400/1e293b/cbd5e1?text=Rust"} alt="Rust" className="w-full h-full object-cover opacity-90 group-hover/game:opacity-100 transition-opacity" />
+                            <img src="/assets/rust.jpg" onError={(e) => e.target.src = "https://placehold.co/600x400/1e293b/cbd5e1?text=Rust"} alt="Rust" className="w-full h-full object-cover opacity-90 group-hover/game:opacity-100 transition-opacity" />
                          </div>
                          <div className="flex-grow">
                             <div className="text-[#c6d4df] font-bold group-hover/game:text-white transition-colors">Rust</div>
@@ -196,7 +196,7 @@
                       {/* Arc Raiders */}
                       <div className="bg-[#1b2838]/50 p-3 flex items-center gap-4 hover:bg-[#2a475e]/40 transition-colors cursor-default group/game border-l-2 border-transparent hover:border-[#57cbde]">
                          <div className="w-24 h-10 bg-slate-700 overflow-hidden relative shadow-md">
-                            <img src="./arcraiders.jpeg" onError={(e) => e.target.src = "https://placehold.co/600x400/1e293b/cbd5e1?text=Arc+Raiders"} alt="Arc Raiders" className="w-full h-full object-cover opacity-90 group-hover/game:opacity-100 transition-opacity" />
+                            <img src="/assets/arcraiders.jpeg" onError={(e) => e.target.src = "https://placehold.co/600x400/1e293b/cbd5e1?text=Arc+Raiders"} alt="Arc Raiders" className="w-full h-full object-cover opacity-90 group-hover/game:opacity-100 transition-opacity" />
                          </div>
                          <div className="flex-grow">
                             <div className="text-[#c6d4df] font-bold group-hover/game:text-white transition-colors">Arc Raiders</div>
@@ -342,7 +342,7 @@
                   
                   <a href="#home" className="flex items-center gap-3 group cursor-pointer z-50 relative">
                       <img 
-                        src="./Titel.png" 
+                        src="/assets/Titel.png" 
                         alt="Logo" 
                         className="w-10 h-10 object-contain group-hover:rotate-12 transition-transform duration-300"
                         onError={(e) => { e.currentTarget.hidden = true; }} 
@@ -393,7 +393,7 @@
                         playsInline
                         className="w-full h-full object-cover opacity-20"
                     >
-                        <source src="./background.mp4" type="video/mp4" />
+                        <source src="/assets/background.mp4" type="video/mp4" />
                     </video>
                     <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950"></div>
                 </div>
