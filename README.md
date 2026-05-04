@@ -1,47 +1,49 @@
 # domse.dev
 
-Personal portfolio website for Domse321.
+Dies ist die persönliche Website von Domse321.
 
-The site combines gaming/content highlights, a Steam-style profile section, small code/project cards, and a lightweight AI-backed interaction layer through the server-side `/api/gemini` proxy.
-
-## Live site
+Die Seite bündelt Gaming, Content, kleine Code-Projekte und persönliche Links an einem Ort. Sie ist bewusst als eigene Portfolio-/Profilseite gebaut und läuft öffentlich unter:
 
 ```text
 https://domse.dev
 ```
 
-## Tech stack
+## Inhalt
+
+- persönlicher Einstieg mit Gaming-/Creator-Fokus
+- Steam-Profilbereich mit Lieblingsspielen und Status-Optik
+- Content- und Social-Links
+- kleine Skript-/Projektsektion
+- KI-gestützte Spiel-Challenges und Tech-Stack-Texte über einen serverseitigen Proxy
+
+## Technik
 
 - React
 - Vite
 - Tailwind CSS
-- lucide-react icons
-- Server-side Gemini proxy for AI interactions
+- lucide-react Icons
+- eigener Node-Server für statische Dateien und den `/api/gemini` Proxy
+- Deployment über self-hosted GitHub Actions Runner
+- Hosting hinter Nginx Proxy Manager und Cloudflare Tunnel
 
-## Local development
+## Medien
 
-```bash
-npm install
-npm run build
-npm run preview
-```
-
-For development with a live Vite server, run:
-
-```bash
-npx vite --host 127.0.0.1
-```
-
-## Assets
-
-Static media files are stored under:
+Die statischen Bilder und Videos liegen gesammelt unter:
 
 ```text
 public/assets/
 ```
 
-Vite serves these files from `/assets/...` in the browser.
+So bleibt das Projekt übersichtlich und die Website kann ihre Medien direkt aus dem eigenen Build ausliefern.
 
 ## Deployment
 
-Deployments are handled from this repository. The production version is served at `https://domse.dev`.
+Änderungen auf `main` werden automatisch gebaut und auf `https://domse.dev` veröffentlicht.
+
+Der produktive Build landet auf dem Server unter:
+
+```text
+/srv/domse-dev-site
+```
+
+Die Website wird über den domse.dev-Serverprozess ausgeliefert; sensible API-Schlüssel bleiben serverseitig und werden nicht im Frontend veröffentlicht.
