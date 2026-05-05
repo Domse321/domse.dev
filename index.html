@@ -4,19 +4,141 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>test.domse.dev</title>
-  <style>
-    :root { color-scheme: dark; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #090b10; color: #f4f0df; font: 16px/1.5 system-ui, sans-serif; }
-    main { max-width: 760px; margin: 24px; padding: 40px; border: 1px solid #2b3140; border-radius: 24px; background: #111722; box-shadow: 0 24px 80px #0008; }
-    h1 { margin: 0 0 12px; font-size: clamp(34px, 7vw, 72px); letter-spacing: -0.05em; }
-    p { color: #b8c0d0; }
-  </style>
+  <meta name="description" content="Domse — Medien, IT-Projekte, Automatisierung und kreative Experimente.">
+  <title>Domse — Medien & IT Projekte</title>
+  <link rel="preconnect" href="https://api.github.com">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
 </head>
 <body>
-  <main>
-    <h1>test.domse.dev</h1>
-    <p>Staging steht. Inhalte kommen ab jetzt automatisch aus dem GitHub-Repo.</p>
+  <div class="ambient" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Domse Startseite">
+      <span class="brand-mark">D</span>
+      <span><strong>Domse</strong><small>Media · IT · Automation</small></span>
+    </a>
+    <nav aria-label="Hauptnavigation">
+      <a href="#projects">Projekte</a>
+      <a href="#github">GitHub</a>
+      <a href="#media">Medien</a>
+      <a class="nav-pill" href="#contact">Kontakt</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Portfolio im Aufbau · test.domse.dev</p>
+        <h1>Medienideen, Homelab-Technik und Web-Projekte mit sauberer Kante.</h1>
+        <p class="hero-lead">Eine professionelle Projektseite für Domse: kreativ genug für Medien, präzise genug für Infrastruktur und flexibel genug, um später sauber auf domse.dev umzuziehen.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#github">GitHub ansehen</a>
+          <a class="button ghost" href="#media">Video-Platzhalter</a>
+        </div>
+      </div>
+      <div class="hero-panel reveal delay-1" aria-label="Live Status">
+        <div class="orbital-card">
+          <div class="status-row"><span class="pulse"></span> Staging live</div>
+          <div class="metric-grid">
+            <div><strong>IT</strong><span>Automation, Server, Tools</span></div>
+            <div><strong>Media</strong><span>Video, ASMR, Konzepte</span></div>
+            <div><strong>Web</strong><span>Design, Deploy, Experimente</span></div>
+          </div>
+          <div class="terminal-card">
+            <span>$ deploy --target test.domse.dev</span>
+            <span>✓ security headers active</span>
+            <span>✓ github integration ready</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell strip reveal" aria-label="Kompetenzen">
+      <div><span>01</span><strong>Professionelle Web-Oberflächen</strong></div>
+      <div><span>02</span><strong>Homelab & Automatisierung</strong></div>
+      <div><span>03</span><strong>Medien- und Video-Konzepte</strong></div>
+    </section>
+
+    <section id="projects" class="section-shell split-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Aus Richtung wird System</p>
+        <h2>Projektbereiche</h2>
+        <p>Die Seite kann später als zentrale Visitenkarte dienen: kurze Einordnung, schöne Projektkarten, Links zu Repos, Videos und fertigen Tools.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card reveal">
+          <span class="icon">▣</span>
+          <h3>IT & Infrastructure</h3>
+          <p>Server, Automatisierung, Deployment, Security-Headers, interne Tools und kleine Helfer, die Arbeit wirklich abnehmen.</p>
+        </article>
+        <article class="feature-card reveal delay-1">
+          <span class="icon">◉</span>
+          <h3>Media & ASMR</h3>
+          <p>Platz für Videoprojekte, kreative Formate, YouTube-Ideen, Shorts-Konzepte und visuelle Experimente.</p>
+        </article>
+        <article class="feature-card reveal delay-2">
+          <span class="icon">◇</span>
+          <h3>Web Experiments</h3>
+          <p>Interaktive Seiten, Rechner, kleine Apps und moderne Landingpages mit sauberer Performance und klarer Struktur.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="github" class="section-shell github-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Live von GitHub</p>
+        <h2>Öffentliche Repositories</h2>
+        <p>Die Karten werden direkt über die GitHub API geladen und elegant fallbacken, falls GitHub gerade zickt.</p>
+      </div>
+      <div class="repo-toolbar reveal delay-1">
+        <div class="search-wrap">
+          <label for="repoSearch">Repos filtern</label>
+          <input id="repoSearch" type="search" placeholder="z.B. Rust, PowerShell, Website">
+        </div>
+        <a class="button ghost" href="https://github.com/Domse321" rel="noopener noreferrer" target="_blank">GitHub Profil öffnen</a>
+      </div>
+      <div id="repoStatus" class="repo-status">Repos werden geladen …</div>
+      <div id="repoGrid" class="repo-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="media" class="section-shell media-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Video Slots</p>
+        <h2>Medienfläche</h2>
+        <p>Zwei prominente Plätze für YouTube-Videos — aktuell bewusst als Platzhalter, damit wir später IDs oder Embeds einsetzen können.</p>
+      </div>
+      <div class="video-grid">
+        <article class="video-card reveal">
+          <div class="play-button" aria-hidden="true"></div>
+          <p class="eyebrow">YouTube Slot 01</p>
+          <h3>Projekt- oder Kanaltrailer</h3>
+          <p>Ideal für ein kurzes Intro, das erklärt, wer Domse ist und was Besucher hier finden.</p>
+        </article>
+        <article class="video-card reveal delay-1">
+          <div class="play-button" aria-hidden="true"></div>
+          <p class="eyebrow">YouTube Slot 02</p>
+          <h3>Showcase / aktuelles Video</h3>
+          <p>Platz für ein aktuelles Medienprojekt, ASMR-Konzept oder ein technisches Showcase.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section-shell contact-section reveal">
+      <div>
+        <p class="eyebrow">Nächster Schritt</p>
+        <h2>Bereit für Inhalt.</h2>
+        <p>Design, Struktur und Integration stehen. Als Nächstes füllen wir echte Texte, Repos, Video-IDs und Projektbilder ein.</p>
+      </div>
+      <a class="button primary" href="https://github.com/Domse321/domse.dev-2.0" rel="noopener noreferrer" target="_blank">Repo bearbeiten</a>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <span>© <span id="year"></span> Domse</span>
+    <span>Built for test.domse.dev</span>
+  </footer>
 </body>
 </html>
