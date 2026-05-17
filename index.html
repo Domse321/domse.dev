@@ -7,8 +7,8 @@
   <meta name="description" content="Domse — Medien, IT-Projekte, Automatisierung und kreative Experimente.">
   <title>Domse — Medien & IT Projekte</title>
   <link rel="preconnect" href="https://api.github.com">
-  <link rel="stylesheet" href="assets/site.css?v=20260517-professional">
-  <script src="assets/site.js?v=20260517-professional" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=20260517-structure">
+  <script src="assets/site.js?v=20260517-structure" defer></script>
 </head>
 <body>
   <div class="ambient" aria-hidden="true">
@@ -21,11 +21,11 @@
       <span><strong>Domse</strong><small>Media · IT · Automation</small></span>
     </a>
     <nav aria-label="Hauptnavigation">
+      <a href="#overview">Übersicht</a>
       <a href="#projects">Projekte</a>
-      <a href="#github">GitHub</a>
       <a href="#media">Videos</a>
-      <a href="#roadmap">Ausbau</a>
-      <a class="nav-pill" href="#contact">Kontakt</a>
+      <a href="#github">GitHub</a>
+      <a class="nav-pill" href="#roadmap">Ausbau</a>
     </nav>
   </header>
 
@@ -63,6 +63,20 @@
       <div><span>03</span><strong>Medien- und Video-Konzepte</strong></div>
     </section>
 
+    <section id="overview" class="section-shell overview-section reveal" aria-label="Seitenübersicht">
+      <div class="overview-copy">
+        <p class="eyebrow">Übersicht</p>
+        <h2>Klare Bereiche statt langer Einzelseite.</h2>
+        <p>Die Seite ist in vier Hauptbereiche gegliedert: Projektfelder, ausgewählte Videos, öffentliche Repositories und konkrete Ausbauschritte.</p>
+      </div>
+      <div class="overview-grid">
+        <a href="#projects" class="overview-card"><span>01</span><strong>Projektbereiche</strong><small>Technik, Medien und Web</small></a>
+        <a href="#media" class="overview-card"><span>02</span><strong>Videos</strong><small>Drei ausgewählte Referenzen</small></a>
+        <a href="#github" class="overview-card"><span>03</span><strong>GitHub</strong><small>Öffentliche Repositories</small></a>
+        <a href="#roadmap" class="overview-card"><span>04</span><strong>Ausbau</strong><small>Nächste sinnvolle Inhalte</small></a>
+      </div>
+    </section>
+
     <section id="projects" class="section-shell split-section">
       <div class="section-heading reveal">
         <p class="eyebrow">Struktur</p>
@@ -86,23 +100,6 @@
           <p>Interaktive Seiten, Rechner, kleinere Anwendungen und moderne Landingpages mit klarer Struktur.</p>
         </article>
       </div>
-    </section>
-
-    <section id="github" class="section-shell github-section">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Live von GitHub</p>
-        <h2>Öffentliche Repositories</h2>
-        <p>Die Karten werden direkt über die GitHub API geladen und zeigen öffentliche Repositories mit Sprache, Beschreibung und direkten Links.</p>
-      </div>
-      <div class="repo-toolbar reveal delay-1">
-        <div class="search-wrap">
-          <label for="repoSearch">Repos filtern</label>
-          <input id="repoSearch" type="search" placeholder="z.B. Rust, PowerShell, Website">
-        </div>
-        <a class="button ghost" href="https://github.com/Domse321" rel="noopener noreferrer" target="_blank">GitHub Profil öffnen</a>
-      </div>
-      <div id="repoStatus" class="repo-status">Repos werden geladen …</div>
-      <div id="repoGrid" class="repo-grid" aria-live="polite"></div>
     </section>
 
     <section id="media" class="section-shell media-section">
@@ -137,6 +134,23 @@
           <p>Ein Rust-Video mit Fokus auf Progression, Kontrolle und Spielsituationen rund um den Hafen.</p>
         </article>
       </div>
+    </section>
+
+    <section id="github" class="section-shell github-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Live von GitHub</p>
+        <h2>Öffentliche Repositories</h2>
+        <p>Die Karten werden direkt über die GitHub API geladen und zeigen öffentliche Repositories mit Sprache, Beschreibung und direkten Links.</p>
+      </div>
+      <div class="repo-toolbar reveal delay-1">
+        <div class="search-wrap">
+          <label for="repoSearch">Repos filtern</label>
+          <input id="repoSearch" type="search" placeholder="z.B. Rust, PowerShell, Website">
+        </div>
+        <a class="button ghost" href="https://github.com/Domse321" rel="noopener noreferrer" target="_blank">GitHub Profil öffnen</a>
+      </div>
+      <div id="repoStatus" class="repo-status">Repos werden geladen …</div>
+      <div id="repoGrid" class="repo-grid" aria-live="polite"></div>
     </section>
 
     <section id="roadmap" class="section-shell roadmap-section">
@@ -179,40 +193,19 @@
       </div>
     </section>
 
-    <section id="contact" class="section-shell contact-section contact-section-stacked reveal">
-      <div class="contact-copy">
-        <p class="eyebrow">Kontakt & Plattformen</p>
-        <h2>Direkte Links</h2>
-        <p>Die wichtigsten Plattformen von domse.dev, hier im Design der Testseite eingebunden.</p>
-      </div>
-      <div class="platform-grid" aria-label="Plattformlinks">
-        <a class="platform-card" href="https://discord.gg/eX4tEfd3" rel="noopener noreferrer" target="_blank">
-          <span class="platform-label">Discord</span>
-          <strong>Community & Kontakt</strong>
-          <small>Einladung öffnen</small>
-        </a>
-        <a class="platform-card" href="https://github.com/domse321" rel="noopener noreferrer" target="_blank">
-          <span class="platform-label">GitHub</span>
-          <strong>Code & Projekte</strong>
-          <small>Profil öffnen</small>
-        </a>
-        <a class="platform-card" href="https://youtube.com/@domse321?si=v1fHEhym9j43JawK" rel="noopener noreferrer" target="_blank">
-          <span class="platform-label">YouTube</span>
-          <strong>Videos & Formate</strong>
-          <small>Kanal öffnen</small>
-        </a>
-        <a class="platform-card" href="https://twitch.tv/xdomse321x" rel="noopener noreferrer" target="_blank">
-          <span class="platform-label">Twitch</span>
-          <strong>Livestreams</strong>
-          <small>Kanal öffnen</small>
-        </a>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
-    <span>© <span id="year"></span> Domse</span>
-    <span>Built for test.domse.dev</span>
+    <div class="footer-meta">
+      <span>© <span id="year"></span> Domse</span>
+      <span>test.domse.dev</span>
+    </div>
+    <nav class="footer-social" aria-label="Kontakt und Plattformen">
+      <a href="https://discord.gg/eX4tEfd3" rel="noopener noreferrer" target="_blank" aria-label="Discord öffnen"><span>DC</span></a>
+      <a href="https://github.com/domse321" rel="noopener noreferrer" target="_blank" aria-label="GitHub öffnen"><span>GH</span></a>
+      <a href="https://youtube.com/@domse321?si=v1fHEhym9j43JawK" rel="noopener noreferrer" target="_blank" aria-label="YouTube öffnen"><span>YT</span></a>
+      <a href="https://twitch.tv/xdomse321x" rel="noopener noreferrer" target="_blank" aria-label="Twitch öffnen"><span>TW</span></a>
+    </nav>
   </footer>
 </body>
 </html>
