@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Domse Dumbbell Trainingsplan: 10 Übungen, 3 Gewichtsstufen, Timer, Progression und Übungsbilder.">
+  <meta name="theme-color" content="#100d08">
+  <title>Domse Sportplan — Dumbbell Routine</title>
+  <link rel="stylesheet" href="assets/sport.css?v=20260517-001">
+  <script src="assets/sport.js?v=20260517-001" defer></script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <header class="topbar">
+    <a class="brand" href="/sport/" aria-label="Domse Sportplan Start">
+      <span class="brand-mark">💰</span>
+      <span><strong>Domse Sportplan</strong><small>Dumbbells · sauber · machbar</small></span>
+    </a>
+    <nav aria-label="Sportnavigation">
+      <a href="#routine">Routine</a>
+      <a href="#uebungen">Übungen</a>
+      <a href="#tracker">Tracker</a>
+      <a href="#setup">Setup</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Aktiver Trainingsplan · Version 2026-05-17</p>
+        <h1>Zwei Hanteln. Zehn Übungen. Kein wackliges Fitness-Geschwätz.</h1>
+        <p class="lead">Ein klarer Full-Body-Plan für Zuhause: 2–3× pro Woche, mit 10 kg, 7,5 kg und 5 kg als sinnvolle Gewichtsstufen. Ziel ist nicht Ego-Heben, sondern saubere Wiederholungen, Fortschritt und ein Rücken ohne Wucherzinsen.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#start">Training starten</a>
+          <a class="button ghost" href="#uebungen">Übungen ansehen</a>
+        </div>
+      </div>
+      <aside class="command-card reveal delay-1" aria-label="Trainingskurzfassung">
+        <div class="status"><span></span> Plan bereit</div>
+        <div class="stat-grid">
+          <div><strong>10</strong><small>Übungen</small></div>
+          <div><strong>35–50</strong><small>Minuten</small></div>
+          <div><strong>2–3×</strong><small>pro Woche</small></div>
+        </div>
+        <div class="weight-ledger">
+          <p><b>10 kg</b> Hauptgewicht</p>
+          <p><b>7,5 kg</b> Technik-/Mittelstufe</p>
+          <p><b>5 kg</b> Schulter-Isolation</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="routine" class="shell routine-grid">
+      <article class="panel reveal">
+        <p class="eyebrow">Trainingswoche</p>
+        <h2>Der Ablauf</h2>
+        <ol class="timeline">
+          <li><span>01</span><div><b>Warm-up — 5–7 Min</b><p>Armkreisen, Hüftkreisen, Bodyweight Squats, leichte Rows ohne Reißen.</p></div></li>
+          <li><span>02</span><div><b>Hauptteil — 10 Übungen</b><p>Woche 1–2: 2 Sätze. Ab Woche 3: 3 Sätze. 60–90 Sekunden Pause.</p></div></li>
+          <li><span>03</span><div><b>Progression</b><p>Wenn 12 Wiederholungen sauber gehen: erst mehr Sätze/Reps, dann Gewicht erhöhen.</p></div></li>
+          <li><span>04</span><div><b>Ruhetag</b><p>Mindestens ein Tag Pause zwischen Krafttrainings. Montag/Mittwoch/Freitag ist ideal.</p></div></li>
+        </ol>
+      </article>
+      <article id="start" class="panel workout-console reveal delay-1">
+        <p class="eyebrow">Heute trainieren</p>
+        <h2>Session-Timer</h2>
+        <div class="timer" id="timer">00:00</div>
+        <div class="timer-controls">
+          <button class="button primary" data-timer="start">Start</button>
+          <button class="button ghost" data-timer="pause">Pause</button>
+          <button class="button ghost" data-timer="reset">Reset</button>
+        </div>
+        <label class="checkline"><input id="warmupCheck" type="checkbox"> Warm-up erledigt</label>
+        <label class="checkline"><input id="formCheck" type="checkbox"> Heute zählt saubere Form, nicht Ego</label>
+      </article>
+    </section>
+
+    <section class="shell overview reveal">
+      <div>
+        <p class="eyebrow">Alles auf einen Blick</p>
+        <h2>Übungsübersicht</h2>
+      </div>
+      <img src="assets/exercises/00-overview.png" alt="Gesamtübersicht des Domse Dumbbell Trainingsplans">
+    </section>
+
+    <section id="uebungen" class="shell exercises-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Kassenbuch der Wiederholungen</p>
+        <h2>Die 10 Übungen</h2>
+        <p>Die Gewichte sind Startwerte. Wenn die letzten 2–3 Wiederholungen schwer, aber sauber sind, steht der Posten richtig in der Bilanz.</p>
+      </div>
+      <div class="exercise-grid" id="exerciseGrid"></div>
+    </section>
+
+    <section id="tracker" class="shell tracker-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Lokaler Fortschritt</p>
+        <h2>Training abhaken</h2>
+        <p>Speichert nur in deinem Browser per localStorage. Kein Account, keine Wolke, kein Panzerknacker-Futter.</p>
+      </div>
+      <div class="tracker-card reveal delay-1">
+        <div>
+          <strong id="doneCount">0/10</strong>
+          <span>Übungen erledigt</span>
+        </div>
+        <progress id="progress" max="10" value="0"></progress>
+        <button class="button ghost" id="resetChecks">Häkchen zurücksetzen</button>
+      </div>
+    </section>
+
+    <section id="setup" class="shell setup-grid">
+      <article class="panel reveal">
+        <p class="eyebrow">Gewichtsstufen</p>
+        <h2>So stellst du ein</h2>
+        <ul class="bullet-list">
+          <li><b>10 kg:</b> Goblet Squat, RDL, Row, Floor Press, Curl, Trizeps.</li>
+          <li><b>7,5 kg:</b> Reverse Lunge und Shoulder Press als ehrliche Technikstufe.</li>
+          <li><b>5 kg:</b> Lateral Raise und Reverse Fly. Hier ist Kontrolle der Gewinn.</li>
+        </ul>
+      </article>
+      <article class="panel reveal delay-1">
+        <p class="eyebrow">Boden & Ablage</p>
+        <h2>Billige Hantel-Parkzone</h2>
+        <ul class="bullet-list">
+          <li>60×60×1 cm Bautenschutz-/Antivibrationsmatte aus Gummigranulat.</li>
+          <li>2 Gummi-Türstopper oder Holzleisten als Rollbremse.</li>
+          <li>Trainingsmatte separat: 10–15 mm NBR, nicht als Hantelablage missbrauchen.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="shell sources reveal">
+      <p class="eyebrow">Quellenbasis</p>
+      <h2>Warum dieser Plan so gebaut ist</h2>
+      <p>Die Struktur folgt bewährten Full-Body-Dumbbell-Empfehlungen: große Bewegungen zuerst, Push/Pull/Beine/Core abgedeckt, 8–12 Wiederholungen, 2–3 Einheiten pro Woche und Progression nur bei sauberer Technik.</p>
+      <div class="source-links">
+        <a href="https://www.acefitness.org/resources/pros/expert-articles/3718/total-body-dumbbell-workout/" target="_blank" rel="noopener noreferrer">ACE Dumbbell Workout</a>
+        <a href="https://www.muscleandstrength.com/workouts/3-day-full-body-dumbbell-workout" target="_blank" rel="noopener noreferrer">Muscle&Strength 3-Day</a>
+        <a href="https://www.nerdfitness.com/blog/beginner-dumbbell-workout/" target="_blank" rel="noopener noreferrer">Nerd Fitness Beginner</a>
+        <a href="https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/weight-training/art-20045842" target="_blank" rel="noopener noreferrer">Mayo Clinic Technik</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <span>Domse Sportplan · test.domse.dev/sport</span>
+    <span>Erst schürfen, dann prahlen.</span>
+  </footer>
+</body>
+</html>
