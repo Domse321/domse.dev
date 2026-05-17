@@ -19,7 +19,7 @@ function renderExercises(){
   const grid = $('#exerciseGrid');
   grid.innerHTML = exercises.map(e => `
     <article class="exercise-card reveal" id="${e.id}">
-      <img src="assets/exercises/${e.img}" alt="${e.title} Anleitung">
+      <img src="/sport/assets/exercises/${e.img}" alt="${e.title} Anleitung">
       <div class="exercise-body">
         <div class="exercise-top"><div><p class="eyebrow">${e.area}</p><h3>${e.title}</h3></div><span class="num">${String(e.n).padStart(2,'0')}</span></div>
         <div class="badges"><span class="badge ${e.cls}">${e.weight}</span><span class="badge">${e.sets}</span></div>
