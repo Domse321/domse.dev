@@ -38,7 +38,7 @@
     "galleries": "Route-Galerien mit vorhandenen Wikimedia-Bildern, falls passend gefunden",
     "ride_readiness": "Ein kompakter Fahrbarkeits-Status ersetzt wiederholte Matschwerte pro Karte"
   },
-  "updated_at": "2026-05-29T11:45:57Z",
+  "updated_at": "2026-05-29T11:57:15Z",
   "version": "0.4.0",
-  "gallery_routes": 6
+  "gallery_routes": 22
 }

@@ -796,8 +796,37 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/2022-06-05_111809_S%C3%BCntel_Bad_M%C3%BCnder_S%C3%BCntelturm.jpg/1280px-2022-06-05_111809_S%C3%BCntel_Bad_M%C3%BCnder_S%C3%BCntelturm.jpg",
+          "title": "2022-06-05 111809 Süntel Bad Münder Süntelturm.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Tim Rademacher"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/LSG_S%C3%BCntel_-_Der_S%C3%BCntelturm_11-2018_%2816%29.jpg/1280px-LSG_S%C3%BCntel_-_Der_S%C3%BCntelturm_11-2018_%2816%29.jpg",
+          "title": "LSG Süntel - Der Süntelturm 11-2018 (16).jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Ragnar1904"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/LSG_S%C3%BCntel_-_Der_S%C3%BCntelturm_11-2018_%2817%29.jpg/1280px-LSG_S%C3%BCntel_-_Der_S%C3%BCntelturm_11-2018_%2817%29.jpg",
+          "title": "LSG Süntel - Der Süntelturm 11-2018 (17).jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Ragnar1904"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/LSG_S%C3%BCntel_-_Der_S%C3%BCntelturm_11-2018_%2821%29.jpg/1280px-LSG_S%C3%BCntel_-_Der_S%C3%BCntelturm_11-2018_%2821%29.jpg",
+          "title": "LSG Süntel - Der Süntelturm 11-2018 (21).jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Ragnar1904"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Aussicht",
         "mehr Höhenmeter"
@@ -893,8 +922,33 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Schillathoehle.jpg",
+          "title": "Schillathoehle.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Schillath%C3%B6hle_Eingang_Steinbruch.jpg",
+          "title": "Schillathöhle Eingang Steinbruch.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Hess_Oldendorf%2C_HM_-_Pappm%C3%BChle_v_S%2C_Hohenstein_S%C3%BCntel_220724.jpg/1280px-Hess_Oldendorf%2C_HM_-_Pappm%C3%BChle_v_S%2C_Hohenstein_S%C3%BCntel_220724.jpg",
+          "title": "Hess Oldendorf, Hohenstein Süntel 220724.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Hohenstein_S%C3%BCntel_von_unten.jpg",
+          "title": "Hohenstein Süntel von unten.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Aussicht",
         "nur trocken",
@@ -991,8 +1045,33 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Gutsanlage_von_Schloss_H%C3%A4melschenburg_gesehen_nachmittags_von_der_Br%C3%BCckenstra%C3%9Fe_an_den_Weiden_an_der_Emmer.jpg/1280px-Gutsanlage_von_Schloss_H%C3%A4melschenburg_gesehen_nachmittags_von_der_Br%C3%BCckenstra%C3%9Fe_an_den_Weiden_an_der_Emmer.jpg",
+          "title": "Schloss Hämelschenburg an der Emmer.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Schloss_H%C3%A4melschenburg_-_160428.jpg/1280px-Schloss_H%C3%A4melschenburg_-_160428.jpg",
+          "title": "Schloss Hämelschenburg - 160428.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Grohnder_F%C3%A4hre_an_der_Weser_bei_Grohnde_%28Emmerthal%29_IMG_5181.jpg/1280px-Grohnder_F%C3%A4hre_an_der_Weser_bei_Grohnde_%28Emmerthal%29_IMG_5181.jpg",
+          "title": "Grohnder Fähre an der Weser.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Die_Weser_bei_Grohnde.jpg",
+          "title": "Die Weser bei Grohnde.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "akku-schonend",
         "Genuss",
@@ -1089,8 +1168,37 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Bodenwerder-Kemnade.jpg/1280px-Bodenwerder-Kemnade.jpg",
+          "title": "Bodenwerder-Kemnade.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 2.0 de",
+          "artist": "Heidelinde Willm"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Bodenwerder.jpg/1280px-Bodenwerder.jpg",
+          "title": "Bodenwerder.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain",
+          "artist": "Rabanus Flavus"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Bodenwerder_120.jpg",
+          "title": "Bodenwerder 120.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 2.0 de",
+          "artist": "Michael Meding"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Bodenwerder_Dampfmaschine.jpg",
+          "title": "Bodenwerder Dampfmaschine.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain",
+          "artist": "Joachim Meyer - User: (WT-shared) HaJo at  wts wikivoyage"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "nur mit Zeit/Reserve",
         "Genuss",
@@ -1182,8 +1290,33 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Aerzener_Maschinenfabrik_1.jpg/1280px-Aerzener_Maschinenfabrik_1.jpg",
+          "title": "Aerzen Orts-/Industriekontext.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/2023-12-17_131131_Hameln_Kl%C3%BCtturm.jpg/1280px-2023-12-17_131131_Hameln_Kl%C3%BCtturm.jpg",
+          "title": "Hameln Klütturm.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kl%C3%BCt_Kl%C3%BCtturm_und_Weser_Abends.jpg/1280px-Kl%C3%BCt_Kl%C3%BCtturm_und_Weser_Abends.jpg",
+          "title": "Klüt Klütturm und Weser Abends.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY 3.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kluetturm.jpg/1280px-Kluetturm.jpg",
+          "title": "Kluetturm.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "kurzes Zeitfenster",
         "Aussicht"
@@ -1269,8 +1402,37 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/00_0686_Bad_Pyrmont_-_Brunnen.jpg/1280px-00_0686_Bad_Pyrmont_-_Brunnen.jpg",
+          "title": "00 0686 Bad Pyrmont - Brunnen.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "W. Bulach"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bad_Pyrmont_Bahnhofstrasse_14.jpg/1280px-Bad_Pyrmont_Bahnhofstrasse_14.jpg",
+          "title": "Bad Pyrmont Bahnhofstrasse 14.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Ymblanter"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Bad_Pyrmont_Bahnhofstrasse_7.jpg/1280px-Bad_Pyrmont_Bahnhofstrasse_7.jpg",
+          "title": "Bad Pyrmont Bahnhofstrasse 7.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Ymblanter"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Bad_Pyrmont_Brunnenstrasse_16.jpg/1280px-Bad_Pyrmont_Brunnenstrasse_16.jpg",
+          "title": "Bad Pyrmont Brunnenstrasse 16.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Ymblanter"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Aussicht",
         "Transfer",
@@ -1362,8 +1524,37 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/2020-07-23_121809_Coppenbr%C3%BCgge_Gelbbach.jpg/1280px-2020-07-23_121809_Coppenbr%C3%BCgge_Gelbbach.jpg",
+          "title": "2020-07-23 121809 Coppenbrügge Gelbbach.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Tim Rademacher"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/2020-07-23_124009_Coppenbr%C3%BCgge_Steinbrinkstollen.jpg/1280px-2020-07-23_124009_Coppenbr%C3%BCgge_Steinbrinkstollen.jpg",
+          "title": "2020-07-23 124009 Coppenbrügge Steinbrinkstollen.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Tim Rademacher"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Burg_Coppenbr%C3%BCgge_Merian.jpg",
+          "title": "Burg Coppenbrügge Merian.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain",
+          "artist": "Matthäus Merian, first uploaded by de:Benutzer:AxelHH on de.wikipedia"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Coppenbruegge_Burg.jpg",
+          "title": "Coppenbruegge Burg.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain",
+          "artist": "No machine-readable author provided. Perry210174 assumed (based on copyright claims)."
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "mehr Höhenmeter",
         "Erkundung"
@@ -1449,8 +1640,37 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Knabenburg_%28Lauenstein%29_Front_Picture.jpg/1280px-Knabenburg_%28Lauenstein%29_Front_Picture.jpg",
+          "title": "Knabenburg (Lauenstein) Front Picture.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Renee Rudorff"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Lauenstein-Merian-Stich-1654.png",
+          "title": "Lauenstein-Merian-Stich-1654.png",
+          "source": "Wikimedia Commons",
+          "license": "Public domain",
+          "artist": "Conrad Buno"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Lauenstein_%28Oswald_Rei%C3%9Fert%29.jpg",
+          "title": "Lauenstein (Oswald Reißert).jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain",
+          "artist": "Oswald Reissert"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Lauenstein_Burg_9302266-Pano.jpg/1280px-Lauenstein_Burg_9302266-Pano.jpg",
+          "title": "Lauenstein Burg 9302266-Pano.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Ermell"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Transfer",
         "mehr Trailgefühl",
@@ -1537,8 +1757,37 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/2020-07-23_103407_Salzhemmendorf_Osterwald_Christuskirche.jpg/1280px-2020-07-23_103407_Salzhemmendorf_Osterwald_Christuskirche.jpg",
+          "title": "2020-07-23 103407 Salzhemmendorf Osterwald Christuskirche.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Tim Rademacher"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/2020-07-23_104610_Salzhemmendorf_Osterwald_Halde_am_Hohe-Warte-Stollen.jpg/1280px-2020-07-23_104610_Salzhemmendorf_Osterwald_Halde_am_Hohe-Warte-Stollen.jpg",
+          "title": "2020-07-23 104610 Salzhemmendorf Osterwald Halde am Hohe-Warte-Stollen.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Tim Rademacher"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/2020-07-23_104848_Salzhemmendorf_Osterwald_Kriegerdenkmal.jpg/1280px-2020-07-23_104848_Salzhemmendorf_Osterwald_Kriegerdenkmal.jpg",
+          "title": "2020-07-23 104848 Salzhemmendorf Osterwald Kriegerdenkmal.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Tim Rademacher"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/2020-07-23_104928_Salzhemmendorf_Osterwald_Kriegerdenkmal.jpg/1280px-2020-07-23_104928_Salzhemmendorf_Osterwald_Kriegerdenkmal.jpg",
+          "title": "2020-07-23 104928 Salzhemmendorf Osterwald Kriegerdenkmal.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Tim Rademacher"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Transfer",
         "mehr Höhenmeter"
@@ -1629,8 +1878,33 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/31848_Rathaus_Bad_M%C3%BCnder_2022.jpg/1280px-31848_Rathaus_Bad_M%C3%BCnder_2022.jpg",
+          "title": "Rathaus Bad Münder 2022.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/2022-06-05_111809_S%C3%BCntel_Bad_M%C3%BCnder_S%C3%BCntelturm.jpg/1280px-2022-06-05_111809_S%C3%BCntel_Bad_M%C3%BCnder_S%C3%BCntelturm.jpg",
+          "title": "Süntelturm Bad Münder.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/LSG_S%C3%BCntel_-_Der_S%C3%BCntelturm_11-2018_%2816%29.jpg/1280px-LSG_S%C3%BCntel_-_Der_S%C3%BCntelturm_11-2018_%2816%29.jpg",
+          "title": "LSG Süntel - Süntelturm.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Hess_Oldendorf%2C_HM_-_Pappm%C3%BChle_v_S%2C_Hohenstein_S%C3%BCntel_220724.jpg/1280px-Hess_Oldendorf%2C_HM_-_Pappm%C3%BChle_v_S%2C_Hohenstein_S%C3%BCntel_220724.jpg",
+          "title": "Hess Oldendorf, Hohenstein Süntel 220724.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Aussicht",
         "mehr Höhenmeter"
@@ -1716,8 +1990,37 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/31832_Springe_Jagdschloss_Lavessaal_-2024-04.jpg/1280px-31832_Springe_Jagdschloss_Lavessaal_-2024-04.jpg",
+          "title": "31832 Springe Jagdschloss Lavessaal -2024-04.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Uwe Barghaan"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Das_in_Springe_2010.jpg",
+          "title": "Das in Springe 2010.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain",
+          "artist": "Axel Hindemith"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Jagdschloss_Springe_Kaiserallee.jpg/1280px-Jagdschloss_Springe_Kaiserallee.jpg",
+          "title": "Jagdschloss Springe Kaiserallee.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0",
+          "artist": "Clemensfranz"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Jagdschloss_Springe_Kavalierhaus.jpg/1280px-Jagdschloss_Springe_Kavalierhaus.jpg",
+          "title": "Jagdschloss Springe Kavalierhaus.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0",
+          "artist": "Clemensfranz"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Transfer",
         "akku-schonend",
@@ -1804,8 +2107,37 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Der_mittlere_Teich.jpg/1280px-Der_mittlere_Teich.jpg",
+          "title": "Der mittlere Teich.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Kathy2408"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Paschenburg_Aussichtsturm.jpg",
+          "title": "Paschenburg Aussichtsturm.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY 3.0",
+          "artist": "AxelHH"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Paschenburg_Geb%C3%A4ude_Eingang.jpg",
+          "title": "Paschenburg Gebäude Eingang.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY 3.0",
+          "artist": "Axel Hindemith"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Paschenburg_und_Schaumburg_von_unten.jpg",
+          "title": "Paschenburg und Schaumburg von unten.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY 3.0",
+          "artist": "Axel Hindemith"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Aussicht",
         "Transfer"
@@ -1891,8 +2223,37 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/2022-08-07_Alte_B%C3%A4ume_und_Spazierg%C3%A4nger_mit_Hunden_im_Schlosspark_B%C3%BCckeburg.jpg/1280px-2022-08-07_Alte_B%C3%A4ume_und_Spazierg%C3%A4nger_mit_Hunden_im_Schlosspark_B%C3%BCckeburg.jpg",
+          "title": "2022-08-07 Alte Bäume und Spaziergänger mit Hunden im Schlosspark Bückeburg.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Bernd Schwabe in Hannover"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/2022-08-07_Nieders%C3%A4chsisches_Landesarchiv_B%C3%BCckeburg_01.jpg/1280px-2022-08-07_Nieders%C3%A4chsisches_Landesarchiv_B%C3%BCckeburg_01.jpg",
+          "title": "2022-08-07 Niedersächsisches Landesarchiv Bückeburg 01.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Bärbel Miemietz"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/2022-08-07_Nieders%C3%A4chsisches_Landesarchiv_B%C3%BCckeburg_02.jpg/1280px-2022-08-07_Nieders%C3%A4chsisches_Landesarchiv_B%C3%BCckeburg_02.jpg",
+          "title": "2022-08-07 Niedersächsisches Landesarchiv Bückeburg 02.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Bärbel Miemietz"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Aerial_image_of_Schloss_B%C3%BCckeburg_%28view_from_the_southeast%29.jpg/1280px-Aerial_image_of_Schloss_B%C3%BCckeburg_%28view_from_the_southeast%29.jpg",
+          "title": "Aerial image of Schloss Bückeburg (view from the southeast).jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "artist": "Carsten Steger"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Transfer",
         "Wald"
@@ -1983,8 +2344,33 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Hessisch_Oldendorf%2C_Baxmann-Brunnen.jpg/1280px-Hessisch_Oldendorf%2C_Baxmann-Brunnen.jpg",
+          "title": "Hessisch Oldendorf Baxmann-Brunnen.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Hess_Oldendorf%2C_HM_-_Pappm%C3%BChle_v_S%2C_Hohenstein_S%C3%BCntel_220724.jpg/1280px-Hess_Oldendorf%2C_HM_-_Pappm%C3%BChle_v_S%2C_Hohenstein_S%C3%BCntel_220724.jpg",
+          "title": "Hess Oldendorf, Hohenstein Süntel 220724.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Hohenstein_S%C3%BCntel_von_unten.jpg",
+          "title": "Hohenstein Süntel von unten.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/S%C3%BCntel%2C_NSG_Hohenstein_01.jpg/1280px-S%C3%BCntel%2C_NSG_Hohenstein_01.jpg",
+          "title": "Süntel, NSG Hohenstein 01.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Aussicht",
         "Süntel",
@@ -2076,8 +2462,33 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Taschentuchbaum_Ohrbergpark_Hameln.jpg",
+          "title": "Taschentuchbaum Ohrbergpark Hameln.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Ohrbergpark_Ausflugsgastst%C3%A4tte.jpg",
+          "title": "Ohrbergpark Ausflugsgaststätte.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Schloss_H%C3%A4melschenburg_-_160428.jpg/1280px-Schloss_H%C3%A4melschenburg_-_160428.jpg",
+          "title": "Schloss Hämelschenburg - 160428.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Gutsanlage_von_Schloss_H%C3%A4melschenburg_gesehen_nachmittags_von_der_Br%C3%BCckenstra%C3%9Fe_an_den_Weiden_an_der_Emmer.jpg/1280px-Gutsanlage_von_Schloss_H%C3%A4melschenburg_gesehen_nachmittags_von_der_Br%C3%BCckenstra%C3%9Fe_an_den_Weiden_an_der_Emmer.jpg",
+          "title": "Schloss Hämelschenburg an der Emmer.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "akku-schonend",
         "Genuss",
@@ -2164,8 +2575,33 @@
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
       },
-      "gallery": [],
-      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Grohnder_F%C3%A4hre_an_der_Weser_bei_Grohnde_%28Emmerthal%29_IMG_5181.jpg/1280px-Grohnder_F%C3%A4hre_an_der_Weser_bei_Grohnde_%28Emmerthal%29_IMG_5181.jpg",
+          "title": "Grohnder Fähre an der Weser.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Die_Weser_bei_Grohnde.jpg",
+          "title": "Die Weser bei Grohnde.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Schloss_Grohnde_an_der_Weser_mit_Fluss.jpg/1280px-Schloss_Grohnde_an_der_Weser_mit_Fluss.jpg",
+          "title": "Schloss Grohnde an der Weser mit Fluss.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Bodenwerder.jpg/1280px-Bodenwerder.jpg",
+          "title": "Bodenwerder.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Wikimedia Commons"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "Transfer",
         "Genuss",
@@ -2213,7 +2649,7 @@
     "logbook": "Lokales Fahrtenlogbuch per Browser-localStorage, Export als JSON",
     "weekend": "Automatische Empfehlung aus Score, Wetter/Matsch und Zeitfenster",
     "satellite_map": "Satellitenkarte mit Track-Overlay ohne externe JS-Library",
-    "galleries": "Route-Galerien mit vorhandenen Wikimedia-Bildern, falls passend gefunden",
+    "galleries": "Route-Galerien mit Wikimedia-Bildern im Landmark-/Region-Kontext, inklusive Zoom-Lightbox",
     "ride_readiness": "Ein kompakter Fahrbarkeits-Status ersetzt wiederholte Matschwerte pro Karte"
   }
 }
