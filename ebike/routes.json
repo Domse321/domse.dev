@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "home": {
     "lat": 52.122372,
     "lon": 9.3447927,
@@ -708,6 +708,1467 @@
       "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
         "kurzes Zeitfenster",
+        "akku-schonend"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "suentelturm-poetzen-wald",
+      "name": "Süntelturm–Pötzen Waldrunde",
+      "region": "Süntel / Pötzen",
+      "type": "Wochenendrunde",
+      "start_mode": "ab Zuhause",
+      "difficulty": "mittel–sportlich",
+      "distance_km": 38.4,
+      "elevation_m": 504,
+      "duration": "2,0–2,8 h",
+      "battery": "ca. 40–51 % Tour/eMTB",
+      "best_for": "Süntelturm, Waldanstieg und schnelle Heimkehr",
+      "season": "Frühjahr–Herbst; nach Regen forstig-rutschig",
+      "surface": "Waldwege, Schotter, ruhige Nebenstraßen",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.1598441,
+          "lon": 9.3585894,
+          "label": "Pötzen"
+        },
+        {
+          "lat": 52.1713769,
+          "lon": 9.3836328,
+          "label": "Süntelturm"
+        },
+        {
+          "lat": 52.1952894,
+          "lon": 9.4633959,
+          "label": "Bad Münder"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 88,
+        "trail": 72,
+        "low_traffic": 78,
+        "emtb_fun": 86,
+        "viewpoints": 90,
+        "loop_quality": 78,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "Süntelturm",
+        "Süntelwald",
+        "gute Höhenmeter"
+      ],
+      "risk_notes": [
+        "Waldwege nach Regen prüfen",
+        "Süntelturm-Zufahrt kann steil wirken"
+      ],
+      "komoot_link": "https://www.komoot.com/search/S%C3%BCntelturm%E2%80%93P%C3%B6tzen%20Waldrunde%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.1598441,9.3585894&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 81.8,
+      "gpx_file": "gpx/suentelturm-poetzen-wald.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.3585894,52.1598441;9.3836328,52.1713769;9.4633959,52.1952894;9.3447927,52.122372&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/suentelturm-poetzen-wald.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 1243,
+      "battery_model": {
+        "eco": 31,
+        "tour": 40,
+        "emtb": 51,
+        "turbo": 65,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Aussicht",
+        "mehr Höhenmeter"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "schillat-hoehle-hohenstein-kante",
+      "name": "Schillat-Höhle–Hohenstein Kante",
+      "region": "Langenfeld / Süntel",
+      "type": "Trail-/Waldtag",
+      "start_mode": "ab Zuhause sportlich",
+      "difficulty": "sportlich",
+      "distance_km": 42.6,
+      "elevation_m": 440,
+      "duration": "2,1–2,8 h",
+      "battery": "ca. 42–54 % Tour/eMTB",
+      "best_for": "Felsen, Höhle und Süntel-Kante als E-MTB-Prüfung",
+      "season": "trockenes Frühjahr bis Herbst",
+      "surface": "Forst, Schotter, steilere Waldstücke; sensible Pfade meiden",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.1415782,
+          "lon": 9.29975,
+          "label": "Fischbeck"
+        },
+        {
+          "lat": 52.2044761,
+          "lon": 9.2880663,
+          "label": "Schillat-Höhle"
+        },
+        {
+          "lat": 52.1986679,
+          "lon": 9.3144583,
+          "label": "Hohenstein"
+        },
+        {
+          "lat": 52.1598441,
+          "lon": 9.3585894,
+          "label": "Pötzen"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 96,
+        "trail": 82,
+        "low_traffic": 75,
+        "emtb_fun": 91,
+        "viewpoints": 94,
+        "loop_quality": 76,
+        "surface_confidence": 65
+      },
+      "highlights": [
+        "Schillat-Höhle",
+        "Hohenstein",
+        "Süntel-Felsen"
+      ],
+      "risk_notes": [
+        "Naturschutz und Traillegalität vorher prüfen",
+        "nicht bei Nässe eskalieren"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Schillat-H%C3%B6hle%E2%80%93Hohenstein%20Kante%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.1415782,9.29975&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 85.9,
+      "gpx_file": "gpx/schillat-hoehle-hohenstein-kante.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.29975,52.1415782;9.2880663,52.2044761;9.3144583,52.1986679;9.3585894,52.1598441;9.3447927,52.122372&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/schillat-hoehle-hohenstein-kante.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 1178,
+      "battery_model": {
+        "eco": 33,
+        "tour": 42,
+        "emtb": 54,
+        "turbo": 69,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Aussicht",
+        "nur trocken",
+        "mehr Trailgefühl"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "haemelschenburg-grohnde-weser",
+      "name": "Hämelschenburg–Grohnde Weserbogen",
+      "region": "Emmerthal / Weser",
+      "type": "Genussrunde",
+      "start_mode": "ab Zuhause",
+      "difficulty": "leicht–mittel",
+      "distance_km": 37.2,
+      "elevation_m": 147,
+      "duration": "1,5–2,1 h",
+      "battery": "ca. 31–40 % Tour/eMTB",
+      "best_for": "Schloss, Weserbogen und entspannte Kilometer",
+      "season": "ganzjährig; ideal bei unsicherem Waldwetter",
+      "surface": "Radwege, Nebenstraßen, Feldwege, wenig Trail",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.0731084,
+          "lon": 9.3545475,
+          "label": "Ohrbergpark"
+        },
+        {
+          "lat": 52.0279192,
+          "lon": 9.3440796,
+          "label": "Hämelschenburg"
+        },
+        {
+          "lat": 52.0187867,
+          "lon": 9.4195248,
+          "label": "Grohnde"
+        },
+        {
+          "lat": 52.0484207,
+          "lon": 9.3843784,
+          "label": "Emmerthal"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 86,
+        "trail": 45,
+        "low_traffic": 82,
+        "emtb_fun": 58,
+        "viewpoints": 72,
+        "loop_quality": 88,
+        "surface_confidence": 82
+      },
+      "highlights": [
+        "Schloss Hämelschenburg",
+        "Weserbogen",
+        "Ohrberg"
+      ],
+      "risk_notes": [
+        "mehr Tour als MTB",
+        "Wochenendverkehr an Ausflugszielen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/H%C3%A4melschenburg%E2%80%93Grohnde%20Weserbogen%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.0731084,9.3545475&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 71.7,
+      "gpx_file": "gpx/haemelschenburg-grohnde-weser.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.3545475,52.0731084;9.3440796,52.0279192;9.4195248,52.0187867;9.3843784,52.0484207;9.3447927,52.122372&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/haemelschenburg-grohnde-weser.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 935,
+      "battery_model": {
+        "eco": 24,
+        "tour": 31,
+        "emtb": 40,
+        "turbo": 50,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "akku-schonend",
+        "Genuss",
+        "Schlechtwetter-Alternative"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "bodenwerder-weserbergland-tag",
+      "name": "Bodenwerder Weserbergland-Tag",
+      "region": "Weser / Bodenwerder",
+      "type": "Tagestour",
+      "start_mode": "ab Zuhause sportlich",
+      "difficulty": "sportlich",
+      "distance_km": 60.8,
+      "elevation_m": 98,
+      "duration": "2,4–3,3 h",
+      "battery": "ca. 47–61 % Tour/eMTB",
+      "best_for": "lange Weserbergland-Runde mit Münchhausen-Flair",
+      "season": "Frühjahr–Herbst; Wind entlang der Weser beachten",
+      "surface": "Radwege, Nebenstraßen, Anstiege ins Hügelland",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.0279192,
+          "lon": 9.3440796,
+          "label": "Hämelschenburg"
+        },
+        {
+          "lat": 52.0187867,
+          "lon": 9.4195248,
+          "label": "Grohnde"
+        },
+        {
+          "lat": 51.9752481,
+          "lon": 9.5139063,
+          "label": "Bodenwerder"
+        },
+        {
+          "lat": 52.0484207,
+          "lon": 9.3843784,
+          "label": "Emmerthal"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 88,
+        "trail": 50,
+        "low_traffic": 76,
+        "emtb_fun": 70,
+        "viewpoints": 78,
+        "loop_quality": 82,
+        "surface_confidence": 78
+      },
+      "highlights": [
+        "Bodenwerder",
+        "Wesertal",
+        "lange Ausdauer-Runde"
+      ],
+      "risk_notes": [
+        "lange Tour: Akku/Verpflegung planen",
+        "mehr Radreise als Trail"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Bodenwerder%20Weserbergland-Tag%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.0279192,9.3440796&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 74.1,
+      "gpx_file": "gpx/bodenwerder-weserbergland-tag.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.3440796,52.0279192;9.4195248,52.0187867;9.5139063,51.9752481;9.3843784,52.0484207;9.3447927,52.122372&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/bodenwerder-weserbergland-tag.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 1386,
+      "battery_model": {
+        "eco": 37,
+        "tour": 47,
+        "emtb": 61,
+        "turbo": 78,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "nur mit Zeit/Reserve",
+        "Genuss",
+        "lange Runde"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "aerzen-hummental-kluet-bogen",
+      "name": "Aerzen–Hummental–Klüt Bogen",
+      "region": "Aerzen / Klüt",
+      "type": "Feierabendrunde",
+      "start_mode": "ab Zuhause",
+      "difficulty": "mittel",
+      "distance_km": 28.9,
+      "elevation_m": 285,
+      "duration": "1,4–2,0 h",
+      "battery": "ca. 28–36 % Tour/eMTB",
+      "best_for": "westlicher Bogen mit Klüt-Finish",
+      "season": "ganzjährig; Waldstücke nach Regen prüfen",
+      "surface": "Nebenstraßen, Feldwege, Klüt-Waldstücke",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.0496072,
+          "lon": 9.2638158,
+          "label": "Aerzen"
+        },
+        {
+          "lat": 52.075,
+          "lon": 9.3,
+          "label": "Hummental grob"
+        },
+        {
+          "lat": 52.0953154,
+          "lon": 9.3380225,
+          "label": "Klüt Gipfel"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 80,
+        "trail": 64,
+        "low_traffic": 78,
+        "emtb_fun": 72,
+        "viewpoints": 76,
+        "loop_quality": 84,
+        "surface_confidence": 68
+      },
+      "highlights": [
+        "Aerzen-Bogen",
+        "Hummental",
+        "Klüt-Finish"
+      ],
+      "risk_notes": [
+        "Wegwahl um Aerzen prüfen",
+        "Klüt bei Nässe rutschig"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Aerzen%E2%80%93Hummental%E2%80%93Kl%C3%BCt%20Bogen%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.0496072,9.2638158&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 74.7,
+      "gpx_file": "gpx/aerzen-hummental-kluet-bogen.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.2638158,52.0496072;9.3,52.075;9.3380225,52.0953154;9.3447927,52.122372&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/aerzen-hummental-kluet-bogen.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 802,
+      "battery_model": {
+        "eco": 22,
+        "tour": 28,
+        "emtb": 36,
+        "turbo": 46,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "kurzes Zeitfenster",
+        "Aussicht"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "bad-pyrmont-koenigsberg-runde",
+      "name": "Bad Pyrmont–Königsberg Runde",
+      "region": "Bad Pyrmont",
+      "type": "Transfer-Runde",
+      "start_mode": "besser mit kurzer Anfahrt",
+      "difficulty": "mittel–sportlich",
+      "distance_km": 13.5,
+      "elevation_m": 294,
+      "duration": "0,9–1,2 h",
+      "battery": "ca. 17–21 % Tour/eMTB",
+      "best_for": "Kurstadt, Waldanstieg und Aussicht statt Haustür-Standard",
+      "season": "Frühjahr–Herbst",
+      "surface": "Wald-/Forstwege, Nebenstraßen, kurze ruppige Stücke möglich",
+      "waypoints": [
+        {
+          "lat": 51.9850503,
+          "lon": 9.2434635,
+          "label": "Bad Pyrmont"
+        },
+        {
+          "lat": 51.981,
+          "lon": 9.214,
+          "label": "Königsberg / Pyrmonter Wald grob"
+        },
+        {
+          "lat": 52.01,
+          "lon": 9.245,
+          "label": "Pyrmonter Berg grob"
+        },
+        {
+          "lat": 51.9850503,
+          "lon": 9.2434635,
+          "label": "Bad Pyrmont"
+        }
+      ],
+      "scores": {
+        "scenery": 87,
+        "trail": 72,
+        "low_traffic": 76,
+        "emtb_fun": 82,
+        "viewpoints": 84,
+        "loop_quality": 80,
+        "surface_confidence": 62
+      },
+      "highlights": [
+        "Bad Pyrmont",
+        "Waldanstiege",
+        "Aussichten"
+      ],
+      "risk_notes": [
+        "Transfer sinnvoll",
+        "Feinrouting im Pyrmonter Wald prüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Bad%20Pyrmont%E2%80%93K%C3%B6nigsberg%20Runde%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=51.981,9.214&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 79.5,
+      "gpx_file": "gpx/bad-pyrmont-koenigsberg-runde.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.2434635,51.9850503;9.214,51.981;9.245,52.01;9.2434635,51.9850503&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/bad-pyrmont-koenigsberg-runde.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 496,
+      "battery_model": {
+        "eco": 13,
+        "tour": 17,
+        "emtb": 21,
+        "turbo": 27,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Aussicht",
+        "Transfer",
+        "mehr Höhenmeter"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "coppenbruegge-bisperode-ith-vorland",
+      "name": "Coppenbrügge–Bisperode Ith-Vorland",
+      "region": "Ith / Coppenbrügge",
+      "type": "Wochenendrunde",
+      "start_mode": "ab Zuhause oder Transfer",
+      "difficulty": "mittel–sportlich",
+      "distance_km": 45.8,
+      "elevation_m": 546,
+      "duration": "2,3–3,2 h",
+      "battery": "ca. 46–59 % Tour/eMTB",
+      "best_for": "Ith-Vorland mit E-MTB-tauglichen Wellen",
+      "season": "Frühjahr–Herbst",
+      "surface": "Feldwege, Forst, Nebenstraßen",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.1196007,
+          "lon": 9.5482845,
+          "label": "Coppenbrügge"
+        },
+        {
+          "lat": 52.0859171,
+          "lon": 9.4998299,
+          "label": "Bisperode"
+        },
+        {
+          "lat": 52.0889241,
+          "lon": 9.5268449,
+          "label": "Ith Einstieg grob"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 84,
+        "trail": 68,
+        "low_traffic": 76,
+        "emtb_fun": 80,
+        "viewpoints": 76,
+        "loop_quality": 75,
+        "surface_confidence": 66
+      },
+      "highlights": [
+        "Coppenbrügge",
+        "Bisperode",
+        "Ith-Vorland"
+      ],
+      "risk_notes": [
+        "ab Zuhause lang",
+        "Ith-Feinrouting prüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Coppenbr%C3%BCgge%E2%80%93Bisperode%20Ith-Vorland%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.1196007,9.5482845&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 76.6,
+      "gpx_file": "gpx/coppenbruegge-bisperode-ith-vorland.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.5482845,52.1196007;9.4998299,52.0859171;9.5268449,52.0889241;9.3447927,52.122372&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/coppenbruegge-bisperode-ith-vorland.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 1267,
+      "battery_model": {
+        "eco": 36,
+        "tour": 46,
+        "emtb": 59,
+        "turbo": 76,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "mehr Höhenmeter",
+        "Erkundung"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "lauenstein-ithwiesen-transfer",
+      "name": "Lauenstein–Ithwiesen Transferloop",
+      "region": "Ith / Lauenstein",
+      "type": "Transfer-Runde",
+      "start_mode": "Transfer bis Lauenstein",
+      "difficulty": "mittel–sportlich",
+      "distance_km": 20.2,
+      "elevation_m": 361,
+      "duration": "1,2–1,7 h",
+      "battery": "ca. 23–30 % Tour/eMTB",
+      "best_for": "kompakter Ith-Loop ohne Hameln-Anfahrt",
+      "season": "trockenes Frühjahr bis Herbst",
+      "surface": "Forst, Schotter, offene Wiesenwege",
+      "waypoints": [
+        {
+          "lat": 52.077338,
+          "lon": 9.5536295,
+          "label": "Lauenstein"
+        },
+        {
+          "lat": 52.0889241,
+          "lon": 9.5268449,
+          "label": "Ith"
+        },
+        {
+          "lat": 52.039,
+          "lon": 9.61,
+          "label": "Ith-Kamm grob"
+        },
+        {
+          "lat": 52.077338,
+          "lon": 9.5536295,
+          "label": "Lauenstein"
+        }
+      ],
+      "scores": {
+        "scenery": 90,
+        "trail": 78,
+        "low_traffic": 82,
+        "emtb_fun": 86,
+        "viewpoints": 84,
+        "loop_quality": 80,
+        "surface_confidence": 62
+      },
+      "highlights": [
+        "Ith-Kammgefühl",
+        "Lauenstein",
+        "kompakter Transferloop"
+      ],
+      "risk_notes": [
+        "Traillegalität prüfen",
+        "bei Nässe vorsichtig"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Lauenstein%E2%80%93Ithwiesen%20Transferloop%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.0889241,9.5268449&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 83.0,
+      "gpx_file": "gpx/lauenstein-ithwiesen-transfer.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.5536295,52.077338;9.5268449,52.0889241;9.61,52.039;9.5536295,52.077338&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/lauenstein-ithwiesen-transfer.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 450,
+      "battery_model": {
+        "eco": 18,
+        "tour": 23,
+        "emtb": 30,
+        "turbo": 38,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Transfer",
+        "mehr Trailgefühl",
+        "Aussicht"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "osterwald-lauenstein-hoehenzug",
+      "name": "Osterwald–Lauenstein Höhenzug",
+      "region": "Osterwald / Ith",
+      "type": "Transfer-Runde",
+      "start_mode": "Transfer bis Osterwald/Lauenstein",
+      "difficulty": "sportlich",
+      "distance_km": 25.3,
+      "elevation_m": 415,
+      "duration": "1,4–2,0 h",
+      "battery": "ca. 28–36 % Tour/eMTB",
+      "best_for": "waldiger Höhenzug mit E-MTB-Faktor",
+      "season": "Frühjahr–Herbst, trocken bevorzugt",
+      "surface": "Forst, Schotter, Waldwege",
+      "waypoints": [
+        {
+          "lat": 52.1091075,
+          "lon": 9.6241906,
+          "label": "Osterwald"
+        },
+        {
+          "lat": 52.077338,
+          "lon": 9.5536295,
+          "label": "Lauenstein"
+        },
+        {
+          "lat": 52.0889241,
+          "lon": 9.5268449,
+          "label": "Ith"
+        },
+        {
+          "lat": 52.1091075,
+          "lon": 9.6241906,
+          "label": "Osterwald"
+        }
+      ],
+      "scores": {
+        "scenery": 86,
+        "trail": 76,
+        "low_traffic": 84,
+        "emtb_fun": 88,
+        "viewpoints": 78,
+        "loop_quality": 78,
+        "surface_confidence": 62
+      },
+      "highlights": [
+        "Osterwald",
+        "Lauenstein",
+        "Ith-Nähe"
+      ],
+      "risk_notes": [
+        "Transfer-Runde",
+        "Feinrouting vor Fahrt prüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Osterwald%E2%80%93Lauenstein%20H%C3%B6henzug%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.077338,9.5536295&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 81.5,
+      "gpx_file": "gpx/osterwald-lauenstein-hoehenzug.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.6241906,52.1091075;9.5536295,52.077338;9.5268449,52.0889241;9.6241906,52.1091075&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/osterwald-lauenstein-hoehenzug.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 484,
+      "battery_model": {
+        "eco": 22,
+        "tour": 28,
+        "emtb": 36,
+        "turbo": 46,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Transfer",
+        "mehr Höhenmeter"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "bad-muender-suentel-ruecken",
+      "name": "Bad Münder–Süntel Rücken",
+      "region": "Bad Münder / Süntel",
+      "type": "Trail-/Waldtag",
+      "start_mode": "ab Zuhause sportlich oder Transfer",
+      "difficulty": "sportlich",
+      "distance_km": 35.3,
+      "elevation_m": 584,
+      "duration": "2,0–2,8 h",
+      "battery": "ca. 40–51 % Tour/eMTB",
+      "best_for": "Süntel von der Bad-Münder-Seite mit langem Rücken",
+      "season": "trockenes Frühjahr bis Herbst",
+      "surface": "Forstwege, Schotter, Waldanstiege",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.1952894,
+          "lon": 9.4633959,
+          "label": "Bad Münder"
+        },
+        {
+          "lat": 52.1713769,
+          "lon": 9.3836328,
+          "label": "Süntelturm"
+        },
+        {
+          "lat": 52.1598441,
+          "lon": 9.3585894,
+          "label": "Pötzen"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 89,
+        "trail": 74,
+        "low_traffic": 78,
+        "emtb_fun": 88,
+        "viewpoints": 88,
+        "loop_quality": 77,
+        "surface_confidence": 68
+      },
+      "highlights": [
+        "Bad Münder",
+        "Süntelturm",
+        "Süntelrücken"
+      ],
+      "risk_notes": [
+        "lange An-/Abfahrt",
+        "Waldzustand prüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Bad%20M%C3%BCnder%E2%80%93S%C3%BCntel%20R%C3%BCcken%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.1952894,9.4633959&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 82.3,
+      "gpx_file": "gpx/bad-muender-suentel-ruecken.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.4633959,52.1952894;9.3836328,52.1713769;9.3585894,52.1598441;9.3447927,52.122372&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/bad-muender-suentel-ruecken.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 1122,
+      "battery_model": {
+        "eco": 31,
+        "tour": 40,
+        "emtb": 51,
+        "turbo": 65,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Aussicht",
+        "mehr Höhenmeter"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "springe-jagdschloss-saupark",
+      "name": "Springe Jagdschloss–Saupark Runde",
+      "region": "Springe / Deisterrand",
+      "type": "Transfer-Runde",
+      "start_mode": "Transfer bis Springe/Jagdschloss",
+      "difficulty": "mittel",
+      "distance_km": 13.7,
+      "elevation_m": 31,
+      "duration": "0,6–0,7 h",
+      "battery": "ca. 13–16 % Tour/eMTB",
+      "best_for": "Wald-/Forstrunde ohne Hameln-Anfahrt",
+      "season": "ganzjährig, Wald nach Regen weich",
+      "surface": "Forstwege, Waldstraßen, wenig Trail",
+      "waypoints": [
+        {
+          "lat": 52.1896858,
+          "lon": 9.5735122,
+          "label": "Springe/Jagdschloss"
+        },
+        {
+          "lat": 52.205,
+          "lon": 9.585,
+          "label": "Saupark Nord grob"
+        },
+        {
+          "lat": 52.173,
+          "lon": 9.61,
+          "label": "Waldschleife Springe grob"
+        },
+        {
+          "lat": 52.1896858,
+          "lon": 9.5735122,
+          "label": "Springe/Jagdschloss"
+        }
+      ],
+      "scores": {
+        "scenery": 82,
+        "trail": 58,
+        "low_traffic": 86,
+        "emtb_fun": 66,
+        "viewpoints": 70,
+        "loop_quality": 82,
+        "surface_confidence": 60
+      },
+      "highlights": [
+        "Jagdschloss Springe",
+        "ruhiger Wald",
+        "Transfer-tauglich"
+      ],
+      "risk_notes": [
+        "Regeln im Saupark/Forst beachten",
+        "Feinrouting prüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Springe%20Jagdschloss%E2%80%93Saupark%20Runde%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.205,9.585&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 73.3,
+      "gpx_file": "gpx/springe-jagdschloss-saupark.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.5735122,52.1896858;9.585,52.205;9.61,52.173;9.5735122,52.1896858&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/springe-jagdschloss-saupark.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 187,
+      "battery_model": {
+        "eco": 10,
+        "tour": 13,
+        "emtb": 16,
+        "turbo": 21,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Transfer",
+        "akku-schonend",
+        "Wald"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "rinteln-paschenburg-schaumburg",
+      "name": "Rinteln–Paschenburg–Schaumburg",
+      "region": "Schaumburger Land",
+      "type": "Transfer-Runde",
+      "start_mode": "Transfer bis Rinteln",
+      "difficulty": "mittel–sportlich",
+      "distance_km": 24.8,
+      "elevation_m": 303,
+      "duration": "1,3–1,8 h",
+      "battery": "ca. 26–33 % Tour/eMTB",
+      "best_for": "Weser, Schaumburg und Aussicht von der Paschenburg",
+      "season": "Frühjahr–Herbst",
+      "surface": "Weserwege, Nebenstraßen, Wald-/Burganstieg",
+      "waypoints": [
+        {
+          "lat": 52.1873798,
+          "lon": 9.0804584,
+          "label": "Rinteln"
+        },
+        {
+          "lat": 52.2013668,
+          "lon": 9.1946912,
+          "label": "Schaumburg"
+        },
+        {
+          "lat": 52.2041987,
+          "lon": 9.2049764,
+          "label": "Paschenburg"
+        },
+        {
+          "lat": 52.1873798,
+          "lon": 9.0804584,
+          "label": "Rinteln"
+        }
+      ],
+      "scores": {
+        "scenery": 91,
+        "trail": 62,
+        "low_traffic": 78,
+        "emtb_fun": 76,
+        "viewpoints": 95,
+        "loop_quality": 82,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "Paschenburg",
+        "Schaumburg",
+        "Weser bei Rinteln"
+      ],
+      "risk_notes": [
+        "Burganstiege knackig",
+        "Transfer sinnvoll"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Rinteln%E2%80%93Paschenburg%E2%80%93Schaumburg%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.2013668,9.1946912&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 80.1,
+      "gpx_file": "gpx/rinteln-paschenburg-schaumburg.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.0804584,52.1873798;9.1946912,52.2013668;9.2049764,52.2041987;9.0804584,52.1873798&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/rinteln-paschenburg-schaumburg.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 710,
+      "battery_model": {
+        "eco": 20,
+        "tour": 26,
+        "emtb": 33,
+        "turbo": 42,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Aussicht",
+        "Transfer"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "bueckeburg-obernkirchen-bueckeberg",
+      "name": "Bückeburg–Obernkirchen–Bückeberg",
+      "region": "Schaumburger Wald / Bückeberg",
+      "type": "Transfer-Runde",
+      "start_mode": "Transfer bis Bückeburg",
+      "difficulty": "mittel",
+      "distance_km": 19.3,
+      "elevation_m": 198,
+      "duration": "0,9–1,3 h",
+      "battery": "ca. 19–25 % Tour/eMTB",
+      "best_for": "Schaumburger Waldkante mit Kultur- und Forstanteil",
+      "season": "Frühjahr–Herbst",
+      "surface": "Forstwege, Nebenstraßen, Schotter",
+      "waypoints": [
+        {
+          "lat": 52.2611037,
+          "lon": 9.0488959,
+          "label": "Bückeburg"
+        },
+        {
+          "lat": 52.270117,
+          "lon": 9.1286948,
+          "label": "Obernkirchen"
+        },
+        {
+          "lat": 52.245,
+          "lon": 9.145,
+          "label": "Bückeberg grob"
+        },
+        {
+          "lat": 52.2611037,
+          "lon": 9.0488959,
+          "label": "Bückeburg"
+        }
+      ],
+      "scores": {
+        "scenery": 82,
+        "trail": 62,
+        "low_traffic": 78,
+        "emtb_fun": 70,
+        "viewpoints": 76,
+        "loop_quality": 80,
+        "surface_confidence": 60
+      },
+      "highlights": [
+        "Bückeburg",
+        "Obernkirchen",
+        "Bückeberg"
+      ],
+      "risk_notes": [
+        "Transfer-Runde",
+        "Feinrouting im Wald prüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/B%C3%BCckeburg%E2%80%93Obernkirchen%E2%80%93B%C3%BCckeberg%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.270117,9.1286948&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 73.8,
+      "gpx_file": "gpx/bueckeburg-obernkirchen-bueckeberg.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.0488959,52.2611037;9.1286948,52.270117;9.145,52.245;9.0488959,52.2611037&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/bueckeburg-obernkirchen-bueckeberg.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 528,
+      "battery_model": {
+        "eco": 15,
+        "tour": 19,
+        "emtb": 25,
+        "turbo": 32,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Transfer",
+        "Wald"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "hessisch-oldendorf-hohenstein-lite",
+      "name": "Hessisch Oldendorf–Hohenstein Lite",
+      "region": "Hessisch Oldendorf / Süntel",
+      "type": "Wochenendrunde",
+      "start_mode": "ab Zuhause",
+      "difficulty": "mittel",
+      "distance_km": 39.5,
+      "elevation_m": 398,
+      "duration": "1,9–2,6 h",
+      "battery": "ca. 38–50 % Tour/eMTB",
+      "best_for": "Hohenstein-Gefühl ohne volle Schillat/Ith-Eskalation",
+      "season": "Frühjahr–Herbst",
+      "surface": "Weser-/Nebenwege, Forst, moderater Süntel-Anstieg",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.1698382,
+          "lon": 9.2506531,
+          "label": "Hessisch Oldendorf"
+        },
+        {
+          "lat": 52.1986679,
+          "lon": 9.3144583,
+          "label": "Hohenstein"
+        },
+        {
+          "lat": 52.1598441,
+          "lon": 9.3585894,
+          "label": "Pötzen"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 91,
+        "trail": 70,
+        "low_traffic": 78,
+        "emtb_fun": 82,
+        "viewpoints": 90,
+        "loop_quality": 80,
+        "surface_confidence": 68
+      },
+      "highlights": [
+        "Hessisch Oldendorf",
+        "Hohenstein",
+        "Süntel light"
+      ],
+      "risk_notes": [
+        "Hohenstein-Abschnitte vorher prüfen",
+        "bei Nässe entschärfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Hessisch%20Oldendorf%E2%80%93Hohenstein%20Lite%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.1698382,9.2506531&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 81.5,
+      "gpx_file": "gpx/hessisch-oldendorf-hohenstein-lite.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.2506531,52.1698382;9.3144583,52.1986679;9.3585894,52.1598441;9.3447927,52.122372&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/hessisch-oldendorf-hohenstein-lite.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 1214,
+      "battery_model": {
+        "eco": 30,
+        "tour": 38,
+        "emtb": 50,
+        "turbo": 63,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Aussicht",
+        "Süntel",
+        "Wochenende"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "emmerthal-ohrberg-haemelschenburg",
+      "name": "Emmerthal–Ohrberg–Hämelschenburg",
+      "region": "Emmerthal / Ohrberg",
+      "type": "Genussrunde",
+      "start_mode": "ab Zuhause",
+      "difficulty": "leicht–mittel",
+      "distance_km": 28.9,
+      "elevation_m": 120,
+      "duration": "1,2–1,7 h",
+      "battery": "ca. 24–31 % Tour/eMTB",
+      "best_for": "schöne, nicht brutale Runde mit Park und Schloss",
+      "season": "ganzjährig",
+      "surface": "Radwege, Park-/Feldwege, ruhige Nebenstraßen",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.0731084,
+          "lon": 9.3545475,
+          "label": "Ohrbergpark"
+        },
+        {
+          "lat": 52.0484207,
+          "lon": 9.3843784,
+          "label": "Emmerthal"
+        },
+        {
+          "lat": 52.0279192,
+          "lon": 9.3440796,
+          "label": "Hämelschenburg"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 85,
+        "trail": 48,
+        "low_traffic": 82,
+        "emtb_fun": 60,
+        "viewpoints": 72,
+        "loop_quality": 88,
+        "surface_confidence": 82
+      },
+      "highlights": [
+        "Ohrbergpark",
+        "Emmerthal",
+        "Hämelschenburg"
+      ],
+      "risk_notes": [
+        "Parkbereich rücksichtsvoll fahren",
+        "mehr Genuss als MTB"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Emmerthal%E2%80%93Ohrberg%E2%80%93H%C3%A4melschenburg%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=52.0731084,9.3545475&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 72.3,
+      "gpx_file": "gpx/emmerthal-ohrberg-haemelschenburg.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.3545475,52.0731084;9.3843784,52.0484207;9.3440796,52.0279192;9.3447927,52.122372&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/emmerthal-ohrberg-haemelschenburg.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 818,
+      "battery_model": {
+        "eco": 19,
+        "tour": 24,
+        "emtb": 31,
+        "turbo": 40,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "akku-schonend",
+        "Genuss",
+        "kurzes Zeitfenster"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+    },
+    {
+      "id": "grohnde-bodenwerder-kurztransfer",
+      "name": "Grohnde–Bodenwerder Kurztransfer",
+      "region": "Weser / Bodenwerder",
+      "type": "Transfer-Runde",
+      "start_mode": "Transfer bis Grohnde",
+      "difficulty": "leicht–mittel",
+      "distance_km": 33.3,
+      "elevation_m": 34,
+      "duration": "1,3–1,8 h",
+      "battery": "ca. 26–33 % Tour/eMTB",
+      "best_for": "Weserbergland ohne den kompletten Hameln-Zubringer",
+      "season": "ganzjährig, windabhängig",
+      "surface": "Weserwege, Nebenstraßen, kurze Hügeloptionen",
+      "waypoints": [
+        {
+          "lat": 52.0187867,
+          "lon": 9.4195248,
+          "label": "Grohnde"
+        },
+        {
+          "lat": 51.9752481,
+          "lon": 9.5139063,
+          "label": "Bodenwerder"
+        },
+        {
+          "lat": 52.0484207,
+          "lon": 9.3843784,
+          "label": "Emmerthal"
+        },
+        {
+          "lat": 52.0187867,
+          "lon": 9.4195248,
+          "label": "Grohnde"
+        }
+      ],
+      "scores": {
+        "scenery": 84,
+        "trail": 42,
+        "low_traffic": 80,
+        "emtb_fun": 58,
+        "viewpoints": 72,
+        "loop_quality": 84,
+        "surface_confidence": 78
+      },
+      "highlights": [
+        "Bodenwerder",
+        "Weser",
+        "Grohnde"
+      ],
+      "risk_notes": [
+        "eher Tour als Trail",
+        "Wind an der Weser beachten"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Grohnde%E2%80%93Bodenwerder%20Kurztransfer%20MTB%20Runde",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.122372,9.3447927&destination=51.9752481,9.5139063&travelmode=bicycling",
+      "status": "Neu recherchierter Starter-Entwurf",
+      "score": 69.9,
+      "gpx_file": "gpx/grohnde-bodenwerder-kurztransfer.gpx",
+      "stats_confidence": "hoch für BRouter-Distanz/Track; mittel für Trailqualität, bis echte Fahrt bestätigt ist",
+      "planner_link": "https://brouter.de/brouter-web/#map=10/52.122372/9.3447927/standard&lonlats=9.4195248,52.0187867;9.5139063,51.9752481;9.3843784,52.0484207;9.4195248,52.0187867&profile=trekking",
+      "maturity": "Neu recherchierter BRouter-Entwurf aus OSM/Nominatim-Landmarken; vor erster Fahrt in Komoot/BRouter feinprüfen.",
+      "next_actions": [
+        "Vor Fahrt Komoot/BRouter gegen Sperrungen und Wegqualität prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Gefahrenen GPX-Track importieren und Planwerte ersetzen"
+      ],
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/grohnde-bodenwerder-kurztransfer.geojson",
+      "track_source": "BRouter trekking, automatisch aus kuratierten OSM/Nominatim-Wegpunkten geroutet",
+      "track_points": 697,
+      "battery_model": {
+        "eco": 20,
+        "tour": 26,
+        "emtb": 33,
+        "turbo": 42,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine kuratierte Bildauswahl; Strecke erst anhand Karte/GPX prüfen, echte Fotos später ergänzen.",
+      "decision_tags": [
+        "Transfer",
+        "Genuss",
         "akku-schonend"
       ],
       "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."

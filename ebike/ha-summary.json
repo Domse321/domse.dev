@@ -1,8 +1,16 @@
 {
   "url": "https://test.domse.dev/ebike/",
-  "route_count": 6,
-  "best_score": 85.5,
+  "route_count": 22,
+  "best_score": 85.9,
   "top_routes": [
+    {
+      "id": "schillat-hoehle-hohenstein-kante",
+      "name": "Schillat-Höhle–Hohenstein Kante",
+      "score": 85.9,
+      "distance_km": 42.6,
+      "elevation_m": 440,
+      "gpx": "https://test.domse.dev/ebike/gpx/schillat-hoehle-hohenstein-kante.gpx"
+    },
     {
       "id": "suentel-hohenstein-genuss",
       "name": "Süntel–Hohenstein Genussrunde",
@@ -18,14 +26,6 @@
       "distance_km": 65.7,
       "elevation_m": 667,
       "gpx": "https://test.domse.dev/ebike/gpx/ith-lauenstein-abenteuer.gpx"
-    },
-    {
-      "id": "deister-nienstedt-wald",
-      "name": "Deister–Nienstedt Waldrunde",
-      "score": 83.2,
-      "distance_km": 15.0,
-      "elevation_m": 273,
-      "gpx": "https://test.domse.dev/ebike/gpx/deister-nienstedt-wald.gpx"
     }
   ],
   "features": {
@@ -38,7 +38,7 @@
     "galleries": "Route-Galerien mit vorhandenen Wikimedia-Bildern, falls passend gefunden",
     "ride_readiness": "Ein kompakter Fahrbarkeits-Status ersetzt wiederholte Matschwerte pro Karte"
   },
-  "updated_at": "2026-05-29T10:35:00Z",
-  "version": "0.3.0",
+  "updated_at": "2026-05-29T11:45:57Z",
+  "version": "0.4.0",
   "gallery_routes": 6
 }
