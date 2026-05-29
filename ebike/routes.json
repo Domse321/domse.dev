@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "home": {
     "lat": 52.122372,
     "lon": 9.3447927,
@@ -23,9 +23,9 @@
       "type": "Feierabendrunde",
       "start_mode": "ab Zuhause",
       "difficulty": "mittel",
-      "distance_km": 24,
-      "elevation_m": 480,
-      "duration": "1:45–2:30 h",
+      "distance_km": 20.8,
+      "elevation_m": 259,
+      "duration": "1,7–2,3 h",
       "battery": "ca. 20–35 % Eco/Tour",
       "best_for": "Kurzer Wald-/Aussichts-Reset nach Feierabend",
       "season": "ganzjährig, nach Regen auf Wurzeln achten",
@@ -80,15 +80,26 @@
       "status": "Starter-Entwurf",
       "score": 79.2,
       "gpx_file": "gpx/kluet-feierabendrunde.gpx",
-      "stats_confidence": "mittel",
+      "stats_confidence": "hoch für Distanz/Track, mittel für Trailqualität",
       "planner_link": "https://brouter.de/brouter-web/#map=11/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.3380225,52.0953154;9.3425,52.1048;9.315,52.111;9.3447927,52.122372&profile=trekking",
-      "maturity": "Starter-Plan: GPX enthält saubere Wegpunkte; finaler Track wird nach Komoot/BRouter-Feinrouting und erster Fahrt ersetzt.",
+      "maturity": "Gerouteter BRouter-Track vorhanden; nach echter Fahrt kann er durch den gefahrenen GPX-Track ersetzt werden.",
       "next_actions": [
-        "In Komoot/BRouter auf E-MTB/MTB feinrouten",
-        "Traillegalität/Naturschutz prüfen",
-        "Nach Fahrt echte Distanz/Höhenmeter/Flow-Notiz aktualisieren"
+        "Vor Fahrt Komoot/BRouter einmal gegen Sperrungen prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Bei Abweichung gefahrenen GPX-Track importieren"
       ],
-      "nav_label": "Navigation zum Hauptziel/Startpunkt"
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/kluet-feierabendrunde.geojson",
+      "track_source": "BRouter trekking, automatisch aus Wegpunkten geroutet",
+      "track_points": 634,
+      "battery_model": {
+        "eco": 16,
+        "tour": 20,
+        "emtb": 26,
+        "turbo": 34,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      }
     },
     {
       "id": "suentel-hohenstein-genuss",
@@ -97,9 +108,9 @@
       "type": "Wochenendrunde",
       "start_mode": "ab Zuhause oder kurzer Transfer",
       "difficulty": "mittel–sportlich",
-      "distance_km": 46,
-      "elevation_m": 880,
-      "duration": "3:15–4:45 h",
+      "distance_km": 36.8,
+      "elevation_m": 454,
+      "duration": "2,8–3,7 h",
       "battery": "ca. 45–70 % Tour/eMTB",
       "best_for": "Schönheit, Wald, Felsen, Aussicht",
       "season": "Frühjahr–Herbst; nach viel Regen vorsichtig",
@@ -160,15 +171,26 @@
       "status": "Top-Kandidat",
       "score": 85.5,
       "gpx_file": "gpx/suentel-hohenstein-genuss.gpx",
-      "stats_confidence": "mittel",
+      "stats_confidence": "hoch für Distanz/Track, mittel für Trailqualität",
       "planner_link": "https://brouter.de/brouter-web/#map=11/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.29975,52.1415782;9.3144583,52.1986679;9.3336587,52.1998307;9.358,52.158;9.3447927,52.122372&profile=trekking",
-      "maturity": "Starter-Plan: GPX enthält saubere Wegpunkte; finaler Track wird nach Komoot/BRouter-Feinrouting und erster Fahrt ersetzt.",
+      "maturity": "Gerouteter BRouter-Track vorhanden; nach echter Fahrt kann er durch den gefahrenen GPX-Track ersetzt werden.",
       "next_actions": [
-        "In Komoot/BRouter auf E-MTB/MTB feinrouten",
-        "Traillegalität/Naturschutz prüfen",
-        "Nach Fahrt echte Distanz/Höhenmeter/Flow-Notiz aktualisieren"
+        "Vor Fahrt Komoot/BRouter einmal gegen Sperrungen prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Bei Abweichung gefahrenen GPX-Track importieren"
       ],
-      "nav_label": "Navigation zum Hauptziel/Startpunkt"
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/suentel-hohenstein-genuss.geojson",
+      "track_source": "BRouter trekking, automatisch aus Wegpunkten geroutet",
+      "track_points": 1147,
+      "battery_model": {
+        "eco": 31,
+        "tour": 40,
+        "emtb": 51,
+        "turbo": 65,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      }
     },
     {
       "id": "ohrberg-weser-kluet-mix",
@@ -177,9 +199,9 @@
       "type": "Genussrunde",
       "start_mode": "ab Zuhause",
       "difficulty": "leicht–mittel",
-      "distance_km": 32,
-      "elevation_m": 420,
-      "duration": "2:00–3:00 h",
+      "distance_km": 16.7,
+      "elevation_m": 259,
+      "duration": "1,5–2,0 h",
       "battery": "ca. 25–40 % Eco/Tour",
       "best_for": "schöne Runde ohne komplettes Zerlegen",
       "season": "ganzjährig, gut bei unsicherem Wetter",
@@ -229,15 +251,26 @@
       "status": "Starter-Entwurf",
       "score": 75.6,
       "gpx_file": "gpx/ohrberg-weser-kluet-mix.gpx",
-      "stats_confidence": "mittel",
+      "stats_confidence": "hoch für Distanz/Track, mittel für Trailqualität",
       "planner_link": "https://brouter.de/brouter-web/#map=11/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.3545475,52.0731084;9.3380225,52.0953154;9.3447927,52.122372&profile=trekking",
-      "maturity": "Starter-Plan: GPX enthält saubere Wegpunkte; finaler Track wird nach Komoot/BRouter-Feinrouting und erster Fahrt ersetzt.",
+      "maturity": "Gerouteter BRouter-Track vorhanden; nach echter Fahrt kann er durch den gefahrenen GPX-Track ersetzt werden.",
       "next_actions": [
-        "In Komoot/BRouter auf E-MTB/MTB feinrouten",
-        "Traillegalität/Naturschutz prüfen",
-        "Nach Fahrt echte Distanz/Höhenmeter/Flow-Notiz aktualisieren"
+        "Vor Fahrt Komoot/BRouter einmal gegen Sperrungen prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Bei Abweichung gefahrenen GPX-Track importieren"
       ],
-      "nav_label": "Navigation zum Hauptziel/Startpunkt"
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/ohrberg-weser-kluet-mix.geojson",
+      "track_source": "BRouter trekking, automatisch aus Wegpunkten geroutet",
+      "track_points": 636,
+      "battery_model": {
+        "eco": 14,
+        "tour": 18,
+        "emtb": 23,
+        "turbo": 29,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      }
     },
     {
       "id": "ith-lauenstein-abenteuer",
@@ -246,9 +279,9 @@
       "type": "Tagestour",
       "start_mode": "ab Zuhause sportlich oder Transfer bis Lauenstein",
       "difficulty": "sportlich",
-      "distance_km": 62,
-      "elevation_m": 1250,
-      "duration": "4:30–6:30 h",
+      "distance_km": 65.7,
+      "elevation_m": 667,
+      "duration": "4,7–6,3 h",
       "battery": "ca. 70–100 %, Reserve einplanen",
       "best_for": "lange E-MTB-Tour mit Kamm-/Aussichtsgefühl",
       "season": "trockenes Frühjahr bis Herbst",
@@ -303,15 +336,26 @@
       "status": "Ambitionierter Entwurf",
       "score": 83.9,
       "gpx_file": "gpx/ith-lauenstein-abenteuer.gpx",
-      "stats_confidence": "niedrig-mittel",
+      "stats_confidence": "hoch für Distanz/Track, mittel für Trailqualität",
       "planner_link": "https://brouter.de/brouter-web/#map=11/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.5536295,52.077338;9.5268449,52.0889241;9.61,52.039;9.3447927,52.122372&profile=trekking",
-      "maturity": "Starter-Plan: GPX enthält saubere Wegpunkte; finaler Track wird nach Komoot/BRouter-Feinrouting und erster Fahrt ersetzt.",
+      "maturity": "Gerouteter BRouter-Track vorhanden; nach echter Fahrt kann er durch den gefahrenen GPX-Track ersetzt werden.",
       "next_actions": [
-        "In Komoot/BRouter auf E-MTB/MTB feinrouten",
-        "Traillegalität/Naturschutz prüfen",
-        "Nach Fahrt echte Distanz/Höhenmeter/Flow-Notiz aktualisieren"
+        "Vor Fahrt Komoot/BRouter einmal gegen Sperrungen prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Bei Abweichung gefahrenen GPX-Track importieren"
       ],
-      "nav_label": "Navigation zum Hauptziel/Startpunkt"
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/ith-lauenstein-abenteuer.geojson",
+      "track_source": "BRouter trekking, automatisch aus Wegpunkten geroutet",
+      "track_points": 1540,
+      "battery_model": {
+        "eco": 54,
+        "tour": 69,
+        "emtb": 89,
+        "turbo": 113,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      }
     },
     {
       "id": "deister-nienstedt-wald",
@@ -320,9 +364,9 @@
       "type": "Trail-/Waldtag",
       "start_mode": "besser mit kurzer Anfahrt",
       "difficulty": "mittel–sportlich",
-      "distance_km": 38,
-      "elevation_m": 820,
-      "duration": "3:00–4:30 h",
+      "distance_km": 15.0,
+      "elevation_m": 273,
+      "duration": "1,3–1,7 h",
       "battery": "ca. 45–70 % Tour/eMTB",
       "best_for": "wenn du viele Waldmeter und MTB-Klassiker willst",
       "season": "Frühjahr–Herbst; nach Regen matschig",
@@ -372,15 +416,26 @@
       "status": "Transfer-Kandidat",
       "score": 83.2,
       "gpx_file": "gpx/deister-nienstedt-wald.gpx",
-      "stats_confidence": "mittel",
+      "stats_confidence": "hoch für Distanz/Track, mittel für Trailqualität",
       "planner_link": "https://brouter.de/brouter-web/#map=11/52.122372/9.3447927/standard&lonlats=9.4503318,52.2576278;9.505,52.246;9.46,52.235;9.4503318,52.2576278&profile=trekking",
-      "maturity": "Starter-Plan: GPX enthält saubere Wegpunkte; finaler Track wird nach Komoot/BRouter-Feinrouting und erster Fahrt ersetzt.",
+      "maturity": "Gerouteter BRouter-Track vorhanden; nach echter Fahrt kann er durch den gefahrenen GPX-Track ersetzt werden.",
       "next_actions": [
-        "In Komoot/BRouter auf E-MTB/MTB feinrouten",
-        "Traillegalität/Naturschutz prüfen",
-        "Nach Fahrt echte Distanz/Höhenmeter/Flow-Notiz aktualisieren"
+        "Vor Fahrt Komoot/BRouter einmal gegen Sperrungen prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Bei Abweichung gefahrenen GPX-Track importieren"
       ],
-      "nav_label": "Navigation zum Hauptziel/Startpunkt"
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/deister-nienstedt-wald.geojson",
+      "track_source": "BRouter trekking, automatisch aus Wegpunkten geroutet",
+      "track_points": 424,
+      "battery_model": {
+        "eco": 14,
+        "tour": 18,
+        "emtb": 23,
+        "turbo": 29,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      }
     },
     {
       "id": "fischbeck-weser-suentel-soft",
@@ -389,9 +444,9 @@
       "type": "Aufbau-/Erkundungsrunde",
       "start_mode": "ab Zuhause",
       "difficulty": "leicht–mittel",
-      "distance_km": 36,
-      "elevation_m": 520,
-      "duration": "2:30–3:45 h",
+      "distance_km": 19.5,
+      "elevation_m": 82,
+      "duration": "1,2–1,6 h",
       "battery": "ca. 30–50 % Eco/Tour",
       "best_for": "Süntel antesten ohne volle Hohenstein-Kante",
       "season": "ganzjährig bei trockenem Untergrund",
@@ -441,15 +496,26 @@
       "status": "Starter-Entwurf",
       "score": 74.6,
       "gpx_file": "gpx/fischbeck-weser-suentel-soft.gpx",
-      "stats_confidence": "mittel",
+      "stats_confidence": "hoch für Distanz/Track, mittel für Trailqualität",
       "planner_link": "https://brouter.de/brouter-web/#map=11/52.122372/9.3447927/standard&lonlats=9.3447927,52.122372;9.29975,52.1415782;9.31,52.17;9.3447927,52.122372&profile=trekking",
-      "maturity": "Starter-Plan: GPX enthält saubere Wegpunkte; finaler Track wird nach Komoot/BRouter-Feinrouting und erster Fahrt ersetzt.",
+      "maturity": "Gerouteter BRouter-Track vorhanden; nach echter Fahrt kann er durch den gefahrenen GPX-Track ersetzt werden.",
       "next_actions": [
-        "In Komoot/BRouter auf E-MTB/MTB feinrouten",
-        "Traillegalität/Naturschutz prüfen",
-        "Nach Fahrt echte Distanz/Höhenmeter/Flow-Notiz aktualisieren"
+        "Vor Fahrt Komoot/BRouter einmal gegen Sperrungen prüfen",
+        "Nach Fahrt Logbuch ausfüllen",
+        "Bei Abweichung gefahrenen GPX-Track importieren"
       ],
-      "nav_label": "Navigation zum Hauptziel/Startpunkt"
+      "nav_label": "Navigation zum Hauptziel/Startpunkt",
+      "track_geojson_file": "tracks/fischbeck-weser-suentel-soft.geojson",
+      "track_source": "BRouter trekking, automatisch aus Wegpunkten geroutet",
+      "track_points": 564,
+      "battery_model": {
+        "eco": 13,
+        "tour": 17,
+        "emtb": 21,
+        "turbo": 27,
+        "reserve_percent": 15,
+        "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
+      }
     }
   ],
   "future_ideas": [
@@ -483,5 +549,12 @@
       "impact": "mittel",
       "text": "GPX aus Komoot in die Datenbank werfen, automatisch Stats und Score aktualisieren."
     }
-  ]
+  ],
+  "live_features": {
+    "tracklines": "BRouter-GeoJSON und GPX-Tracks für alle Routen",
+    "weather_mud": "Open-Meteo Live-Abfrage im Browser: Regen 48h, Temperatur, Wind",
+    "battery": "Restakku- und Unterstützungsmodus-Rechner pro Route",
+    "logbook": "Lokales Fahrtenlogbuch per Browser-localStorage, Export als JSON",
+    "weekend": "Automatische Empfehlung aus Score, Wetter/Matsch und Zeitfenster"
+  }
 }

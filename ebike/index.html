@@ -5,32 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MTB-Scout Hameln</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="stylesheet" href="style.css?v=20260529-2">
-  <script src="app.js?v=20260529-2" defer></script>
+  <link rel="stylesheet" href="style.css?v=20260529-3">
+  <script src="app.js?v=20260529-3" defer></script>
 </head>
 <body>
 <header>
   <div class="hero">
-    <div class="eyebrow">MTB-Scout Hameln</div>
-    <h1>Schöne E-MTB-Routen auf einen Blick</h1>
-    <p class="lead">Private Routendatenbank für dein Bergamont Revox Sport 10. Sortierbar nach Schönheits-/Spaßscore, Distanz, Höhenmetern und Schwierigkeit. GPX importieren, in Komoot feinrouten, fahren.</p>
+    <div class="eyebrow">MTB-Scout Hameln · E-MTB Planung</div>
+    <h1>Routen, Wetter, Akku und Fahrtenlogbuch</h1>
+    <p class="lead">Private Routenzentrale für dein Bergamont Revox Sport 10: echte BRouter-Tracklines, Live-Matschscore, Akku-Rechner, lokales Fahrtenlogbuch und automatische Wochenend-Empfehlung.</p>
     <div class="bar">
       <span class="pill">Start: <strong>Reimerdeskamp 62</strong></span>
       <span class="pill">Bike: <strong>Bergamont Revox Sport 10</strong></span>
-      <span class="pill">Score: <strong>Natur + Trail + E-MTB-Faktor</strong></span>
+      <span class="pill" id="weatherPill">Wetter: lädt …</span>
     </div>
   </div>
 </header>
 <main>
+  <section class="panel recommendation" id="recommendation"></section>
   <section class="controls" aria-label="Routen filtern und sortieren">
     <input id="q" placeholder="Suche: Süntel, Klüt, Feierabend …" autocomplete="off">
-    <select id="sort"><option value="score">Sortierung: Bewertung</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select>
+    <select id="sort"><option value="smart">Sortierung: Empfehlung</option><option value="score">Bewertung</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select>
     <select id="type"><option value="">Alle Typen</option></select>
     <select id="start"><option value="">Alle Starts</option></select>
   </section>
+  <section class="panel planner">
+    <div><h2>Akku-Planer</h2><p>Restakku und Unterstützungsmodus wählen – die Karten zeigen sofort, was solide, knapp oder Quatsch mit teurem Akku ist.</p></div>
+    <label>Restakku <input id="batteryLeft" type="range" min="10" max="100" value="80"><b id="batteryLeftText">80%</b></label>
+    <label>Modus <select id="assist"><option value="eco">Eco</option><option value="tour" selected>Tour</option><option value="emtb">eMTB</option><option value="turbo">Turbo</option></select></label>
+  </section>
   <section id="summary" class="summary"></section>
   <section id="grid" class="grid"></section>
-  <section class="roadmap"><h2>Zukunfts-Ausbau</h2><div id="future" class="future-grid"></div></section>
-  <p class="footer">Hinweis: Starterdatenbank. Vor Fahrt bitte in Komoot/BRouter feinrouten, Naturschutz/Traillegalität beachten und GPX als Planungshilfe verstehen, nicht als blind fertigen Track.</p>
+  <section class="panel logbook">
+    <div><h2>Fahrtenlogbuch</h2><p>Bleibt lokal in deinem Browser. Nach der Fahrt kurz bewerten, später als JSON exportieren.</p></div>
+    <form id="logForm" class="logform">
+      <select id="logRoute"></select>
+      <input id="logDate" type="date">
+      <select id="logFlow"><option value="Flow 5/5">Flow 5/5</option><option value="Flow 4/5">Flow 4/5</option><option value="Flow 3/5">Flow 3/5</option><option value="Flow 2/5">Flow 2/5</option></select>
+      <select id="logMud"><option value="trocken">trocken</option><option value="ok">ok</option><option value="matschig">matschig</option><option value="meiden">meiden</option></select>
+      <input id="logNote" placeholder="Notiz: Sperrung, Lieblingsstück, Akku …">
+      <button type="submit">Speichern</button>
+      <button type="button" id="exportLogs">Export</button>
+    </form>
+    <div id="logs" class="logs"></div>
+  </section>
 </main>
 </body></html>
