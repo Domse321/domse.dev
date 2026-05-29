@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Hermes MTB Scout" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Deister–Nienstedt Waldrunde</name><desc>wenn du viele Waldmeter und MTB-Klassiker willst</desc></metadata>
+  <rte>
+    <name>Deister–Nienstedt Waldrunde</name>
+    <rtept lat="52.2576278" lon="9.4503318"><name>Nienstedt Start/Parken</name></rtept>
+    <rtept lat="52.246" lon="9.505"><name>Deisterkamm grob</name></rtept>
+    <rtept lat="52.235" lon="9.46"><name>Waldschleife</name></rtept>
+    <rtept lat="52.2576278" lon="9.4503318"><name>Nienstedt</name></rtept>
+  </rte>
+</gpx>

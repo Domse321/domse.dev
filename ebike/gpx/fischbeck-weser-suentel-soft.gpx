@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Hermes MTB Scout" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Fischbeck–Weser–Süntel Soft-Entry</name><desc>Süntel antesten ohne volle Hohenstein-Kante</desc></metadata>
+  <rte>
+    <name>Fischbeck–Weser–Süntel Soft-Entry</name>
+    <rtept lat="52.122372" lon="9.3447927"><name>Reimerdeskamp 62, 31787 Hameln</name></rtept>
+    <rtept lat="52.1415782" lon="9.29975"><name>Fischbeck</name></rtept>
+    <rtept lat="52.17" lon="9.31"><name>Süntel-Vorland</name></rtept>
+    <rtept lat="52.122372" lon="9.3447927"><name>Zuhause</name></rtept>
+  </rte>
+</gpx>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MTB-Scout Hameln</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="style.css?v=20260529-2">
+  <script src="app.js?v=20260529-2" defer></script>
+</head>
+<body>
+<header>
+  <div class="hero">
+    <div class="eyebrow">MTB-Scout Hameln</div>
+    <h1>Schöne E-MTB-Routen auf einen Blick</h1>
+    <p class="lead">Private Routendatenbank für dein Bergamont Revox Sport 10. Sortierbar nach Schönheits-/Spaßscore, Distanz, Höhenmetern und Schwierigkeit. GPX importieren, in Komoot feinrouten, fahren.</p>
+    <div class="bar">
+      <span class="pill">Start: <strong>Reimerdeskamp 62</strong></span>
+      <span class="pill">Bike: <strong>Bergamont Revox Sport 10</strong></span>
+      <span class="pill">Score: <strong>Natur + Trail + E-MTB-Faktor</strong></span>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="controls" aria-label="Routen filtern und sortieren">
+    <input id="q" placeholder="Suche: Süntel, Klüt, Feierabend …" autocomplete="off">
+    <select id="sort"><option value="score">Sortierung: Bewertung</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select>
+    <select id="type"><option value="">Alle Typen</option></select>
+    <select id="start"><option value="">Alle Starts</option></select>
+  </section>
+  <section id="summary" class="summary"></section>
+  <section id="grid" class="grid"></section>
+  <section class="roadmap"><h2>Zukunfts-Ausbau</h2><div id="future" class="future-grid"></div></section>
+  <p class="footer">Hinweis: Starterdatenbank. Vor Fahrt bitte in Komoot/BRouter feinrouten, Naturschutz/Traillegalität beachten und GPX als Planungshilfe verstehen, nicht als blind fertigen Track.</p>
+</main>
+</body></html>

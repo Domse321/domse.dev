@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Hermes MTB Scout" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Ith–Lauenstein Abenteuer</name><desc>lange E-MTB-Tour mit Kamm-/Aussichtsgefühl</desc></metadata>
+  <rte>
+    <name>Ith–Lauenstein Abenteuer</name>
+    <rtept lat="52.122372" lon="9.3447927"><name>Reimerdeskamp 62, 31787 Hameln</name></rtept>
+    <rtept lat="52.077338" lon="9.5536295"><name>Lauenstein</name></rtept>
+    <rtept lat="52.0889241" lon="9.5268449"><name>Ith</name></rtept>
+    <rtept lat="52.039" lon="9.61"><name>Ith-Kamm grob</name></rtept>
+    <rtept lat="52.122372" lon="9.3447927"><name>Zuhause</name></rtept>
+  </rte>
+</gpx>

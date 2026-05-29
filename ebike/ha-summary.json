@@ -1,0 +1,31 @@
+{
+  "url": "https://test.domse.dev/ebike/",
+  "top_routes": [
+    {
+      "name": "Süntel–Hohenstein Genussrunde",
+      "score": 85.5,
+      "distance_km": 46,
+      "elevation_m": 880,
+      "type": "Wochenendrunde",
+      "url": "https://test.domse.dev/ebike/"
+    },
+    {
+      "name": "Ith–Lauenstein Abenteuer",
+      "score": 83.9,
+      "distance_km": 62,
+      "elevation_m": 1250,
+      "type": "Tagestour",
+      "url": "https://test.domse.dev/ebike/"
+    },
+    {
+      "name": "Deister–Nienstedt Waldrunde",
+      "score": 83.2,
+      "distance_km": 38,
+      "elevation_m": 820,
+      "type": "Trail-/Waldtag",
+      "url": "https://test.domse.dev/ebike/"
+    }
+  ],
+  "route_count": 6,
+  "best_score": 85.5
+}

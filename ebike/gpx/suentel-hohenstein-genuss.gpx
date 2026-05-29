@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Hermes MTB Scout" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Süntel–Hohenstein Genussrunde</name><desc>Schönheit, Wald, Felsen, Aussicht</desc></metadata>
+  <rte>
+    <name>Süntel–Hohenstein Genussrunde</name>
+    <rtept lat="52.122372" lon="9.3447927"><name>Reimerdeskamp 62, 31787 Hameln</name></rtept>
+    <rtept lat="52.1415782" lon="9.29975"><name>Fischbeck</name></rtept>
+    <rtept lat="52.1986679" lon="9.3144583"><name>Hohenstein</name></rtept>
+    <rtept lat="52.1998307" lon="9.3336587"><name>Süntel</name></rtept>
+    <rtept lat="52.158" lon="9.358"><name>Rückweg Richtung Hameln</name></rtept>
+    <rtept lat="52.122372" lon="9.3447927"><name>Reimerdeskamp 62, 31787 Hameln</name></rtept>
+  </rte>
+</gpx>

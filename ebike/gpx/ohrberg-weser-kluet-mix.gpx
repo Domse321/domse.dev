@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Hermes MTB Scout" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Ohrberg–Weser–Klüt Mix</name><desc>schöne Runde ohne komplettes Zerlegen</desc></metadata>
+  <rte>
+    <name>Ohrberg–Weser–Klüt Mix</name>
+    <rtept lat="52.122372" lon="9.3447927"><name>Reimerdeskamp 62, 31787 Hameln</name></rtept>
+    <rtept lat="52.0731084" lon="9.3545475"><name>Ohrbergpark</name></rtept>
+    <rtept lat="52.0953154" lon="9.3380225"><name>Klüt</name></rtept>
+    <rtept lat="52.122372" lon="9.3447927"><name>Zuhause</name></rtept>
+  </rte>
+</gpx>
