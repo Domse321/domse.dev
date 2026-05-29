@@ -5,89 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MTB-Scout Hameln</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="stylesheet" href="/ebike/style.css?v=20260529-5">
-  <script src="/ebike/app.js?v=20260529-5" defer></script>
+  <link rel="stylesheet" href="/ebike/style.css?v=20260529-6">
+  <script src="/ebike/app.js?v=20260529-6" defer></script>
 </head>
 <body>
   <nav class="topbar" aria-label="MTB Scout Navigation">
     <a class="brand" href="#top" aria-label="MTB Scout Start"><span class="brand-dot"></span><span>MTB Scout</span></a>
-    <div class="navlinks">
-      <a href="#routes">Routen</a>
-      <a href="#compare">Vergleich</a>
-      <a href="#logbook">Logbuch</a>
-    </div>
+    <div class="navlinks"><a href="#routes">Routen</a><a href="#compare">Vergleich</a><a href="#logbook">Logbuch</a></div>
     <div id="weatherPill" class="weather-pill">Wetter lädt …</div>
   </nav>
-
   <header id="top" class="hero-shell">
     <section class="hero-copy">
       <p class="eyebrow">Hameln · Bergamont Revox Sport 10</p>
-      <h1>E-MTB Routen klar entscheiden.</h1>
-      <p class="lead">Eine schnelle Kommandozentrale: beste Route für heute, Akku-Risiko, Matschscore, echte GPX-Tracks und Fahrtenlogbuch – ohne Karten- und Button-Chaos.</p>
-      <div class="hero-actions">
-        <a class="primary" href="#routes">Route wählen</a>
-        <a class="ghost" href="#logbook">Fahrt eintragen</a>
-      </div>
+      <h1>Professionell entscheiden, nicht raten.</h1>
+      <p class="lead">Satellitenkarte mit Track, Bildstrecke, Fahrbarkeits-Ampel, Akku- und Zeitbudget. Weniger Zahlenmüll, mehr klare Entscheidung.</p>
+      <div class="hero-actions"><a class="primary" href="#routes">Route wählen</a><a class="ghost" href="#compare">Vergleichen</a></div>
     </section>
     <section id="recommendation" class="recommendation-card" aria-live="polite"></section>
   </header>
-
   <main>
     <section class="control-deck" aria-label="Routensteuerung">
-      <div class="search-block">
-        <label for="q">Suchen</label>
-        <input id="q" placeholder="Süntel, Klüt, Feierabend …" autocomplete="off">
-      </div>
-      <div>
-        <label for="sort">Sortieren</label>
-        <select id="sort"><option value="smart">Empfehlung</option><option value="score">Bewertung</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select>
-      </div>
-      <div>
-        <label for="type">Typ</label>
-        <select id="type"><option value="">Alle Typen</option></select>
-      </div>
-      <div>
-        <label for="assist">Modus</label>
-        <select id="assist"><option value="eco">Eco</option><option value="tour" selected>Tour</option><option value="emtb">eMTB</option><option value="turbo">Turbo</option></select>
-      </div>
-      <div class="range-block">
-        <label for="batteryLeft">Restakku <b id="batteryLeftText">80%</b></label>
-        <input id="batteryLeft" type="range" min="10" max="100" value="80">
-      </div>
+      <div class="search-block"><label for="q">Suchen</label><input id="q" placeholder="Süntel, Klüt, Feierabend …" autocomplete="off"></div>
+      <div><label for="sort">Sortieren</label><select id="sort"><option value="smart">Empfehlung</option><option value="score">Basis-Score</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select></div>
+      <div><label for="type">Typ</label><select id="type"><option value="">Alle Typen</option></select></div>
+      <div><label for="timeBudget">Zeit</label><select id="timeBudget"><option value="999">egal</option><option value="2.5">bis 2,5 h</option><option value="4">bis 4 h</option><option value="6">bis 6 h</option></select></div>
+      <div><label for="assist">Modus</label><select id="assist"><option value="eco">Eco</option><option value="tour" selected>Tour</option><option value="emtb">eMTB</option><option value="turbo">Turbo</option></select></div>
+      <div class="range-block"><label for="batteryLeft">Restakku <b id="batteryLeftText">80%</b></label><input id="batteryLeft" type="range" min="10" max="100" value="80"></div>
     </section>
-
     <section id="summary" class="summary-grid" aria-label="Zusammenfassung"></section>
-
+    <section id="conditionPanel" class="condition-panel"></section>
     <section id="routes" class="workspace">
-      <aside class="route-rail">
-        <div class="section-head"><p>Routenliste</p><span id="routeCount"></span></div>
-        <div id="routeRail"></div>
-      </aside>
+      <aside class="route-rail"><div class="section-head"><p>Routenliste</p><span id="routeCount"></span></div><div id="routeRail"></div></aside>
       <section id="focusRoute" class="focus-route" aria-live="polite"></section>
     </section>
-
-    <section id="cards" class="cards-section">
-      <div class="section-head"><p>Alle passenden Routen</p><span>Kompaktkarten</span></div>
-      <div id="grid" class="route-grid"></div>
-    </section>
-
-    <section id="compare" class="compare-section">
-      <div class="section-head"><p>Vergleich</p><span>Die wichtigsten Zahlen ohne Blabla</span></div>
-      <div id="compareTable" class="compare-table"></div>
-    </section>
-
+    <section id="cards" class="cards-section"><div class="section-head"><p>Alle passenden Routen</p><span>Kompaktkarten</span></div><div id="grid" class="route-grid"></div></section>
+    <section id="compare" class="compare-section"><div class="section-head"><p>Vergleich</p><span>Entscheidungstabelle mit Akku, Zeit und Status</span></div><div id="compareTable" class="compare-table"></div></section>
     <section id="logbook" class="logbook panel">
       <div class="section-head"><p>Fahrtenlogbuch</p><span>lokal im Browser · exportierbar</span></div>
       <form id="logForm" class="logform">
-        <select id="logRoute"></select>
-        <input id="logDate" type="date">
+        <select id="logRoute"></select><input id="logDate" type="date">
         <select id="logFlow"><option value="Flow 5/5">Flow 5/5</option><option value="Flow 4/5">Flow 4/5</option><option value="Flow 3/5">Flow 3/5</option><option value="Flow 2/5">Flow 2/5</option></select>
         <select id="logMud"><option value="trocken">trocken</option><option value="ok">ok</option><option value="matschig">matschig</option><option value="meiden">meiden</option></select>
-        <input id="logNote" placeholder="Notiz: Sperrung, Lieblingsstück, Akku …">
-        <button type="submit">Speichern</button>
-        <button type="button" id="exportLogs">Export</button>
-      </form>
-      <div id="logs" class="logs"></div>
+        <input id="logNote" placeholder="Notiz: Sperrung, Lieblingsstück, Akku …"><button type="submit">Speichern</button><button type="button" id="exportLogs">Export</button>
+      </form><div id="logs" class="logs"></div>
     </section>
   </main>
 </body>

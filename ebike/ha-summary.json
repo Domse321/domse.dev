@@ -33,7 +33,12 @@
     "weather_mud": "Open-Meteo Live-Abfrage im Browser: Regen 48h, Temperatur, Wind",
     "battery": "Restakku- und Unterstützungsmodus-Rechner pro Route",
     "logbook": "Lokales Fahrtenlogbuch per Browser-localStorage, Export als JSON",
-    "weekend": "Automatische Empfehlung aus Score, Wetter/Matsch und Zeitfenster"
+    "weekend": "Automatische Empfehlung aus Score, Wetter/Matsch und Zeitfenster",
+    "satellite_map": "Satellitenkarte mit Track-Overlay ohne externe JS-Library",
+    "galleries": "Route-Galerien mit vorhandenen Wikimedia-Bildern, falls passend gefunden",
+    "ride_readiness": "Ein kompakter Fahrbarkeits-Status ersetzt wiederholte Matschwerte pro Karte"
   },
-  "updated_at": "2026-05-29T10:05:20Z"
+  "updated_at": "2026-05-29T10:35:00Z",
+  "version": "0.3.0",
+  "gallery_routes": 6
 }

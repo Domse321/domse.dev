@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "home": {
     "lat": 52.122372,
     "lon": 9.3447927,
@@ -99,7 +99,40 @@
         "turbo": 34,
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
-      }
+      },
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/2023-12-17_131131_Hameln_Kl%C3%BCtturm.jpg/1280px-2023-12-17_131131_Hameln_Kl%C3%BCtturm.jpg",
+          "title": "2023-12-17 131131 Hameln Klütturm.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/2023-12-17_131849_Hameln_Kl%C3%BCtturm.jpg/1280px-2023-12-17_131849_Hameln_Kl%C3%BCtturm.jpg",
+          "title": "2023-12-17 131849 Hameln Klütturm.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kluetturm.jpg/1280px-Kluetturm.jpg",
+          "title": "Kluetturm.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kl%C3%BCt_Kl%C3%BCtturm_und_Weser_Abends.jpg/1280px-Kl%C3%BCt_Kl%C3%BCtturm_und_Weser_Abends.jpg",
+          "title": "Klüt Klütturm und Weser Abends.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY 3.0"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
+      "decision_tags": [
+        "kurzes Zeitfenster",
+        "akku-schonend",
+        "Aussicht"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
     },
     {
       "id": "suentel-hohenstein-genuss",
@@ -190,7 +223,39 @@
         "turbo": 65,
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
-      }
+      },
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Hess_Oldendorf%2C_HM_-_Pappm%C3%BChle_v_S%2C_Hohenstein_S%C3%BCntel_220724.jpg/1280px-Hess_Oldendorf%2C_HM_-_Pappm%C3%BChle_v_S%2C_Hohenstein_S%C3%BCntel_220724.jpg",
+          "title": "Hess Oldendorf, HM - Pappmühle v S, Hohenstein Süntel 220724.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Hohenstein_S%C3%BCntel_%28Oswald_Rei%C3%9Fert%29.jpg",
+          "title": "Hohenstein Süntel (Oswald Reißert).jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Hohenstein_S%C3%BCntel_von_unten.jpg",
+          "title": "Hohenstein Süntel von unten.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/S%C3%BCntel%2C_NSG_Hohenstein_01.jpg/1280px-S%C3%BCntel%2C_NSG_Hohenstein_01.jpg",
+          "title": "Süntel, NSG Hohenstein 01.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
+      "decision_tags": [
+        "Aussicht",
+        "mehr Trailgefühl"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
     },
     {
       "id": "ohrberg-weser-kluet-mix",
@@ -270,7 +335,39 @@
         "turbo": 29,
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
-      }
+      },
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Taschentuchbaum_Ohrbergpark_Hameln.jpg",
+          "title": "Taschentuchbaum Ohrbergpark Hameln.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Taschentuchbaum_Ohrbergpark_Hameln_Detail.jpg/1280px-Taschentuchbaum_Ohrbergpark_Hameln_Detail.jpg",
+          "title": "Taschentuchbaum Ohrbergpark Hameln Detail.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Ohrbergpark_Ausflugsgastst%C3%A4tte.jpg",
+          "title": "Ohrbergpark Ausflugsgaststätte.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Ohrbergpark_Baum_Busch.jpg",
+          "title": "Ohrbergpark Baum Busch.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
+      "decision_tags": [
+        "kurzes Zeitfenster",
+        "akku-schonend"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
     },
     {
       "id": "ith-lauenstein-abenteuer",
@@ -355,7 +452,40 @@
         "turbo": 113,
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
-      }
+      },
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Blick_vom_Ith_auf_den_Kahnstein.JPG/1280px-Blick_vom_Ith_auf_den_Kahnstein.JPG",
+          "title": "Blick vom Ith auf den Kahnstein.JPG",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Lauenstein-Burgberg-Merian-Stich-1654.jpg",
+          "title": "Lauenstein-Burgberg-Merian-Stich-1654.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Lauenstein-Merian-Stich-1654.png",
+          "title": "Lauenstein-Merian-Stich-1654.png",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Lauenstein_%28Oswald_Rei%C3%9Fert%29.jpg",
+          "title": "Lauenstein (Oswald Reißert).jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
+      "decision_tags": [
+        "Aussicht",
+        "mehr Trailgefühl",
+        "nur mit Zeit/Reserve"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
     },
     {
       "id": "deister-nienstedt-wald",
@@ -435,7 +565,40 @@
         "turbo": 29,
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
-      }
+      },
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/2024-09-05_Nienstedt_am_Deister_12.jpg/1280px-2024-09-05_Nienstedt_am_Deister_12.jpg",
+          "title": "2024-09-05 Nienstedt am Deister 12.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2024-09-05_Nienstedt_am_Deister_18.jpg/1280px-2024-09-05_Nienstedt_am_Deister_18.jpg",
+          "title": "2024-09-05 Nienstedt am Deister 18.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/2024-09-05_Nienstedt_am_Deister_19.jpg/1280px-2024-09-05_Nienstedt_am_Deister_19.jpg",
+          "title": "2024-09-05 Nienstedt am Deister 19.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/2024-09-05_Nienstedt_am_Deister_24.jpg/1280px-2024-09-05_Nienstedt_am_Deister_24.jpg",
+          "title": "2024-09-05 Nienstedt am Deister 24.jpg",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
+      "decision_tags": [
+        "kurzes Zeitfenster",
+        "akku-schonend",
+        "mehr Trailgefühl"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
     },
     {
       "id": "fischbeck-weser-suentel-soft",
@@ -515,7 +678,39 @@
         "turbo": 27,
         "reserve_percent": 15,
         "note": "Planwert für Bosch-/Shimano-ähnliche E-MTB Nutzung; Gewicht, Untergrund, Kälte und Reifendruck ändern real viel."
-      }
+      },
+      "gallery": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/B83_Fischbeck.JPG/1280px-B83_Fischbeck.JPG",
+          "title": "B83 Fischbeck.JPG",
+          "source": "Wikimedia Commons",
+          "license": "CC BY-SA 3.0"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Evangelische_Stiftskirche_Fischbeck_fm811789.jpg/1280px-Evangelische_Stiftskirche_Fischbeck_fm811789.jpg",
+          "title": "Evangelische Stiftskirche Fischbeck fm811789.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Evangelische_Stiftskirche_Fischbeck_fm811790.jpg/1280px-Evangelische_Stiftskirche_Fischbeck_fm811790.jpg",
+          "title": "Evangelische Stiftskirche Fischbeck fm811790.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Evangelische_Stiftskirche_Fischbeck_fm811792.jpg/1280px-Evangelische_Stiftskirche_Fischbeck_fm811792.jpg",
+          "title": "Evangelische Stiftskirche Fischbeck fm811792.jpg",
+          "source": "Wikimedia Commons",
+          "license": "Public domain"
+        }
+      ],
+      "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
+      "decision_tags": [
+        "kurzes Zeitfenster",
+        "akku-schonend"
+      ],
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
     }
   ],
   "future_ideas": [
@@ -555,6 +750,9 @@
     "weather_mud": "Open-Meteo Live-Abfrage im Browser: Regen 48h, Temperatur, Wind",
     "battery": "Restakku- und Unterstützungsmodus-Rechner pro Route",
     "logbook": "Lokales Fahrtenlogbuch per Browser-localStorage, Export als JSON",
-    "weekend": "Automatische Empfehlung aus Score, Wetter/Matsch und Zeitfenster"
+    "weekend": "Automatische Empfehlung aus Score, Wetter/Matsch und Zeitfenster",
+    "satellite_map": "Satellitenkarte mit Track-Overlay ohne externe JS-Library",
+    "galleries": "Route-Galerien mit vorhandenen Wikimedia-Bildern, falls passend gefunden",
+    "ride_readiness": "Ein kompakter Fahrbarkeits-Status ersetzt wiederholte Matschwerte pro Karte"
   }
 }
