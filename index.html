@@ -65,7 +65,7 @@
       <div class="overview-copy">
         <p class="eyebrow">Schnelleinstieg</p>
         <h2>Direkt zu den Bereichen, die gerade relevant sind.</h2>
-        <p>Die wichtigsten Inhalte sind schnell erreichbar: Routenauswahl fürs E-Bike, Trainingsplan für zuhause und ein echter, sicher zusammengefasster Blick in das Homelab dahinter.</p>
+        <p>Die wichtigsten Inhalte sind schnell erreichbar: Routenauswahl fürs E-Bike, Trainingsplan für zuhause und ein echter, kompakt zusammengefasster Blick in das Homelab dahinter.</p>
       </div>
       <div class="overview-grid">
         <a href="/ebike/" class="overview-card highlight-card"><span>Tool</span><strong>E-Bike Scout</strong><small>Routen, GPX, Akku- und Zeitplanung</small></a>
@@ -78,12 +78,12 @@
     <section id="homelab" class="section-shell homelab-section">
       <div class="section-heading reveal">
         <p class="eyebrow">Homelab Showcase</p>
-        <h2>Ein Blick hinter die Kulissen — ohne interne Details offenzulegen.</h2>
-        <p>Das Homelab ist der Maschinenraum hinter domse.dev: eigene Web-Auslieferung, Automatisierung, Smart-Home-Brücken und Agenten-Workflows. Die Übersicht zeigt bewusst nur die Oberfläche und Architektur, keine privaten Adressen oder Zugangsdaten.</p>
+        <h2>Ein Blick hinter die Kulissen.</h2>
+        <p>Das Homelab ist der Maschinenraum hinter domse.dev: Web-Auslieferung, Automatisierung, Smart-Home-Brücken und Agenten-Workflows. Die Übersicht zeigt die großen Bausteine und wie sie zusammenarbeiten.</p>
       </div>
       <div class="homelab-console reveal">
         <div class="homelab-map" aria-label="Homelab Topologie">
-          <div class="map-node node-edge"><strong>Edge</strong><span>Cloudflare · Proxy · TLS</span></div>
+          <div class="map-node node-edge"><strong>Edge</strong><span>Cloudflare · Proxy · Routing</span></div>
           <div class="map-line line-a"></div>
           <div class="map-node node-web"><strong>Web</strong><span>domse.dev · E-Bike · Sport</span></div>
           <div class="map-line line-b"></div>
@@ -100,15 +100,15 @@
           </div>
           <article class="homelab-panel active" data-homelab-panel="edge">
             <p class="eyebrow">Routing & Veröffentlichung</p>
-            <h3>Öffentlich sauber, intern getrennt.</h3>
-            <p>domse.dev läuft über eine getrennte Web-Schicht mit TLS, Reverse Proxy und statischer Auslieferung. Interne Werkzeuge wie Home Assistant oder n8n bleiben geschützt und werden nur gezielt sichtbar gemacht.</p>
-            <ul><li>Cloudflare Tunnel als Außenkante</li><li>Nginx Proxy Manager für Host-Routing</li><li>CT108 als Web-Auslieferung für öffentliche Seiten</li></ul>
+            <h3>Vom Request zur Website.</h3>
+            <p>domse.dev kommt über eine schlanke Web-Schicht: Domain, Proxy und statische Auslieferung greifen ineinander, damit die öffentlichen Seiten schnell und übersichtlich erreichbar sind.</p>
+            <ul><li>Cloudflare als Außenkante</li><li>Reverse Proxy für Host-Routing</li><li>Web-Container für öffentliche Seiten</li></ul>
           </article>
           <article class="homelab-panel" data-homelab-panel="services">
             <p class="eyebrow">Service-Landschaft</p>
             <h3>Kleine Dienste statt Monolith.</h3>
             <p>Das Setup besteht aus klar getrennten Bausteinen: Webseiten, Automationen, Minecraft/Crafty, Suche, Smart Home und Agenten-Dienste laufen als eigene Schichten statt als unübersichtlicher Alles-in-einem-Knoten.</p>
-            <ul><li>Proxmox als Virtualisierungsbasis</li><li>Web-, Smart-Home- und Automationsdienste getrennt</li><li>Monitoring vorbereitet, ohne öffentliche Angriffsfläche</li></ul>
+            <ul><li>Proxmox als Virtualisierungsbasis</li><li>Web, Smart Home und Automationen als eigene Bereiche</li><li>Monitoring und Übersichten für den Alltag</li></ul>
           </article>
           <article class="homelab-panel" data-homelab-panel="automation">
             <p class="eyebrow">Event statt Polling</p>
@@ -117,10 +117,10 @@
             <ul><li>Home Assistant als Schaltzentrale</li><li>n8n für Workflows und Integrationen</li><li>Hermes für geprüfte Aktionen und Benachrichtigungen</li></ul>
           </article>
           <article class="homelab-panel" data-homelab-panel="ops">
-            <p class="eyebrow">Betrieb & Sicherheit</p>
+            <p class="eyebrow">Betrieb & Pflege</p>
             <h3>Wartbar, dokumentiert, wiederholbar.</h3>
-            <p>Deployments laufen über definierte Repos und Systemdienste. Secrets bleiben außerhalb öffentlicher Assets, und wiederkehrende Betriebswege sind dokumentiert, damit Änderungen nachvollziehbar bleiben.</p>
-            <ul><li>Git-basierte Deployments für öffentliche Seiten</li><li>Secrets außerhalb der Website-Repos</li><li>Notfall- und Statuspfade im Homelab getrennt abgesichert</li></ul>
+            <p>Änderungen laufen über definierte Repos und Deployments. Dazu kommen Notizen, Statusübersichten und wiederholbare Abläufe, damit die Umgebung nicht zur Kabelkiste mit Webinterface wird.</p>
+            <ul><li>Git-basierte Deployments für öffentliche Seiten</li><li>Dokumentierte Wartungswege</li><li>Status- und Kontrollübersichten für den Alltag</li></ul>
           </article>
         </div>
       </div>
