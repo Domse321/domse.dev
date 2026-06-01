@@ -139,7 +139,7 @@ p { color: var(--muted); }
 .strip div { padding: 22px; background: rgba(255,255,255,.055); }
 .strip span { color: var(--gold); font-weight: 900; margin-right: 8px; }
 
-.overview-section, .split-section, .github-section, .media-section, .roadmap-section { padding: 86px 0 0; }
+.overview-section, .split-section, .github-section, .media-section, .homelab-section { padding: 86px 0 0; }
 .section-heading { display: grid; grid-template-columns: .75fr 1fr; gap: 28px; align-items: end; margin-bottom: 28px; }
 
 .overview-section { display: grid; grid-template-columns: .82fr 1.18fr; gap: 28px; align-items: stretch; }
@@ -153,16 +153,26 @@ p { color: var(--muted); }
 .overview-card small { color: var(--muted); margin-top: auto; }
 .section-heading p:not(.eyebrow) { max-width: 680px; }
 .overview-grid, .feature-grid, .repo-grid, .video-grid, .idea-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.feature-card, .repo-card, .video-card, .idea-card, .contact-section {
+.feature-card, .repo-card, .video-card, .idea-card, .contact-section, .homelab-card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--panel);
   backdrop-filter: blur(18px);
   box-shadow: 0 18px 70px rgba(0,0,0,.20);
 }
-.feature-card, .repo-card, .video-card, .idea-card { padding: 24px; transition: transform .22s ease, border-color .22s ease, background .22s ease; }
-.feature-card:hover, .repo-card:hover, .video-card:hover, .idea-card:hover { transform: translateY(-5px); border-color: rgba(247,199,107,.34); background: var(--panel-strong); }
+.feature-card, .repo-card, .video-card, .idea-card, .homelab-card { padding: 24px; transition: transform .22s ease, border-color .22s ease, background .22s ease; }
+.feature-card:hover, .repo-card:hover, .video-card:hover, .idea-card:hover, .homelab-card:hover { transform: translateY(-5px); border-color: rgba(247,199,107,.34); background: var(--panel-strong); }
 .icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 16px; background: rgba(247,199,107,.13); color: var(--gold); font-size: 22px; }
+
+.homelab-layout { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 18px; align-items: stretch; }
+.homelab-card-main { position: relative; overflow: hidden; min-height: 440px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(145deg, rgba(110,231,255,.15), rgba(247,199,107,.10) 42%, rgba(255,255,255,.045)); }
+.homelab-card-main::before { content: ""; position: absolute; inset: 24px; border: 1px solid rgba(255,255,255,.12); border-radius: 24px; background: radial-gradient(circle at 80% 16%, rgba(110,231,255,.25), transparent 15rem); pointer-events: none; }
+.homelab-card-main > * { position: relative; z-index: 1; }
+.homelab-card-main h3 { font-size: clamp(30px, 4vw, 48px); max-width: 620px; }
+.homelab-stack { display: grid; gap: 18px; }
+.homelab-stack .homelab-card { min-height: 134px; }
+.homelab-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.homelab-tags span { padding: 8px 11px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; color: var(--text); background: rgba(255,255,255,.07); font-weight: 800; font-size: 13px; }
 
 .repo-toolbar { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
 .search-wrap { flex: 1; max-width: 520px; }
@@ -260,9 +270,8 @@ nav a{font-weight:760;font-size:14px}.nav-pill{border:1px solid rgba(255,255,255
 .button{box-shadow:0 12px 34px rgba(0,0,0,.18)}.button.primary{background:linear-gradient(135deg,#f7c76b,#fff0ad 54%,#6ee7ff);}
 .orbital-card{background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.045));border-color:rgba(255,255,255,.16)}
 .terminal-card{background:rgba(2,6,12,.58);border:1px solid rgba(255,255,255,.08)}
-.strip div,.overview-copy,.overview-card,.feature-card,.video-card,.idea-card,.repo-card{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));}
+.strip div,.overview-copy,.overview-card,.feature-card,.video-card,.idea-card,.repo-card,.homelab-card{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));}
 .highlight-card{border-color:rgba(247,199,107,.34);box-shadow:0 18px 54px rgba(0,0,0,.18)}.highlight-card span{color:var(--gold)}
-.roadmap-section .idea-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
 .site-footer{border-radius:28px;}
-@media (max-width: 900px){.site-header{border-radius:24px;align-items:stretch}.site-header nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:8px}.site-header nav a{text-align:center;min-width:0;padding:10px 8px}.brand small{white-space:normal}.hero{padding-top:52px;grid-template-columns:1fr}.hero-panel{min-width:0}.orbital-card{padding:20px}.metric-grid{grid-template-columns:1fr}.hero-actions{display:grid;grid-template-columns:1fr}.hero-actions .button{width:100%}.section-heading{align-items:start}.roadmap-section .idea-grid{grid-template-columns:1fr}}
+@media (max-width: 900px){.site-header{border-radius:24px;align-items:stretch}.site-header nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:8px}.site-header nav a{text-align:center;min-width:0;padding:10px 8px}.brand small{white-space:normal}.hero{padding-top:52px;grid-template-columns:1fr}.hero-panel{min-width:0}.orbital-card{padding:20px}.metric-grid{grid-template-columns:1fr}.hero-actions{display:grid;grid-template-columns:1fr}.hero-actions .button{width:100%}.section-heading{align-items:start}.homelab-layout{grid-template-columns:1fr}.homelab-card-main{min-height:360px}.homelab-stack .homelab-card{min-height:auto}}
 @media (max-width: 480px){.site-header nav{grid-template-columns:1fr}h1{font-size:clamp(36px,12vw,48px)}.section-shell,.site-footer,.site-header{width:min(100% - 20px,1240px)}}

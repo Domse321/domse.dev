@@ -8,8 +8,8 @@
   <meta name="theme-color" content="#070912">
   <title>Domse — Projekte, Tools & Medien</title>
   <link rel="preconnect" href="https://api.github.com">
-  <link rel="stylesheet" href="assets/site.css?v=20260601-final-01">
-  <script src="assets/site.js?v=20260601-final-01" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=20260601-homelab-01">
+  <script src="assets/site.js?v=20260601-homelab-01" defer></script>
 </head>
 <body>
   <div class="ambient" aria-hidden="true">
@@ -22,7 +22,7 @@
       <span><strong>Domse</strong><small>Projekte · Tools · Medien</small></span>
     </a>
     <nav aria-label="Hauptnavigation">
-      <a href="#projects">Projekte</a>
+      <a href="#homelab">Homelab</a>
       <a href="#media">Medien</a>
       <a href="#github">GitHub</a>
       <a class="nav-pill" href="/ebike/">E-Bike</a>
@@ -35,7 +35,7 @@
       <div class="hero-copy reveal">
         <p class="eyebrow">Offizielle Projektzentrale · domse.dev</p>
         <h1>Digitale Projekte, praktische Tools und Medienideen an einem Ort.</h1>
-        <p class="hero-lead">domse.dev bündelt ausgewählte Arbeiten rund um Web, Automatisierung, Homelab, Video und persönliche Dashboards. Klar strukturiert, direkt nutzbar und ohne künstlichen Demo-Charakter.</p>
+        <p class="hero-lead">domse.dev bündelt ausgewählte digitale Werkzeuge, Medieninhalte und einen Einblick in das eigene Homelab. Klar strukturiert, dauerhaft nutzbar und auf praktische Bedienbarkeit ausgelegt.</p>
         <div class="hero-actions">
           <a class="button primary" href="/ebike/">E-Bike Scout öffnen</a>
           <a class="button ghost" href="/sport/">Sportplan öffnen</a>
@@ -46,8 +46,8 @@
         <div class="orbital-card">
           <div class="status-row"><span class="pulse"></span> domse.dev live</div>
           <div class="metric-grid">
-            <div><strong>Web</strong><span>Landingpages, Dashboards, kleine Tools</span></div>
-            <div><strong>Automation</strong><span>Homelab, Deployments, Workflows</span></div>
+            <div><strong>Homelab</strong><span>Infrastruktur, Dienste, Automatisierung</span></div>
+            <div><strong>Tools</strong><span>E-Bike, Sport, persönliche Planung</span></div>
             <div><strong>Media</strong><span>Video, Gaming, Formate</span></div>
           </div>
           <div class="terminal-card">
@@ -60,47 +60,57 @@
     </section>
 
     <section class="section-shell strip reveal" aria-label="Schwerpunkte">
-      <div><span>01</span><strong>Web-Tools mit echtem Nutzwert</strong></div>
-      <div><span>02</span><strong>Automatisierung und Homelab</strong></div>
-      <div><span>03</span><strong>Medien- und Gaming-Projekte</strong></div>
+      <div><span>01</span><strong>Homelab als stabile Basis</strong></div>
+      <div><span>02</span><strong>Nützliche Tools für Alltag und Training</strong></div>
+      <div><span>03</span><strong>Medien- und Gaming-Inhalte</strong></div>
     </section>
 
     <section id="overview" class="section-shell overview-section reveal" aria-label="Seitenübersicht">
       <div class="overview-copy">
         <p class="eyebrow">Schnelleinstieg</p>
         <h2>Direkt zu den Bereichen, die gerade relevant sind.</h2>
-        <p>Die wichtigsten Inhalte sind als eigenständige Bereiche erreichbar: Routenauswahl fürs E-Bike, Trainingsplan für zuhause, Projektübersicht, Medien und öffentliche Repositories.</p>
+        <p>Die wichtigsten Inhalte sind als eigenständige Bereiche erreichbar: Homelab-Showcase, Routenauswahl fürs E-Bike, Trainingsplan für zuhause, Medien und öffentliche Repositories.</p>
       </div>
       <div class="overview-grid">
         <a href="/ebike/" class="overview-card highlight-card"><span>Tool</span><strong>E-Bike Scout</strong><small>Routen, GPX, Akku- und Zeitplanung</small></a>
         <a href="/sport/" class="overview-card highlight-card"><span>Tool</span><strong>Sportplan</strong><small>Dumbbell-Routine, Timer und Fortschritt</small></a>
-        <a href="#projects" class="overview-card"><span>Projekte</span><strong>Arbeitsfelder</strong><small>Web, Infrastruktur und Medien</small></a>
+        <a href="#homelab" class="overview-card"><span>Showcase</span><strong>Homelab</strong><small>Infrastruktur, Dienste und Automatisierung</small></a>
         <a href="#github" class="overview-card"><span>Code</span><strong>GitHub</strong><small>Öffentliche Repositories und Tools</small></a>
       </div>
     </section>
 
-    <section id="projects" class="section-shell split-section">
+    <section id="homelab" class="section-shell homelab-section">
       <div class="section-heading reveal">
-        <p class="eyebrow">Projektfelder</p>
-        <h2>Gebaut für Alltag, Lernen und saubere Abläufe.</h2>
-        <p>Die Projekte sind keine lose Sammlung von Spielereien. Im Mittelpunkt stehen nützliche Oberflächen, wiederholbare Abläufe, verständliche Inhalte und robuste Veröffentlichungen.</p>
+        <p class="eyebrow">Homelab Showcase</p>
+        <h2>Private Infrastruktur mit klarem Zweck.</h2>
+        <p>Das Homelab ist die technische Basis hinter vielen Abläufen: eigene Dienste, Automatisierungen, interne Dashboards und saubere Veröffentlichungen. Der Fokus liegt auf Stabilität, nachvollziehbarer Wartung und praktischer Nutzung statt auf Technik um der Technik willen.</p>
       </div>
-      <div class="feature-grid">
-        <article class="feature-card reveal">
-          <span class="icon">▣</span>
-          <h3>Web & Dashboards</h3>
-          <p>Moderne, responsive Oberflächen für persönliche Tools, Routenplanung, Training, Rechner und übersichtliche Projektseiten.</p>
+      <div class="homelab-layout">
+        <article class="homelab-card homelab-card-main reveal">
+          <span class="icon">⬢</span>
+          <h3>Infrastruktur als Werkzeugkasten</h3>
+          <p>Virtualisierte Dienste, Reverse-Proxy-Routing, Automationsbausteine und Monitoring arbeiten zusammen, damit Projekte zuverlässig erreichbar sind und wiederkehrende Aufgaben automatisiert laufen.</p>
+          <div class="homelab-tags" aria-label="Schwerpunkte">
+            <span>Virtualisierung</span>
+            <span>Automatisierung</span>
+            <span>Self-Hosting</span>
+            <span>Monitoring</span>
+          </div>
         </article>
-        <article class="feature-card reveal delay-1">
-          <span class="icon">◉</span>
-          <h3>Automation & Homelab</h3>
-          <p>Deployments, interne Services, Monitoring, Automatisierungen und Integrationen, die wiederkehrende Arbeit sauber abnehmen.</p>
-        </article>
-        <article class="feature-card reveal delay-2">
-          <span class="icon">◇</span>
-          <h3>Media & Gaming</h3>
-          <p>Videoideen, Gaming-Momente, Kurzformate und Experimente, die Technik und kreative Umsetzung verbinden.</p>
-        </article>
+        <div class="homelab-stack reveal delay-1" aria-label="Homelab Bereiche">
+          <article class="homelab-card">
+            <h3>Edge & Web</h3>
+            <p>Öffentliche Webseiten und interne Oberflächen werden sauber getrennt ausgeliefert, mit TLS, Proxy-Regeln und schlanker statischer Bereitstellung.</p>
+          </article>
+          <article class="homelab-card">
+            <h3>Automation & Workflows</h3>
+            <p>Home Assistant, n8n und eigene Helfer verbinden Ereignisse, Benachrichtigungen und Wartungsaufgaben zu nachvollziehbaren Abläufen.</p>
+          </article>
+          <article class="homelab-card">
+            <h3>Betrieb & Übersicht</h3>
+            <p>Statusseiten, strukturierte Notizen und wiederholbare Deployments machen den Betrieb transparent, ohne unnötige Komplexität nach außen zu tragen.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -108,7 +118,7 @@
       <div class="section-heading reveal">
         <p class="eyebrow">Ausgewählte Inhalte</p>
         <h2>Medien und Videoarbeiten</h2>
-        <p>Eine kleine Auswahl veröffentlichter Inhalte — von Kurzfilm bis Gaming-Moment. Weitere Formate können später als eigenes Archiv ergänzt werden.</p>
+        <p>Eine kleine Auswahl veröffentlichter Inhalte — von Kurzfilm bis Gaming-Moment, kompakt eingebettet und direkt abspielbar.</p>
       </div>
       <div class="video-grid video-grid-three">
         <article class="video-card video-card-embed reveal">
@@ -153,31 +163,6 @@
       </div>
       <div id="repoStatus" class="repo-status">Repos werden geladen …</div>
       <div id="repoGrid" class="repo-grid" aria-live="polite"></div>
-    </section>
-
-    <section id="roadmap" class="section-shell roadmap-section">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Weiterentwicklung</p>
-        <h2>Geplante Ausbaustufen</h2>
-        <p>Die Seite bleibt bewusst modular: Nützliche Bereiche können wachsen, ohne die Startseite zu überladen.</p>
-      </div>
-      <div class="idea-grid">
-        <article class="idea-card reveal">
-          <span>01</span>
-          <h3>Projekt-Showcases</h3>
-          <p>Kurze Cases für Web, Homelab, Automatisierung und Medien: Ziel, Umsetzung, Ergebnis und Link.</p>
-        </article>
-        <article class="idea-card reveal delay-1">
-          <span>02</span>
-          <h3>Weitere Tools</h3>
-          <p>Neue Spezialseiten nach Bedarf — ähnlich wie E-Bike Scout und Sportplan, aber sauber getrennt vom Hauptauftritt.</p>
-        </article>
-        <article class="idea-card reveal delay-2">
-          <span>03</span>
-          <h3>Medienarchiv</h3>
-          <p>Filterbare Sammlung für Videos, Shorts, Gaming-Clips und größere Produktionen.</p>
-        </article>
-      </div>
     </section>
   </main>
 
