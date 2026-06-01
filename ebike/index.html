@@ -3,43 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MTB-Scout Hameln</title>
+  <title>E-Bike Scout Hameln</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="stylesheet" href="/ebike/style.css?v=20260529-13">
-  <script src="/ebike/app.js?v=20260529-13" defer></script>
+  <meta name="description" content="Private E-Bike- und MTB-Routenplanung rund um Hameln mit Trackkarte, Akkucheck, Wetterstatus und GPX-Downloads.">
+  <link rel="stylesheet" href="/ebike/style.css?v=20260601-02">
+  <script src="/ebike/app.js?v=20260601-02" defer></script>
 </head>
 <body>
-  <nav class="topbar" aria-label="MTB Scout Navigation">
-    <a class="brand" href="#top" aria-label="MTB Scout Start"><span class="brand-dot"></span><span>MTB Scout</span></a>
-    <div class="navlinks"><a href="#routes">Routen</a><a href="#compare">Vergleich</a><a href="#logbook">Logbuch</a></div>
+  <nav class="topbar" aria-label="E-Bike Scout Navigation">
+    <a class="brand" href="#top" aria-label="E-Bike Scout Start"><span class="brand-dot"></span><span>E-Bike Scout</span></a>
+    <div class="navlinks"><a href="#routes">Planen</a><a href="#compare">Vergleich</a><a href="#logbook">Logbuch</a></div>
     <div id="weatherPill" class="weather-pill">Wetter lädt …</div>
   </nav>
+
   <header id="top" class="hero-shell">
     <section class="hero-copy">
-      <p class="eyebrow">Hameln · Bergamont Revox Sport 10</p>
-      <h1>Professionell entscheiden, nicht raten.</h1>
-      <p class="lead">Satellitenkarte mit Track, Bildstrecke, Fahrbarkeits-Ampel, Akku- und Zeitbudget. Weniger Zahlenmüll, mehr klare Entscheidung.</p>
-      <div class="hero-actions"><a class="primary" href="#routes">Route wählen</a><a class="ghost" href="#compare">Vergleichen</a></div>
+      <p class="eyebrow">Hameln · normale E-Bikes & E-MTB</p>
+      <h1>Erst Fahrradtyp wählen, dann die passende Runde.</h1>
+      <p class="lead">Die Seite trennt jetzt normale E-Bike-Touren von MTB-/E-MTB-Runden. Dazu gibt es Trackkarte, Akkucheck, Wetterstatus, GPX und klare Hinweise, ob die Runde eher Radweg, Genuss oder Trail ist.</p>
+      <div class="hero-actions"><a class="primary" href="#routes">Route auswählen</a><a class="ghost" href="#compare">Routen vergleichen</a></div>
     </section>
     <section id="recommendation" class="recommendation-card" aria-live="polite"></section>
   </header>
+
   <main>
     <section class="control-deck" aria-label="Routensteuerung">
-      <div class="search-block"><label for="q">Suchen</label><input id="q" placeholder="Süntel, Klüt, Feierabend …" autocomplete="off"></div>
-      <div><label for="sort">Sortieren</label><select id="sort"><option value="smart">Empfehlung</option><option value="score">Basis-Score</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select></div>
-      <div><label for="type">Typ</label><select id="type"><option value="">Alle Typen</option></select></div>
-      <div><label for="timeBudget">Zeit</label><select id="timeBudget"><option value="999">egal</option><option value="2.5">bis 2,5 h</option><option value="4">bis 4 h</option><option value="6">bis 6 h</option></select></div>
-      <div><label for="assist">Modus</label><select id="assist"><option value="eco">Eco</option><option value="tour" selected>Tour</option><option value="emtb">eMTB</option><option value="turbo">Turbo</option></select></div>
+      <div class="mode-tabs" role="group" aria-label="Fahrradtyp">
+        <button type="button" class="mode-tab" data-mode="tour">Normales E-Bike</button>
+        <button type="button" class="mode-tab" data-mode="mtb">MTB / E-MTB</button>
+        <button type="button" class="mode-tab" data-mode="all">Alle</button>
+      </div>
+      <div class="search-block"><label for="q">Suchen</label><input id="q" placeholder="Weser, Schloss, Feierabend …" autocomplete="off"></div>
+      <div><label for="sort">Sortieren</label><select id="sort"><option value="smart">Empfehlung jetzt</option><option value="score">Basis-Score</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select></div>
+      <div><label for="type">Tourart</label><select id="type"><option value="">Alle Tourarten</option></select></div>
+      <div><label for="timeBudget">Zeitbudget</label><select id="timeBudget"><option value="999">egal</option><option value="2">bis 2 h</option><option value="2.5">bis 2,5 h</option><option value="4">bis 4 h</option><option value="6">bis 6 h</option></select></div>
+      <div><label for="assist">Unterstützung</label><select id="assist"><option value="eco">Eco</option><option value="tour" selected>Tour</option><option value="emtb">eMTB</option><option value="turbo">Turbo</option></select></div>
       <div class="range-block"><label for="batteryLeft">Restakku <b id="batteryLeftText">80%</b></label><input id="batteryLeft" type="range" min="10" max="100" value="80"></div>
     </section>
+
     <section id="summary" class="summary-grid" aria-label="Zusammenfassung"></section>
     <section id="conditionPanel" class="condition-panel"></section>
+
     <section id="routes" class="workspace">
-      <aside class="route-rail"><div class="section-head"><p>Routenliste</p><span id="routeCount"></span></div><div id="routeRail"></div></aside>
+      <aside class="route-rail"><div class="section-head"><p>Passende Routen</p><span id="routeCount"></span></div><div id="routeRail"></div></aside>
       <section id="focusRoute" class="focus-route" aria-live="polite"></section>
     </section>
-    <section id="cards" class="cards-section"><div class="section-head"><p>Alle passenden Routen</p><span>Kompaktkarten</span></div><div id="grid" class="route-grid"></div></section>
-    <section id="compare" class="compare-section"><div class="section-head"><p>Vergleich</p><span>Schneller Vergleich: Zeit, Akku, Status, GPX</span></div><div id="compareTable" class="compare-table"></div></section>
+
+    <section id="cards" class="cards-section"><div class="section-head"><p>Alle Treffer</p><span>Kompaktkarten</span></div><div id="grid" class="route-grid"></div></section>
+    <section id="compare" class="compare-section"><div class="section-head"><p>Vergleich</p><span>Zeit, Akku, Oberfläche, GPX</span></div><div id="compareTable" class="compare-table"></div></section>
+
     <section id="logbook" class="logbook panel">
       <div class="section-head"><p>Fahrtenlogbuch</p><span>lokal im Browser · exportierbar</span></div>
       <form id="logForm" class="logform">

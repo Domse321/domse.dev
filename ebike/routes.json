@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "home": {
     "lat": 52.122372,
     "lon": 9.3447927,
@@ -132,7 +132,12 @@
         "akku-schonend",
         "Aussicht"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "suentel-hohenstein-genuss",
@@ -255,7 +260,12 @@
         "Aussicht",
         "mehr Trailgefühl"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "ohrberg-weser-kluet-mix",
@@ -367,7 +377,12 @@
         "kurzes Zeitfenster",
         "akku-schonend"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "ith-lauenstein-abenteuer",
@@ -485,7 +500,12 @@
         "mehr Trailgefühl",
         "nur mit Zeit/Reserve"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "deister-nienstedt-wald",
@@ -598,7 +618,12 @@
         "akku-schonend",
         "mehr Trailgefühl"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "fischbeck-weser-suentel-soft",
@@ -707,10 +732,17 @@
       ],
       "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
         "kurzes Zeitfenster",
         "akku-schonend"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
     },
     {
       "id": "suentelturm-poetzen-wald",
@@ -831,7 +863,12 @@
         "Aussicht",
         "mehr Höhenmeter"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "schillat-hoehle-hohenstein-kante",
@@ -954,7 +991,12 @@
         "nur trocken",
         "mehr Trailgefühl"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "haemelschenburg-grohnde-weser",
@@ -1073,11 +1115,18 @@
       ],
       "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
         "akku-schonend",
         "Genuss",
         "Schlechtwetter-Alternative"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
     },
     {
       "id": "bodenwerder-weserbergland-tag",
@@ -1204,7 +1253,12 @@
         "Genuss",
         "lange Runde"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "aerzen-hummental-kluet-bogen",
@@ -1321,7 +1375,12 @@
         "kurzes Zeitfenster",
         "Aussicht"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "bad-pyrmont-koenigsberg-runde",
@@ -1438,7 +1497,12 @@
         "Transfer",
         "mehr Höhenmeter"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "coppenbruegge-bisperode-ith-vorland",
@@ -1559,7 +1623,12 @@
         "mehr Höhenmeter",
         "Erkundung"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "lauenstein-ithwiesen-transfer",
@@ -1676,7 +1745,12 @@
         "mehr Trailgefühl",
         "Aussicht"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "osterwald-lauenstein-hoehenzug",
@@ -1792,7 +1866,12 @@
         "Transfer",
         "mehr Höhenmeter"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "bad-muender-suentel-ruecken",
@@ -1909,7 +1988,12 @@
         "Aussicht",
         "mehr Höhenmeter"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "springe-jagdschloss-saupark",
@@ -2026,7 +2110,12 @@
         "akku-schonend",
         "Wald"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "rinteln-paschenburg-schaumburg",
@@ -2142,7 +2231,12 @@
         "Aussicht",
         "Transfer"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "bueckeburg-obernkirchen-bueckeberg",
@@ -2258,7 +2352,12 @@
         "Transfer",
         "Wald"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "hessisch-oldendorf-hohenstein-lite",
@@ -2376,7 +2475,12 @@
         "Süntel",
         "Wochenende"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "mtb",
+      "bike_profile": "MTB / E-MTB",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "MTB-/E-MTB-orientiert: mehr Wald, Schotter, Höhenmeter oder technische Passagen als normale Tourenrunde."
     },
     {
       "id": "emmerthal-ohrberg-haemelschenburg",
@@ -2490,11 +2594,18 @@
       ],
       "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
         "akku-schonend",
         "Genuss",
         "kurzes Zeitfenster"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
     },
     {
       "id": "grohnde-bodenwerder-kurztransfer",
@@ -2603,11 +2714,838 @@
       ],
       "photo_note": "Öffentliche Wikimedia-Bilder aus der Region/nahem Landmark-Kontext; echte Streckenfotos können später im Logbuch ergänzt werden.",
       "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
         "Transfer",
         "Genuss",
         "akku-schonend"
       ],
-      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke."
+      "packing_hint": "Wasser, Mini-Tool, Pumpe/CO₂, Ersatzschlauch, Licht; bei Wald/Tagestour zusätzlich Riegel und dünne Jacke.",
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "gemischt",
+      "family_friendly": false,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
+    },
+    {
+      "id": "weser-emmerauen-kurz",
+      "name": "Weser- & Emmerauen-Kurzrunde",
+      "region": "Hameln / Emmerthal",
+      "type": "Feierabend-Tour",
+      "start_mode": "ab Zuhause",
+      "difficulty": "leicht",
+      "distance_km": 21.3,
+      "elevation_m": 85,
+      "duration": "1,1–1,4 h",
+      "battery": "ca. 13–17 % Eco/Tour",
+      "best_for": "Flache Alltagsrunde für ein normales E-Bike: wenig Stress, viel Wasser, gute Abbruchpunkte.",
+      "season": "ganzjährig; bei Hochwasser/Glätte Weser- und Auenabschnitte prüfen",
+      "surface": "Asphalt, Radwege, befestigte Wirtschaftswege",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.1049,
+          "lon": 9.356,
+          "label": "Hameln Altstadt / Weser"
+        },
+        {
+          "lat": 52.0686,
+          "lon": 9.3772,
+          "label": "Tündern / Emmerauen"
+        },
+        {
+          "lat": 52.0542,
+          "lon": 9.3885,
+          "label": "Emmerthal"
+        },
+        {
+          "lat": 52.0915,
+          "lon": 9.3652,
+          "label": "Weserufer Hameln"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 82,
+        "trail": 28,
+        "low_traffic": 88,
+        "emtb_fun": 68,
+        "viewpoints": 72,
+        "loop_quality": 82,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "wassernahe Abschnitte",
+        "normales E-Bike geeignet",
+        "wenig technische Passagen",
+        "gute Abbruch-/Transferpunkte"
+      ],
+      "risk_notes": [
+        "Vor Fahrt Radweg-/Baustellensituation prüfen",
+        "keine MTB-Trailrunde; bewusst alltagstauglicher geplant",
+        "BRouter-Entwurf vor erster Fahrt in Komoot/BRouter feinprüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Weser-%20%26%20Emmerauen-Kurzrunde%20Hameln%20E-Bike",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.1223720,9.3447927&destination=52.1049000,9.3560000&travelmode=bicycling",
+      "status": "Neu recherchierter E-Bike-Entwurf",
+      "score": 69.4,
+      "gpx_file": "gpx/weser-emmerauen-kurz.gpx",
+      "stats_confidence": "hoch für Track/Distanz, mittel für Oberflächen im Detail",
+      "planner_link": "https://brouter.de/brouter-web/#map=11/52.054200/9.388500/standard&lonlats=9.3447927,52.1223720;9.3560000,52.1049000;9.3772000,52.0686000;9.3885000,52.0542000;9.3652000,52.0915000;9.3447927,52.1223720&profile=trekking",
+      "maturity": "Gerouteter BRouter-Entwurf für normale E-Bikes; nach erster Fahrt kann der reale GPX-Track importiert werden.",
+      "next_actions": [
+        "In Komoot/BRouter einmal gegen Sperrungen feinprüfen",
+        "Bei erster Fahrt Oberflächen und sichere Querungen notieren",
+        "Gefahrenen GPX später ersetzen/importieren"
+      ],
+      "nav_label": "Navigation zum Start-/Hauptpunkt",
+      "track_geojson_file": "tracks/weser-emmerauen-kurz.geojson",
+      "track_source": "BRouter trekking, als normale E-Bike-/Tourenrunde aus kuratierten Wegpunkten geroutet",
+      "track_points": 722,
+      "battery_model": {
+        "eco": 13,
+        "tour": 17,
+        "emtb": 22,
+        "turbo": 28,
+        "reserve_percent": 12,
+        "note": "Planwert für normale E-Bike-/Tour-Nutzung; Wind, Temperatur, Zuladung und Unterstützungsstufe ändern den realen Verbrauch."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine eigenen Fotos hinterlegt; Karte und GPX sind der primäre Planungsstand.",
+      "packing_hint": "Wasser, Licht, Schloss, Mini-Tool, ggf. Regenjacke.",
+      "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
+        "alltagstauglich"
+      ],
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "ruhig / radwegtauglich",
+      "family_friendly": true,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
+    },
+    {
+      "id": "haemelschenburg-emmertal-ebike",
+      "name": "Hämelschenburg durchs Emmertal",
+      "region": "Emmertal / Hämelschenburg",
+      "type": "Schloss- & Auentour",
+      "start_mode": "ab Zuhause",
+      "difficulty": "leicht-mittel",
+      "distance_km": 39.6,
+      "elevation_m": 27,
+      "duration": "2,0–2,5 h",
+      "battery": "ca. 22–30 % Eco/Tour",
+      "best_for": "Schöne E-Bike-Tour mit Schlossziel und ruhigen Talwegen statt Trailfokus.",
+      "season": "ganzjährig; bei Hochwasser/Glätte Weser- und Auenabschnitte prüfen",
+      "surface": "Radwege, Nebenstraßen, feste Feld-/Waldwege",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.0542,
+          "lon": 9.3885,
+          "label": "Emmerthal"
+        },
+        {
+          "lat": 52.0368,
+          "lon": 9.4328,
+          "label": "Schloss Hämelschenburg"
+        },
+        {
+          "lat": 52.0225,
+          "lon": 9.4255,
+          "label": "Amelgatzen"
+        },
+        {
+          "lat": 52.0686,
+          "lon": 9.3772,
+          "label": "Tündern"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 84,
+        "trail": 28,
+        "low_traffic": 86,
+        "emtb_fun": 68,
+        "viewpoints": 80,
+        "loop_quality": 82,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "ruhige Nebenwege",
+        "normales E-Bike geeignet",
+        "wenig technische Passagen",
+        "gute Abbruch-/Transferpunkte"
+      ],
+      "risk_notes": [
+        "Vor Fahrt Radweg-/Baustellensituation prüfen",
+        "keine MTB-Trailrunde; bewusst alltagstauglicher geplant",
+        "BRouter-Entwurf vor erster Fahrt in Komoot/BRouter feinprüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/H%C3%A4melschenburg%20durchs%20Emmertal%20Hameln%20E-Bike",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.1223720,9.3447927&destination=52.0542000,9.3885000&travelmode=bicycling",
+      "status": "Neu recherchierter E-Bike-Entwurf",
+      "score": 70.5,
+      "gpx_file": "gpx/haemelschenburg-emmertal-ebike.gpx",
+      "stats_confidence": "hoch für Track/Distanz, mittel für Oberflächen im Detail",
+      "planner_link": "https://brouter.de/brouter-web/#map=11/52.022500/9.425500/standard&lonlats=9.3447927,52.1223720;9.3885000,52.0542000;9.4328000,52.0368000;9.4255000,52.0225000;9.3772000,52.0686000;9.3447927,52.1223720&profile=trekking",
+      "maturity": "Gerouteter BRouter-Entwurf für normale E-Bikes; nach erster Fahrt kann der reale GPX-Track importiert werden.",
+      "next_actions": [
+        "In Komoot/BRouter einmal gegen Sperrungen feinprüfen",
+        "Bei erster Fahrt Oberflächen und sichere Querungen notieren",
+        "Gefahrenen GPX später ersetzen/importieren"
+      ],
+      "nav_label": "Navigation zum Start-/Hauptpunkt",
+      "track_geojson_file": "tracks/haemelschenburg-emmertal-ebike.geojson",
+      "track_source": "BRouter trekking, als normale E-Bike-/Tourenrunde aus kuratierten Wegpunkten geroutet",
+      "track_points": 1147,
+      "battery_model": {
+        "eco": 22,
+        "tour": 30,
+        "emtb": 38,
+        "turbo": 50,
+        "reserve_percent": 12,
+        "note": "Planwert für normale E-Bike-/Tour-Nutzung; Wind, Temperatur, Zuladung und Unterstützungsstufe ändern den realen Verbrauch."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine eigenen Fotos hinterlegt; Karte und GPX sind der primäre Planungsstand.",
+      "packing_hint": "Wasser, Licht, Schloss, Mini-Tool, ggf. Regenjacke.",
+      "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
+        "alltagstauglich"
+      ],
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "ruhig / radwegtauglich",
+      "family_friendly": true,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
+    },
+    {
+      "id": "grohnde-weser-genuss-ebike",
+      "name": "Grohnde-Weser-Genussrunde",
+      "region": "Weser / Grohnde",
+      "type": "Weser-Radweg",
+      "start_mode": "ab Zuhause",
+      "difficulty": "leicht",
+      "distance_km": 33.3,
+      "elevation_m": 36,
+      "duration": "1,7–2,1 h",
+      "battery": "ca. 19–25 % Eco/Tour",
+      "best_for": "Entspannte Weser-Runde für normale E-Bikes mit guter Oberfläche und wenig Höhenmetern.",
+      "season": "ganzjährig; bei Hochwasser/Glätte Weser- und Auenabschnitte prüfen",
+      "surface": "Weser-Radweg, Asphalt, befestigte Wege",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.0915,
+          "lon": 9.3652,
+          "label": "Weserufer Hameln"
+        },
+        {
+          "lat": 52.0542,
+          "lon": 9.3885,
+          "label": "Emmerthal"
+        },
+        {
+          "lat": 52.0185,
+          "lon": 9.4138,
+          "label": "Grohnde Fähre / Weser"
+        },
+        {
+          "lat": 52.0686,
+          "lon": 9.3772,
+          "label": "Tündern"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 82,
+        "trail": 28,
+        "low_traffic": 88,
+        "emtb_fun": 68,
+        "viewpoints": 72,
+        "loop_quality": 82,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "wassernahe Abschnitte",
+        "normales E-Bike geeignet",
+        "wenig technische Passagen",
+        "gute Abbruch-/Transferpunkte"
+      ],
+      "risk_notes": [
+        "Vor Fahrt Radweg-/Baustellensituation prüfen",
+        "keine MTB-Trailrunde; bewusst alltagstauglicher geplant",
+        "BRouter-Entwurf vor erster Fahrt in Komoot/BRouter feinprüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Grohnde-Weser-Genussrunde%20Hameln%20E-Bike",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.1223720,9.3447927&destination=52.0915000,9.3652000&travelmode=bicycling",
+      "status": "Neu recherchierter E-Bike-Entwurf",
+      "score": 69.4,
+      "gpx_file": "gpx/grohnde-weser-genuss-ebike.gpx",
+      "stats_confidence": "hoch für Track/Distanz, mittel für Oberflächen im Detail",
+      "planner_link": "https://brouter.de/brouter-web/#map=11/52.018500/9.413800/standard&lonlats=9.3447927,52.1223720;9.3652000,52.0915000;9.3885000,52.0542000;9.4138000,52.0185000;9.3772000,52.0686000;9.3447927,52.1223720&profile=trekking",
+      "maturity": "Gerouteter BRouter-Entwurf für normale E-Bikes; nach erster Fahrt kann der reale GPX-Track importiert werden.",
+      "next_actions": [
+        "In Komoot/BRouter einmal gegen Sperrungen feinprüfen",
+        "Bei erster Fahrt Oberflächen und sichere Querungen notieren",
+        "Gefahrenen GPX später ersetzen/importieren"
+      ],
+      "nav_label": "Navigation zum Start-/Hauptpunkt",
+      "track_geojson_file": "tracks/grohnde-weser-genuss-ebike.geojson",
+      "track_source": "BRouter trekking, als normale E-Bike-/Tourenrunde aus kuratierten Wegpunkten geroutet",
+      "track_points": 900,
+      "battery_model": {
+        "eco": 19,
+        "tour": 25,
+        "emtb": 32,
+        "turbo": 42,
+        "reserve_percent": 12,
+        "note": "Planwert für normale E-Bike-/Tour-Nutzung; Wind, Temperatur, Zuladung und Unterstützungsstufe ändern den realen Verbrauch."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine eigenen Fotos hinterlegt; Karte und GPX sind der primäre Planungsstand.",
+      "packing_hint": "Wasser, Licht, Schloss, Mini-Tool, ggf. Regenjacke.",
+      "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
+        "alltagstauglich"
+      ],
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "ruhig / radwegtauglich",
+      "family_friendly": true,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
+    },
+    {
+      "id": "bodenwerder-weser-radweg-ebike",
+      "name": "Bodenwerder über den Weser-Radweg",
+      "region": "Weserbergland / Bodenwerder",
+      "type": "Tages-Genusstour",
+      "start_mode": "ab Zuhause",
+      "difficulty": "mittel",
+      "distance_km": 57.7,
+      "elevation_m": 72,
+      "duration": "2,9–3,7 h",
+      "battery": "ca. 32–44 % Eco/Tour",
+      "best_for": "Längere normale E-Bike-Tour mit Weserblicken; eher Ausdauer als Technik.",
+      "season": "ganzjährig; bei Hochwasser/Glätte Weser- und Auenabschnitte prüfen",
+      "surface": "überwiegend Radweg/Asphalt, kurze Nebenstraßen",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.0185,
+          "lon": 9.4138,
+          "label": "Grohnde"
+        },
+        {
+          "lat": 51.9715,
+          "lon": 9.519,
+          "label": "Bodenwerder"
+        },
+        {
+          "lat": 51.9848,
+          "lon": 9.4798,
+          "label": "Hehlen"
+        },
+        {
+          "lat": 52.0542,
+          "lon": 9.3885,
+          "label": "Emmerthal"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 82,
+        "trail": 28,
+        "low_traffic": 88,
+        "emtb_fun": 68,
+        "viewpoints": 72,
+        "loop_quality": 82,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "wassernahe Abschnitte",
+        "normales E-Bike geeignet",
+        "wenig technische Passagen",
+        "gute Abbruch-/Transferpunkte"
+      ],
+      "risk_notes": [
+        "Vor Fahrt Radweg-/Baustellensituation prüfen",
+        "keine MTB-Trailrunde; bewusst alltagstauglicher geplant",
+        "BRouter-Entwurf vor erster Fahrt in Komoot/BRouter feinprüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Bodenwerder%20%C3%BCber%20den%20Weser-Radweg%20Hameln%20E-Bike",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.1223720,9.3447927&destination=52.0185000,9.4138000&travelmode=bicycling",
+      "status": "Neu recherchierter E-Bike-Entwurf",
+      "score": 69.4,
+      "gpx_file": "gpx/bodenwerder-weser-radweg-ebike.gpx",
+      "stats_confidence": "hoch für Track/Distanz, mittel für Oberflächen im Detail",
+      "planner_link": "https://brouter.de/brouter-web/#map=11/51.984800/9.479800/standard&lonlats=9.3447927,52.1223720;9.4138000,52.0185000;9.5190000,51.9715000;9.4798000,51.9848000;9.3885000,52.0542000;9.3447927,52.1223720&profile=trekking",
+      "maturity": "Gerouteter BRouter-Entwurf für normale E-Bikes; nach erster Fahrt kann der reale GPX-Track importiert werden.",
+      "next_actions": [
+        "In Komoot/BRouter einmal gegen Sperrungen feinprüfen",
+        "Bei erster Fahrt Oberflächen und sichere Querungen notieren",
+        "Gefahrenen GPX später ersetzen/importieren"
+      ],
+      "nav_label": "Navigation zum Start-/Hauptpunkt",
+      "track_geojson_file": "tracks/bodenwerder-weser-radweg-ebike.geojson",
+      "track_source": "BRouter trekking, als normale E-Bike-/Tourenrunde aus kuratierten Wegpunkten geroutet",
+      "track_points": 1461,
+      "battery_model": {
+        "eco": 32,
+        "tour": 44,
+        "emtb": 56,
+        "turbo": 74,
+        "reserve_percent": 12,
+        "note": "Planwert für normale E-Bike-/Tour-Nutzung; Wind, Temperatur, Zuladung und Unterstützungsstufe ändern den realen Verbrauch."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine eigenen Fotos hinterlegt; Karte und GPX sind der primäre Planungsstand.",
+      "packing_hint": "Wasser, Licht, Schloss, Mini-Tool, ggf. Regenjacke.",
+      "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
+        "alltagstauglich"
+      ],
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "ruhig / radwegtauglich",
+      "family_friendly": false,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
+    },
+    {
+      "id": "fischbeck-hessisch-oldendorf-weser-ebike",
+      "name": "Fischbeck & Hessisch Oldendorf flach",
+      "region": "Weser / Hessisch Oldendorf",
+      "type": "Flussrunde",
+      "start_mode": "ab Zuhause",
+      "difficulty": "leicht-mittel",
+      "distance_km": 26.6,
+      "elevation_m": 106,
+      "duration": "1,3–1,7 h",
+      "battery": "ca. 16–21 % Eco/Tour",
+      "best_for": "Flussnahe Runde für normale E-Bikes, wenn Waldwege zu matschig sind.",
+      "season": "ganzjährig; bei Hochwasser/Glätte Weser- und Auenabschnitte prüfen",
+      "surface": "Radweg, ruhige Straßen, befestigte Wirtschaftswege",
+      "waypoints": [
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        },
+        {
+          "lat": 52.1465,
+          "lon": 9.2772,
+          "label": "Fischbeck"
+        },
+        {
+          "lat": 52.1713,
+          "lon": 9.2462,
+          "label": "Hessisch Oldendorf"
+        },
+        {
+          "lat": 52.1548,
+          "lon": 9.3115,
+          "label": "Wehrbergen / Weser"
+        },
+        {
+          "lat": 52.122372,
+          "lon": 9.3447927,
+          "label": "Reimerdeskamp 62, 31787 Hameln"
+        }
+      ],
+      "scores": {
+        "scenery": 76,
+        "trail": 28,
+        "low_traffic": 86,
+        "emtb_fun": 68,
+        "viewpoints": 68,
+        "loop_quality": 82,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "ruhige Nebenwege",
+        "normales E-Bike geeignet",
+        "wenig technische Passagen",
+        "gute Abbruch-/Transferpunkte"
+      ],
+      "risk_notes": [
+        "Vor Fahrt Radweg-/Baustellensituation prüfen",
+        "keine MTB-Trailrunde; bewusst alltagstauglicher geplant",
+        "BRouter-Entwurf vor erster Fahrt in Komoot/BRouter feinprüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Fischbeck%20%26%20Hessisch%20Oldendorf%20flach%20Hameln%20E-Bike",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.1223720,9.3447927&destination=52.1465000,9.2772000&travelmode=bicycling",
+      "status": "Neu recherchierter E-Bike-Entwurf",
+      "score": 67.0,
+      "gpx_file": "gpx/fischbeck-hessisch-oldendorf-weser-ebike.gpx",
+      "stats_confidence": "hoch für Track/Distanz, mittel für Oberflächen im Detail",
+      "planner_link": "https://brouter.de/brouter-web/#map=11/52.171300/9.246200/standard&lonlats=9.3447927,52.1223720;9.2772000,52.1465000;9.2462000,52.1713000;9.3115000,52.1548000;9.3447927,52.1223720&profile=trekking",
+      "maturity": "Gerouteter BRouter-Entwurf für normale E-Bikes; nach erster Fahrt kann der reale GPX-Track importiert werden.",
+      "next_actions": [
+        "In Komoot/BRouter einmal gegen Sperrungen feinprüfen",
+        "Bei erster Fahrt Oberflächen und sichere Querungen notieren",
+        "Gefahrenen GPX später ersetzen/importieren"
+      ],
+      "nav_label": "Navigation zum Start-/Hauptpunkt",
+      "track_geojson_file": "tracks/fischbeck-hessisch-oldendorf-weser-ebike.geojson",
+      "track_source": "BRouter trekking, als normale E-Bike-/Tourenrunde aus kuratierten Wegpunkten geroutet",
+      "track_points": 716,
+      "battery_model": {
+        "eco": 16,
+        "tour": 21,
+        "emtb": 27,
+        "turbo": 35,
+        "reserve_percent": 12,
+        "note": "Planwert für normale E-Bike-/Tour-Nutzung; Wind, Temperatur, Zuladung und Unterstützungsstufe ändern den realen Verbrauch."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine eigenen Fotos hinterlegt; Karte und GPX sind der primäre Planungsstand.",
+      "packing_hint": "Wasser, Licht, Schloss, Mini-Tool, ggf. Regenjacke.",
+      "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
+        "alltagstauglich"
+      ],
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "ruhig / radwegtauglich",
+      "family_friendly": true,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
+    },
+    {
+      "id": "bad-pyrmont-kurpark-ebike",
+      "name": "Bad Pyrmont Kurpark-Tour",
+      "region": "Emmertal / Bad Pyrmont",
+      "type": "Café- & Kurparktour",
+      "start_mode": "Transferstart",
+      "difficulty": "mittel",
+      "distance_km": 47.1,
+      "elevation_m": 160,
+      "duration": "2,4–3,0 h",
+      "battery": "ca. 28–37 % Eco/Tour",
+      "best_for": "Normale E-Bike-Ausfahrt mit Ausflugsziel; ideal mit Bahn-/Auto-Transfer nach Emmerthal.",
+      "season": "ganzjährig; bei Hochwasser/Glätte Weser- und Auenabschnitte prüfen",
+      "surface": "Emmerradweg, Asphalt, befestigte Talwege",
+      "waypoints": [
+        {
+          "lat": 52.0542,
+          "lon": 9.3885,
+          "label": "Emmerthal Bahnhof"
+        },
+        {
+          "lat": 52.0368,
+          "lon": 9.4328,
+          "label": "Hämelschenburg"
+        },
+        {
+          "lat": 51.9856,
+          "lon": 9.252,
+          "label": "Bad Pyrmont Kurpark"
+        },
+        {
+          "lat": 52.0145,
+          "lon": 9.3078,
+          "label": "Lügde / Emmerradweg"
+        },
+        {
+          "lat": 52.0542,
+          "lon": 9.3885,
+          "label": "Emmerthal Bahnhof"
+        }
+      ],
+      "scores": {
+        "scenery": 84,
+        "trail": 28,
+        "low_traffic": 86,
+        "emtb_fun": 68,
+        "viewpoints": 80,
+        "loop_quality": 82,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "ruhige Nebenwege",
+        "normales E-Bike geeignet",
+        "wenig technische Passagen",
+        "gute Abbruch-/Transferpunkte"
+      ],
+      "risk_notes": [
+        "Vor Fahrt Radweg-/Baustellensituation prüfen",
+        "keine MTB-Trailrunde; bewusst alltagstauglicher geplant",
+        "BRouter-Entwurf vor erster Fahrt in Komoot/BRouter feinprüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Bad%20Pyrmont%20Kurpark-Tour%20Hameln%20E-Bike",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.0542000,9.3885000&destination=52.0368000,9.4328000&travelmode=bicycling",
+      "status": "Neu recherchierter E-Bike-Entwurf",
+      "score": 70.5,
+      "gpx_file": "gpx/bad-pyrmont-kurpark-ebike.gpx",
+      "stats_confidence": "hoch für Track/Distanz, mittel für Oberflächen im Detail",
+      "planner_link": "https://brouter.de/brouter-web/#map=11/51.985600/9.252000/standard&lonlats=9.3885000,52.0542000;9.4328000,52.0368000;9.2520000,51.9856000;9.3078000,52.0145000;9.3885000,52.0542000&profile=trekking",
+      "maturity": "Gerouteter BRouter-Entwurf für normale E-Bikes; nach erster Fahrt kann der reale GPX-Track importiert werden.",
+      "next_actions": [
+        "In Komoot/BRouter einmal gegen Sperrungen feinprüfen",
+        "Bei erster Fahrt Oberflächen und sichere Querungen notieren",
+        "Gefahrenen GPX später ersetzen/importieren"
+      ],
+      "nav_label": "Navigation zum Start-/Hauptpunkt",
+      "track_geojson_file": "tracks/bad-pyrmont-kurpark-ebike.geojson",
+      "track_source": "BRouter trekking, als normale E-Bike-/Tourenrunde aus kuratierten Wegpunkten geroutet",
+      "track_points": 1203,
+      "battery_model": {
+        "eco": 28,
+        "tour": 37,
+        "emtb": 47,
+        "turbo": 62,
+        "reserve_percent": 12,
+        "note": "Planwert für normale E-Bike-/Tour-Nutzung; Wind, Temperatur, Zuladung und Unterstützungsstufe ändern den realen Verbrauch."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine eigenen Fotos hinterlegt; Karte und GPX sind der primäre Planungsstand.",
+      "packing_hint": "Wasser, Licht, Schloss, Mini-Tool, ggf. Regenjacke.",
+      "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
+        "alltagstauglich"
+      ],
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "ruhig / radwegtauglich",
+      "family_friendly": false,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
+    },
+    {
+      "id": "coppenbruegge-salzhemmendorf-ebike",
+      "name": "Coppenbrügge–Salzhemmendorf entspannt",
+      "region": "Ith-Vorland",
+      "type": "Vorlandrunde",
+      "start_mode": "Transferstart",
+      "difficulty": "mittel",
+      "distance_km": 35.4,
+      "elevation_m": 358,
+      "duration": "1,8–2,3 h",
+      "battery": "ca. 23–31 % Eco/Tour",
+      "best_for": "Vorland statt Höhenzug: normale E-Bike-Runde mit Blick zum Ith ohne grobe Trailpassagen.",
+      "season": "ganzjährig; bei Hochwasser/Glätte Weser- und Auenabschnitte prüfen",
+      "surface": "Nebenstraßen, Wirtschaftswege, kurze Schotterstücke",
+      "waypoints": [
+        {
+          "lat": 52.1188,
+          "lon": 9.548,
+          "label": "Coppenbrügge Bahnhof"
+        },
+        {
+          "lat": 52.0677,
+          "lon": 9.5877,
+          "label": "Salzhemmendorf"
+        },
+        {
+          "lat": 52.0502,
+          "lon": 9.6162,
+          "label": "Wallensen"
+        },
+        {
+          "lat": 52.1042,
+          "lon": 9.5145,
+          "label": "Bisperode"
+        },
+        {
+          "lat": 52.1188,
+          "lon": 9.548,
+          "label": "Coppenbrügge Bahnhof"
+        }
+      ],
+      "scores": {
+        "scenery": 76,
+        "trail": 28,
+        "low_traffic": 86,
+        "emtb_fun": 68,
+        "viewpoints": 68,
+        "loop_quality": 82,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "ruhige Nebenwege",
+        "normales E-Bike geeignet",
+        "wenig technische Passagen",
+        "gute Abbruch-/Transferpunkte"
+      ],
+      "risk_notes": [
+        "Vor Fahrt Radweg-/Baustellensituation prüfen",
+        "keine MTB-Trailrunde; bewusst alltagstauglicher geplant",
+        "BRouter-Entwurf vor erster Fahrt in Komoot/BRouter feinprüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Coppenbr%C3%BCgge%E2%80%93Salzhemmendorf%20entspannt%20Hameln%20E-Bike",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.1188000,9.5480000&destination=52.0677000,9.5877000&travelmode=bicycling",
+      "status": "Neu recherchierter E-Bike-Entwurf",
+      "score": 67.0,
+      "gpx_file": "gpx/coppenbruegge-salzhemmendorf-ebike.gpx",
+      "stats_confidence": "hoch für Track/Distanz, mittel für Oberflächen im Detail",
+      "planner_link": "https://brouter.de/brouter-web/#map=11/52.050200/9.616200/standard&lonlats=9.5480000,52.1188000;9.5877000,52.0677000;9.6162000,52.0502000;9.5145000,52.1042000;9.5480000,52.1188000&profile=trekking",
+      "maturity": "Gerouteter BRouter-Entwurf für normale E-Bikes; nach erster Fahrt kann der reale GPX-Track importiert werden.",
+      "next_actions": [
+        "In Komoot/BRouter einmal gegen Sperrungen feinprüfen",
+        "Bei erster Fahrt Oberflächen und sichere Querungen notieren",
+        "Gefahrenen GPX später ersetzen/importieren"
+      ],
+      "nav_label": "Navigation zum Start-/Hauptpunkt",
+      "track_geojson_file": "tracks/coppenbruegge-salzhemmendorf-ebike.geojson",
+      "track_source": "BRouter trekking, als normale E-Bike-/Tourenrunde aus kuratierten Wegpunkten geroutet",
+      "track_points": 692,
+      "battery_model": {
+        "eco": 23,
+        "tour": 31,
+        "emtb": 39,
+        "turbo": 51,
+        "reserve_percent": 12,
+        "note": "Planwert für normale E-Bike-/Tour-Nutzung; Wind, Temperatur, Zuladung und Unterstützungsstufe ändern den realen Verbrauch."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine eigenen Fotos hinterlegt; Karte und GPX sind der primäre Planungsstand.",
+      "packing_hint": "Wasser, Licht, Schloss, Mini-Tool, ggf. Regenjacke.",
+      "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
+        "alltagstauglich"
+      ],
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "ruhig / radwegtauglich",
+      "family_friendly": false,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
+    },
+    {
+      "id": "rinteln-weserauen-ebike",
+      "name": "Rinteln-Weserauen-Transfer",
+      "region": "Rinteln / Weser",
+      "type": "Transfer-Flussrunde",
+      "start_mode": "Transferstart",
+      "difficulty": "leicht-mittel",
+      "distance_km": 25.5,
+      "elevation_m": 261,
+      "duration": "1,3–1,6 h",
+      "battery": "ca. 17–23 % Eco/Tour",
+      "best_for": "Normale E-Bike-Runde mit Weserauen, kaum Technik, gut für trockene und nasse Tage.",
+      "season": "ganzjährig; bei Hochwasser/Glätte Weser- und Auenabschnitte prüfen",
+      "surface": "Radwege, Asphalt, ruhige Nebenstraßen",
+      "waypoints": [
+        {
+          "lat": 52.1868,
+          "lon": 9.0795,
+          "label": "Rinteln Bahnhof"
+        },
+        {
+          "lat": 52.2005,
+          "lon": 9.0967,
+          "label": "Doktorsee"
+        },
+        {
+          "lat": 52.2265,
+          "lon": 9.1317,
+          "label": "Exten"
+        },
+        {
+          "lat": 52.2065,
+          "lon": 9.1848,
+          "label": "Großenwieden / Weser"
+        },
+        {
+          "lat": 52.1868,
+          "lon": 9.0795,
+          "label": "Rinteln Bahnhof"
+        }
+      ],
+      "scores": {
+        "scenery": 82,
+        "trail": 28,
+        "low_traffic": 88,
+        "emtb_fun": 68,
+        "viewpoints": 72,
+        "loop_quality": 82,
+        "surface_confidence": 72
+      },
+      "highlights": [
+        "wassernahe Abschnitte",
+        "normales E-Bike geeignet",
+        "wenig technische Passagen",
+        "gute Abbruch-/Transferpunkte"
+      ],
+      "risk_notes": [
+        "Vor Fahrt Radweg-/Baustellensituation prüfen",
+        "keine MTB-Trailrunde; bewusst alltagstauglicher geplant",
+        "BRouter-Entwurf vor erster Fahrt in Komoot/BRouter feinprüfen"
+      ],
+      "komoot_link": "https://www.komoot.com/search/Rinteln-Weserauen-Transfer%20Hameln%20E-Bike",
+      "navigation_link": "https://www.google.com/maps/dir/?api=1&origin=52.1868000,9.0795000&destination=52.2005000,9.0967000&travelmode=bicycling",
+      "status": "Neu recherchierter E-Bike-Entwurf",
+      "score": 69.4,
+      "gpx_file": "gpx/rinteln-weserauen-ebike.gpx",
+      "stats_confidence": "hoch für Track/Distanz, mittel für Oberflächen im Detail",
+      "planner_link": "https://brouter.de/brouter-web/#map=11/52.226500/9.131700/standard&lonlats=9.0795000,52.1868000;9.0967000,52.2005000;9.1317000,52.2265000;9.1848000,52.2065000;9.0795000,52.1868000&profile=trekking",
+      "maturity": "Gerouteter BRouter-Entwurf für normale E-Bikes; nach erster Fahrt kann der reale GPX-Track importiert werden.",
+      "next_actions": [
+        "In Komoot/BRouter einmal gegen Sperrungen feinprüfen",
+        "Bei erster Fahrt Oberflächen und sichere Querungen notieren",
+        "Gefahrenen GPX später ersetzen/importieren"
+      ],
+      "nav_label": "Navigation zum Start-/Hauptpunkt",
+      "track_geojson_file": "tracks/rinteln-weserauen-ebike.geojson",
+      "track_source": "BRouter trekking, als normale E-Bike-/Tourenrunde aus kuratierten Wegpunkten geroutet",
+      "track_points": 795,
+      "battery_model": {
+        "eco": 17,
+        "tour": 23,
+        "emtb": 28,
+        "turbo": 37,
+        "reserve_percent": 12,
+        "note": "Planwert für normale E-Bike-/Tour-Nutzung; Wind, Temperatur, Zuladung und Unterstützungsstufe ändern den realen Verbrauch."
+      },
+      "gallery": [],
+      "photo_note": "Noch keine eigenen Fotos hinterlegt; Karte und GPX sind der primäre Planungsstand.",
+      "packing_hint": "Wasser, Licht, Schloss, Mini-Tool, ggf. Regenjacke.",
+      "decision_tags": [
+        "normales E-Bike",
+        "wenig Technik",
+        "alltagstauglich"
+      ],
+      "ride_style": "tour",
+      "bike_profile": "normales E-Bike",
+      "traffic_profile": "ruhig / radwegtauglich",
+      "family_friendly": true,
+      "route_mode_note": "Für normale E-Bikes freigegeben bzw. als Tour/Genussrunde einsortiert; vor erster Fahrt Oberfläche und Sperrungen prüfen."
     }
   ],
   "future_ideas": [
@@ -2651,5 +3589,15 @@
     "satellite_map": "Satellitenkarte mit Track-Overlay ohne externe JS-Library",
     "galleries": "Route-Galerien mit Wikimedia-Bildern im Landmark-/Region-Kontext, inklusive Zoom-Lightbox",
     "ride_readiness": "Ein kompakter Fahrbarkeits-Status ersetzt wiederholte Matschwerte pro Karte"
+  },
+  "route_modes": {
+    "tour": {
+      "label": "Normales E-Bike",
+      "description": "Radwege, Asphalt, feste Wirtschafts-/Waldwege, wenig Technik."
+    },
+    "mtb": {
+      "label": "MTB / E-MTB",
+      "description": "Wald, Schotter, Trailanteile, mehr Höhenmeter/Technik."
+    }
   }
 }

@@ -1,6 +1,8 @@
 {
   "url": "https://test.domse.dev/ebike/",
-  "route_count": 22,
+  "route_count": 30,
+  "tour_route_count": 12,
+  "mtb_route_count": 18,
   "best_score": 85.9,
   "top_routes": [
     {
@@ -9,6 +11,7 @@
       "score": 85.9,
       "distance_km": 42.6,
       "elevation_m": 440,
+      "bike_profile": "MTB / E-MTB",
       "gpx": "https://test.domse.dev/ebike/gpx/schillat-hoehle-hohenstein-kante.gpx"
     },
     {
@@ -17,6 +20,7 @@
       "score": 85.5,
       "distance_km": 36.8,
       "elevation_m": 454,
+      "bike_profile": "MTB / E-MTB",
       "gpx": "https://test.domse.dev/ebike/gpx/suentel-hohenstein-genuss.gpx"
     },
     {
@@ -25,10 +29,38 @@
       "score": 83.9,
       "distance_km": 65.7,
       "elevation_m": 667,
+      "bike_profile": "MTB / E-MTB",
       "gpx": "https://test.domse.dev/ebike/gpx/ith-lauenstein-abenteuer.gpx"
     }
   ],
+  "top_tour_routes": [
+    {
+      "id": "fischbeck-weser-suentel-soft",
+      "name": "Fischbeck–Weser–Süntel Soft-Entry",
+      "score": 74.6,
+      "distance_km": 19.5,
+      "elevation_m": 82,
+      "gpx": "https://test.domse.dev/ebike/gpx/fischbeck-weser-suentel-soft.gpx"
+    },
+    {
+      "id": "emmerthal-ohrberg-haemelschenburg",
+      "name": "Emmerthal–Ohrberg–Hämelschenburg",
+      "score": 72.3,
+      "distance_km": 28.9,
+      "elevation_m": 120,
+      "gpx": "https://test.domse.dev/ebike/gpx/emmerthal-ohrberg-haemelschenburg.gpx"
+    },
+    {
+      "id": "haemelschenburg-grohnde-weser",
+      "name": "Hämelschenburg–Grohnde Weserbogen",
+      "score": 71.7,
+      "distance_km": 37.2,
+      "elevation_m": 147,
+      "gpx": "https://test.domse.dev/ebike/gpx/haemelschenburg-grohnde-weser.gpx"
+    }
+  ],
   "features": {
+    "mode_switch": "Umschaltbar zwischen normalem E-Bike, MTB/E-MTB und allen Routen",
     "tracklines": "BRouter-GeoJSON und GPX-Tracks für alle Routen",
     "weather_mud": "Open-Meteo Live-Abfrage im Browser: Regen 48h, Temperatur, Wind",
     "battery": "Restakku- und Unterstützungsmodus-Rechner pro Route",
@@ -36,9 +68,9 @@
     "weekend": "Automatische Empfehlung aus Score, Wetter/Matsch und Zeitfenster",
     "satellite_map": "Satellitenkarte mit Track-Overlay ohne externe JS-Library",
     "galleries": "Route-Galerien mit vorhandenen Wikimedia-Bildern, falls passend gefunden",
-    "ride_readiness": "Ein kompakter Fahrbarkeits-Status ersetzt wiederholte Matschwerte pro Karte"
+    "ride_readiness": "Kompakter Fahrbarkeits-Status pro Karte und Vergleich"
   },
-  "updated_at": "2026-05-29T11:57:15Z",
-  "version": "0.4.0",
+  "updated_at": "2026-06-01T06:59:23Z",
+  "version": "0.5.0",
   "gallery_routes": 22
 }
