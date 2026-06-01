@@ -1,5 +1,5 @@
 {
-  "url": "https://test.domse.dev/ebike/",
+  "url": "https://domse.dev/ebike/",
   "route_count": 30,
   "tour_route_count": 12,
   "mtb_route_count": 18,
@@ -12,7 +12,7 @@
       "distance_km": 42.6,
       "elevation_m": 440,
       "bike_profile": "MTB / E-MTB",
-      "gpx": "https://test.domse.dev/ebike/gpx/schillat-hoehle-hohenstein-kante.gpx"
+      "gpx": "https://domse.dev/ebike/gpx/schillat-hoehle-hohenstein-kante.gpx"
     },
     {
       "id": "suentel-hohenstein-genuss",
@@ -21,7 +21,7 @@
       "distance_km": 36.8,
       "elevation_m": 454,
       "bike_profile": "MTB / E-MTB",
-      "gpx": "https://test.domse.dev/ebike/gpx/suentel-hohenstein-genuss.gpx"
+      "gpx": "https://domse.dev/ebike/gpx/suentel-hohenstein-genuss.gpx"
     },
     {
       "id": "ith-lauenstein-abenteuer",
@@ -30,7 +30,7 @@
       "distance_km": 65.7,
       "elevation_m": 667,
       "bike_profile": "MTB / E-MTB",
-      "gpx": "https://test.domse.dev/ebike/gpx/ith-lauenstein-abenteuer.gpx"
+      "gpx": "https://domse.dev/ebike/gpx/ith-lauenstein-abenteuer.gpx"
     }
   ],
   "top_tour_routes": [
@@ -40,7 +40,7 @@
       "score": 74.6,
       "distance_km": 19.5,
       "elevation_m": 82,
-      "gpx": "https://test.domse.dev/ebike/gpx/fischbeck-weser-suentel-soft.gpx"
+      "gpx": "https://domse.dev/ebike/gpx/fischbeck-weser-suentel-soft.gpx"
     },
     {
       "id": "emmerthal-ohrberg-haemelschenburg",
@@ -48,7 +48,7 @@
       "score": 72.3,
       "distance_km": 28.9,
       "elevation_m": 120,
-      "gpx": "https://test.domse.dev/ebike/gpx/emmerthal-ohrberg-haemelschenburg.gpx"
+      "gpx": "https://domse.dev/ebike/gpx/emmerthal-ohrberg-haemelschenburg.gpx"
     },
     {
       "id": "haemelschenburg-grohnde-weser",
@@ -56,7 +56,7 @@
       "score": 71.7,
       "distance_km": 37.2,
       "elevation_m": 147,
-      "gpx": "https://test.domse.dev/ebike/gpx/haemelschenburg-grohnde-weser.gpx"
+      "gpx": "https://domse.dev/ebike/gpx/haemelschenburg-grohnde-weser.gpx"
     }
   ],
   "features": {

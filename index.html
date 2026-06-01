@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Domse — Medien, IT-Projekte, Automatisierung und kreative Experimente.">
-  <title>Domse — Medien & IT Projekte</title>
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Domse — digitale Projekte, Web-Tools, Medienformate, Automatisierung und persönliche Dashboards.">
+  <meta name="theme-color" content="#070912">
+  <title>Domse — Projekte, Tools & Medien</title>
   <link rel="preconnect" href="https://api.github.com">
-  <link rel="stylesheet" href="assets/site.css?v=20260517-structure">
-  <script src="assets/site.js?v=20260517-structure" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=20260601-final-01">
+  <script src="assets/site.js?v=20260601-final-01" defer></script>
 </head>
 <body>
   <div class="ambient" aria-hidden="true">
@@ -18,86 +19,87 @@
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Domse Startseite">
       <span class="brand-mark">D</span>
-      <span><strong>Domse</strong><small>Media · IT · Automation</small></span>
+      <span><strong>Domse</strong><small>Projekte · Tools · Medien</small></span>
     </a>
     <nav aria-label="Hauptnavigation">
-      <a href="#overview">Übersicht</a>
       <a href="#projects">Projekte</a>
-      <a href="#media">Videos</a>
+      <a href="#media">Medien</a>
       <a href="#github">GitHub</a>
-      <a class="nav-pill" href="#roadmap">Ausbau</a>
+      <a class="nav-pill" href="/ebike/">E-Bike</a>
+      <a class="nav-pill nav-pill-accent" href="/sport/">Sport</a>
     </nav>
   </header>
 
   <main id="top">
     <section class="hero section-shell">
       <div class="hero-copy reveal">
-        <p class="eyebrow">Portfolio im Aufbau · test.domse.dev</p>
-        <h1>Medienprojekte, Webentwicklung und Infrastruktur in einer klaren digitalen Präsentation.</h1>
-        <p class="hero-lead">Eine strukturierte Projektseite für Inhalte, technische Arbeiten und ausgewählte Referenzen. Der Fokus liegt auf klarer Präsentation, guter Performance und nachvollziehbarer Navigation.</p>
+        <p class="eyebrow">Offizielle Projektzentrale · domse.dev</p>
+        <h1>Digitale Projekte, praktische Tools und Medienideen an einem Ort.</h1>
+        <p class="hero-lead">domse.dev bündelt ausgewählte Arbeiten rund um Web, Automatisierung, Homelab, Video und persönliche Dashboards. Klar strukturiert, direkt nutzbar und ohne künstlichen Demo-Charakter.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#media">Videos ansehen</a>
+          <a class="button primary" href="/ebike/">E-Bike Scout öffnen</a>
+          <a class="button ghost" href="/sport/">Sportplan öffnen</a>
           <a class="button ghost" href="#github">GitHub ansehen</a>
         </div>
       </div>
-      <div class="hero-panel reveal delay-1" aria-label="Live Status">
+      <div class="hero-panel reveal delay-1" aria-label="Projektstatus">
         <div class="orbital-card">
-          <div class="status-row"><span class="pulse"></span> Staging live</div>
+          <div class="status-row"><span class="pulse"></span> domse.dev live</div>
           <div class="metric-grid">
-            <div><strong>IT</strong><span>Automation, Server, Tools</span></div>
-            <div><strong>Media</strong><span>Video, ASMR, Konzepte</span></div>
-            <div><strong>Web</strong><span>Design, Deploy, Experimente</span></div>
+            <div><strong>Web</strong><span>Landingpages, Dashboards, kleine Tools</span></div>
+            <div><strong>Automation</strong><span>Homelab, Deployments, Workflows</span></div>
+            <div><strong>Media</strong><span>Video, Gaming, Formate</span></div>
           </div>
           <div class="terminal-card">
-            <span>$ deploy --target test.domse.dev</span>
-            <span>✓ staging environment active</span>
-            <span>✓ responsive layout verified</span>
+            <span>$ serve --domain domse.dev</span>
+            <span>✓ offizielle Seite aktiv</span>
+            <span>✓ Unterseiten: /ebike und /sport</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section-shell strip reveal" aria-label="Kompetenzen">
-      <div><span>01</span><strong>Professionelle Web-Oberflächen</strong></div>
-      <div><span>02</span><strong>Homelab & Automatisierung</strong></div>
-      <div><span>03</span><strong>Medien- und Video-Konzepte</strong></div>
+    <section class="section-shell strip reveal" aria-label="Schwerpunkte">
+      <div><span>01</span><strong>Web-Tools mit echtem Nutzwert</strong></div>
+      <div><span>02</span><strong>Automatisierung und Homelab</strong></div>
+      <div><span>03</span><strong>Medien- und Gaming-Projekte</strong></div>
     </section>
 
     <section id="overview" class="section-shell overview-section reveal" aria-label="Seitenübersicht">
       <div class="overview-copy">
-        <p class="eyebrow">Übersicht</p>
-        <h2>Klare Bereiche statt langer Einzelseite.</h2>
-        <p>Die Seite ist in vier Hauptbereiche gegliedert: Projektfelder, ausgewählte Videos, öffentliche Repositories und konkrete Ausbauschritte.</p>
+        <p class="eyebrow">Schnelleinstieg</p>
+        <h2>Direkt zu den Bereichen, die gerade relevant sind.</h2>
+        <p>Die wichtigsten Inhalte sind als eigenständige Bereiche erreichbar: Routenauswahl fürs E-Bike, Trainingsplan für zuhause, Projektübersicht, Medien und öffentliche Repositories.</p>
       </div>
       <div class="overview-grid">
-        <a href="#projects" class="overview-card"><span>01</span><strong>Projektbereiche</strong><small>Technik, Medien und Web</small></a>
-        <a href="#media" class="overview-card"><span>02</span><strong>Videos</strong><small>Drei ausgewählte Referenzen</small></a>
-        <a href="#github" class="overview-card"><span>03</span><strong>GitHub</strong><small>Öffentliche Repositories</small></a>
-        <a href="#roadmap" class="overview-card"><span>04</span><strong>Ausbau</strong><small>Nächste sinnvolle Inhalte</small></a>
+        <a href="/ebike/" class="overview-card highlight-card"><span>Tool</span><strong>E-Bike Scout</strong><small>Routen, GPX, Akku- und Zeitplanung</small></a>
+        <a href="/sport/" class="overview-card highlight-card"><span>Tool</span><strong>Sportplan</strong><small>Dumbbell-Routine, Timer und Fortschritt</small></a>
+        <a href="#projects" class="overview-card"><span>Projekte</span><strong>Arbeitsfelder</strong><small>Web, Infrastruktur und Medien</small></a>
+        <a href="#github" class="overview-card"><span>Code</span><strong>GitHub</strong><small>Öffentliche Repositories und Tools</small></a>
       </div>
     </section>
 
     <section id="projects" class="section-shell split-section">
       <div class="section-heading reveal">
-        <p class="eyebrow">Struktur</p>
-        <h2>Projektbereiche</h2>
-        <p>Die Seite bündelt technische Projekte, Medieninhalte und Web-Experimente in klar getrennten Bereichen mit direkten Verweisen auf relevante Inhalte.</p>
+        <p class="eyebrow">Projektfelder</p>
+        <h2>Gebaut für Alltag, Lernen und saubere Abläufe.</h2>
+        <p>Die Projekte sind keine lose Sammlung von Spielereien. Im Mittelpunkt stehen nützliche Oberflächen, wiederholbare Abläufe, verständliche Inhalte und robuste Veröffentlichungen.</p>
       </div>
       <div class="feature-grid">
         <article class="feature-card reveal">
           <span class="icon">▣</span>
-          <h3>IT & Infrastructure</h3>
-          <p>Server, Automatisierung, Deployment, Security-Headers und interne Werkzeuge mit praktischem Nutzen.</p>
+          <h3>Web & Dashboards</h3>
+          <p>Moderne, responsive Oberflächen für persönliche Tools, Routenplanung, Training, Rechner und übersichtliche Projektseiten.</p>
         </article>
         <article class="feature-card reveal delay-1">
           <span class="icon">◉</span>
-          <h3>Media & ASMR</h3>
-          <p>Ausgewählte Videoprojekte, Formatideen, YouTube-Inhalte und visuelle Experimente.</p>
+          <h3>Automation & Homelab</h3>
+          <p>Deployments, interne Services, Monitoring, Automatisierungen und Integrationen, die wiederkehrende Arbeit sauber abnehmen.</p>
         </article>
         <article class="feature-card reveal delay-2">
           <span class="icon">◇</span>
-          <h3>Web Experiments</h3>
-          <p>Interaktive Seiten, Rechner, kleinere Anwendungen und moderne Landingpages mit klarer Struktur.</p>
+          <h3>Media & Gaming</h3>
+          <p>Videoideen, Gaming-Momente, Kurzformate und Experimente, die Technik und kreative Umsetzung verbinden.</p>
         </article>
       </div>
     </section>
@@ -105,8 +107,8 @@
     <section id="media" class="section-shell media-section">
       <div class="section-heading reveal">
         <p class="eyebrow">Ausgewählte Inhalte</p>
-        <h2>Videos</h2>
-        <p>Drei aktuelle Video-Referenzen von domse.dev, eingebettet im visuellen Stil dieser Testseite.</p>
+        <h2>Medien und Videoarbeiten</h2>
+        <p>Eine kleine Auswahl veröffentlichter Inhalte — von Kurzfilm bis Gaming-Moment. Weitere Formate können später als eigenes Archiv ergänzt werden.</p>
       </div>
       <div class="video-grid video-grid-three">
         <article class="video-card video-card-embed reveal">
@@ -138,9 +140,9 @@
 
     <section id="github" class="section-shell github-section">
       <div class="section-heading reveal">
-        <p class="eyebrow">Live von GitHub</p>
-        <h2>Öffentliche Repositories</h2>
-        <p>Die Karten werden direkt über die GitHub API geladen und zeigen öffentliche Repositories mit Sprache, Beschreibung und direkten Links.</p>
+        <p class="eyebrow">Code & Repositories</p>
+        <h2>Öffentliche Projekte auf GitHub</h2>
+        <p>Die Karten laden öffentliche Repositories direkt über die GitHub API und zeigen Sprache, Kurzbeschreibung und direkte Links.</p>
       </div>
       <div class="repo-toolbar reveal delay-1">
         <div class="search-wrap">
@@ -155,50 +157,34 @@
 
     <section id="roadmap" class="section-shell roadmap-section">
       <div class="section-heading reveal">
-        <p class="eyebrow">Ausbau</p>
-        <h2>Sinnvolle nächste Inhalte</h2>
-        <p>Diese Bereiche würden die Seite inhaltlich stärken, ohne sie unnötig zu überladen.</p>
+        <p class="eyebrow">Weiterentwicklung</p>
+        <h2>Geplante Ausbaustufen</h2>
+        <p>Die Seite bleibt bewusst modular: Nützliche Bereiche können wachsen, ohne die Startseite zu überladen.</p>
       </div>
       <div class="idea-grid">
         <article class="idea-card reveal">
           <span>01</span>
           <h3>Projekt-Showcases</h3>
-          <p>Je ein kurzer Case für Website, Homelab, Automatisierung und Medienprojekte mit Ziel, Ergebnis und Link.</p>
+          <p>Kurze Cases für Web, Homelab, Automatisierung und Medien: Ziel, Umsetzung, Ergebnis und Link.</p>
         </article>
         <article class="idea-card reveal delay-1">
           <span>02</span>
-          <h3>Aktueller Fokus</h3>
-          <p>Ein kompakter Bereich für laufende Arbeiten, geplante Releases oder aktuelle Experimente.</p>
+          <h3>Weitere Tools</h3>
+          <p>Neue Spezialseiten nach Bedarf — ähnlich wie E-Bike Scout und Sportplan, aber sauber getrennt vom Hauptauftritt.</p>
         </article>
         <article class="idea-card reveal delay-2">
           <span>03</span>
-          <h3>Kontakt & Plattformen</h3>
-          <p>Die wichtigsten Plattformen sind unten als direkte Kontakt- und Profilkarten eingebunden.</p>
-        </article>
-        <article class="idea-card reveal">
-          <span>04</span>
-          <h3>Technik-Stack</h3>
-          <p>Kurze Übersicht über eingesetzte Tools, Hosting, Deployment und bevorzugte Technologien.</p>
-        </article>
-        <article class="idea-card reveal delay-1">
-          <span>05</span>
           <h3>Medienarchiv</h3>
           <p>Filterbare Sammlung für Videos, Shorts, Gaming-Clips und größere Produktionen.</p>
         </article>
-        <article class="idea-card reveal delay-2">
-          <span>06</span>
-          <h3>Status & Changelog</h3>
-          <p>Ein schlanker Änderungsverlauf für neue Inhalte, neue Tools und größere Seitenupdates.</p>
-        </article>
       </div>
     </section>
-
   </main>
 
   <footer class="site-footer">
     <div class="footer-meta">
       <span>© <span id="year"></span> Domse</span>
-      <span>test.domse.dev</span>
+      <span>domse.dev</span>
     </div>
     <nav class="footer-social" aria-label="Kontakt und Plattformen">
       <a href="https://discord.gg/eX4tEfd3" rel="noopener noreferrer" target="_blank" aria-label="Discord öffnen" title="Discord">

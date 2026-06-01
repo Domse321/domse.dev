@@ -1,6 +1,6 @@
 const curatedDescriptions = {
-  'domse.dev-2.0': 'Staging-Repo für die neue professionelle Domse-Webseite mit Portfolio, Medienbereich und GitHub-Integration.',
-  'domse.dev': 'Persönliche Website und öffentlicher Web-Auftritt von Domse.',
+  'domse.dev-2.0': 'Aktuelle domse.dev-Webseite mit Projektzentrale, Medienbereich, E-Bike Scout, Sportplan und GitHub-Integration.',
+  'domse.dev': 'Älterer Webauftritt von Domse, weiterhin als technische Referenz im Repository vorhanden.',
   'Rust-Scrap-Calculator': 'Interaktiver Rechner rund um Rust-Scrap und Ressourcenplanung.',
   'HyperV-VMs-Auslesen': 'PowerShell-Helfer zum Auslesen und Strukturieren von Hyper-V VM-Informationen.',
   'Win11-Kompabilitaet': 'PowerShell-Projekt zur Prüfung und Dokumentation von Windows-11-Kompatibilität.'
