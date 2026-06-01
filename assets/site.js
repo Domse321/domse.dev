@@ -113,7 +113,21 @@ function setupYear() {
   if (year) year.textContent = new Date().getFullYear();
 }
 
+function setupHomelabTabs() {
+  const tabs = [...document.querySelectorAll('[data-homelab-tab]')];
+  const panels = [...document.querySelectorAll('[data-homelab-panel]')];
+  if (!tabs.length || !panels.length) return;
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.dataset.homelabTab;
+      tabs.forEach(item => item.classList.toggle('active', item === tab));
+      panels.forEach(panel => panel.classList.toggle('active', panel.dataset.homelabPanel === id));
+    });
+  });
+}
+
 setupYear();
 setupReveal();
 setupSearch();
+setupHomelabTabs();
 loadRepos();
