@@ -51,4 +51,4 @@ function closeMapLightbox(){document.querySelector('.map-lightbox')?.classList.r
 function openLightbox(src,caption){let box=document.querySelector('.lightbox');if(!box){box=document.createElement('div');box.className='lightbox';box.innerHTML='<div class="lightbox-panel"><button data-lightbox-close aria-label="Foto schließen">×</button><img alt=""><p></p></div>';document.body.appendChild(box)}box.querySelector('img').src=src;box.querySelector('p').textContent=caption;box.classList.add('open')}
 function closeLightbox(){document.querySelector('.lightbox')?.classList.remove('open')}
 [q,sort,type,timeBudget,batteryLeft,assist].forEach(el=>el.addEventListener('input',render));
-fetch(asset('routes.json?v=20260605-scorebars-01'),{cache:'no-store'}).then(r=>r.json()).then(d=>{MODEL=d;DATA=d.routes;populate();loadLogs();FOCUS=rows()[0]?.id;render();loadWeather()});
+fetch(asset('routes.json?v=20260605-scorebars-02'),{cache:'no-store'}).then(r=>r.json()).then(d=>{MODEL=d;DATA=d.routes;populate();loadLogs();FOCUS=rows()[0]?.id;render();loadWeather()});
