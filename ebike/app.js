@@ -1,7 +1,7 @@
 const LABELS={scenery:'Natur',trail:'Trail',low_traffic:'ruhig',emtb_fun:'E-Bike',viewpoints:'Aussicht',loop_quality:'Loop',surface_confidence:'Daten'};
 const $=id=>document.getElementById(id);
 const asset=p=>String(p||'').startsWith('http')?p:'/ebike/'+String(p||'').replace(/^\//,'');
-let DATA=[],MODEL={},WEATHER=null,LOGS=[],FAVS=[],FOCUS=null,MODE='tour';
+let DATA=[],MODEL={},WEATHER=null,LOGS=[],FAVS=[],FOCUS=null,MODE='mtb';
 const q=$('q'),sort=$('sort'),type=$('type'),timeBudget=$('timeBudget'),grid=$('grid'),summary=$('summary'),rail=$('routeRail'),focusEl=$('focusRoute'),batteryLeft=$('batteryLeft'),batteryLeftText=$('batteryLeftText'),assist=$('assist');
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function pct(n){return Math.max(0,Math.min(100,Math.round(n)))}
