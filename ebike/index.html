@@ -6,8 +6,8 @@
   <title>E-Bike Scout Hameln</title>
   <meta name="robots" content="index, follow">
   <meta name="description" content="Private E-Bike- und MTB-Routenplanung rund um Hameln mit Trackkarte, Akkucheck, Wetterstatus und GPX-Downloads.">
-  <link rel="stylesheet" href="/ebike/style.css?v=20260605-compact-03">
-  <script src="/ebike/app.js?v=20260605-compact-03" defer></script>
+  <link rel="stylesheet" href="/ebike/style.css?v=20260605-decision-01">
+  <script src="/ebike/app.js?v=20260605-decision-01" defer></script>
 </head>
 <body>
   <header class="site-header tool-header ebike-header">
@@ -34,11 +34,9 @@
         <button type="button" class="mode-tab" data-mode="all">Alle</button>
       </div>
       <div class="search-block"><label for="q">Suchen</label><input id="q" placeholder="Weser, Schloss, Feierabend …" autocomplete="off"></div>
-      <div><label for="sort">Sortieren</label><select id="sort"><option value="smart">Empfehlung jetzt</option><option value="score">Basis-Score</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select></div>
-      <div><label for="type">Tourart</label><select id="type"><option value="">Alle Tourarten</option></select></div>
       <div><label for="timeBudget">Zeitbudget</label><select id="timeBudget"><option value="999">egal</option><option value="2">bis 2 h</option><option value="2.5">bis 2,5 h</option><option value="4">bis 4 h</option><option value="6">bis 6 h</option></select></div>
-      <div><label for="assist">Unterstützung</label><select id="assist"><option value="eco">Eco</option><option value="tour" selected>Tour</option><option value="emtb">eMTB</option><option value="turbo">Turbo</option></select></div>
       <div class="range-block"><label for="batteryLeft">Restakku <b id="batteryLeftText">80%</b></label><input id="batteryLeft" type="range" min="10" max="100" value="80"></div>
+      <details class="more-filters"><summary>Mehr Filter</summary><div><label for="sort">Sortieren</label><select id="sort"><option value="smart">Empfehlung jetzt</option><option value="score">Basis-Score</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select></div><div><label for="type">Tourart</label><select id="type"><option value="">Alle Tourarten</option></select></div><div><label for="assist">Unterstützung</label><select id="assist"><option value="eco">Eco</option><option value="tour" selected>Tour</option><option value="emtb">eMTB</option><option value="turbo">Turbo</option></select></div></details>
     </section>
 
     <section id="summary" class="summary-grid" aria-label="Zusammenfassung"></section>
