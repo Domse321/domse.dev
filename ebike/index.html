@@ -6,8 +6,8 @@
   <title>E-Bike Scout Hameln</title>
   <meta name="robots" content="index, follow">
   <meta name="description" content="Private E-Bike- und MTB-Routenplanung rund um Hameln mit Trackkarte, Akkucheck, Wetterstatus und GPX-Downloads.">
-  <link rel="stylesheet" href="/ebike/style.css?v=20260605-mode-default-01">
-  <script src="/ebike/app.js?v=20260605-mode-default-01" defer></script>
+  <link rel="stylesheet" href="/ebike/style.css?v=20260605-compact-02">
+  <script src="/ebike/app.js?v=20260605-compact-02" defer></script>
 </head>
 <body>
   <header class="site-header tool-header ebike-header">
@@ -19,9 +19,9 @@
   <header id="top" class="hero-shell">
     <section class="hero-copy">
       <p class="eyebrow">Hameln · normale E-Bikes & E-MTB</p>
-      <h1>Erst Fahrradtyp wählen, dann die passende Runde.</h1>
-      <p class="lead">Die Seite trennt jetzt normale E-Bike-Touren von MTB-/E-MTB-Runden. Dazu gibt es Trackkarte, Akkucheck, Wetterstatus, GPX und klare Hinweise, ob die Runde eher Radweg, Genuss oder Trail ist.</p>
-      <div class="hero-actions"><a class="primary" href="#routes">Route auswählen</a><a class="ghost" href="#compare">Routen vergleichen</a></div>
+      <h1>MTB zuerst. Tour schnell finden.</h1>
+      <p class="lead">Kompakte Auswahl mit Wetter, Akkucheck, großer Karte, GPX und Rundennavigation.</p>
+      <div class="hero-actions"><a class="primary" href="#routes">Route auswählen</a><a class="ghost" href="#compare">Vergleich</a></div>
     </section>
     <section id="recommendation" class="recommendation-card" aria-live="polite"></section>
   </header>
@@ -49,18 +49,18 @@
       <section id="focusRoute" class="focus-route" aria-live="polite"></section>
     </section>
 
-    <section id="cards" class="cards-section"><div class="section-head"><p>Alle Treffer</p><span>Kompaktkarten</span></div><div id="grid" class="route-grid"></div></section>
-    <section id="compare" class="compare-section"><div class="section-head"><p>Vergleich</p><span>Zeit, Akku, Oberfläche, GPX</span></div><div id="compareTable" class="compare-table"></div></section>
+    <section id="cards" class="cards-section compact-hidden" aria-hidden="true"><div class="section-head"><p>Alle Treffer</p><span>Kompaktkarten</span></div><div id="grid" class="route-grid"></div></section>
+    <details id="compare" class="compare-section compact-details"><summary>Vergleichstabelle öffnen</summary><div id="compareTable" class="compare-table"></div></details>
 
-    <section id="logbook" class="logbook panel">
-      <div class="section-head"><p>Fahrtenlogbuch</p><span>lokal im Browser · exportierbar</span></div>
+    <details id="logbook" class="logbook panel compact-details">
+      <summary>Fahrtenlogbuch</summary>
       <form id="logForm" class="logform">
         <select id="logRoute"></select><input id="logDate" type="date">
         <select id="logFlow"><option value="Flow 5/5">Flow 5/5</option><option value="Flow 4/5">Flow 4/5</option><option value="Flow 3/5">Flow 3/5</option><option value="Flow 2/5">Flow 2/5</option></select>
         <select id="logMud"><option value="trocken">trocken</option><option value="ok">ok</option><option value="matschig">matschig</option><option value="meiden">meiden</option></select>
         <input id="logNote" placeholder="Notiz: Sperrung, Lieblingsstück, Akku …"><button type="submit">Speichern</button><button type="button" id="exportLogs">Export</button>
       </form><div id="logs" class="logs"></div>
-    </section>
+    </details>
   </main>
 </body>
 </html>
