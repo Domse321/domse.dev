@@ -1,0 +1,9 @@
+{
+  "query": "Hameln E-Bike Radtour Rundtour Strecke GPX",
+  "number_of_results": 3,
+  "results": [
+    {"url":"https://www.weserbergland-tourismus.de/de/tour/weser-radweg-hameln?utm_source=test","title":"Weser-Radweg rund um Hameln","content":"E-Bike-Rundtour, 48 km, GPX-Track und Streckenbeschreibung.","score":4.2,"engines":["duckduckgo","brave"]},
+    {"url":"https://example.org/ith-emtb-tour","title":"Ith E-MTB Tour","content":"Mountainbike Strecke mit 720 Höhenmetern und GPX Track.","score":2.9,"engines":["google"]},
+    {"url":"https://www.instagram.com/example","title":"Urlaubsfoto","content":"Foto ohne Route","score":1,"engines":["duckduckgo"]}
+  ]
+}

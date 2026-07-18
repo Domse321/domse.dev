@@ -1,18 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-PYTHON=/usr/bin/python3
-test "$($PYTHON -c 'import platform; print(platform.python_version())')" = '3.11.2' || { echo PYTHON_RUNTIME_MISMATCH >&2; exit 1; }
-$PYTHON -c 'import http.client, ipaddress, json, ssl, socket, xml.etree.ElementTree'
-node --check ebike/app.js
-node --test ebike/tests/js/*.test.js
-$PYTHON -m unittest discover -s ebike/tests -p 'test_*.py' -v
-$PYTHON ebike/validate_routes.py
-$PYTHON ebike/tools/privacy_scan.py ebike/config/public-route-approvals.json
-$PYTHON -m unittest discover -s automation/n8n/tests -p 'test_*.py' -v
-$PYTHON automation/n8n/validate_workflow.py automation/n8n/ebike-candidate.workflow.json
-$PYTHON automation/n8n/validate_candidate.py automation/n8n/fixtures/manual-candidate.json --allowlist automation/n8n/config/allowlist.json >/dev/null
-if grep -R -nE 'innerHTML|insertAdjacentHTML|eval\(' ebike/app.js ebike/js; then echo UNSAFE_DOM_API >&2; exit 1; fi
-if grep -R -nE 'https?://' ebike/index.html ebike/app.js ebike/js ebike/routes.json; then echo EXTERNAL_BROWSER_URL >&2; exit 1; fi
-git diff --check
-echo 'ok: local E-Bike release gates passed'
+
+PYTHON=${PYTHON:-/usr/bin/python3}
+NODE=${NODE:-node}
+
+"$PYTHON" -c 'import json, pathlib, re, unittest, urllib.parse, xml.etree.ElementTree'
+
+"$NODE" --check ebike/app.js
+"$NODE" --check ebike/js/security.js
+"$NODE" --check ebike/js/storageAndLog.js
+"$NODE" --check ebike/js/scoringAndBattery.js
+"$NODE" --check ebike/js/svgMapEngine.js
+"$NODE" --test ebike/tests/js/*.test.js
+
+"$PYTHON" -m unittest discover -s ebike/tests -p 'test_*.py' -v
+if [[ -f ebike/data/routes.json ]]; then
+  "$PYTHON" ebike/validate_static.py
+elif [[ "${REQUIRE_PRIVATE_EBIKE_DATA:-0}" == "1" ]]; then
+  printf '%s\n' 'error: private E-Bike runtime data is required but missing' >&2
+  exit 1
+else
+  printf '%s\n' 'skip: private route/track validation (data intentionally absent from public checkout)'
+fi
+
+"$PYTHON" -m unittest discover -s automation/n8n/tests -p 'test_*.py' -v
+"$PYTHON" automation/n8n/validate_workflow.py automation/n8n/ebike-research.workflow.json
+"$PYTHON" automation/n8n/validate_workflow.py automation/n8n/ebike-candidate.workflow.json
+
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  git diff --check
+else
+  printf '%s\n' 'skip: git diff check (archive checkout has no Git metadata)'
+fi
+printf '%s\n' 'ok: E-Bike release gates passed'

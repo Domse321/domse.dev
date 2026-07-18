@@ -1,32 +1,47 @@
-# n8n E-Bike Candidate Workflow
+# n8n E-Bike-Routenrecherche
 
-## Lieferumfang
+Produktionsnaher, aber **inaktiv exportierter** Rechercheworkflow für die private E-Bike-App. Er recherchiert sonntags oder manuell Routenkandidaten, speichert sie intern zur Prüfung und veröffentlicht niemals auf einer Website.
 
-- `ebike-candidate.workflow.json`: importierbarer, standardmäßig inaktiver Workflowexport.
-- `fixtures/manual-candidate.json`: netzwerkfreies Dry-run-Beispiel.
-- `config/allowlist.json`: explizite Quellen- und Medienlizenzregeln.
-- `validate_workflow.py`: Struktur-/Secret-/Side-effect-Prüfung.
-- `validate_candidate.py`: Provenienz-, Track-, Medien- und Deduplizierungsprüfung.
-- `tests/`: lokale Standardbibliothekstests.
+## Ablauf
 
-## Lokaler Dry-run
+1. **Manual Trigger** und **Weekly Sunday 07:00** (Workflow-Zeitzone `Europe/Berlin`).
+2. Deterministische Erzeugung von 22 deutschen Suchjobs: E-MTB und normales E-Bike für Hameln, Weserbergland, Süntel, Deister, Ith, Hils, Ottensteiner Hochfläche, Emmerthal, Hessisch Oldendorf, Bad Pyrmont und Coppenbrügge.
+3. **HTTP Request** an lokales SearXNG (`GET /search`, JSON).
+4. Normalisierung realer Treffer, Filterung unbrauchbarer Treffer, stabile URL-Bereinigung, In-Run-Deduplizierung und nachvollziehbarer Nutzwert-Score 0–100.
+5. Pro Kandidat **HTTP Request** an die Wikimedia-Commons-API; bestes Bild inklusive Thumbnail und interner Lizenzmetadaten wird angehängt.
+6. Upsert anhand `stable_key` in die n8n Data Table `ebike_route_research`.
+7. Finale Laufzusammenfassung mit Anzahl, Bildern, Durchschnittsscore und Regionen; `publish_performed: false`.
+
+## Dateien
+
+- `ebike-research.workflow.json` – kanonischer importierbarer Export.
+- `ebike-candidate.workflow.json` – kompatibler Legacy-Dateiname, identischer echter Workflow (kein Dummy).
+- `build_workflow.py` – deterministischer Exportgenerator.
+- `data-table.schema.json`, `DATA_TABLE_MIGRATION.md` – Review-Schema und Anlage/Migration.
+- `fixtures/` – Offline-Antworten in realen SearXNG-/Commons-JSON-Strukturen.
+- `validate_workflow.py`, `tests/` – Fail-closed-Strukturvalidator und Tests.
+
+## Prüfen
+
+Aus dem Repository-Root:
 
 ```bash
-/usr/bin/python3 automation/n8n/validate_workflow.py automation/n8n/ebike-candidate.workflow.json
-/usr/bin/python3 automation/n8n/validate_candidate.py automation/n8n/fixtures/manual-candidate.json --allowlist automation/n8n/config/allowlist.json
-/usr/bin/python3 -m unittest discover -s automation/n8n/tests -p 'test_*.py' -v
+python3 automation/n8n/build_workflow.py
+python3 automation/n8n/validate_workflow.py automation/n8n/ebike-research.workflow.json
+python3 -m unittest discover -s automation/n8n/tests -p 'test_*.py' -v
 ```
 
-Der Workflow trennt Geo/POIs, Track und Medienprüfung, markiert Duplikate und endet bei „Manual Approval Required“. Er schreibt nicht in Website, Repository oder `main` und besitzt keinen Publish-, Git-, Mail- oder externen Fetchpfad.
+## Inbetriebnahme auf n8n 2.20.9 (LXC 110)
 
-## Spätere produktive Nutzung
+1. Tabelle gemäß `DATA_TABLE_MIGRATION.md` im Zielprojekt anlegen.
+2. `ebike-research.workflow.json` importieren. Der Export ist inaktiv; nicht automatisch aktivieren.
+3. Im Node **Upsert Review Data Table** die Tabelle einmal aus der Liste auswählen, damit n8n das Resource-Mapping gegen die lokale Tabellen-ID/Spalten neu lädt.
+4. Vor dem Import `http://searxng.internal:8080` im Export durch die deploymentspezifische interne SearXNG-Basis-URL ersetzen. Vom n8n-Host anschließend `GET /search?format=json&q=Hameln+E-Bike` sowie `https://commons.wikimedia.org/w/api.php?action=query&format=json&meta=siteinfo` prüfen. Es werden keine Credentials benötigt.
+5. Manuellen Testlauf starten und **Final Run Summary** sowie Tabellenzeilen kontrollieren. Erst danach den Workflow aktivieren, falls der Wochenplan laufen soll.
 
-Nicht Bestandteil dieses Releases. Vor Import sind separat erforderlich:
+## Betriebsgrenzen
 
-1. offizielle MCP/API-Zielvalidierung gegen die konkrete n8n-Version;
-2. menschliche Freigabe des unveränderten Exporthashes;
-3. Import als inaktive Testkopie;
-4. kontrollierter Dry-run ohne externe Recherche oder Benachrichtigung;
-5. erneute Security-/Datenschutzfreigabe vor jeder Aktivierung.
-
-Keine Credentials oder Secrets in den Export eintragen. Direkte n8n-Datenbankänderungen sind verboten.
+- Nur GET-Zugriffe auf lokales SearXNG und Wikimedia Commons; keine Secrets/Credentials.
+- Schreibziel ausschließlich n8n Data Table. Keine Webhooks, Website-, Git-, Mail-, Shell-, SSH- oder Publishing-Nodes.
+- Quell-/Lizenz-URLs bleiben intern für Deduplizierung und spätere private Prüfung; es wird keine sichtbare Quellenbürokratie erzeugt.
+- SearXNG-Motoren und externe Zielseiten können schwanken. HTTP-Fehler stoppen den Lauf sichtbar; n8n speichert Fehlerausführungen, erfolgreiche Zeitplanläufe nicht dauerhaft.

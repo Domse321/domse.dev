@@ -1,0 +1,31 @@
+{
+  "table": "ebike_route_research",
+  "description": "Interne Kandidatenablage für die private E-Bike-App; kein Publishing-Ziel.",
+  "columns": [
+    {"name":"stable_key","type":"string","purpose":"Upsert-/Deduplizierungsschlüssel"},
+    {"name":"name_region_key","type":"string"},
+    {"name":"route_name","type":"string"},
+    {"name":"region","type":"string"},
+    {"name":"bike_type","type":"string"},
+    {"name":"description","type":"string"},
+    {"name":"source_url","type":"string"},
+    {"name":"source_host","type":"string"},
+    {"name":"score","type":"number"},
+    {"name":"review_status","type":"string"},
+    {"name":"image_title","type":"string"},
+    {"name":"image_thumb_url","type":"string"},
+    {"name":"image_page_url","type":"string"},
+    {"name":"image_artist","type":"string"},
+    {"name":"image_license","type":"string"},
+    {"name":"image_license_url","type":"string"},
+    {"name":"search_query","type":"string"},
+    {"name":"discovered_at","type":"date"},
+    {"name":"updated_at","type":"date"},
+    {"name":"run_id","type":"string"}
+  ],
+  "invariants": {
+    "upsert_match": ["stable_key"],
+    "allowed_review_status": ["offen", "angenommen", "abgelehnt", "archiviert"],
+    "website_fields": false
+  }
+}
