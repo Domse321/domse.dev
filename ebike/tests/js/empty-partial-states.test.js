@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {filterRoutes,selectFocus} from '../../js/filter.js';
+test('empty and partial catalogs render deterministic empty selection',()=>{assert.deepEqual(filterRoutes([],{mode:'mtb'}),[]);assert.equal(selectFocus([],null),null)});
+test('partial candidate catalog stays outside standard results',()=>{const route={id:'c',name:'C',region:'R',bestFor:'B',surface:['Wald'],rideStyle:'mtb',status:'candidate',durationMinutes:[1,2],score:1};assert.deepEqual(filterRoutes([route],{mode:'mtb'}),[]);assert.equal(filterRoutes([route],{mode:'mtb',includeCandidates:true}).length,1)});

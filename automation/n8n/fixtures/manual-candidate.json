@@ -1,0 +1,8 @@
+{
+  "schemaVersion":"1.0.0",
+  "source":{"id":"manual","originalUrl":"manual://fixture","retrievedAt":"2026-07-18T12:00:00Z","author":"Fixture Author","license":"own-source"},
+  "candidate":{"stableId":"fixture-weser-loop","name":"Fixture Weser Loop","verificationStatus":"candidate"},
+  "geo":{"pois":[{"id":"poi-1","lat":52.1,"lon":9.3}]},
+  "track":{"coordinates":[[9.3,52.1],[9.31,52.11],[9.3,52.1]],"declaredDistanceKm":2.6,"loop":true},
+  "media":[{"originalUrl":"manual://image-1","license":"own-source","author":"Fixture Author","sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","downloadAllowed":true}]
+}

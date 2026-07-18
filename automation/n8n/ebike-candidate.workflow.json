@@ -1,0 +1,26 @@
+{
+  "name": "E-Bike Scout · Candidate Review Package (inactive)",
+  "active": false,
+  "settings": {"executionOrder": "v1", "timezone": "Europe/Berlin"},
+  "nodes": [
+    {"id":"manual","name":"Manual Trigger","type":"n8n-nodes-base.manualTrigger","typeVersion":1,"position":[0,300],"parameters":{}},
+    {"id":"normalize","name":"Normalize Candidate","type":"n8n-nodes-base.code","typeVersion":2,"position":[220,300],"parameters":{"jsCode":"const input=$json.candidate ?? $json; return [{json:{candidate:input,dryRun:true,verificationStatus:'candidate'}}];"}},
+    {"id":"geo","name":"Validate Geo and POIs","type":"n8n-nodes-base.code","typeVersion":2,"position":[440,100],"parameters":{"jsCode":"return [{json:{...$json,geo:{status:'needs_review'}}}];"}},
+    {"id":"track","name":"Validate Track","type":"n8n-nodes-base.code","typeVersion":2,"position":[440,300],"parameters":{"jsCode":"return [{json:{...$json,track:{status:'needs_review'}}}];"}},
+    {"id":"media","name":"Review Media License","type":"n8n-nodes-base.code","typeVersion":2,"position":[440,500],"parameters":{"jsCode":"return [{json:{...$json,media:{status:'link_only',downloaded:false}}}];"}},
+    {"id":"dedupe","name":"Detect Duplicates","type":"n8n-nodes-base.code","typeVersion":2,"position":[680,300],"parameters":{"jsCode":"return [{json:{...$json,deduplication:{stableId:true,trackProximity:'review',imageHash:'review'}}}];"}},
+    {"id":"package","name":"Build Review Package","type":"n8n-nodes-base.code","typeVersion":2,"position":[900,300],"parameters":{"jsCode":"return [{json:{schemaVersion:'1.0.0',status:'ready_for_manual_review',candidate:$json.candidate,validation:{geo:$json.geo,track:$json.track,media:$json.media,deduplication:$json.deduplication},manualApprovalRequired:true}}];"}},
+    {"id":"approval","name":"Manual Approval Required","type":"n8n-nodes-base.noOp","typeVersion":1,"position":[1120,300],"parameters":{}}
+  ],
+  "connections": {
+    "Manual Trigger":{"main":[[{"node":"Normalize Candidate","type":"main","index":0}]]},
+    "Normalize Candidate":{"main":[[{"node":"Validate Geo and POIs","type":"main","index":0}]]},
+    "Validate Geo and POIs":{"main":[[{"node":"Validate Track","type":"main","index":0}]]},
+    "Validate Track":{"main":[[{"node":"Review Media License","type":"main","index":0}]]},
+    "Review Media License":{"main":[[{"node":"Detect Duplicates","type":"main","index":0}]]},
+    "Detect Duplicates":{"main":[[{"node":"Build Review Package","type":"main","index":0}]]},
+    "Build Review Package":{"main":[[{"node":"Manual Approval Required","type":"main","index":0}]]}
+  },
+  "pinData": {},
+  "meta": {"templateCredsSetupCompleted": false}
+}

@@ -1,0 +1,6 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { estimateBattery, estimateTime } from '../../js/battery.js';
+test('battery reference fixtures match the contract',()=>{assert.deepEqual(estimateBattery({rideStyle:'tour',distanceKm:40,elevationM:600,batteryWh:625,systemMassKg:110}),{requiredWh:518,usableWh:500,sufficient:false});assert.equal(estimateBattery({rideStyle:'tour',distanceKm:40,elevationM:600,batteryWh:750,systemMassKg:110}).sufficient,true);assert.deepEqual(estimateBattery({rideStyle:'mtb',distanceKm:30,elevationM:900,batteryWh:750,systemMassKg:110}),{requiredWh:657,usableWh:600,sufficient:false});});
+test('battery accepts inclusive limits and rejects outside values',()=>{for(const batteryWh of [250,1000])for(const systemMassKg of [70,160])assert.ok(estimateBattery({rideStyle:'mtb',distanceKm:1,elevationM:0,batteryWh,systemMassKg}));for(const batteryWh of [249,1001])assert.equal(estimateBattery({rideStyle:'mtb',distanceKm:1,elevationM:0,batteryWh,systemMassKg:100}),null);});
+test('time estimate is rounded outward to five minutes',()=>assert.deepEqual(estimateTime({rideStyle:'tour',distanceKm:36,elevationM:300}),{minMinutes:110,maxMinutes:150,rawMinutes:130}));

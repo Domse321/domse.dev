@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceRouteCount": 30,
+  "outputRouteCount": 30,
+  "status": "candidate",
+  "publicTrackCount": 0,
+  "reason": "PUBLIC_TRACK_APPROVAL_MISSING",
+  "droppedFieldNames": [
+    "battery_model",
+    "gallery",
+    "gpx_file",
+    "komoot_link",
+    "nav_label",
+    "navigation_link",
+    "next_actions",
+    "photo_note",
+    "planner_link",
+    "track_geojson_file",
+    "track_points",
+    "track_source",
+    "waypoints"
+  ],
+  "privateValuesRecorded": false
+}

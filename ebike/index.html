@@ -3,62 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Privater E-Bike-Tourenplaner für Routen rund um Hameln.">
   <title>E-Bike Scout Hameln</title>
-  <meta name="robots" content="index, follow">
-  <meta name="description" content="Private E-Bike- und MTB-Routenplanung rund um Hameln mit Trackkarte, Akkucheck, Wetterstatus und GPX-Downloads.">
-  <link rel="stylesheet" href="/ebike/style.css?v=20260605-no-today-01">
-  <script src="/ebike/app.js?v=20260605-no-today-01" defer></script>
+  <link rel="stylesheet" href="/ebike/style.css?v=20260718-overflow-fix-v1">
+  <script type="module" src="/ebike/app.js?v=20260718-remediation-v5"></script>
 </head>
 <body>
-  <header class="site-header tool-header ebike-header">
-    <a class="brand" href="/" aria-label="Zur domse.dev Startseite"><span class="brand-dot"></span><span><strong>E-Bike Scout</strong><small>Routen · GPX · Akkuplanung</small></span></a>
-    <nav aria-label="Hauptnavigation"><a class="nav-pill active" href="/ebike/">E-Bike</a><a class="nav-pill" href="/sport/">Sport</a></nav>
+  <a class="skip-link" href="#main">Zum Inhalt</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Zur domse.dev Startseite"><span aria-hidden="true">↟</span><span><strong>E-Bike Scout</strong><small>Hameln · privat · lokal</small></span></a>
+    <nav aria-label="Hauptnavigation"><a class="active" href="/ebike/" aria-current="page">E-Bike</a><a href="/sport/">Sport</a></nav>
   </header>
-  <div id="weatherPill" class="weather-pill page-weather">Wetter lädt …</div>
-
-  <header id="top" class="hero-shell">
-    <section class="hero-copy">
-      <p class="eyebrow">Hameln · normale E-Bikes & E-MTB</p>
-      <h1>MTB zuerst. Tour schnell finden.</h1>
-      <p class="lead">Kompakte Auswahl mit Wetter, Akkucheck, großer Karte, GPX und Rundennavigation.</p>
-      <div class="hero-actions"><a class="primary" href="#routes">Route auswählen</a><a class="ghost" href="#compare">Vergleich</a></div>
+  <main id="main">
+    <section class="hero" aria-labelledby="title">
+      <div><p class="eyebrow">Outdoor-Cockpit · Hameln</p><h1 id="title">Erst entscheiden.<br><span>Dann fahren.</span></h1><p>Modus, Zeit, Untergrund und Akku eingrenzen. Die Routen bleiben ehrlich gesperrt, bis ein öffentlicher Track fachlich freigegeben ist.</p></div>
+      <aside class="truth-card" aria-label="Datenstatus"><span class="signal" aria-hidden="true"></span><div><strong>Keine Route freigegeben</strong><p>Wetter/Fahrbarkeit nicht verfügbar. 30 Bestandskandidaten, null öffentliche Tracks.</p></div></aside>
     </section>
-    <section id="recommendation" class="recommendation-card" aria-live="polite"></section>
-  </header>
-
-  <main>
-    <section class="control-deck" aria-label="Routensteuerung">
-      <div class="mode-tabs" role="group" aria-label="Fahrradtyp">
-        <button type="button" class="mode-tab" data-mode="mtb">MTB / E-MTB</button>
-        <button type="button" class="mode-tab" data-mode="tour">Normales E-Bike</button>
-        <button type="button" class="mode-tab" data-mode="all">Alle</button>
-      </div>
-      <div class="search-block"><label for="q">Suchen</label><input id="q" placeholder="Weser, Schloss, Feierabend …" autocomplete="off"></div>
-      <div><label for="timeBudget">Zeitbudget</label><select id="timeBudget"><option value="999">egal</option><option value="2">bis 2 h</option><option value="2.5">bis 2,5 h</option><option value="4">bis 4 h</option><option value="6">bis 6 h</option></select></div>
-      <div class="range-block"><label for="batteryLeft">Restakku <b id="batteryLeftText">80%</b></label><input id="batteryLeft" type="range" min="10" max="100" value="80"></div>
-      <details class="more-filters"><summary>Mehr Filter</summary><div><label for="sort">Sortieren</label><select id="sort"><option value="smart">Empfehlung jetzt</option><option value="score">Basis-Score</option><option value="distance_km">Distanz</option><option value="elevation_m">Höhenmeter</option><option value="difficulty">Schwierigkeit</option></select></div><div><label for="type">Tourart</label><select id="type"><option value="">Alle Tourarten</option></select></div><div><label for="assist">Unterstützung</label><select id="assist"><option value="eco">Eco</option><option value="tour" selected>Tour</option><option value="emtb">eMTB</option><option value="turbo">Turbo</option></select></div></details>
+    <section class="controls" aria-label="Routenfilter">
+      <div class="mode-tabs" role="group" aria-label="Fahrmodus"><button type="button" data-mode="mtb">MTB / E-MTB</button><button type="button" data-mode="tour">Normales E-Bike</button><button type="button" data-mode="all">Alle</button></div>
+      <label>Suchen<input id="query" type="search" placeholder="Weser, Wald, Schloss …" autocomplete="off"></label>
+      <label>Zeit<select id="maxMinutes"><option value="">egal</option><option value="120">bis 2 h</option><option value="180">bis 3 h</option><option value="240">bis 4 h</option><option value="360">bis 6 h</option></select></label>
+      <label>Schwierigkeit<select id="difficulty"><option value="">alle</option><option>leicht</option><option>mittel</option><option>sportlich</option></select></label>
+      <label>Oberfläche<select id="surface"><option value="">alle</option><option>Asphalt</option><option>Waldwege</option><option>Schotter</option></select></label>
+      <label>Akku (Wh)<input id="batteryWh" type="number" min="250" max="1000" value="750"></label>
+      <label>Systemgewicht (kg)<input id="massKg" type="number" min="70" max="160" value="110"></label>
     </section>
-
-    <section id="summary" class="summary-grid" aria-label="Zusammenfassung"></section>
-    <section id="conditionPanel" class="condition-panel"></section>
-
-    <section id="routes" class="workspace">
-      <aside class="route-rail"><div class="section-head"><p>Passende Routen</p><span id="routeCount"></span></div><div id="routeRail"></div></aside>
-      <section id="focusRoute" class="focus-route" aria-live="polite"></section>
+    <p id="candidateNotice" class="notice" role="status"></p>
+    <section class="workspace" aria-label="Routenauswahl">
+      <aside class="route-list"><header><div><p class="eyebrow">Ungeprüfte Bestandsrouten</p><h2>Treffer</h2></div><span id="routeCount"></span></header><div id="routeRail"></div></aside>
+      <article id="focusRoute" class="focus" tabindex="-1" aria-live="polite"></article>
     </section>
-
-    <section id="cards" class="cards-section compact-hidden" aria-hidden="true"><div class="section-head"><p>Alle Treffer</p><span>Kompaktkarten</span></div><div id="grid" class="route-grid"></div></section>
-    <details id="compare" class="compare-section compact-details"><summary>Vergleichstabelle öffnen</summary><div id="compareTable" class="compare-table"></div></details>
-
-    <details id="logbook" class="logbook panel compact-details">
-      <summary>Fahrtenlogbuch</summary>
-      <form id="logForm" class="logform">
-        <select id="logRoute"></select><input id="logDate" type="date">
-        <select id="logFlow"><option value="Flow 5/5">Flow 5/5</option><option value="Flow 4/5">Flow 4/5</option><option value="Flow 3/5">Flow 3/5</option><option value="Flow 2/5">Flow 2/5</option></select>
-        <select id="logMud"><option value="trocken">trocken</option><option value="ok">ok</option><option value="matschig">matschig</option><option value="meiden">meiden</option></select>
-        <input id="logNote" placeholder="Notiz: Sperrung, Lieblingsstück, Akku …"><button type="submit">Speichern</button><button type="button" id="exportLogs">Export</button>
-      </form><div id="logs" class="logs"></div>
-    </details>
+    <details class="private-data"><summary>Favoriten & Fahrtenlog · nur in diesem Browser</summary><div class="private-grid"><form id="rideForm"><label>Route<select id="rideRoute"></select></label><label>Datum<input id="rideDate" type="date"></label><label class="wide">Notiz<input id="rideNote" maxlength="512" placeholder="Akku, Oberfläche, Sperrung …"></label><button type="submit">Fahrt speichern</button></form><div><div class="data-actions"><button id="exportState" type="button">Exportieren</button><label class="file-button">Importieren<input id="importState" type="file" accept="application/json"></label></div><p class="privacy-copy">Exportdateien können persönliche Bewegungsdaten enthalten. Sie verlassen den Browser nur durch deinen manuellen Export.</p><div id="rideList"></div></div></div></details>
+    <p id="appStatus" class="status" aria-live="polite">Routendaten werden geprüft …</p>
   </main>
+  <footer><span>E-Bike Scout Hameln</span><span>Keine Tracker · keine externen Karten · lokale Privatdaten</span></footer>
 </body>
 </html>

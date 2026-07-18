@@ -1,0 +1,11 @@
+export const STATE_KEY='ebikeScoutStateV1';
+export function emptyState(){return {version:1,favorites:[],rides:[]}}
+function fail(code){throw new TypeError(code)}
+function ownPlain(value){return value&&typeof value==='object'&&!Array.isArray(value)&&Object.getPrototypeOf(value)===Object.prototype}
+function checkKeys(object,allowed){for(const key of Object.keys(object))if(!allowed.includes(key))fail('STATE_SCHEMA_INVALID')}
+function checkString(value){if(typeof value!=='string'||[...value].length>512)fail('STATE_STRING_LIMIT');return value}
+function checkDate(value){if(!/^\d{4}-\d{2}-\d{2}$/.test(value))fail('STATE_DATE_INVALID');const [year,month,day]=value.split('-').map(Number),date=new Date(Date.UTC(year,month-1,day));if(date.getUTCFullYear()!==year||date.getUTCMonth()!==month-1||date.getUTCDate()!==day)fail('STATE_DATE_INVALID');return value}
+export function decodeState(text,routeIds){if(typeof text!=='string'||new TextEncoder().encode(text).length>1048576)fail('STATE_FILE_TOO_LARGE');let raw;try{raw=JSON.parse(text)}catch{fail('STATE_JSON_INVALID')}if(!ownPlain(raw))fail('STATE_SCHEMA_INVALID');checkKeys(raw,['version','favorites','rides']);if(raw.version!==1||!Array.isArray(raw.favorites)||!Array.isArray(raw.rides))fail('STATE_SCHEMA_INVALID');if(raw.favorites.length>100)fail('STATE_FAVORITES_LIMIT');if(raw.rides.length>1000)fail('STATE_RIDES_LIMIT');const favorites=[];for(const id of raw.favorites){checkString(id);if(!routeIds.has(id))fail('STATE_ROUTE_UNKNOWN');if(favorites.includes(id))fail('STATE_SCHEMA_INVALID');favorites.push(id)}let total=0;const rides=raw.rides.map(ride=>{if(!ownPlain(ride))fail('STATE_SCHEMA_INVALID');checkKeys(ride,['routeId','date','note']);const routeId=checkString(ride.routeId),date=checkDate(checkString(ride.date)),note=checkString(ride.note);if(!routeIds.has(routeId))fail('STATE_ROUTE_UNKNOWN');total+=[...routeId,...date,...note].length;if(total>65536)fail('STATE_STRING_LIMIT');return {routeId,date,note}});return {version:1,favorites,rides}}
+export function encodeState(state){return JSON.stringify(state,null,2)}
+export function loadState(storage,routeIds){try{return decodeState(storage.getItem(STATE_KEY)||JSON.stringify(emptyState()),routeIds)}catch{return emptyState()}}
+export function saveState(storage,state){storage.setItem(STATE_KEY,encodeState(state))}

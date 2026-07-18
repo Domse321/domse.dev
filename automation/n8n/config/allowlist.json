@@ -1,0 +1,8 @@
+{
+  "allowedSources": [
+    {"id":"manual","mode":"manual","hosts":[]},
+    {"id":"openstreetmap","mode":"review-link-only","hosts":["www.openstreetmap.org"]}
+  ],
+  "compatibleImageLicenses": ["CC0-1.0","CC-BY-4.0","CC-BY-SA-4.0"],
+  "downloadOwnSourceIds": ["manual"]
+}

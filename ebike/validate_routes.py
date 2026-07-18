@@ -1,97 +1,68 @@
 #!/usr/bin/env python3
-"""Validate E-Bike route data, total distances, and full-loop navigation links."""
+"""Validate the public E-Bike catalog and cryptographic track approvals."""
 from __future__ import annotations
 
+import importlib.util
 import json
-import math
+import os
 import pathlib
 import sys
-from urllib.parse import parse_qs, urlparse
 
-ROOT = pathlib.Path(__file__).resolve().parent
-ROUTES = json.loads((ROOT / "routes.json").read_text(encoding="utf-8"))["routes"]
+ROOT=pathlib.Path(__file__).resolve().parent
+CATALOG_KEYS={"schemaVersion","generatedFrom","routes"}
+ALLOWED_ROUTE_KEYS={"id","name","region","rideStyle","status","distanceKm","elevationM","durationMinutes","difficulty","surface","bestFor","season","highlights","riskNotes","score","trafficProfile","familyFriendly","source","presentation","publicTrack"}
+PUBLIC_TRACK_KEYS={"gpxFile","geojsonFile","distanceKm","approvalId"}
 
+def privacy_module():
+    spec=importlib.util.spec_from_file_location('ebike_privacy_scan',ROOT/'tools'/'privacy_scan.py')
+    assert spec is not None and spec.loader is not None
+    module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module); return module
 
-def haversine_km(a: tuple[float, float], b: tuple[float, float]) -> float:
-    lat1, lon1 = map(math.radians, a)
-    lat2, lon2 = map(math.radians, b)
-    dlat = lat2 - lat1
-    dlon = lon2 - lon1
-    h = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
-    return 2 * 6371.0088 * math.asin(math.sqrt(h))
+def confined_track(root,value,prefix):
+    if not isinstance(value,str) or not value or "\\" in value or "%" in value: return None
+    relative=pathlib.PurePosixPath(value)
+    if relative.is_absolute() or not relative.parts or relative.parts[0]!=prefix or any(part in {'','.','..'} for part in relative.parts): return None
+    root=root.resolve(); candidate=(root/pathlib.Path(*relative.parts)).resolve()
+    if not candidate.is_relative_to(root) or not candidate.is_file(): return None
+    return candidate
 
-
-def track_points(route: dict) -> list[tuple[float, float]]:
-    track_file = route.get("track_geojson_file")
-    if not track_file:
-        raise AssertionError(f"{route['id']}: missing track_geojson_file")
-    geojson = json.loads((ROOT / track_file).read_text(encoding="utf-8"))
-    coords = geojson["features"][0]["geometry"]["coordinates"]
-    return [(float(lat), float(lon)) for lon, lat, *_rest in coords]
-
-
-def track_distance_km(route: dict) -> float:
-    points = track_points(route)
-    return sum(haversine_km(points[i - 1], points[i]) for i in range(1, len(points)))
-
-
-def planner_coords(route: dict) -> list[tuple[float, float]]:
-    fragment = urlparse(route.get("planner_link", "")).fragment
-    lonlats = parse_qs(fragment).get("lonlats", [""])[0]
-    coords: list[tuple[float, float]] = []
-    for pair in lonlats.split(";"):
-        if not pair:
-            continue
-        lon, lat = pair.split(",", 1)
-        coords.append((float(lat), float(lon)))
-    return coords
-
-
-def nav_coords(route: dict) -> tuple[tuple[float, float], tuple[float, float], list[tuple[float, float]]]:
-    query = parse_qs(urlparse(route.get("navigation_link", "")).query)
-    def parse_pair(value: str) -> tuple[float, float]:
-        lat, lon = value.split(",", 1)
-        return (float(lat), float(lon))
-    origin = parse_pair(query.get("origin", [""])[0])
-    destination = parse_pair(query.get("destination", [""])[0])
-    waypoints = [parse_pair(item) for item in query.get("waypoints", [""])[0].split("|") if item]
-    return origin, destination, waypoints
-
-
-def close(a: tuple[float, float], b: tuple[float, float], tolerance_km: float = 0.15) -> bool:
-    return haversine_km(a, b) <= tolerance_km
-
+def validate(catalog: dict,approvals: dict|None=None,*,root: pathlib.Path=ROOT,source_root: pathlib.Path|None=None) -> list[str]:
+    errors=[]
+    if not isinstance(catalog,dict): return ["ROUTE_CATALOG_INVALID"]
+    if set(catalog)!=CATALOG_KEYS: errors.append("ROUTE_CATALOG_UNKNOWN_FIELDS")
+    routes=catalog.get("routes",[])
+    if catalog.get("schemaVersion")!="1.0.0": errors.append("ROUTE_SCHEMA_VERSION")
+    if not isinstance(routes,list) or len(routes)!=30 or len({route.get('id') for route in routes if isinstance(route,dict)})!=30: errors.append("ROUTE_INVENTORY_INVALID")
+    if not isinstance(routes,list): return sorted(set(errors))
+    for route in routes:
+        if not isinstance(route,dict): errors.append("ROUTE_ENTRY_INVALID"); continue
+        route_id=route.get("id","<missing>")
+        extra=set(route)-ALLOWED_ROUTE_KEYS
+        if extra: errors.append(f"{route_id}: ROUTE_UNKNOWN_FIELDS")
+        if route.get("status")=="candidate":
+            if route.get("publicTrack") is not None: errors.append(f"{route_id}: CANDIDATE_TRACK_EXPOSED")
+            if route.get("presentation",{}).get("mode")!="track_only" or not route.get("presentation",{}).get("reason"): errors.append(f"{route_id}: CANDIDATE_PRESENTATION_INVALID")
+        elif route.get("status") in {"reviewed","ridden"}:
+            track=route.get("publicTrack")
+            if not isinstance(track,dict): errors.append(f"{route_id}: PUBLIC_TRACK_REQUIRED"); continue
+            if set(track)!=PUBLIC_TRACK_KEYS: errors.append(f"{route_id}: PUBLIC_TRACK_INCOMPLETE")
+            for key,prefix in (("gpxFile","gpx"),("geojsonFile","tracks")):
+                if confined_track(root,track.get(key),prefix) is None: errors.append(f"{route_id}: PUBLIC_TRACK_PATH_INVALID")
+        else: errors.append(f"{route_id}: ROUTE_STATUS_INVALID")
+    if approvals is None:
+        approval_path=root/'config'/'public-route-approvals.json'
+        approvals=json.loads(approval_path.read_text(encoding='utf-8')) if approval_path.is_file() else {"schemaVersion":"1.0.0","approvals":[]}
+    binding_errors=privacy_module().validate_approvals(approvals,catalog=catalog,asset_root=root,source_root=source_root)
+    errors.extend(binding_errors)
+    return sorted(set(errors))
 
 def main() -> int:
-    errors: list[str] = []
-    for route in ROUTES:
-        route_id = route["id"]
-        distance = track_distance_km(route)
-        listed = float(route.get("distance_km", 0))
-        if abs(distance - listed) > 0.25:
-            errors.append(f"{route_id}: listed {listed:.1f} km but track is {distance:.1f} km")
-        points = track_points(route)
-        if not close(points[0], points[-1], tolerance_km=0.35):
-            errors.append(f"{route_id}: track is not closed enough for a round trip")
-        planner = planner_coords(route)
-        if len(planner) < 2:
-            errors.append(f"{route_id}: planner link has no usable lonlats")
-            continue
-        origin, destination, waypoints = nav_coords(route)
-        if not close(origin, planner[0]) or not close(destination, planner[-1]):
-            errors.append(f"{route_id}: Google navigation does not use full planner loop origin/destination")
-        if len(planner) > 2 and len(waypoints) < len(planner) - 2:
-            errors.append(f"{route_id}: Google navigation misses loop waypoints")
-        if "Gesamt" not in route.get("nav_label", ""):
-            errors.append(f"{route_id}: nav_label does not clarify Gesamtstrecke")
-        if "Gesamt" not in route.get("distance_note", ""):
-            errors.append(f"{route_id}: distance_note does not clarify total distance")
-    if errors:
-        print("\n".join(errors), file=sys.stderr)
-        return 1
-    print(f"ok: {len(ROUTES)} routes have total-distance tracks and full-loop navigation links")
+    catalog=json.loads((ROOT/"routes.json").read_text(encoding="utf-8"))
+    source_root_value=os.environ.get('EBIKE_PRIVATE_SOURCE_ROOT'); source_root=pathlib.Path(source_root_value) if source_root_value else None
+    errors=validate(catalog,root=ROOT,source_root=source_root)
+    if errors: print("\n".join(errors),file=sys.stderr); return 1
+    public=sum(route["publicTrack"] is not None for route in catalog["routes"])
+    print(f"ok: 30 inventory routes; {public} public tracks; {30-public} fail-closed candidates")
     return 0
 
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__=="__main__": raise SystemExit(main())
