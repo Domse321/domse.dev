@@ -2313,8 +2313,22 @@ button {
   }
 
   .route-map-actions {
-    top: 0.6rem;
+    top: 4.75rem;
     right: 0.6rem;
+  }
+
+  .leaflet-top {
+    top: 4.2rem;
+  }
+
+  .leaflet-map-shell:fullscreen .route-map-actions,
+  .leaflet-map-shell:-webkit-full-screen .route-map-actions {
+    top: 0.6rem;
+  }
+
+  .leaflet-map-shell:fullscreen .leaflet-top,
+  .leaflet-map-shell:-webkit-full-screen .leaflet-top {
+    top: 0;
   }
 
   .map-hint-text {

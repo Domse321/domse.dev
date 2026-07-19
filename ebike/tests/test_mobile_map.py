@@ -40,8 +40,10 @@ class MobileMapContractTests(unittest.TestCase):
 
     def test_map_has_mobile_size_and_visible_fallback_background(self):
         self.assertIn(".leaflet-map", self.css)
-        self.assertIn("min-height:", self.css)
-        self.assertIn("touch-action", self.css)
+        self.assertIn("touch-action: none", self.css)
+        self.assertIn(".route-map-actions", self.css)
+        self.assertRegex(self.css, r"(?s)@media \(max-width: 768px\).*?\.route-map-actions\s*\{[^}]*top:\s*4\.75rem")
+        self.assertRegex(self.css, r"(?s)@media \(max-width: 768px\).*?\.leaflet-top\s*\{[^}]*top:\s*4\.2rem")
 
 
 if __name__ == "__main__":
