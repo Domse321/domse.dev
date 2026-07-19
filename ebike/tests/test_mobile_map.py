@@ -42,8 +42,9 @@ class MobileMapContractTests(unittest.TestCase):
         self.assertIn(".leaflet-map", self.css)
         self.assertIn("touch-action: none", self.css)
         self.assertIn(".route-map-actions", self.css)
-        self.assertRegex(self.css, r"(?s)@media \(max-width: 768px\).*?\.route-map-actions\s*\{[^}]*top:\s*4\.75rem")
-        self.assertRegex(self.css, r"(?s)@media \(max-width: 768px\).*?\.leaflet-top\s*\{[^}]*top:\s*4\.2rem")
+        self.assertRegex(self.css, r"(?s)@media \(max-width: 768px\).*?\.route-map-actions\s*\{[^}]*top:\s*auto;[^}]*bottom:\s*2rem")
+        self.assertIn("L.control.zoom({ position: 'bottomleft' })", self.engine)
+        self.assertRegex(self.css, r"(?s)\.leaflet-touch \.leaflet-control-zoom a\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px")
 
 
 if __name__ == "__main__":

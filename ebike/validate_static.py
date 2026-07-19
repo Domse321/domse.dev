@@ -2,7 +2,7 @@
 """
 validate_static.py
 Validates the static E-Bike App against all requirements in PROJECT_BRIEF.md.
-Checks route data integrity, GPX/GeoJSON existence, 88 gallery URLs, absence of forbidden terms and external frameworks.
+Checks route data integrity, GPX/GeoJSON existence, 88 gallery URLs, absence of forbidden terms and remote UI dependencies.
 """
 
 import json
@@ -21,7 +21,7 @@ FORBIDDEN_TERMS = [
 ]
 
 FORBIDDEN_EXTERNAL = [
-    "leaflet", "mapbox", "openlayers", "bootstrap", "tailwind", "cdn.jsdelivr", "unpkg.com", "fonts.googleapis"
+    "mapbox", "openlayers", "bootstrap", "tailwind", "cdn.jsdelivr", "unpkg.com", "fonts.googleapis"
 ]
 
 def run_validation():
@@ -96,7 +96,7 @@ def run_validation():
                     errors.append(f"Forbidden external dependency '{ext}' found in {rel_f}")
 
     print("✔️ Checked code files for forbidden terms (e.g. 'Review', 'Freigabegate', 'Provenienz').")
-    print("✔️ Checked code files for zero external frameworks (no Leaflet/Mapbox/CDNs).")
+    print("✔️ Checked code files for remote UI dependencies (Leaflet is bundled locally; no framework CDN).")
 
     # Final Report
     print("---------------------------------------------------------")

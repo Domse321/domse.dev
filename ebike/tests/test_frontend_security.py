@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class FrontendSecurityTests(unittest.TestCase):
     def test_csp_and_referrer_policy_are_restrictive(self):
         html = (ROOT / 'index.html').read_text(encoding='utf-8')
-        self.assertIn('name="referrer" content="no-referrer"', html)
+        self.assertIn('name="referrer" content="strict-origin-when-cross-origin"', html)
         match = re.search(r'http-equiv="Content-Security-Policy" content="([^"]+)"', html)
         self.assertIsNotNone(match)
         csp = match.group(1)

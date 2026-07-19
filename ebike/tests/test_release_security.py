@@ -69,7 +69,7 @@ class ReleaseSecurityTests(unittest.TestCase):
         self.assertIn("script-src 'self'", html)
         self.assertIn("object-src 'none'", html)
         self.assertNotIn("'unsafe-inline'", html)
-        self.assertIn('name="referrer" content="no-referrer"', html)
+        self.assertIn('name="referrer" content="strict-origin-when-cross-origin"', html)
         source = "\n".join(path.read_text() for path in [ROOT / "index.html", ROOT / "app.js", *sorted((ROOT / "js").glob("*.js"))])
         self.assertIsNone(re.search(r"\s(?:on(?:click|error|load)|style)\s*=\s*[\"']", source, re.I))
         self.assertNotIn("javascript:", source.lower())

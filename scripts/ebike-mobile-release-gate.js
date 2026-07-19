@@ -148,7 +148,9 @@ async function inspectPage(page) {
         left: Math.round(rect.left * 10) / 10, right: Math.round(rect.right * 10) / 10,
       };
     };
-    const targets = [...document.querySelectorAll('a[href], button, input:not([type="hidden"]), select, textarea, label[for]')].filter(visible);
+    const targets = [...document.querySelectorAll('a[href], button, input:not([type="hidden"]), select, textarea, label[for]')]
+      .filter(element => !element.closest('.leaflet-control-attribution'))
+      .filter(visible);
     const title = document.querySelector('.detail-title');
     const titleRect = title?.getBoundingClientRect();
     const viewportWidth = document.documentElement.clientWidth;

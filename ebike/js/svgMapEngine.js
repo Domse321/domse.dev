@@ -256,7 +256,7 @@ const SvgMapEngine = {
     const mapElement = container.querySelector('.leaflet-map');
     const shell = container.querySelector('.leaflet-map-shell');
     const map = L.map(mapElement, {
-      zoomControl: true,
+      zoomControl: false,
       touchZoom: true,
       dragging: true,
       scrollWheelZoom: true,
@@ -265,6 +265,7 @@ const SvgMapEngine = {
       keyboard: true,
       tap: true,
     });
+    L.control.zoom({ position: 'bottomleft' }).addTo(map);
     const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap-Mitwirkende',
@@ -452,9 +453,12 @@ const SvgMapEngine = {
       return;
     }
 
-    const width = 800;
-    const height = 180;
-    const padding = { top: 25, right: 30, bottom: 30, left: 50 };
+    const width = Math.max(320, Math.round(container.getBoundingClientRect().width || 800));
+    const height = Math.max(180, Math.min(260, Math.round(width * 0.22)));
+    const compact = width < 600;
+    const padding = compact
+      ? { top: 22, right: 16, bottom: 25, left: 44 }
+      : { top: 25, right: 30, bottom: 30, left: 50 };
     const plotW = width - padding.left - padding.right;
     const plotH = height - padding.top - padding.bottom;
 
@@ -504,7 +508,7 @@ const SvgMapEngine = {
           <span class="ele-title">Höhenprofil</span>
           <span class="ele-stats">▲ ${this.escape(route.elevation_m)} hm • Tiefster Punkt: ${Math.round(minEle)} m • Höchster Punkt: ${Math.round(maxEle)} m</span>
         </div>
-        <svg class="elevation-svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">
+        <svg class="elevation-svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet">
           <defs>
             <linearGradient id="eleGrad_${this.escape(route.id)}" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#ff6b35" stop-opacity="0.5" />
