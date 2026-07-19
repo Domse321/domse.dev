@@ -15,6 +15,7 @@ NODE=${NODE:-node}
 "$NODE" --test ebike/tests/js/*.test.js
 
 "$PYTHON" -m unittest discover -s ebike/tests -p 'test_*.py' -v
+"$NODE" scripts/ebike-mobile-release-gate.js
 if [[ -f ebike/data/routes.json ]]; then
   "$PYTHON" ebike/validate_static.py
 elif [[ "${REQUIRE_PRIVATE_EBIKE_DATA:-0}" == "1" ]]; then
