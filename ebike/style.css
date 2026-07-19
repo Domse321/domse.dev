@@ -2250,3 +2250,74 @@ button {
     padding: 0.25rem;
   }
 }
+
+/* Real route map: visible geographic context plus native touch gestures. */
+.leaflet-map-shell {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: #dce6d8;
+}
+
+.leaflet-map {
+  width: 100%;
+  min-height: 480px;
+  background: linear-gradient(135deg, #dce6d8, #b9cdb5);
+  touch-action: none;
+}
+
+.route-map-actions {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1000;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.map-action-btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.8rem;
+  border: 2px solid rgba(20, 40, 29, 0.22);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #14281d;
+  box-shadow: 0 3px 12px rgba(20, 40, 29, 0.2);
+  font-weight: 800;
+}
+
+.leaflet-control-zoom a {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 1.35rem;
+}
+
+.leaflet-map-shell:fullscreen,
+.leaflet-map-shell:-webkit-full-screen {
+  border-radius: 0;
+  background: #dce6d8;
+}
+
+.leaflet-map-shell:fullscreen .leaflet-map,
+.leaflet-map-shell:-webkit-full-screen .leaflet-map {
+  min-height: 100dvh;
+  height: 100dvh;
+}
+
+@media (max-width: 768px) {
+  .leaflet-map {
+    min-height: 420px;
+  }
+
+  .route-map-actions {
+    top: 0.6rem;
+    right: 0.6rem;
+  }
+
+  .map-hint-text {
+    font-size: 0.88rem;
+  }
+}

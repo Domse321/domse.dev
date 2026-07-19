@@ -147,6 +147,10 @@ const SvgMapEngine = {
       container.innerHTML = `<div class="empty-map-notice">Keine Track-Koordinaten verfügbar</div>`;
       return;
     }
+    if (typeof globalThis.L !== 'undefined') {
+      this.renderLeafletTrackMap(container, coords, route);
+      return;
+    }
 
     const width = 800;
     const height = 500;
@@ -233,6 +237,81 @@ const SvgMapEngine = {
 
     container.innerHTML = svgHtml;
     this.attachMapInteractivity(container, coords, proj, onHoverPoint);
+  },
+
+  renderLeafletTrackMap(container, coords, route) {
+    const L = globalThis.L;
+    const latLngs = coords.map(point => [point[1], point[0]]);
+    container.innerHTML = `
+      <div class="leaflet-map-shell">
+        <div class="leaflet-map" role="application" aria-label="Interaktive OpenStreetMap-Karte der Tour"></div>
+        <div class="route-map-actions" aria-label="Kartenaktionen">
+          <button class="map-action-btn btn-map-fit" type="button" aria-label="Gesamte Route anzeigen" title="Gesamte Route anzeigen">Route</button>
+          <button class="map-action-btn btn-map-fullscreen" type="button" aria-label="Karte im Vollbild anzeigen" title="Vollbild">Vollbild</button>
+        </div>
+      </div>`;
+    const mapElement = container.querySelector('.leaflet-map');
+    const shell = container.querySelector('.leaflet-map-shell');
+    const map = L.map(mapElement, {
+      zoomControl: true,
+      touchZoom: true,
+      dragging: true,
+      scrollWheelZoom: true,
+      doubleClickZoom: true,
+      boxZoom: true,
+      keyboard: true,
+      tap: true,
+    });
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap-Mitwirkende',
+    }).addTo(map);
+    tiles.on('tileerror', () => shell.classList.add('map-tiles-degraded'));
+    tiles.on('load', () => shell.classList.remove('map-tiles-degraded'));
+
+    L.polyline(latLngs, { color: '#ffffff', weight: 10, opacity: 0.72 }).addTo(map);
+    const routeLine = L.polyline(latLngs, {
+      color: '#ff5a36',
+      weight: 6,
+      opacity: 0.95,
+      lineJoin: 'round',
+      lineCap: 'round',
+    }).addTo(map);
+
+    if (Array.isArray(route.waypoints)) {
+      route.waypoints.forEach((waypoint, index) => {
+        if (!Number.isFinite(waypoint.lat) || !Number.isFinite(waypoint.lon)) return;
+        const isStart = index === 0;
+        const isEnd = index === route.waypoints.length - 1;
+        const marker = L.circleMarker([waypoint.lat, waypoint.lon], {
+          radius: 8,
+          color: '#ffffff',
+          weight: 2,
+          fillColor: isStart ? '#10b981' : isEnd ? '#f43f5e' : '#f3a712',
+          fillOpacity: 1,
+        }).addTo(map);
+        marker.bindTooltip(this.sanitizeWaypointLabel(waypoint.label || `Wegpunkt ${index + 1}`), { direction: 'top' });
+      });
+    }
+
+    const fitRoute = () => map.fitBounds(routeLine.getBounds(), { padding: [28, 28], maxZoom: 15 });
+    const publishState = () => {
+      const center = map.getCenter();
+      mapElement.setAttribute('data-map-ready', 'true');
+      mapElement.setAttribute('data-map-zoom', String(map.getZoom()));
+      mapElement.setAttribute('data-map-center', `${center.lat.toFixed(6)},${center.lng.toFixed(6)}`);
+    };
+    map.on('zoomend moveend', publishState);
+    map.whenReady(publishState);
+    fitRoute();
+
+    container.querySelector('.btn-map-fit')?.addEventListener('click', fitRoute);
+    container.querySelector('.btn-map-fullscreen')?.addEventListener('click', async () => {
+      if (!document.fullscreenElement) await shell.requestFullscreen?.();
+      else await document.exitFullscreen?.();
+    });
+    shell.addEventListener('fullscreenchange', () => setTimeout(() => map.invalidateSize(), 0));
+    mapElement._leafletMap = map;
   },
 
   /**
