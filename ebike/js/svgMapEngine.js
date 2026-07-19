@@ -453,7 +453,8 @@ const SvgMapEngine = {
       return;
     }
 
-    const width = Math.max(320, Math.round(container.getBoundingClientRect().width || 800));
+    const measuredWidth = Math.round(container.getBoundingClientRect().width);
+    const width = measuredWidth > 0 ? measuredWidth : 800;
     const height = Math.max(180, Math.min(260, Math.round(width * 0.22)));
     const compact = width < 600;
     const padding = compact

@@ -25,7 +25,8 @@ test('map controls stay reachable below the sticky header', () => {
 });
 
 test('elevation SVG keeps a matching aspect ratio instead of stretching text and strokes', () => {
-  assert.match(mapEngine, /const width = Math\.max\(320, Math\.round\(container\.getBoundingClientRect\(\)\.width \|\| 800\)\);/);
+  assert.match(mapEngine, /const measuredWidth = Math\.round\(container\.getBoundingClientRect\(\)\.width\);/);
+  assert.match(mapEngine, /const width = measuredWidth > 0 \? measuredWidth : 800;/);
   assert.match(mapEngine, /preserveAspectRatio="xMidYMid meet"/);
   assert.doesNotMatch(mapEngine, /class="elevation-svg"[^>]*preserveAspectRatio="none"/);
   assert.match(css, /\.elevation-svg\s*\{[^}]*height:\s*auto;/s);
