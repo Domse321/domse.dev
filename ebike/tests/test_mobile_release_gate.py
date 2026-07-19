@@ -58,6 +58,16 @@ class MobileReleaseGateContractTests(unittest.TestCase):
         self.assertIn("matrix", self.runner)
         self.assertIn("summary", self.runner)
 
+    def test_remote_collector_is_target_bound_and_reads_headers_from_a_protected_file(self):
+        self.assertIn("EBIKE_BASE_URL", self.runner)
+        self.assertIn("EBIKE_EXPECTED_HOST", self.runner)
+        self.assertIn("EBIKE_HTTP_HEADERS_FILE", self.runner)
+        self.assertIn("EBIKE_RELEASE_ID", self.runner)
+        self.assertIn("bindTargetHeaders", self.runner)
+        self.assertIn("CF-Access-Client-Id", self.runner)
+        self.assertIn("CF-Access-Client-Secret", self.runner)
+        self.assertNotIn("console.log(extraHTTPHeaders", self.runner)
+
 
 if __name__ == "__main__":
     unittest.main()

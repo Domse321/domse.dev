@@ -9,6 +9,10 @@ const ROOT = path.resolve(__dirname, '..');
 const PRIVATE_REQUIRED = process.env.REQUIRE_PRIVATE_EBIKE_DATA === '1';
 const HAS_PRIVATE_DATA = fs.existsSync(path.join(ROOT, 'ebike/data/routes.json'));
 const EVIDENCE_PATH = process.env.EBIKE_MOBILE_EVIDENCE || '/tmp/ebike-mobile-release-evidence.json';
+const REMOTE_BASE_URL = String(process.env.EBIKE_BASE_URL || '').replace(/\/+$/, '');
+const EXPECTED_REMOTE_HOST = String(process.env.EBIKE_EXPECTED_HOST || '');
+const HTTP_HEADERS_FILE = String(process.env.EBIKE_HTTP_HEADERS_FILE || '');
+const RELEASE_ID = String(process.env.EBIKE_RELEASE_ID || '');
 const MIN_TOUCH_TARGET = 44;
 const MATRIX = [
   { id: 'portrait-320', width: 320, height: 568, zoom: 1, orientation: 'portrait' },
@@ -52,6 +56,29 @@ const MIME = new Map([
   ['.svg', 'image/svg+xml'], ['.png', 'image/png'], ['.jpg', 'image/jpeg'], ['.jpeg', 'image/jpeg'],
 ]);
 
+function loadRemoteConfiguration() {
+  if (!REMOTE_BASE_URL) return { baseUrl: '', extraHTTPHeaders: {} };
+  const target = new URL(REMOTE_BASE_URL);
+  if (target.protocol !== 'https:' || !EXPECTED_REMOTE_HOST || target.hostname !== EXPECTED_REMOTE_HOST) {
+    throw new Error('remote E-Bike target is not bound to the expected HTTPS host');
+  }
+  if (!HTTP_HEADERS_FILE) throw new Error('remote E-Bike collector requires EBIKE_HTTP_HEADERS_FILE');
+  if (!RELEASE_ID || !/^[a-zA-Z0-9._-]+$/.test(RELEASE_ID)) throw new Error('remote E-Bike collector requires a safe EBIKE_RELEASE_ID');
+  const stat = fs.statSync(HTTP_HEADERS_FILE);
+  if ((stat.mode & 0o077) !== 0) throw new Error('remote E-Bike header file must not be group/world accessible');
+  const credential = JSON.parse(fs.readFileSync(HTTP_HEADERS_FILE, 'utf8'));
+  if (typeof credential.client_id !== 'string' || typeof credential.client_secret !== 'string' || !credential.client_id || !credential.client_secret) {
+    throw new Error('remote E-Bike header file has an unsupported schema');
+  }
+  return {
+    baseUrl: target.origin,
+    extraHTTPHeaders: {
+      'CF-Access-Client-Id': credential.client_id,
+      'CF-Access-Client-Secret': credential.client_secret,
+    },
+  };
+}
+
 function startServer() {
   const server = http.createServer((request, response) => {
     const pathname = decodeURIComponent(new URL(request.url, 'http://local').pathname);
@@ -70,6 +97,16 @@ function startServer() {
   return new Promise((resolve, reject) => {
     server.once('error', reject);
     server.listen(0, '127.0.0.1', () => resolve(server));
+  });
+}
+
+async function bindTargetHeaders(context, baseUrl, extraHTTPHeaders) {
+  if (!Object.keys(extraHTTPHeaders).length) return;
+  const targetOrigin = new URL(baseUrl).origin;
+  await context.route('**/*', route => {
+    const request = route.request();
+    if (new URL(request.url()).origin !== targetOrigin) return route.continue();
+    return route.continue({ headers: { ...request.headers(), ...extraHTTPHeaders } });
   });
 }
 
@@ -189,23 +226,26 @@ async function exerciseTrustedInteractions(page) {
 }
 
 (async () => {
-  const server = await startServer();
-  const address = server.address();
-  const baseUrl = `http://127.0.0.1:${address.port}`;
+  const remote = loadRemoteConfiguration();
+  const server = remote.baseUrl ? null : await startServer();
+  const address = server?.address();
+  const baseUrl = remote.baseUrl || `http://127.0.0.1:${address.port}`;
+  const pageUrl = `${baseUrl}/ebike/${remote.baseUrl ? `?release=${encodeURIComponent(RELEASE_ID)}` : ''}`;
   const browser = await playwright.chromium.launch({ headless: true });
   const report = {
     generatedAt: new Date().toISOString(),
-    contract: { minimumTouchTarget: MIN_TOUCH_TARGET, privateRequired: PRIVATE_REQUIRED, privateDataPresent: HAS_PRIVATE_DATA, interactionPolicy: 'Playwright locator click/press only; no forced or synthetic DOM events' },
+    contract: { minimumTouchTarget: MIN_TOUCH_TARGET, privateRequired: PRIVATE_REQUIRED, privateDataPresent: HAS_PRIVATE_DATA, targetHost: new URL(baseUrl).hostname, interactionPolicy: 'Playwright locator click/press only; no forced or synthetic DOM events' },
     matrix: [], interactions: null, failures: [], summary: {},
   };
   try {
     for (const config of MATRIX) {
       const context = await browser.newContext({ viewport: { width: config.width, height: config.height }, deviceScaleFactor: 1, hasTouch: true });
+      await bindTargetHeaders(context, baseUrl, remote.extraHTTPHeaders);
       const page = await context.newPage();
       const cdp = await context.newCDPSession(page);
       await cdp.send('Emulation.setPageScaleFactor', { pageScaleFactor: config.zoom });
       const runtime = attachRuntimeEvidence(page, baseUrl);
-      await page.goto(`${baseUrl}/ebike/`, { waitUntil: 'domcontentloaded' });
+      await page.goto(pageUrl, { waitUntil: 'domcontentloaded' });
       if (HAS_PRIVATE_DATA) await page.waitForSelector('.route-card');
       else await page.waitForSelector('.data-load-error');
       const home = await inspectPage(page);
@@ -225,9 +265,10 @@ async function exerciseTrustedInteractions(page) {
     }
 
     const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true });
+    await bindTargetHeaders(context, baseUrl, remote.extraHTTPHeaders);
     const page = await context.newPage();
     const runtime = attachRuntimeEvidence(page, baseUrl);
-    await page.goto(`${baseUrl}/ebike/`, { waitUntil: 'domcontentloaded' });
+    await page.goto(pageUrl, { waitUntil: 'domcontentloaded' });
     if (HAS_PRIVATE_DATA) await page.waitForSelector('.route-card');
     else await page.waitForSelector('.data-load-error');
     report.interactions = await exerciseTrustedInteractions(page);
@@ -240,7 +281,7 @@ async function exerciseTrustedInteractions(page) {
     await context.close();
   } finally {
     await browser.close();
-    await new Promise(resolve => server.close(resolve));
+    if (server) await new Promise(resolve => server.close(resolve));
   }
 
   report.summary = {
