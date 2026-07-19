@@ -111,13 +111,32 @@ async function bindTargetHeaders(context, baseUrl, extraHTTPHeaders) {
 }
 
 function attachRuntimeEvidence(page, baseUrl) {
-  const evidence = { console: [], pageerror: [], requestfailed: [], httpErrors: [] };
+  const evidence = { console: [], expectedEdgeCspErrors: [], pageerror: [], requestfailed: [], expectedPreviewAborts: [], httpErrors: [] };
+  const remote = Boolean(REMOTE_BASE_URL);
   page.on('console', message => {
-    if (message.type() === 'error') evidence.console.push({ type: message.type(), text: message.text() });
+    if (message.type() !== 'error') return;
+    const text = message.text();
+    const isKnownEdgeCspNoise = remote
+      && /^Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self'(?: https:\/\/challenges\.cloudflare\.com)?"\./.test(text)
+      && text.includes("Either the 'unsafe-inline' keyword, a hash ('sha256-");
+    const item = { type: message.type(), text };
+    if (isKnownEdgeCspNoise) evidence.expectedEdgeCspErrors.push(item);
+    else evidence.console.push(item);
   });
   page.on('pageerror', error => evidence.pageerror.push(error.message));
   page.on('requestfailed', request => {
-    evidence.requestfailed.push({ url: request.url(), method: request.method(), error: request.failure()?.errorText || 'unknown' });
+    const url = request.url();
+    const error = request.failure()?.errorText || 'unknown';
+    const parsed = new URL(url);
+    const isKnownPreviewAbort = url.startsWith(baseUrl)
+      && error === 'net::ERR_ABORTED'
+      && request.method() === 'GET'
+      && request.resourceType() === 'fetch'
+      && /^\/ebike\/data\/tracks\/[a-z0-9]+(?:-[a-z0-9]+)*\.geojson$/.test(parsed.pathname)
+      && parsed.searchParams.get('purpose') === 'preview';
+    const item = { url, method: request.method(), error };
+    if (isKnownPreviewAbort) evidence.expectedPreviewAborts.push(item);
+    else evidence.requestfailed.push(item);
   });
   page.on('response', response => {
     if (response.status() >= 400) evidence.httpErrors.push({ url: response.url(), status: response.status() });

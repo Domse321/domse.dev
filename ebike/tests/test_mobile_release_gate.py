@@ -58,6 +58,20 @@ class MobileReleaseGateContractTests(unittest.TestCase):
         self.assertIn("matrix", self.runner)
         self.assertIn("summary", self.runner)
 
+    def test_remote_noise_classification_is_narrow_and_keeps_real_failures_blocking(self):
+        for token in (
+            "expectedEdgeCspErrors",
+            "expectedPreviewAborts",
+            "request.resourceType() === 'fetch'",
+            "request.method() === 'GET'",
+            "parsed.searchParams.get('purpose') === 'preview'",
+            "error === 'net::ERR_ABORTED'",
+            "challenges\\.cloudflare\\.com",
+        ):
+            self.assertIn(token, self.runner)
+        self.assertIn("console: evidence.console", self.runner)
+        self.assertIn("requestfailed: evidence.requestfailed.filter", self.runner)
+
     def test_remote_collector_is_target_bound_and_reads_headers_from_a_protected_file(self):
         self.assertIn("EBIKE_BASE_URL", self.runner)
         self.assertIn("EBIKE_EXPECTED_HOST", self.runner)
