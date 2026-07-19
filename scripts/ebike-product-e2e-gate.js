@@ -84,20 +84,33 @@ async function bindHeaders(context, baseUrl, headers) {
   await context.route('**/*', async route => {
     const request = route.request();
     if (new URL(request.url()).origin !== origin) return route.continue();
-    const response = await route.fetch({
-      headers: { ...request.headers(), ...headers },
-      maxRedirects: 0,
-    });
-    return route.fulfill({ response });
+    try {
+      const response = await route.fetch({
+        headers: { ...request.headers(), ...headers },
+        maxRedirects: 0,
+      });
+      return route.fulfill({ response });
+    } catch (error) {
+      if (/Target page, context or browser has been closed/.test(String(error?.message))) return;
+      throw new Error(`authenticated target request failed: ${request.method()} ${request.url()} (${error?.name || 'Error'})`);
+    }
   });
 }
 
-function watch(page, baseUrl) {
+function watch(page, baseUrl, remote = false) {
   const expectedOrigin = new URL(baseUrl).origin;
-  const evidence = { pageErrors: [], consoleErrors: [], requestFailures: [], expectedPreviewAborts: [], httpErrors: [], unexpectedDialogs: [] };
+  const evidence = { pageErrors: [], consoleErrors: [], expectedEdgeCspErrors: [], requestFailures: [], expectedPreviewAborts: [], httpErrors: [], unexpectedDialogs: [] };
   const isTarget = value => { try { return new URL(value).origin === expectedOrigin; } catch { return false; } };
   page.on('pageerror', error => evidence.pageErrors.push(error.message));
-  page.on('console', message => { if (message.type() === 'error') evidence.consoleErrors.push(message.text()); });
+  page.on('console', message => {
+    if (message.type() !== 'error') return;
+    const text = message.text();
+    const isKnownEdgeCspNoise = remote
+      && /^Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self'(?: https:\/\/challenges\.cloudflare\.com)?"\./.test(text)
+      && text.includes("Either the 'unsafe-inline' keyword, a hash ('sha256-");
+    if (isKnownEdgeCspNoise) evidence.expectedEdgeCspErrors.push(text);
+    else evidence.consoleErrors.push(text);
+  });
   page.on('requestfailed', request => {
     const error = request.failure()?.errorText || 'unknown';
     const url = request.url();
@@ -155,7 +168,7 @@ async function representative(browser, baseUrl, headers, remote) {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, acceptDownloads: true, locale: 'de-DE' });
   await bindHeaders(context, baseUrl, headers);
   const page = await context.newPage();
-  const runtime = watch(page, baseUrl);
+  const runtime = watch(page, baseUrl, remote);
   const functions = [];
   const record = async (id, action, effect) => {
     await action();
@@ -321,6 +334,8 @@ async function representative(browser, baseUrl, headers, remote) {
   await page.waitForLoadState('networkidle');
 
   const block = { ...runtime, layout: await layout(page) };
+  await page.waitForLoadState('networkidle').catch(() => {});
+  await context.unrouteAll({ behavior: 'wait' });
   await context.close();
   return { functions, blocking: block };
 }
@@ -338,7 +353,7 @@ async function visualMatrix(browser, baseUrl, headers, remote) {
       }));
     }
     const page = await context.newPage();
-    const runtime = watch(page, baseUrl);
+    const runtime = watch(page, baseUrl, remote);
     await openHome(page, baseUrl, remote);
     if (config.textScale !== 1) {
       await page.evaluate(scale => new Promise((resolve, reject) => {
@@ -374,6 +389,8 @@ async function visualMatrix(browser, baseUrl, headers, remote) {
     await page.locator('#btnQuickLog').click(); await page.locator('#formAddRideLog').waitFor(); await capture('log-form', '#logFormSection');
     await page.locator('#logDuration').fill('87'); await page.locator('#logBattery').fill('31'); await page.locator('#logNotes').fill('Probefahrt dokumentiert'); await page.locator('#formAddRideLog button[type="submit"]').click(); await capture('log-saved', '.log-entry-card');
     output.push({ config, states, runtime });
+    await page.waitForLoadState('networkidle').catch(() => {});
+    await context.unrouteAll({ behavior: 'wait' });
     await context.close();
   }
   return output;

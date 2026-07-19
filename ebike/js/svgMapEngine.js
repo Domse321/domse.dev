@@ -34,6 +34,7 @@ const SvgMapEngine = {
       const geoJson = await resp.json();
       return this.getCoordinates(geoJson).length >= 2 ? geoJson : null;
     } catch (err) {
+      if (options.purpose === 'preview') return null;
       if (options.signal?.aborted) return null;
       console.error('Error fetching track:', err);
       return null;
