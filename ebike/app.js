@@ -29,6 +29,20 @@ const AppState = {
   visibleCardCount: 6  // Critique (3): curated initial set
 };
 
+const ImageViewerState = {
+  items: [],
+  index: 0,
+  scale: 1,
+  panX: 0,
+  panY: 0,
+  pointers: new Map(),
+  dragOrigin: null,
+  pinchDistance: 0,
+  pinchScale: 1,
+  transformAnimation: null,
+  previousFocus: null
+};
+
 // Initialize Application
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', async () => {
@@ -36,6 +50,7 @@ if (typeof document !== 'undefined') {
     setupHeaderEvents();
     setupMobileDockEvents();
     setupModalEvents();
+    setupImageViewerEvents();
 
     if (!await loadRoutesData()) return;
 
@@ -185,6 +200,189 @@ function setupModalEvents() {
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay?.classList.contains('open')) closeCompareModal();
+  });
+}
+
+function clampImageViewerScale(value) {
+  return Math.min(5, Math.max(1, Number(value) || 1));
+}
+
+function applyImageViewerTransform() {
+  if (typeof document === 'undefined') return;
+  const image = document.getElementById('imageViewerImage');
+  const stage = document.getElementById('imageViewerStage');
+  const canvas = stage?.querySelector('.image-viewer-canvas');
+  if (!image || !stage || !canvas) return;
+
+  ImageViewerState.scale = clampImageViewerScale(ImageViewerState.scale);
+  if (ImageViewerState.scale === 1) {
+    ImageViewerState.panX = 0;
+    ImageViewerState.panY = 0;
+  } else {
+    const maxX = canvas.clientWidth * (ImageViewerState.scale - 1) / 2;
+    const maxY = canvas.clientHeight * (ImageViewerState.scale - 1) / 2;
+    ImageViewerState.panX = Math.max(-maxX, Math.min(maxX, ImageViewerState.panX));
+    ImageViewerState.panY = Math.max(-maxY, Math.min(maxY, ImageViewerState.panY));
+  }
+
+  const transform = `translate3d(${ImageViewerState.panX}px, ${ImageViewerState.panY}px, 0) scale(${ImageViewerState.scale})`;
+  ImageViewerState.transformAnimation?.cancel();
+  ImageViewerState.transformAnimation = image.animate(
+    [{ transform }, { transform }],
+    { duration: 1, fill: 'forwards' }
+  );
+  image.classList.toggle('is-zoomed', ImageViewerState.scale > 1);
+  stage.dataset.zoom = ImageViewerState.scale.toFixed(2);
+  stage.dataset.panX = Math.round(ImageViewerState.panX).toString();
+  stage.dataset.panY = Math.round(ImageViewerState.panY).toString();
+  const output = document.getElementById('imageViewerZoom');
+  if (output) output.textContent = `${Math.round(ImageViewerState.scale * 100)} %`;
+}
+
+function setImageViewerScale(nextScale) {
+  ImageViewerState.scale = clampImageViewerScale(nextScale);
+  applyImageViewerTransform();
+}
+
+function resetImageViewerTransform() {
+  ImageViewerState.scale = 1;
+  ImageViewerState.panX = 0;
+  ImageViewerState.panY = 0;
+  applyImageViewerTransform();
+}
+
+function renderImageViewerItem() {
+  if (typeof document === 'undefined' || ImageViewerState.items.length === 0) return;
+  const item = ImageViewerState.items[ImageViewerState.index];
+  const image = document.getElementById('imageViewerImage');
+  const title = document.getElementById('imageViewerTitle');
+  const counter = document.getElementById('imageViewerCounter');
+  const previous = document.getElementById('btnImageViewerPrev');
+  const next = document.getElementById('btnImageViewerNext');
+  if (!image || !title || !counter) return;
+
+  resetImageViewerTransform();
+  title.textContent = item.title;
+  counter.textContent = `Bild ${ImageViewerState.index + 1} von ${ImageViewerState.items.length}`;
+  image.alt = item.title;
+  image.classList.add('is-loading');
+  image.classList.remove('is-error');
+  image.src = item.safeUrl;
+  const single = ImageViewerState.items.length < 2;
+  if (previous) previous.hidden = single;
+  if (next) next.hidden = single;
+}
+
+function openImageViewer(items, index, opener) {
+  if (typeof document === 'undefined' || !Array.isArray(items) || items.length === 0) return;
+  const overlay = document.getElementById('imageViewerOverlay');
+  if (!overlay) return;
+  ImageViewerState.items = items.map(item => ({ safeUrl: item.safeUrl, title: String(item.title || 'Tourenbild') }));
+  ImageViewerState.index = Math.max(0, Math.min(ImageViewerState.items.length - 1, Number(index) || 0));
+  ImageViewerState.previousFocus = opener || document.activeElement;
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  renderImageViewerItem();
+  document.getElementById('btnImageViewerClose')?.focus();
+}
+
+function closeImageViewer() {
+  if (typeof document === 'undefined') return;
+  const overlay = document.getElementById('imageViewerOverlay');
+  if (!overlay?.classList.contains('open')) return;
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+  ImageViewerState.pointers.clear();
+  if (!document.getElementById('compareModalOverlay')?.classList.contains('open')) document.body.classList.remove('modal-open');
+  ImageViewerState.previousFocus?.focus?.();
+}
+
+function moveImageViewer(step) {
+  if (ImageViewerState.items.length < 2) return;
+  ImageViewerState.index = (ImageViewerState.index + step + ImageViewerState.items.length) % ImageViewerState.items.length;
+  renderImageViewerItem();
+}
+
+function pointerDistance(points) {
+  const [first, second] = points;
+  return Math.hypot(second.clientX - first.clientX, second.clientY - first.clientY);
+}
+
+function setupImageViewerEvents() {
+  if (typeof document === 'undefined') return;
+  const overlay = document.getElementById('imageViewerOverlay');
+  const stage = document.getElementById('imageViewerStage');
+  const image = document.getElementById('imageViewerImage');
+  if (!overlay || !stage || !image) return;
+
+  document.getElementById('btnImageViewerClose')?.addEventListener('click', closeImageViewer);
+  document.getElementById('btnImageViewerPrev')?.addEventListener('click', () => moveImageViewer(-1));
+  document.getElementById('btnImageViewerNext')?.addEventListener('click', () => moveImageViewer(1));
+  document.getElementById('btnImageZoomIn')?.addEventListener('click', () => setImageViewerScale(ImageViewerState.scale + 0.5));
+  document.getElementById('btnImageZoomOut')?.addEventListener('click', () => setImageViewerScale(ImageViewerState.scale - 0.5));
+  document.getElementById('btnImageZoomReset')?.addEventListener('click', resetImageViewerTransform);
+  image.addEventListener('load', () => image.classList.remove('is-loading'));
+  image.addEventListener('error', () => {
+    image.classList.remove('is-loading');
+    image.classList.add('is-error');
+  });
+  overlay.addEventListener('click', event => {
+    if (event.target === overlay) closeImageViewer();
+  });
+  stage.addEventListener('wheel', event => {
+    if (!overlay.classList.contains('open')) return;
+    event.preventDefault();
+    setImageViewerScale(ImageViewerState.scale + (event.deltaY < 0 ? 0.25 : -0.25));
+  }, { passive: false });
+  stage.addEventListener('dblclick', event => {
+    if (event.target.closest('button')) return;
+    setImageViewerScale(ImageViewerState.scale > 1 ? 1 : 2);
+  });
+  stage.addEventListener('pointerdown', event => {
+    if (event.target.closest('button')) return;
+    stage.setPointerCapture?.(event.pointerId);
+    ImageViewerState.pointers.set(event.pointerId, event);
+    if (ImageViewerState.pointers.size === 1) {
+      ImageViewerState.dragOrigin = { x: event.clientX - ImageViewerState.panX, y: event.clientY - ImageViewerState.panY };
+    } else if (ImageViewerState.pointers.size === 2) {
+      ImageViewerState.pinchDistance = pointerDistance([...ImageViewerState.pointers.values()]);
+      ImageViewerState.pinchScale = ImageViewerState.scale;
+    }
+  });
+  stage.addEventListener('pointermove', event => {
+    if (!ImageViewerState.pointers.has(event.pointerId)) return;
+    event.preventDefault();
+    ImageViewerState.pointers.set(event.pointerId, event);
+    const points = [...ImageViewerState.pointers.values()];
+    if (points.length === 2 && ImageViewerState.pinchDistance > 0) {
+      setImageViewerScale(ImageViewerState.pinchScale * pointerDistance(points) / ImageViewerState.pinchDistance);
+    } else if (points.length === 1 && ImageViewerState.scale > 1 && ImageViewerState.dragOrigin) {
+      ImageViewerState.panX = event.clientX - ImageViewerState.dragOrigin.x;
+      ImageViewerState.panY = event.clientY - ImageViewerState.dragOrigin.y;
+      applyImageViewerTransform();
+    }
+  });
+  const releasePointer = event => {
+    ImageViewerState.pointers.delete(event.pointerId);
+    if (ImageViewerState.pointers.size === 1) {
+      const remaining = [...ImageViewerState.pointers.values()][0];
+      ImageViewerState.dragOrigin = { x: remaining.clientX - ImageViewerState.panX, y: remaining.clientY - ImageViewerState.panY };
+    } else if (ImageViewerState.pointers.size === 0) {
+      ImageViewerState.dragOrigin = null;
+      ImageViewerState.pinchDistance = 0;
+    }
+  };
+  stage.addEventListener('pointerup', releasePointer);
+  stage.addEventListener('pointercancel', releasePointer);
+  document.addEventListener('keydown', event => {
+    if (!overlay.classList.contains('open')) return;
+    if (event.key === 'Escape') closeImageViewer();
+    else if (event.key === 'ArrowLeft') moveImageViewer(-1);
+    else if (event.key === 'ArrowRight') moveImageViewer(1);
+    else if (event.key === '+' || event.key === '=') setImageViewerScale(ImageViewerState.scale + 0.5);
+    else if (event.key === '-') setImageViewerScale(ImageViewerState.scale - 0.5);
+    else if (event.key === '0') resetImageViewerTransform();
   });
 }
 
@@ -831,18 +1029,22 @@ async function renderTourDetailView(routeId) {
     if (safeGallery.length > 0) {
       galleryContainer.innerHTML = `
         <div class="gallery-grid">
-          ${safeGallery.map(img => `
-            <div class="gallery-item">
+          ${safeGallery.map((img, index) => `
+            <button class="gallery-item gallery-open" type="button" data-gallery-index="${index}" aria-label="${h(img.title || route.name)} groß ansehen">
               <img src="${h(img.safeUrl)}" class="gallery-img" alt="${h(img.title || route.name)}" loading="lazy">
-              <div class="gallery-caption">
+              <span class="gallery-caption">
                 <span>${h(img.title || route.name)}</span>
-              </div>
-            </div>
+                <span class="gallery-open-hint" aria-hidden="true">Vergrößern</span>
+              </span>
+            </button>
           `).join('')}
         </div>
       `;
       galleryContainer.querySelectorAll('.gallery-img').forEach(image => {
-        image.addEventListener('error', () => image.parentElement?.remove(), { once: true });
+        image.addEventListener('error', () => image.closest('.gallery-item')?.remove(), { once: true });
+      });
+      galleryContainer.querySelectorAll('[data-gallery-index]').forEach(button => {
+        button.addEventListener('click', () => openImageViewer(safeGallery, Number(button.dataset.galleryIndex), button));
       });
     } else {
       _SvgMapEngine.renderTopoPoster(galleryContainer, geoJson, route);

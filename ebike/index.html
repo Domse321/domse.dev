@@ -8,7 +8,7 @@
   <title>Domse E-Bike & Trail Magazin — Hameln & Weserbergland</title>
   <meta name="description" content="Das persönliche E-MTB und E-Bike Tourenmagazin und Trail-Archiv für Domse rund um Hameln, Klüt, Süntel, Ith und Deister.">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css?release=20260719-map3">
-  <link rel="stylesheet" href="style.css?release=20260719-visualfix1">
+  <link rel="stylesheet" href="style.css?release=20260719-gallery1">
 </head>
 <body>
 
@@ -87,11 +87,40 @@
     </div>
   </div>
 
+  <!-- Full-screen gallery viewer with mouse, keyboard and touch zoom. -->
+  <div class="image-viewer-overlay" id="imageViewerOverlay" role="dialog" aria-modal="true" aria-labelledby="imageViewerTitle" aria-hidden="true">
+    <div class="image-viewer-shell">
+      <header class="image-viewer-header">
+        <div class="image-viewer-heading">
+          <span class="image-viewer-eyebrow" id="imageViewerCounter">Bild</span>
+          <h2 id="imageViewerTitle">Tourenbild</h2>
+        </div>
+        <button class="image-viewer-control image-viewer-close" id="btnImageViewerClose" type="button" aria-label="Bildansicht schließen">✕</button>
+      </header>
+
+      <div class="image-viewer-stage" id="imageViewerStage" data-zoom="1.00" data-pan-x="0" data-pan-y="0">
+        <button class="image-viewer-nav image-viewer-prev" id="btnImageViewerPrev" type="button" aria-label="Vorheriges Bild">‹</button>
+        <div class="image-viewer-canvas">
+          <img id="imageViewerImage" alt="" draggable="false">
+        </div>
+        <button class="image-viewer-nav image-viewer-next" id="btnImageViewerNext" type="button" aria-label="Nächstes Bild">›</button>
+      </div>
+
+      <footer class="image-viewer-toolbar" aria-label="Bildzoom">
+        <button class="image-viewer-control" id="btnImageZoomOut" type="button" aria-label="Bild verkleinern">−</button>
+        <output id="imageViewerZoom" aria-live="polite">100 %</output>
+        <button class="image-viewer-control" id="btnImageZoomIn" type="button" aria-label="Bild vergrößern">+</button>
+        <button class="image-viewer-reset" id="btnImageZoomReset" type="button">Einpassen</button>
+        <span class="image-viewer-help">Scrollen, ziehen oder mit zwei Fingern zoomen</span>
+      </footer>
+    </div>
+  </div>
+
   <script src="js/security.js"></script>
   <script src="vendor/leaflet/leaflet.js?release=20260719-map3"></script>
   <script src="js/svgMapEngine.js?release=20260719-visualfix2"></script>
   <script src="js/scoringAndBattery.js"></script>
   <script src="js/storageAndLog.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?release=20260719-gallery1"></script>
 </body>
 </html>

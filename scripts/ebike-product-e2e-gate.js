@@ -32,6 +32,7 @@ const EXPECTED_FUNCTION_IDS = [
   'sort-score_desc', 'sort-dist_asc', 'sort-dist_desc', 'sort-elev_desc', 'load-more',
   'favorite', 'favorite-filter', 'compare-empty-open-close', 'compare-remove', 'compare-open-route',
   'map-plus', 'map-minus', 'map-pinch', 'map-drag', 'map-fit', 'map-fullscreen',
+  'gallery-open', 'gallery-zoom-button', 'gallery-pinch', 'gallery-next', 'gallery-close',
   'detail-favorite', 'detail-compare', 'gpx-download',
   'external-Navigation starten', 'external-Komoot', 'external-BRouter', 'quick-log-preselect',
   'log-save', 'log-export', 'log-delete-both-paths', 'log-import-valid', 'log-import-invalid',
@@ -145,8 +146,11 @@ async function layout(page) {
     maxHorizontalScroll,
     offenders: [...document.querySelectorAll('body *')].map(element => {
       const rect = element.getBoundingClientRect();
-      return { selector: `${element.tagName.toLowerCase()}${element.id ? `#${element.id}` : ''}${element.classList.length ? `.${[...element.classList].slice(0, 3).join('.')}` : ''}`, left: rect.left, right: rect.right, width: rect.width, intentionalMapCanvas: element.classList.contains('leaflet-tile') || (element.tagName === 'svg' && element.classList.contains('leaflet-zoom-animated')) };
-    }).filter(item => !item.intentionalMapCanvas && item.width > 0 && (item.left < -1 || item.right > document.documentElement.clientWidth + 1)).slice(0, 12),
+      const intentionalOverflowSurface = element.classList.contains('leaflet-tile')
+        || (element.tagName === 'svg' && element.classList.contains('leaflet-zoom-animated'))
+        || (element.id === 'imageViewerImage' && element.closest('#imageViewerOverlay.open'));
+      return { selector: `${element.tagName.toLowerCase()}${element.id ? `#${element.id}` : ''}${element.classList.length ? `.${[...element.classList].slice(0, 3).join('.')}` : ''}`, left: rect.left, right: rect.right, width: rect.width, intentionalOverflowSurface };
+    }).filter(item => !item.intentionalOverflowSurface && item.width > 0 && (item.left < -1 || item.right > document.documentElement.clientWidth + 1)).slice(0, 12),
     };
   });
 }
@@ -283,6 +287,37 @@ async function representative(browser, baseUrl, headers, remote) {
   }, async () => assert(await page.evaluate(() => Boolean(document.fullscreenElement)), 'fullscreen did not open'));
   await page.locator('.btn-map-fullscreen').click();
   await page.waitForFunction(() => !document.fullscreenElement);
+  const galleryButtons = page.locator('[data-gallery-index]');
+  assert(await galleryButtons.count() > 1, 'gallery inventory too small for viewer controls');
+  await record('gallery-open', () => galleryButtons.first().click(), async () => {
+    assert((await page.locator('#imageViewerOverlay').getAttribute('class')).includes('open'), 'gallery viewer did not open');
+    await page.waitForFunction(() => {
+      const image = document.getElementById('imageViewerImage');
+      return Boolean(image?.complete && image.naturalWidth > 0);
+    });
+  });
+  await record('gallery-zoom-button', () => page.locator('#btnImageZoomIn').click(), async () => {
+    assert(Number(await page.locator('#imageViewerStage').getAttribute('data-zoom')) > 1, 'gallery zoom button had no effect');
+  });
+  await page.locator('#btnImageZoomReset').click();
+  const imageStage = page.locator('#imageViewerStage');
+  const imageBox = await imageStage.boundingBox();
+  const imageX = imageBox.x + imageBox.width / 2, imageY = imageBox.y + imageBox.height / 2;
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: imageX - 30, y: imageY }, { x: imageX + 30, y: imageY }] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: imageX - 90, y: imageY }, { x: imageX + 90, y: imageY }] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await page.waitForTimeout(200);
+  assert(Number(await imageStage.getAttribute('data-zoom')) > 1, 'gallery pinch had no effect'); functions.push({ id: 'gallery-pinch', status: 'PASS' });
+  const firstImageUrl = await page.locator('#imageViewerImage').getAttribute('src');
+  await record('gallery-next', () => page.locator('#btnImageViewerNext').click(), async () => {
+    await page.waitForFunction(before => {
+      const image = document.getElementById('imageViewerImage');
+      return Boolean(image?.complete && image.naturalWidth > 0 && image.getAttribute('src') !== before);
+    }, firstImageUrl);
+  });
+  await record('gallery-close', () => page.locator('#btnImageViewerClose').click(), async () => {
+    assert(!(await page.locator('#imageViewerOverlay').getAttribute('class')).includes('open'), 'gallery viewer did not close');
+  });
   await record('detail-favorite', () => page.locator('#btnDetailFav').click(), async () => assert(/Gespeichert/.test(await page.locator('#btnDetailFav').innerText()), 'detail favorite no effect'));
   await record('detail-compare', async () => {
     page._detailCompareBefore = await page.locator('#btnDetailComp').innerText();
@@ -386,6 +421,13 @@ async function visualMatrix(browser, baseUrl, headers, remote) {
     await capture('home');
     await page.locator('#btnOpenCompare').click(); await capture('compare-empty', '#compareModalOverlay'); await page.locator('#btnCloseCompare').click();
     await page.locator('.route-card a[href*="#/tour/"]').first().click(); await page.locator('.leaflet-map[data-map-ready="true"]').waitFor(); await capture('detail-map', '.leaflet-map-shell');
+    if (await page.locator('[data-gallery-index]').count()) {
+      await page.locator('[data-gallery-index]').first().click();
+      await page.locator('#imageViewerImage').waitFor({ state: 'visible' });
+      await page.locator('#btnImageZoomIn').click();
+      await capture('image-viewer', '#imageViewerOverlay');
+      await page.locator('#btnImageViewerClose').click();
+    }
     await page.locator('#btnQuickLog').click(); await page.locator('#formAddRideLog').waitFor(); await capture('log-form', '#logFormSection');
     await page.locator('#logDuration').fill('87'); await page.locator('#logBattery').fill('31'); await page.locator('#logNotes').fill('Probefahrt dokumentiert'); await page.locator('#formAddRideLog button[type="submit"]').click(); await capture('log-saved', '.log-entry-card');
     output.push({ config, states, runtime });

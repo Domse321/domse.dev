@@ -1115,12 +1115,21 @@ button {
 
 .gallery-item {
   position: relative;
+  width: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
   height: 280px;
   background: #14281d;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-color);
+  color: #ffffff;
+  text-align: left;
+  cursor: zoom-in;
+}
+
+.gallery-item:focus-visible {
+  outline: 3px solid var(--color-amber);
+  outline-offset: 3px;
 }
 
 .gallery-img {
@@ -1143,6 +1152,21 @@ button {
   color: #ffffff;
   font-size: 0.85rem;
   font-weight: 600;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.gallery-open-hint {
+  flex: 0 0 auto;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(20, 40, 29, 0.76);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
 }
 
 /* Critique (6): 2-Column Grid after map — no empty left column */
@@ -1495,6 +1519,216 @@ button {
   font-size: 0.82rem;
   font-weight: 600;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ================== FULL-SCREEN IMAGE VIEWER ================== */
+.image-viewer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;
+  padding: clamp(0.5rem, 2vw, 1.25rem);
+  background: #070a09;
+  color: #ffffff;
+}
+
+.image-viewer-overlay.open {
+  display: flex;
+}
+
+.image-viewer-shell {
+  width: min(1500px, 100%);
+  height: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 0.75rem;
+}
+
+.image-viewer-header,
+.image-viewer-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.image-viewer-header {
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.image-viewer-heading {
+  min-width: 0;
+}
+
+.image-viewer-heading h2 {
+  max-width: 100%;
+  overflow: hidden;
+  color: #ffffff;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image-viewer-eyebrow {
+  color: #bdf5d5;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.image-viewer-stage {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-lg);
+  background: #0d1210;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+.image-viewer-canvas {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+#imageViewerImage {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transform-origin: center center;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+  cursor: zoom-in;
+  will-change: transform;
+}
+
+#imageViewerImage.is-zoomed {
+  cursor: grab;
+}
+
+#imageViewerImage.is-loading {
+  opacity: 0.35;
+}
+
+#imageViewerImage.is-error {
+  visibility: hidden;
+}
+
+.image-viewer-control,
+.image-viewer-nav,
+.image-viewer-reset {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.image-viewer-control:hover,
+.image-viewer-control:focus-visible,
+.image-viewer-nav:hover,
+.image-viewer-nav:focus-visible,
+.image-viewer-reset:hover,
+.image-viewer-reset:focus-visible {
+  outline: none;
+  border-color: var(--color-amber);
+  background: var(--color-amber);
+}
+
+.image-viewer-close {
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  font-size: 1.15rem;
+}
+
+.image-viewer-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 48px;
+  height: 64px;
+  transform: translateY(-50%);
+  background: rgba(20, 40, 29, 0.88);
+  font-size: 2rem;
+}
+
+.image-viewer-prev { left: 0.75rem; }
+.image-viewer-next { right: 0.75rem; }
+
+.image-viewer-toolbar {
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.image-viewer-toolbar output {
+  min-width: 4.5rem;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  text-align: center;
+}
+
+.image-viewer-reset {
+  padding: 0.55rem 0.9rem;
+}
+
+.image-viewer-help {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 640px) {
+  .image-viewer-overlay {
+    padding: 0.45rem;
+  }
+
+  .image-viewer-shell {
+    gap: 0.45rem;
+  }
+
+  .image-viewer-heading h2 {
+    max-width: calc(100vw - 5.5rem);
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .image-viewer-nav {
+    top: auto;
+    bottom: 0.65rem;
+    width: 46px;
+    height: 46px;
+    transform: none;
+  }
+
+  .image-viewer-help {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .gallery-open-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #imageViewerImage {
+    transition: none;
+  }
 }
 
 /* ================== COMPARE DRAWER & MODAL ================== */
