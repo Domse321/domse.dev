@@ -32,6 +32,7 @@ class MobileReleaseGateContractTests(unittest.TestCase):
         required_tokens = (
             "MIN_TOUCH_TARGET",
             "horizontalOverflow",
+            "overflowOffenders",
             "detailTitle",
             "inventory",
             "button",

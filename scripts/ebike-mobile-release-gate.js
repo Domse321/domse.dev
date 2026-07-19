@@ -108,12 +108,17 @@ async function inspectPage(page) {
         className: typeof element.className === 'string' ? element.className : null,
         text: (element.innerText || element.getAttribute('aria-label') || element.title || '').trim().slice(0, 100),
         width: Math.round(rect.width * 10) / 10, height: Math.round(rect.height * 10) / 10,
+        left: Math.round(rect.left * 10) / 10, right: Math.round(rect.right * 10) / 10,
       };
     };
     const targets = [...document.querySelectorAll('a[href], button, input:not([type="hidden"]), select, textarea, label[for]')].filter(visible);
     const title = document.querySelector('.detail-title');
     const titleRect = title?.getBoundingClientRect();
     const viewportWidth = document.documentElement.clientWidth;
+    const overflowOffenders = [...document.querySelectorAll('body *')].filter(visible).filter(element => {
+      const rect = element.getBoundingClientRect();
+      return rect.left < -1 || rect.right > viewportWidth + 1;
+    }).slice(0, 25).map(describe);
     return {
       dimensions: {
         viewportWidth,
@@ -121,6 +126,7 @@ async function inspectPage(page) {
         scrollWidth: document.documentElement.scrollWidth,
       },
       horizontalOverflow: document.documentElement.scrollWidth > viewportWidth + 1,
+      overflowOffenders,
       touchTargets: { total: targets.length, failures: targets.filter(element => {
         const rect = element.getBoundingClientRect();
         return rect.width + 0.5 < minimum || rect.height + 0.5 < minimum;
