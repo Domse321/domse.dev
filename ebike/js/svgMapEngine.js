@@ -23,16 +23,18 @@ const SvgMapEngine = {
   /**
    * Fetches and parses a local GeoJSON track file.
    */
-  async fetchTrack(trackFile) {
+  async fetchTrack(trackFile, options = {}) {
     try {
       const security = (typeof globalThis !== 'undefined' && globalThis.EbikeSecurity) || {};
       const safeFile = security.safeDataFile ? security.safeDataFile(trackFile, 'track') : (/^tracks\/[a-z0-9]+(?:-[a-z0-9]+)*\.geojson$/.test(trackFile) ? trackFile : null);
       if (!safeFile) return null;
-      const resp = await fetch('data/' + safeFile);
+      const purpose = options.purpose === 'preview' ? '?purpose=preview' : '';
+      const resp = await fetch('data/' + safeFile + purpose, { signal: options.signal });
       if (!resp.ok) throw new Error('Track not found: ' + trackFile);
       const geoJson = await resp.json();
       return this.getCoordinates(geoJson).length >= 2 ? geoJson : null;
     } catch (err) {
+      if (options.signal?.aborted) return null;
       console.error('Error fetching track:', err);
       return null;
     }

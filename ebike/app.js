@@ -167,17 +167,24 @@ function setupMobileDockEvents() {
   });
 }
 
+function closeCompareModal() {
+  if (typeof document === 'undefined') return;
+  document.getElementById('compareModalOverlay')?.classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+
 /**
  * Sets up comparison modal events.
  */
 function setupModalEvents() {
   if (typeof document === 'undefined') return;
   const overlay = document.getElementById('compareModalOverlay');
-  document.getElementById('btnCloseCompare')?.addEventListener('click', () => {
-    overlay?.classList.remove('open');
-  });
+  document.getElementById('btnCloseCompare')?.addEventListener('click', closeCompareModal);
   overlay?.addEventListener('click', (e) => {
-    if (e.target === overlay) overlay.classList.remove('open');
+    if (e.target === overlay) closeCompareModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay?.classList.contains('open')) closeCompareModal();
   });
 }
 
@@ -191,6 +198,7 @@ function handleHashRouting() {
   const navSport = document.getElementById('navSport');
 
   if (hash.startsWith('#/tour/')) {
+    cardTrackLoadController?.abort();
     let encodedId = hash.slice('#/tour/'.length);
     try { encodedId = decodeURIComponent(encodedId); } catch (_) { encodedId = ''; }
     const routeId = _Security.safeRouteId(encodedId.trim(), AppState.allRoutes.map(route => route.id));
@@ -204,6 +212,7 @@ function handleHashRouting() {
     if (navSport) navSport.classList.remove('active');
     renderTourDetailView(routeId);
   } else if (hash.startsWith('#/sport')) {
+    cardTrackLoadController?.abort();
     AppState.currentRouteId = null;
     AppState.currentTab = 'sport';
     if (navEbike) navEbike.classList.remove('active');
@@ -279,7 +288,9 @@ function renderCardTrackSvg(route) {
 /**
  * Lazily loads track previews for visible cards — Critique (4).
  */
-async function lazyLoadCardTracks() {
+let cardTrackLoadController = null;
+
+async function lazyLoadCardTracks(signal) {
   const posters = document.querySelectorAll('.card-track-poster[data-track]');
   for (const poster of posters) {
     const trackFile = poster.getAttribute('data-track');
@@ -289,7 +300,8 @@ async function lazyLoadCardTracks() {
     poster.classList.add('loaded');
 
     try {
-      const geoJson = await _SvgMapEngine.fetchTrack(safeTrack);
+      const geoJson = await _SvgMapEngine.fetchTrack(safeTrack, { signal, purpose: 'preview' });
+      if (signal?.aborted || !poster.isConnected) return;
       if (!geoJson) continue;
       const coords = _SvgMapEngine.getCoordinates(geoJson);
       if (!coords || coords.length < 2) continue;
@@ -329,6 +341,9 @@ function renderEbikeExplorerView() {
   if (typeof document === 'undefined') return;
   const main = document.getElementById('appMain');
   if (!main) return;
+  cardTrackLoadController?.abort();
+  cardTrackLoadController = new AbortController();
+  const cardTrackSignal = cardTrackLoadController.signal;
 
   // Filter routes using ScoringAndBattery
   let routes = _ScoringAndBattery.filterRoutes(AppState.allRoutes, AppState.activeFilter);
@@ -484,7 +499,7 @@ function renderEbikeExplorerView() {
 
   // Critique (4): lazy load track previews for visible cards
   requestAnimationFrame(() => {
-    lazyLoadCardTracks();
+    if (!cardTrackSignal.aborted) lazyLoadCardTracks(cardTrackSignal);
   });
 }
 
@@ -582,6 +597,12 @@ function attachExplorerEvents() {
   searchInput?.addEventListener('input', (e) => {
     AppState.activeFilter.search = e.target.value;
     renderEbikeExplorerView();
+    const replacement = document.getElementById('routeSearchInput');
+    if (replacement) {
+      replacement.focus({ preventScroll: true });
+      const cursor = replacement.value.length;
+      replacement.setSelectionRange(cursor, cursor);
+    }
   });
 
   const sortSelect = document.getElementById('routeSortSelect');
@@ -1128,9 +1149,14 @@ function openCompareModal() {
         openCompareModal();
       });
     });
+
+    document.querySelectorAll('.compare-open').forEach(link => {
+      link.addEventListener('click', closeCompareModal);
+    });
   }
 
   overlay.classList.add('open');
+  document.body.classList.add('modal-open');
 }
 
 if (typeof module !== 'undefined' && module.exports) {

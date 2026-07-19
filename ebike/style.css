@@ -90,6 +90,10 @@ body {
   flex-direction: column;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 /* Background Topography Pattern */
 body::before {
   content: "";
@@ -2347,5 +2351,261 @@ button {
 
   .map-hint-text {
     font-size: 0.88rem;
+  }
+}
+
+/* Text-resize reflow: keep every control usable at 200% without clipping. */
+.header-inner,
+.header-actions,
+.section-title,
+.log-import-export {
+  flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.action-pill-btn,
+.section-title,
+.map-point-count,
+.score-label-sub,
+.score-formula-title,
+.score-bar-info,
+.route-spec-list,
+.log-import-export > * {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.log-import-export > * {
+  flex: 1 1 10rem;
+}
+
+.battery-modes-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.battery-mode-item {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+  .detail-action-toolbar > * {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    justify-content: center;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 480px) {
+  .battery-modes-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .weather-advisory-box {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .weather-advisory-box > *:not(.icon-section),
+  .log-entry-form,
+  .form-two-columns,
+  .form-group,
+  .log-entry-info {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .weather-advisory-box > *:not(.icon-section) {
+    flex: 1 1 12rem;
+  }
+
+  .log-form-box {
+    padding: clamp(1rem, 6vw, 1.8rem);
+  }
+
+  .log-entry-card {
+    flex-wrap: wrap;
+  }
+
+  .btn-delete-log {
+    margin-left: auto;
+  }
+}
+
+/* Leaflet pans an intentionally oversized transformed tile canvas. Keep that
+   canvas from becoming document-level horizontal scroll on the map view. */
+html:has(.leaflet-map[data-map-ready="true"]),
+body:has(.leaflet-map[data-map-ready="true"]) {
+  overflow-x: clip;
+}
+
+/* Visual reflow for narrow screens and user text enlargement. */
+.main-content {
+  container-type: inline-size;
+}
+
+.mobile-bottom-dock {
+  container-type: inline-size;
+}
+
+.hero-title,
+.detail-title,
+.modal-title,
+.section-title,
+.hero-featured-name,
+.log-entry-route,
+.dock-btn,
+.action-pill-btn,
+.score-label-sub,
+.score-formula-title,
+.route-spec-list,
+.log-import-export > * {
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.hero-title,
+.detail-title {
+  font-size: min(2.6rem, 10vw);
+}
+
+.brand-logo {
+  font-size: min(1.45rem, 5vw);
+}
+
+.hero-immersive,
+.detail-map-full,
+#logFormSection,
+.log-history-column {
+  scroll-margin-top: 8rem;
+  scroll-margin-bottom: 6rem;
+}
+
+@container (max-width: 70rem) {
+  .log-grid-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-content-layer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hero-featured-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .route-card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+  }
+
+  .card-kpi-row {
+    grid-template-columns: repeat(auto-fit, minmax(min(7rem, 100%), 1fr));
+  }
+
+  .card-type-tag {
+    max-width: calc(100% - 2rem);
+    white-space: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .card-actions-footer {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .btn-card-explore {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+@container (max-width: 25rem) {
+  .dock-btn > span {
+    display: none;
+  }
+
+  .mobile-bottom-dock {
+    padding-block: 0.35rem calc(0.35rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-height: 500px) {
+  .dock-btn > span {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-box,
+  .score-breakdown-header,
+  .score-breakdown-header > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .score-breakdown-header > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding-inline: 5vw;
+  }
+
+  .modal-window,
+  .section-box,
+  .detail-hero-banner,
+  .log-form-box,
+  .log-entry-card {
+    padding: 5vw;
+  }
+
+  .hero-title,
+  .detail-title {
+    font-size: min(2.6rem, 8vw);
+  }
+
+  .hero-eyebrow {
+    font-size: min(0.78rem, 3vw);
+    overflow-wrap: normal;
+  }
+
+  .hero-subtitle,
+  .hero-featured-name {
+    font-size: min(1.1rem, 4vw);
+    overflow-wrap: normal;
+  }
+
+  .modal-title,
+  .section-title,
+  .log-entry-route {
+    font-size: min(1.6rem, 6vw);
+  }
+
+  .form-label,
+  .form-input,
+  .form-select,
+  .form-textarea,
+  .btn-submit-log {
+    font-size: min(1rem, 5vw);
+  }
+
+  .leaflet-control-attribution {
+    font-size: 11px !important;
+    line-height: 1.2;
   }
 }
