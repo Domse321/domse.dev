@@ -1,133 +1,151 @@
-const curatedDescriptions = {
-  'domse.dev-2.0': 'Aktuelle domse.dev-Webseite mit Projektzentrale, Medienbereich, E-Bike Scout, Sportplan und GitHub-Integration.',
-  'domse.dev': 'Älterer Webauftritt von Domse, weiterhin als technische Referenz im Repository vorhanden.',
-  'Rust-Scrap-Calculator': 'Interaktiver Rechner rund um Rust-Scrap und Ressourcenplanung.',
-  'HyperV-VMs-Auslesen': 'PowerShell-Helfer zum Auslesen und Strukturieren von Hyper-V VM-Informationen.',
-  'Win11-Kompabilitaet': 'PowerShell-Projekt zur Prüfung und Dokumentation von Windows-11-Kompatibilität.'
-};
+(() => {
+  'use strict';
 
-const fallbackRepos = [
-  { name: 'domse.dev-2.0', description: curatedDescriptions['domse.dev-2.0'], html_url: 'https://github.com/Domse321/domse.dev-2.0', language: 'HTML', stargazers_count: 0, forks_count: 0, updated_at: new Date().toISOString() },
-  { name: 'Rust-Scrap-Calculator', description: curatedDescriptions['Rust-Scrap-Calculator'], html_url: 'https://github.com/Domse321/Rust-Scrap-Calculator', language: 'TypeScript', stargazers_count: 0, forks_count: 0, updated_at: new Date().toISOString() },
-  { name: 'HyperV-VMs-Auslesen', description: curatedDescriptions['HyperV-VMs-Auslesen'], html_url: 'https://github.com/Domse321/HyperV-VMs-Auslesen', language: 'PowerShell', stargazers_count: 0, forks_count: 0, updated_at: new Date().toISOString() }
-];
+  document.documentElement.classList.add('js');
 
-const languageClasses = {
-  HTML: 'lang-html', JavaScript: 'lang-javascript', TypeScript: 'lang-typescript', PowerShell: 'lang-powershell', CSS: 'lang-css', Shell: 'lang-shell'
-};
+  const allowedVideos = new Map([
+    ['i3xdJkqxBK8', 'The Script'],
+    ['SWRWhE2yYJs', 'LetsHugo Manhunt Clutch'],
+    ['6FRGj-8GBlE', 'Rust: Harbor Control']
+  ]);
 
-let allRepos = [];
-
-function formatDate(value) {
-  try { return new Intl.DateTimeFormat('de-DE', { month: 'short', year: 'numeric' }).format(new Date(value)); }
-  catch { return 'aktuell'; }
-}
-
-function descriptionFor(repo) {
-  return curatedDescriptions[repo.name] || repo.description || 'Öffentliches Projekt von Domse — Details und Code direkt auf GitHub.';
-}
-
-function repoCard(repo) {
-  const language = repo.language || 'Code';
-  const langClass = languageClasses[language] || 'lang-default';
-  return `
-    <article class="repo-card reveal visible">
-      <div class="repo-top">
-        <a class="repo-name" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a>
-        <span class="badge">↗</span>
-      </div>
-      <p class="repo-description">${descriptionFor(repo)}</p>
-      <div class="repo-meta">
-        <span class="badge"><span class="language-dot ${langClass}"></span>${language}</span>
-        <span class="badge">★ ${repo.stargazers_count ?? 0}</span>
-        <span class="badge">⑂ ${repo.forks_count ?? 0}</span>
-        <span class="badge">Update ${formatDate(repo.updated_at)}</span>
-      </div>
-    </article>
-  `;
-}
-
-function renderRepos(repos) {
-  const grid = document.querySelector('#repoGrid');
-  const status = document.querySelector('#repoStatus');
-  if (!grid || !status) return;
-  if (!repos.length) {
-    grid.innerHTML = '';
-    status.textContent = 'Keine passenden Repositories gefunden.';
-    return;
+  function setupYear() {
+    const year = document.querySelector('#year');
+    if (year) year.textContent = String(new Date().getFullYear());
   }
-  status.textContent = `${repos.length} öffentliche Repositories angezeigt.`;
-  grid.innerHTML = repos.map(repoCard).join('');
-}
 
-async function loadRepos() {
-  const status = document.querySelector('#repoStatus');
-  try {
-    const response = await fetch('https://api.github.com/users/Domse321/repos?sort=updated&per_page=100', {
-      headers: { Accept: 'application/vnd.github+json' }
+  function setupFlowStudio() {
+    const studio = document.querySelector('[data-flow-studio]');
+    if (!studio) return;
+
+    const tabs = [...studio.querySelectorAll('[role="tab"][data-flow]')];
+    const panels = [...studio.querySelectorAll('[role="tabpanel"][data-flow-panel]')];
+    if (!tabs.length || !panels.length) return;
+
+    const select = (nextTab, moveFocus = false) => {
+      const id = nextTab.dataset.flow;
+      tabs.forEach((tab) => {
+        const active = tab === nextTab;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+      panels.forEach((panel) => {
+        const active = panel.dataset.flowPanel === id;
+        panel.classList.toggle('is-active', active);
+        panel.hidden = !active;
+      });
+      if (moveFocus) nextTab.focus();
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', (event) => {
+        let nextIndex = null;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = tabs.length - 1;
+        if (nextIndex === null) return;
+        event.preventDefault();
+        select(tabs[nextIndex], true);
+      });
     });
-    if (!response.ok) throw new Error(`GitHub API ${response.status}`);
-    const repos = await response.json();
-    allRepos = repos
-      .filter(repo => !repo.fork)
-      .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-    renderRepos(allRepos);
-  } catch (error) {
-    allRepos = fallbackRepos;
-    if (status) status.textContent = 'GitHub API gerade nicht erreichbar — kuratierter Fallback aktiv.';
-    renderRepos(allRepos);
-  }
-}
 
-function setupSearch() {
-  const input = document.querySelector('#repoSearch');
-  if (!input) return;
-  input.addEventListener('input', () => {
-    const q = input.value.trim().toLowerCase();
-    const filtered = allRepos.filter(repo => [repo.name, repo.description, repo.language]
-      .filter(Boolean)
-      .some(value => String(value).toLowerCase().includes(q)));
-    renderRepos(filtered);
-  });
-}
-
-function setupReveal() {
-  const items = document.querySelectorAll('.reveal');
-  if (!('IntersectionObserver' in window)) {
-    items.forEach(item => item.classList.add('visible'));
-    return;
+    const selected = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') || tabs[0];
+    select(selected);
   }
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+
+  function setupVideoModal() {
+    const modal = document.querySelector('#videoModal');
+    const player = document.querySelector('#videoPlayer');
+    const title = document.querySelector('#videoModalTitle');
+    const playbackToggle = document.querySelector('#videoPlaybackToggle');
+    const externalLink = document.querySelector('#videoExternalLink');
+    if (!modal || !player || !title || !playbackToggle || !externalLink) return;
+
+    const closeButton = modal.querySelector('.video-close');
+    let trigger = null;
+    let playing = true;
+
+    const sendPlayerCommand = (command) => {
+      const frame = player.querySelector('iframe');
+      if (!frame?.contentWindow) return;
+      frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: command, args: [] }), 'https://www.youtube-nocookie.com');
+    };
+
+    const close = () => {
+      if (!modal.open) return;
+      player.replaceChildren();
+      modal.close();
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      if (trigger instanceof HTMLElement) trigger.focus();
+      trigger = null;
+    };
+
+    const open = (button) => {
+      const id = button.dataset.videoId || '';
+      if (!allowedVideos.has(id)) return;
+
+      trigger = button;
+      title.textContent = button.dataset.videoTitle || allowedVideos.get(id);
+      externalLink.href = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
+      playing = true;
+      playbackToggle.textContent = 'Pausieren';
+
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&controls=0&enablejsapi=1&rel=0`;
+      frame.title = `${title.textContent} auf YouTube`;
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.tabIndex = -1;
+      frame.setAttribute('aria-hidden', 'true');
+      player.replaceChildren(frame);
+
+      modal.showModal();
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      closeButton?.focus();
+    };
+
+    document.querySelectorAll('[data-video-id]').forEach((button) => {
+      button.addEventListener('click', () => open(button));
+    });
+    modal.querySelectorAll('[data-video-close]').forEach((button) => button.addEventListener('click', close));
+    playbackToggle.addEventListener('click', () => {
+      playing = !playing;
+      sendPlayerCommand(playing ? 'playVideo' : 'pauseVideo');
+      playbackToggle.textContent = playing ? 'Pausieren' : 'Weiter abspielen';
+    });
+    modal.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      close();
+    });
+
+    modal.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusable = [...modal.querySelectorAll('button:not([disabled]), a[href]')]
+        .filter((element) => !element.hidden && element.getClientRects().length);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     });
-  }, { threshold: 0.12 });
-  items.forEach(item => observer.observe(item));
-}
+  }
 
-function setupYear() {
-  const year = document.querySelector('#year');
-  if (year) year.textContent = new Date().getFullYear();
-}
-
-function setupHomelabTabs() {
-  const tabs = [...document.querySelectorAll('[data-homelab-tab]')];
-  const panels = [...document.querySelectorAll('[data-homelab-panel]')];
-  if (!tabs.length || !panels.length) return;
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const id = tab.dataset.homelabTab;
-      tabs.forEach(item => item.classList.toggle('active', item === tab));
-      panels.forEach(panel => panel.classList.toggle('active', panel.dataset.homelabPanel === id));
-    });
-  });
-}
-
-setupYear();
-setupReveal();
-setupSearch();
-setupHomelabTabs();
-loadRepos();
+  setupYear();
+  setupFlowStudio();
+  setupVideoModal();
+})();

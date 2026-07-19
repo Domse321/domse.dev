@@ -4,199 +4,269 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index, follow">
-  <meta name="description" content="Domse — digitale Projekte, Web-Tools, Medienformate, Automatisierung und persönliche Dashboards.">
-  <meta name="theme-color" content="#070912">
-  <title>Domse — Projekte, Tools & Medien</title>
-  <link rel="preconnect" href="https://api.github.com">
-  <link rel="stylesheet" href="assets/site.css?v=20260601-homelab-02">
-  <script src="assets/site.js?v=20260601-homelab-02" defer></script>
+  <meta name="description" content="Domse baut praktische Tools, Automatisierungen und Medienprojekte — vom E-Bike Scout über den Sportplan bis zum eigenen Homelab.">
+  <meta name="theme-color" content="#0a0b0d">
+  <link rel="canonical" href="https://domse.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="domse.dev">
+  <meta property="og:title" content="Domse — Tools, Systeme & Medien">
+  <meta property="og:description" content="Persönliche Web-Tools, Automatisierungen, Homelab-Projekte und ausgewählte Videoarbeiten.">
+  <meta property="og:url" content="https://domse.dev/">
+  <meta property="og:image" content="https://domse.dev/assets/landing/og-domse.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Domse — Tools, Systeme & Medien">
+  <meta name="twitter:description" content="Persönliche Web-Tools, Automatisierungen, Homelab-Projekte und ausgewählte Videoarbeiten.">
+  <meta name="twitter:image" content="https://domse.dev/assets/landing/og-domse.png">
+  <title>Domse — Tools, Systeme & Medien</title>
+  <link rel="icon" href="/assets/landing/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css?v=20260720-personal-systems-01">
+  <script src="/assets/site.js?v=20260720-personal-systems-01" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"domse.dev","url":"https://domse.dev/","description":"Persönliche Web-Tools, Automatisierungen, Homelab-Projekte und Medienarbeiten von Domse."}</script>
 </head>
 <body>
-  <div class="ambient" aria-hidden="true">
-    <span></span><span></span><span></span>
-  </div>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Zur domse.dev Startseite">
-      <span class="brand-mark">D</span>
-      <span><strong>Domse</strong><small>Projekte · Tools · Medien</small></span>
+  <header class="global-header">
+    <a class="global-brand" href="/" aria-label="Zur domse.dev Startseite">
+      <span class="global-brand-mark" aria-hidden="true">D</span>
+      <span class="global-brand-copy"><strong>domse.dev</strong><small>Personal systems</small></span>
     </a>
-    <nav aria-label="Hauptnavigation">
-      <a class="nav-pill" href="/ebike/">E-Bike</a>
-      <a class="nav-pill nav-pill-accent" href="/sport/">Sport</a>
+    <nav class="global-nav" aria-label="Hauptnavigation">
+      <a href="/ebike/">E-Bike</a>
+      <a href="/sport/">Sport</a>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero section-shell">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Offizielle Projektzentrale · domse.dev</p>
-        <h1>Digitale Projekte, praktische Tools und Medienideen an einem Ort.</h1>
-        <p class="hero-lead">domse.dev bündelt ausgewählte digitale Werkzeuge, Medieninhalte und einen Einblick in das eigene Homelab. Klar strukturiert, dauerhaft nutzbar und auf praktische Bedienbarkeit ausgelegt.</p>
+  <main id="main">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker"><span aria-hidden="true">01</span> Gebaut, um benutzt zu werden</p>
+        <h1 id="hero-title">Tools, Systeme und Medien, die <em>etwas bewegen.</em></h1>
+        <p class="hero-lead">Ich baue E-Bike-Routen, Training, Automatisierung und Video — persönliche Projekte, die nicht in einer Ideenliste liegen bleiben, sondern laufen.</p>
         <div class="hero-actions">
-          <a class="button primary" href="/ebike/">E-Bike Scout öffnen</a>
-          <a class="button ghost" href="/sport/">Sportplan öffnen</a>
+          <a class="button button-primary" href="#projects">Projekte entdecken <span aria-hidden="true">↓</span></a>
+          <a class="button button-quiet" href="#worklog">Was zuletzt entstand</a>
         </div>
       </div>
-      <div class="hero-panel reveal delay-1" aria-label="Projektstatus">
-        <div class="orbital-card">
-          <div class="status-row"><span class="pulse"></span> domse.dev live</div>
-          <div class="metric-grid">
-            <div><strong>Homelab</strong><span>Infrastruktur, Dienste, Automatisierung</span></div>
-            <div><strong>Tools</strong><span>E-Bike, Sport, persönliche Planung</span></div>
-            <div><strong>Media</strong><span>Video, Gaming, Formate</span></div>
-          </div>
-          <div class="terminal-card">
-            <span>$ serve --domain domse.dev</span>
-            <span>✓ offizielle Seite aktiv</span>
-            <span>✓ Unterseiten: /ebike und /sport</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="section-shell strip reveal" aria-label="Schwerpunkte">
-      <div><span>01</span><strong>Homelab als stabile Basis</strong></div>
-      <div><span>02</span><strong>Nützliche Tools für Alltag und Training</strong></div>
-      <div><span>03</span><strong>Medien- und Gaming-Inhalte</strong></div>
-    </section>
-
-    <section id="overview" class="section-shell overview-section reveal" aria-label="Seitenübersicht">
-      <div class="overview-copy">
-        <p class="eyebrow">Schnelleinstieg</p>
-        <h2>Direkt zu den Bereichen, die gerade relevant sind.</h2>
-        <p>Die wichtigsten Inhalte sind schnell erreichbar: Routenauswahl fürs E-Bike, Trainingsplan für zuhause und ein echter, kompakt zusammengefasster Blick in das Homelab dahinter.</p>
-      </div>
-      <div class="overview-grid">
-        <a href="/ebike/" class="overview-card highlight-card"><span>Tool</span><strong>E-Bike Scout</strong><small>Routen, GPX, Akku- und Zeitplanung</small></a>
-        <a href="/sport/" class="overview-card highlight-card"><span>Tool</span><strong>Sportplan</strong><small>Dumbbell-Routine, Timer und Fortschritt</small></a>
-        <a href="#homelab" class="overview-card"><span>Showcase</span><strong>Homelab</strong><small>Infrastruktur, Dienste und Automatisierung</small></a>
-        <a href="#media" class="overview-card"><span>Medien</span><strong>Videoarbeiten</strong><small>Kurzfilm und Gaming-Momente</small></a>
-      </div>
-    </section>
-
-    <section id="homelab" class="section-shell homelab-section">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Homelab Showcase</p>
-        <h2>Ein Blick hinter die Kulissen.</h2>
-        <p>Das Homelab ist der Maschinenraum hinter domse.dev: Web-Auslieferung, Automatisierung, Smart-Home-Brücken und Agenten-Workflows. Die Übersicht zeigt die großen Bausteine und wie sie zusammenarbeiten.</p>
-      </div>
-      <div class="homelab-console reveal">
-        <div class="homelab-map" aria-label="Homelab Topologie">
-          <div class="map-node node-edge"><strong>Edge</strong><span>Cloudflare · Proxy · Routing</span></div>
-          <div class="map-line line-a"></div>
-          <div class="map-node node-web"><strong>Web</strong><span>domse.dev · E-Bike · Sport</span></div>
-          <div class="map-line line-b"></div>
-          <div class="map-node node-core"><strong>Core</strong><span>Proxmox · Container · Services</span></div>
-          <div class="map-line line-c"></div>
-          <div class="map-node node-auto"><strong>Automation</strong><span>Home Assistant · n8n · Hermes</span></div>
-        </div>
-        <div class="homelab-inspector">
-          <div class="homelab-tabs" role="tablist" aria-label="Homelab Einblicke">
-            <button type="button" class="homelab-tab active" data-homelab-tab="edge">Edge</button>
-            <button type="button" class="homelab-tab" data-homelab-tab="services">Dienste</button>
-            <button type="button" class="homelab-tab" data-homelab-tab="automation">Automation</button>
-            <button type="button" class="homelab-tab" data-homelab-tab="ops">Betrieb</button>
-          </div>
-          <article class="homelab-panel active" data-homelab-panel="edge">
-            <p class="eyebrow">Routing & Veröffentlichung</p>
-            <h3>Vom Request zur Website.</h3>
-            <p>domse.dev kommt über eine schlanke Web-Schicht: Domain, Proxy und statische Auslieferung greifen ineinander, damit die öffentlichen Seiten schnell und übersichtlich erreichbar sind.</p>
-            <ul><li>Cloudflare als Außenkante</li><li>Reverse Proxy für Host-Routing</li><li>Web-Container für öffentliche Seiten</li></ul>
-          </article>
-          <article class="homelab-panel" data-homelab-panel="services">
-            <p class="eyebrow">Service-Landschaft</p>
-            <h3>Kleine Dienste statt Monolith.</h3>
-            <p>Das Setup besteht aus klar getrennten Bausteinen: Webseiten, Automationen, Minecraft/Crafty, Suche, Smart Home und Agenten-Dienste laufen als eigene Schichten statt als unübersichtlicher Alles-in-einem-Knoten.</p>
-            <ul><li>Proxmox als Virtualisierungsbasis</li><li>Web, Smart Home und Automationen als eigene Bereiche</li><li>Monitoring und Übersichten für den Alltag</li></ul>
-          </article>
-          <article class="homelab-panel" data-homelab-panel="automation">
-            <p class="eyebrow">Event statt Polling</p>
-            <h3>Automatisierung, die wirklich Arbeit spart.</h3>
-            <p>Home Assistant, n8n und Hermes verbinden Ereignisse mit Aktionen: Erinnerungen, Statuskarten, Deployments und Kontrollpfade landen dort, wo sie gebraucht werden — nicht als lose Bastelliste.</p>
-            <ul><li>Home Assistant als Schaltzentrale</li><li>n8n für Workflows und Integrationen</li><li>Hermes für geprüfte Aktionen und Benachrichtigungen</li></ul>
-          </article>
-          <article class="homelab-panel" data-homelab-panel="ops">
-            <p class="eyebrow">Betrieb & Pflege</p>
-            <h3>Wartbar, dokumentiert, wiederholbar.</h3>
-            <p>Änderungen laufen über definierte Repos und Deployments. Dazu kommen Notizen, Statusübersichten und wiederholbare Abläufe, damit die Umgebung nicht zur Kabelkiste mit Webinterface wird.</p>
-            <ul><li>Git-basierte Deployments für öffentliche Seiten</li><li>Dokumentierte Wartungswege</li><li>Status- und Kontrollübersichten für den Alltag</li></ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="media" class="section-shell media-section">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Ausgewählte Inhalte</p>
-        <h2>Medien und Videoarbeiten</h2>
-        <p>Eine kleine Auswahl veröffentlichter Inhalte — von Kurzfilm bis Gaming-Moment, kompakt eingebettet und direkt abspielbar.</p>
-      </div>
-      <div class="video-grid video-grid-three">
-        <article class="video-card video-card-embed reveal">
-          <div class="video-frame">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/i3xdJkqxBK8?rel=0&modestbranding=1" title="The Script Kurzfilm" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
-          <p class="eyebrow">Kurzfilm</p>
-          <h3>The Script</h3>
-          <p>Ein Kurzfilm über Drehbücher, Zeitreisen und den Moment, in dem Fiktion zur Realität wird.</p>
+      <div class="hero-system" aria-label="Drei verbundene Arbeitsbereiche: Bewegen, Bauen und Erzählen">
+        <svg class="system-lines" viewBox="0 0 560 480" role="img" aria-label="Abstrakte Verbindung zwischen Routen, Systemen und Medien">
+          <defs>
+            <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffb000"/>
+              <stop offset="1" stop-color="#70d7e8"/>
+            </linearGradient>
+          </defs>
+          <path class="signal-track" d="M82 106 C176 44 210 202 298 154 S404 80 486 128 C536 158 482 226 412 226 S322 252 354 322 C382 384 268 424 192 366 S92 322 84 240 C78 184 140 180 174 212"/>
+          <path class="signal-dash" d="M82 106 C176 44 210 202 298 154 S404 80 486 128 C536 158 482 226 412 226 S322 252 354 322 C382 384 268 424 192 366 S92 322 84 240 C78 184 140 180 174 212"/>
+          <circle cx="82" cy="106" r="8"/>
+          <circle cx="298" cy="154" r="8"/>
+          <circle cx="354" cy="322" r="8"/>
+        </svg>
+        <article class="system-note note-route">
+          <span>Bewegen</span><strong>30 Touren</strong><small>Route, Akku, Höhenmeter</small>
         </article>
-        <article class="video-card video-card-embed reveal delay-1">
-          <div class="video-frame">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/SWRWhE2yYJs?rel=0&modestbranding=1" title="LetsHugo Manhunt Clutch" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
-          <p class="eyebrow">Gaming Highlight</p>
-          <h3>LetsHugo Manhunt Clutch</h3>
-          <p>Ein kompakter Zusammenschnitt eines entscheidenden Survival-Moments mit mehreren Perspektiven.</p>
+        <article class="system-note note-build">
+          <span>Bauen</span><strong>Eigene Systeme</strong><small>Web, Automation, Betrieb</small>
         </article>
-        <article class="video-card video-card-embed reveal delay-2">
-          <div class="video-frame">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/6FRGj-8GBlE?rel=0&modestbranding=1" title="Rust Harbor Control" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <article class="system-note note-story">
+          <span>Erzählen</span><strong>Video & Gaming</strong><small>Schnitt, Formate, Momente</small>
+        </article>
+        <div class="system-stamp" aria-hidden="true"><span>DOMSE</span><strong>BUILD / RIDE / REPEAT</strong></div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects shell" aria-labelledby="projects-title">
+      <header class="section-intro">
+        <p class="kicker"><span aria-hidden="true">02</span> Zwei Werkzeuge, zwei Rhythmen</p>
+        <h2 id="projects-title">Direkt rein statt lange suchen.</h2>
+        <p>Die beiden Hauptprojekte sind für echte Nutzung gebaut — unterwegs auf dem Rad und zuhause im Training.</p>
+      </header>
+
+      <div class="project-switchboard">
+        <a class="project-card project-ebike" href="/ebike/" aria-label="E-Bike Scout öffnen">
+          <div class="project-meta"><span>Tourenwerkzeug</span><span>Hameln · Weserbergland</span></div>
+          <div class="project-copy">
+            <p class="project-index">A / 01</p>
+            <h3>E-Bike Scout</h3>
+            <p>Routen auswählen, Reichweite einschätzen, Höhenprofil lesen und die passende Runde als GPX mitnehmen.</p>
+            <span class="project-link">Scout öffnen <b aria-hidden="true">↗</b></span>
           </div>
-          <p class="eyebrow">Gaming Projekt</p>
-          <h3>Rust: Harbor Control</h3>
-          <p>Ein Rust-Video mit Fokus auf Progression, Kontrolle und Spielsituationen rund um den Hafen.</p>
+          <div class="route-visual" aria-hidden="true">
+            <svg viewBox="0 0 620 260">
+              <path class="route-grid" d="M0 52H620M0 104H620M0 156H620M0 208H620M124 0V260M248 0V260M372 0V260M496 0V260"/>
+              <path class="route-shadow" d="M34 201 C91 177 100 94 166 112 S252 212 320 154 S414 55 481 88 S542 177 590 55"/>
+              <path class="route-main" d="M34 201 C91 177 100 94 166 112 S252 212 320 154 S414 55 481 88 S542 177 590 55"/>
+              <circle cx="34" cy="201" r="8"/><circle cx="590" cy="55" r="8"/>
+            </svg>
+            <div class="route-readout"><span>42,8 km</span><span>610 hm</span><span>2:54 h</span></div>
+          </div>
+        </a>
+
+        <a class="project-card project-sport" href="/sport/" aria-label="Domse Sportplan öffnen">
+          <div class="project-meta"><span>Trainingswerkzeug</span><span>Dumbbells · Zuhause</span></div>
+          <div class="project-copy">
+            <p class="project-index">B / 02</p>
+            <h3>Sportplan</h3>
+            <p>Zehn Übungen, drei Gewichtsstufen, ein Session-Timer und ein klarer Ablauf für langfristigen Fortschritt.</p>
+            <span class="project-link">Training starten <b aria-hidden="true">↗</b></span>
+          </div>
+          <div class="training-visual" aria-hidden="true">
+            <div class="rep-ring"><span>07</span><small>/ 10</small></div>
+            <div class="set-bars"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="weight-stack"><span>10 kg</span><span>7,5 kg</span><span>5 kg</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="worklog" class="worklog shell" aria-labelledby="worklog-title">
+      <header class="section-intro section-intro-row">
+        <div>
+          <p class="kicker"><span aria-hidden="true">03</span> Werkstattjournal</p>
+          <h2 id="worklog-title">Zuletzt gebaut.</h2>
+        </div>
+        <p>Keine erfundenen Statuspunkte — nur konkrete Dinge, die neu entstanden oder besser geworden sind.</p>
+      </header>
+      <ol class="log-list">
+        <li>
+          <time datetime="2026-07-19">19.07.2026</time>
+          <span class="log-project">E-Bike Scout</span>
+          <strong>Neue Tourenwelt mit Karte, Höhenprofil, Vergleich, Logbuch und zoombarer Galerie.</strong>
+          <a href="/ebike/">Ansehen <span aria-hidden="true">↗</span></a>
+        </li>
+        <li>
+          <time datetime="2026-07-19">19.07.2026</time>
+          <span class="log-project">domse.dev</span>
+          <strong>Produktionsseite, Tool-Navigation und öffentliche Projektstruktur zusammengeführt.</strong>
+          <a href="#systems">System ansehen <span aria-hidden="true">↓</span></a>
+        </li>
+        <li>
+          <time datetime="2026-05-17">17.05.2026</time>
+          <span class="log-project">Sportplan</span>
+          <strong>Full-Body-Routine mit Timer, Gewichtsstufen und lokalem Fortschritt gebaut.</strong>
+          <a href="/sport/">Öffnen <span aria-hidden="true">↗</span></a>
+        </li>
+      </ol>
+    </section>
+
+    <section id="systems" class="systems shell" aria-labelledby="systems-title">
+      <header class="section-intro systems-heading">
+        <p class="kicker"><span aria-hidden="true">04</span> Das Homelab dahinter</p>
+        <h2 id="systems-title">Infrastruktur, die Dinge erledigt.</h2>
+        <p>Das eigene Homelab verbindet Web-Projekte, Automatisierung und den täglichen Betrieb zu nachvollziehbaren Abläufen.</p>
+      </header>
+
+      <div class="flow-studio" data-flow-studio>
+        <div class="flow-tabs" role="tablist" aria-label="Homelab-Abläufe">
+          <button type="button" role="tab" id="flow-tab-publish" aria-selected="true" aria-controls="flow-publish" data-flow="publish">Veröffentlichen</button>
+          <button type="button" role="tab" id="flow-tab-automate" aria-selected="false" aria-controls="flow-automate" data-flow="automate" tabindex="-1">Automatisieren</button>
+          <button type="button" role="tab" id="flow-tab-operate" aria-selected="false" aria-controls="flow-operate" data-flow="operate" tabindex="-1">Betreiben</button>
+        </div>
+
+        <div class="flow-panels">
+          <article class="flow-panel is-active" id="flow-publish" role="tabpanel" aria-labelledby="flow-tab-publish" data-flow-panel="publish">
+            <div class="flow-copy"><span>01 / Publish</span><h3>Vom Commit zur laufenden Seite.</h3><p>Änderungen werden versioniert, geprüft und reproduzierbar veröffentlicht. So bleiben öffentliche Seiten und Werkzeuge nachvollziehbar statt handkopiert.</p></div>
+            <ol class="flow-path" aria-label="Veröffentlichungsablauf"><li><b>Git</b><span>Änderung</span></li><li><b>Deploy</b><span>Abgleich</span></li><li><b>Web</b><span>Ergebnis</span></li></ol>
+          </article>
+          <article class="flow-panel" id="flow-automate" role="tabpanel" aria-labelledby="flow-tab-automate" data-flow-panel="automate">
+            <div class="flow-copy"><span>02 / Automate</span><h3>Ein Ereignis wird zu einer Aktion.</h3><p>Home Assistant, n8n und Hermes verbinden Signale mit sinnvollen Schritten — von Erinnerungen bis zu geprüften Arbeitsabläufen.</p></div>
+            <ol class="flow-path" aria-label="Automatisierungsablauf"><li><b>Event</b><span>Auslöser</span></li><li><b>Flow</b><span>Logik</span></li><li><b>Action</b><span>Wirkung</span></li></ol>
+          </article>
+          <article class="flow-panel" id="flow-operate" role="tabpanel" aria-labelledby="flow-tab-operate" data-flow-panel="operate">
+            <div class="flow-copy"><span>03 / Operate</span><h3>Viele kleine Dienste, ein klarer Betrieb.</h3><p>Web, Smart Home, Gameserver und Automationen laufen getrennt, bleiben beobachtbar und lassen sich gezielt pflegen.</p></div>
+            <ol class="flow-path" aria-label="Betriebsablauf"><li><b>Service</b><span>Aufgabe</span></li><li><b>Signal</b><span>Zustand</span></li><li><b>Review</b><span>Reaktion</span></li></ol>
+          </article>
+        </div>
+
+        <div class="tech-line" aria-label="Eingesetzte Technologien">
+          <span>Proxmox</span><span>Home Assistant</span><span>n8n</span><span>Hermes</span><span>Cloudflare</span><span>Git</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="media" class="media shell" aria-labelledby="media-title">
+      <header class="section-intro section-intro-row">
+        <div><p class="kicker"><span aria-hidden="true">05</span> Medien & Schnitt</p><h2 id="media-title">Geschichten in Bewegung.</h2></div>
+        <p>Drei ausgewählte Arbeiten. Der YouTube-Player wird erst geladen, wenn du dich bewusst für ein Video entscheidest.</p>
+      </header>
+
+      <div class="reel-grid">
+        <article class="reel-card reel-featured">
+          <div class="reel-frame">
+            <img src="/assets/landing/the-script.jpg" width="1280" height="720" alt="Filmszene aus dem Kurzfilm The Script" loading="lazy">
+            <button class="reel-play" type="button" data-video-id="i3xdJkqxBK8" data-video-title="The Script" aria-label="The Script abspielen"><span aria-hidden="true">▶</span> Film ansehen</button>
+            <span class="reel-timecode">SHORT FILM · 16:9</span>
+          </div>
+          <div class="reel-copy"><div><span>Kurzfilm</span><h3>The Script</h3></div><p>Drehbücher, Zeitreisen und der Moment, in dem Fiktion zur Realität wird.</p></div>
+          <a class="external-text" href="https://www.youtube.com/watch?v=i3xdJkqxBK8" target="_blank" rel="noopener noreferrer">Direkt auf YouTube öffnen ↗</a>
+        </article>
+
+        <article class="reel-card">
+          <div class="reel-frame">
+            <img src="/assets/landing/manhunt.jpg" width="1280" height="720" alt="Gaming-Szene aus dem LetsHugo Manhunt Clutch" loading="lazy">
+            <button class="reel-play reel-play-icon" type="button" data-video-id="SWRWhE2yYJs" data-video-title="LetsHugo Manhunt Clutch" aria-label="LetsHugo Manhunt Clutch abspielen"><span aria-hidden="true">▶</span></button>
+            <span class="reel-timecode">GAMING · MULTI POV</span>
+          </div>
+          <div class="reel-copy"><div><span>Gaming Highlight</span><h3>Manhunt Clutch</h3></div><p>Ein entscheidender Survival-Moment aus mehreren Perspektiven.</p></div>
+          <a class="external-text" href="https://www.youtube.com/watch?v=SWRWhE2yYJs" target="_blank" rel="noopener noreferrer">Auf YouTube ↗</a>
+        </article>
+
+        <article class="reel-card">
+          <div class="reel-frame">
+            <img src="/assets/landing/rust-harbor.jpg" width="1280" height="720" alt="Gaming-Szene aus Rust Harbor Control" loading="lazy">
+            <button class="reel-play reel-play-icon" type="button" data-video-id="6FRGj-8GBlE" data-video-title="Rust: Harbor Control" aria-label="Rust Harbor Control abspielen"><span aria-hidden="true">▶</span></button>
+            <span class="reel-timecode">RUST · PROGRESSION</span>
+          </div>
+          <div class="reel-copy"><div><span>Gaming Projekt</span><h3>Harbor Control</h3></div><p>Progression, Kontrolle und Spielsituationen rund um den Hafen.</p></div>
+          <a class="external-text" href="https://www.youtube.com/watch?v=6FRGj-8GBlE" target="_blank" rel="noopener noreferrer">Auf YouTube ↗</a>
         </article>
       </div>
     </section>
 
-    <section id="github" class="section-shell github-section">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Code & Repositories</p>
-        <h2>Öffentliche Projekte auf GitHub</h2>
-        <p>Die Karten laden öffentliche Repositories direkt über die GitHub API und zeigen Sprache, Kurzbeschreibung und direkte Links.</p>
+    <section id="code" class="code shell" aria-labelledby="code-title">
+      <header class="section-intro section-intro-row">
+        <div><p class="kicker"><span aria-hidden="true">06</span> Ausgewählter Code</p><h2 id="code-title">Projekte mit einem Zweck.</h2></div>
+        <a class="button button-quiet" href="https://github.com/Domse321" target="_blank" rel="noopener noreferrer">GitHub-Profil ↗</a>
+      </header>
+      <div class="code-list">
+        <a href="https://github.com/Domse321/domse.dev" target="_blank" rel="noopener noreferrer">
+          <span class="code-number">01</span><div><h3>domse.dev</h3><p>Diese Seite, der E-Bike Scout und der Sportplan als statische, schnelle Web-Produkte.</p></div><span class="code-tech">HTML · CSS · JS</span><b aria-hidden="true">↗</b>
+        </a>
+        <a href="https://github.com/Domse321/Rust-Scrap-Calculator" target="_blank" rel="noopener noreferrer">
+          <span class="code-number">02</span><div><h3>Rust Scrap Calculator</h3><p>Ressourcen und Scrap für Rust strukturiert kalkulieren, statt nebenbei Tabellen zu pflegen.</p></div><span class="code-tech">TypeScript</span><b aria-hidden="true">↗</b>
+        </a>
+        <a href="https://github.com/Domse321/HyperV-VMs-Auslesen" target="_blank" rel="noopener noreferrer">
+          <span class="code-number">03</span><div><h3>Hyper-V VM Inventory</h3><p>VM-Informationen auslesen, vereinheitlichen und für Administration greifbar machen.</p></div><span class="code-tech">PowerShell</span><b aria-hidden="true">↗</b>
+        </a>
       </div>
-      <div class="repo-toolbar reveal delay-1">
-        <div class="search-wrap">
-          <label for="repoSearch">Repos filtern</label>
-          <input id="repoSearch" type="search" placeholder="z.B. Rust, PowerShell, Website">
-        </div>
-        <a class="button ghost" href="https://github.com/Domse321" rel="noopener noreferrer" target="_blank">GitHub Profil öffnen</a>
-      </div>
-      <div id="repoStatus" class="repo-status">Repos werden geladen …</div>
-      <div id="repoGrid" class="repo-grid" aria-live="polite"></div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-meta">
-      <span>© <span id="year"></span> Domse</span>
-      <span>domse.dev</span>
-    </div>
-    <nav class="footer-social" aria-label="Kontakt und Plattformen">
-      <a href="https://discord.gg/eX4tEfd3" rel="noopener noreferrer" target="_blank" aria-label="Discord öffnen" title="Discord">
-        <img src="assets/social/discord.png" alt="" loading="lazy">
-      </a>
-      <a href="https://github.com/domse321" rel="noopener noreferrer" target="_blank" aria-label="GitHub öffnen" title="GitHub">
-        <img src="assets/social/github.png" alt="" loading="lazy">
-      </a>
-      <a href="https://youtube.com/@domse321?si=v1fHEhym9j43JawK" rel="noopener noreferrer" target="_blank" aria-label="YouTube öffnen" title="YouTube">
-        <img src="assets/social/youtube.png" alt="" loading="lazy">
-      </a>
-      <a href="https://twitch.tv/xdomse321x" rel="noopener noreferrer" target="_blank" aria-label="Twitch öffnen" title="Twitch">
-        <img src="assets/social/twitch.png" alt="" loading="lazy">
-      </a>
+  <footer class="site-footer shell">
+    <div class="footer-signoff"><span class="global-brand-mark" aria-hidden="true">D</span><div><strong>Gebaut in Hameln.</strong><span>Im eigenen Homelab. Für echte Nutzung.</span></div></div>
+    <nav class="footer-links" aria-label="Plattformen">
+      <a href="https://github.com/Domse321" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <a href="https://youtube.com/@domse321" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+      <a href="https://twitch.tv/xdomse321x" target="_blank" rel="noopener noreferrer">Twitch ↗</a>
+      <a href="https://discord.gg/eX4tEfd3" target="_blank" rel="noopener noreferrer">Discord ↗</a>
     </nav>
+    <div class="footer-bottom"><span>© <span id="year">2026</span> Domse</span><a href="#main">Nach oben ↑</a></div>
   </footer>
+
+  <dialog class="video-modal" id="videoModal" aria-labelledby="videoModalTitle" aria-hidden="true">
+    <div class="video-modal-backdrop" data-video-close></div>
+    <div class="video-modal-window" role="document">
+      <header><div><span>Jetzt auf YouTube</span><h2 id="videoModalTitle">Video</h2></div><button type="button" class="video-close" data-video-close aria-label="Video schließen">×</button></header>
+      <div class="video-player" id="videoPlayer"></div>
+      <div class="video-modal-actions">
+        <button type="button" id="videoPlaybackToggle">Pausieren</button>
+        <a id="videoExternalLink" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Mit voller Steuerung auf YouTube öffnen ↗</a>
+      </div>
+      <p>Mit dem Abspielen wird eine Verbindung zu YouTube hergestellt.</p>
+    </div>
+  </dialog>
 </body>
 </html>
