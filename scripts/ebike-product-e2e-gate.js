@@ -12,6 +12,7 @@ const REMOTE_BASE_URL = String(process.env.EBIKE_BASE_URL || '').replace(/\/+$/,
 const EXPECTED_HOST = String(process.env.EBIKE_EXPECTED_HOST || '');
 const HEADERS_FILE = String(process.env.EBIKE_HTTP_HEADERS_FILE || '');
 const RELEASE_ID = String(process.env.EBIKE_RELEASE_ID || '');
+const PUBLIC_TARGET = process.env.EBIKE_PUBLIC_TARGET === '1';
 const playwright = require(PLAYWRIGHT_MODULE);
 
 const MATRIX = [
@@ -72,6 +73,10 @@ function remoteConfig() {
   if (!REMOTE_BASE_URL) return { baseUrl: '', headers: {} };
   const target = new URL(REMOTE_BASE_URL);
   if (target.protocol !== 'https:' || target.hostname !== EXPECTED_HOST || !RELEASE_ID) throw new Error('remote target is not safely bound');
+  if (PUBLIC_TARGET) {
+    if (HEADERS_FILE) throw new Error('public target must not receive Access credentials');
+    return { baseUrl: target.origin, headers: {} };
+  }
   const stat = fs.statSync(HEADERS_FILE);
   if ((stat.mode & 0o077) !== 0) throw new Error('credential file permissions are unsafe');
   const credential = JSON.parse(fs.readFileSync(HEADERS_FILE, 'utf8'));

@@ -82,6 +82,11 @@ class MobileReleaseGateContractTests(unittest.TestCase):
         self.assertIn("CF-Access-Client-Secret", self.runner)
         self.assertNotIn("console.log(extraHTTPHeaders", self.runner)
 
+    def test_public_remote_collector_is_explicit_and_cannot_receive_access_headers(self):
+        self.assertIn("EBIKE_PUBLIC_TARGET", self.runner)
+        self.assertIn("public target must not receive Access credentials", self.runner)
+        self.assertIn("return { baseUrl: target.origin, extraHTTPHeaders: {} }", self.runner)
+
 
 if __name__ == "__main__":
     unittest.main()

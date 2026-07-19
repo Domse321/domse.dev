@@ -13,6 +13,7 @@ const REMOTE_BASE_URL = String(process.env.EBIKE_BASE_URL || '').replace(/\/+$/,
 const EXPECTED_REMOTE_HOST = String(process.env.EBIKE_EXPECTED_HOST || '');
 const HTTP_HEADERS_FILE = String(process.env.EBIKE_HTTP_HEADERS_FILE || '');
 const RELEASE_ID = String(process.env.EBIKE_RELEASE_ID || '');
+const PUBLIC_TARGET = process.env.EBIKE_PUBLIC_TARGET === '1';
 const MIN_TOUCH_TARGET = 44;
 const MATRIX = [
   { id: 'portrait-320', width: 320, height: 568, zoom: 1, orientation: 'portrait' },
@@ -61,6 +62,11 @@ function loadRemoteConfiguration() {
   const target = new URL(REMOTE_BASE_URL);
   if (target.protocol !== 'https:' || !EXPECTED_REMOTE_HOST || target.hostname !== EXPECTED_REMOTE_HOST) {
     throw new Error('remote E-Bike target is not bound to the expected HTTPS host');
+  }
+  if (PUBLIC_TARGET) {
+    if (HTTP_HEADERS_FILE) throw new Error('public target must not receive Access credentials');
+    if (!RELEASE_ID || !/^[a-zA-Z0-9._-]+$/.test(RELEASE_ID)) throw new Error('remote E-Bike collector requires a safe EBIKE_RELEASE_ID');
+    return { baseUrl: target.origin, extraHTTPHeaders: {} };
   }
   if (!HTTP_HEADERS_FILE) throw new Error('remote E-Bike collector requires EBIKE_HTTP_HEADERS_FILE');
   if (!RELEASE_ID || !/^[a-zA-Z0-9._-]+$/.test(RELEASE_ID)) throw new Error('remote E-Bike collector requires a safe EBIKE_RELEASE_ID');
