@@ -1,29 +1,20 @@
-# n8n E-Bike-Routenrecherche
+# n8n E-Bike-OSM-Evidenzrecherche V2
 
-Produktionsnaher, aber **inaktiv exportierter** Rechercheworkflow für die private E-Bike-App. Er recherchiert sonntags oder manuell Routenkandidaten, speichert sie intern zur Prüfung und veröffentlicht niemals auf einer Website.
+Reproduzierbarer, **inaktiv exportierter** Kandidatenworkflow für n8n 2.20.9. Er erzeugt ausschließlich maschinelle Evidenz zur manuellen Prüfung und veröffentlicht nichts.
 
-## Ablauf
+## Datenfluss
 
-1. **Manual Trigger** und **Weekly Sunday 07:00** (Workflow-Zeitzone `Europe/Berlin`).
-2. Deterministische Erzeugung von 22 deutschen Suchjobs: E-MTB und normales E-Bike für Hameln, Weserbergland, Süntel, Deister, Ith, Hils, Ottensteiner Hochfläche, Emmerthal, Hessisch Oldendorf, Bad Pyrmont und Coppenbrügge.
-3. **HTTP Request** an lokales SearXNG (`GET /search`, JSON).
-4. Normalisierung realer Treffer, Filterung unbrauchbarer Treffer, stabile URL-Bereinigung, In-Run-Deduplizierung und nachvollziehbarer Nutzwert-Score 0–100.
-5. Pro Kandidat **HTTP Request** an die Wikimedia-Commons-API; bestes Bild inklusive Thumbnail und interner Lizenzmetadaten wird angehängt.
-6. Upsert anhand `stable_key` in die n8n Data Table `ebike_route_research`.
-7. Finale Laufzusammenfassung mit Anzahl, Bildern, Durchschnittsscore und Regionen; `publish_performed: false`.
+1. **Manual Trigger** und sonntags 07:00 (`Europe/Berlin`).
+2. Overpass-Discovery benannter `route=bicycle|mtb`-Relationen im festen Weserbergland-Suchraum (51.70–52.62 N, 8.45–10.25 E).
+3. Discovery wird vor dem 250er-Cap fachlich (MTB, Netz, Distanz, Rundtour) und regional gerankt. Der zweite Overpass-Aufruf nutzt je stabiler OSM-Relations-ID `out geom`; nur dies liefert `members[].geometry`. Geometrien werden zusammengeführt und aufeinanderfolgende Dubletten entfernt.
+4. Fail-closed-Gates: mindestens 20 Punkte, jeder Punkt in der Such-BBox, 5–180 km, höchstens 2 km Lücke zwischen zusammengesetzten Segmenten, plausibler Schlussabstand (≤ 2,5 km oder 12 %), Geometrie/Diagonal-Verhältnis und maximal 35 % Abweichung zu einem vorhandenen OSM-Distanz-Tag.
+5. Evidenzscore 0–100 wird als Liste aus Code, Punkten und Begründung gespeichert. `bike_type` stammt aus `route`, `network`, Name/Beschreibung – nicht aus Suchjobs. Identität ist immer `osm_relation_<id>`.
+6. Faire Begrenzung: höchstens zwei Kandidaten je Region/Bike-Typ und 30 insgesamt.
+7. Drei Trackanker bei 20/50/80 % der **kumulativen Streckenlänge** je Kandidat; Commons-`geosearch` sucht je Anker bis zu zehn Dateien in 10 km Radius. Auswahl bis zu drei eindeutiger Bilder, nach berechneter Distanz sortiert.
+8. Zulässig sind nur `BITMAP` mit JPEG/PNG/WebP/TIFF und CC0, Public Domain/PD, CC BY oder CC BY-SA. CC BY/CC BY-SA wird ohne Creator, Lizenz-URL, Thumbnail oder explizite Commons-Seite fail-closed verworfen. SVG/PDF/WAV/OGG, Karten, Wappen, Diagramme und Logos werden ebenfalls verworfen.
+9. Upsert nur in **`ebike_route_evidence_v2`**. Keine Review-/`first_seen`-Felder, kein Websitezugriff. Summary meldet akzeptierte/abgewiesene Datensätze, Geometriepunkte/-kilometer, Bildquote, Evidenzscore, Verteilungen und Partial-Failure-Zeilen.
 
-## Dateien
-
-- `ebike-research.workflow.json` – kanonischer importierbarer Export.
-- `ebike-candidate.workflow.json` – kompatibler Legacy-Dateiname, identischer echter Workflow (kein Dummy).
-- `build_workflow.py` – deterministischer Exportgenerator.
-- `data-table.schema.json`, `DATA_TABLE_MIGRATION.md` – Review-Schema und Anlage/Migration.
-- `fixtures/` – Offline-Antworten in realen SearXNG-/Commons-JSON-Strukturen.
-- `validate_workflow.py`, `tests/` – Fail-closed-Strukturvalidator und Tests.
-
-## Prüfen
-
-Aus dem Repository-Root:
+## Reproduzierbarkeit und Prüfung
 
 ```bash
 python3 automation/n8n/build_workflow.py
@@ -31,17 +22,14 @@ python3 automation/n8n/validate_workflow.py automation/n8n/ebike-research.workfl
 python3 -m unittest discover -s automation/n8n/tests -p 'test_*.py' -v
 ```
 
-## Inbetriebnahme auf n8n 2.20.9 (LXC 110)
+Der Generator liest versionierte Scripts aus `js/`; beide Exporte sind byte-identisch. Fixtures enthalten valide Overpass-Formen sowie adversariale Commons-Fälle (Wappen-SVG, Karte, WAV, nicht erlaubte Lizenz).
 
-1. Tabelle gemäß `DATA_TABLE_MIGRATION.md` im Zielprojekt anlegen.
-2. `ebike-research.workflow.json` importieren. Der Export ist inaktiv; nicht automatisch aktivieren.
-3. Im Node **Upsert Review Data Table** die Tabelle einmal aus der Liste auswählen, damit n8n das Resource-Mapping gegen die lokale Tabellen-ID/Spalten neu lädt.
-4. Vor dem Import `http://searxng.internal:8080` im Export durch die deploymentspezifische interne SearXNG-Basis-URL ersetzen. Vom n8n-Host anschließend `GET /search?format=json&q=Hameln+E-Bike` sowie `https://commons.wikimedia.org/w/api.php?action=query&format=json&meta=siteinfo` prüfen. Es werden keine Credentials benötigt.
-5. Manuellen Testlauf starten und **Final Run Summary** sowie Tabellenzeilen kontrollieren. Erst danach den Workflow aktivieren, falls der Wochenplan laufen soll.
+## Betriebsvoraussetzungen
 
-## Betriebsgrenzen
-
-- Nur GET-Zugriffe auf lokales SearXNG und Wikimedia Commons; keine Secrets/Credentials.
-- Schreibziel ausschließlich n8n Data Table. Keine Webhooks, Website-, Git-, Mail-, Shell-, SSH- oder Publishing-Nodes.
-- Quell-/Lizenz-URLs bleiben intern für Deduplizierung und spätere private Prüfung; es wird keine sichtbare Quellenbürokratie erzeugt.
-- SearXNG-Motoren und externe Zielseiten können schwanken. HTTP-Fehler stoppen den Lauf sichtbar; n8n speichert Fehlerausführungen, erfolgreiche Zeitplanläufe nicht dauerhaft.
+- n8n muss `https://overpass-api.de` und `https://commons.wikimedia.org` per HTTPS/DNS erreichen; keine Credentials erforderlich.
+- Tabelle gemäß `DATA_TABLE_MIGRATION.md` anlegen und im Data-Table-Node lokal neu auswählen.
+- Overpass-Nutzungsregeln beachten. HTTP-Nodes haben 30/60-s-Timeout, drei Versuche, Backoff/Batches und geben Fehler als Partial-Failure-Signal weiter; Workflow-Timeout 900 s.
+- Ein manueller Lauf muss zuerst Summary, Gatequote, Bildlizenzen und Mapping bestätigen. Der Export bleibt inaktiv. Eventuelle Aktivierung erfolgt manuell.
+- Leere Discovery und 100 % Gate-Reject werden über separate IF-Signalpfade direkt zur Summary geführt. Signale besitzen keinen `stable_key` und erreichen den Data-Table-Upsert nicht.
+- **Snapshot-Grenze:** Die Tabelle ist ein Upsert-Bestand, kein vollständiger aktueller Snapshot. `observed_at` und `run_id` kennzeichnen die letzte Beobachtung einer Route; Zeilen mit anderer `run_id` als der betrachtete erfolgreiche Lauf sind als stale zu behandeln. Ein Lauf mit `no_data` löscht bewusst keine historische Evidenz.
+- Keine automatische Freigabe, kein Komoot-Scraping, keine erfundenen Tracks und keine Websiteänderung.

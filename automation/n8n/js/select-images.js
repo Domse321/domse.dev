@@ -1,0 +1,14 @@
+const routes=$('Gate Score and Fair Limit').all(); const jobs=$('Build Track-near Image Jobs').all();
+const byRelation=new Map(); const allow=/^(?:cc0(?: 1\.0)?|public domain|pd|cc by(?:-sa)?(?: [1-4]\.0)?)$/i; const raster=new Set(['image/jpeg','image/png','image/webp','image/tiff']); const badTitle=/(^|[ _-])(map|karte|wappen|coat[ _-]?of[ _-]?arms|diagram|logo)([ _.-]|$)/i;
+function plain(v){return String(v??'').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim();} function rad(x){return x*Math.PI/180;} function km(a,b){const q=Math.sin(rad(b.lat-a.lat)/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(rad(b.lon-a.lon)/2)**2;return 12742*Math.asin(Math.sqrt(q));}
+for(const [i,item] of $input.all().entries()){
+ const pair=Array.isArray(item.pairedItem)?item.pairedItem[0]:item.pairedItem; const job=jobs[pair?.item??i]?.json??{}; let body=item.json.body??item.json.data??item.json;if(typeof body==='string'){try{body=JSON.parse(body)}catch{body={}}}
+ for(const page of Object.values(body?.query?.pages??{})){const info=page.imageinfo?.[0],ext=info?.extmetadata??{},mime=String(info?.mime??'').toLowerCase(),title=String(page.title??''),license=plain(ext.LicenseShortName?.value);const coord=page.coordinates?.[0];
+  if(!info||info.mediatype!=='BITMAP'||!raster.has(mime)||!allow.test(license)||badTitle.test(title)||/\.(svg|pdf|wav|ogg)$/i.test(title)||!coord)continue;
+  const distance=km({lat:job.image_anchor_lat,lon:job.image_anchor_lon},{lat:Number(coord.lat),lon:Number(coord.lon)});if(distance>12)continue;
+  const creator=plain(ext.Artist?.value).slice(0,300),licenseUrl=String(ext.LicenseUrl?.value??'').trim(),thumbUrl=String(info.thumburl??'').trim(),pageUrl=String(info.descriptionurl??'').trim();
+  if(/^cc by/i.test(license)&&(!creator||!licenseUrl||!thumbUrl||!pageUrl))continue;
+  const c={image_title:title,image_thumb_url:thumbUrl,image_creator:creator,image_license:license,image_license_url:licenseUrl,image_page_url:pageUrl||`https://commons.wikimedia.org/wiki/${encodeURIComponent(title.replace(/ /g,'_'))}`,image_distance_km:Number(distance.toFixed(3)),image_mime:mime};
+  const key=Number(job.relation_id),list=byRelation.get(key)??[];list.push(c);byRelation.set(key,list);
+ }}
+return routes.map((item,i)=>{const c=item.json;const unique=[];const seen=new Set();for(const img of (byRelation.get(Number(c.relation_id))??[]).sort((a,b)=>a.image_distance_km-b.image_distance_km)){if(!seen.has(img.image_page_url)){seen.add(img.image_page_url);unique.push(img);}if(unique.length===3)break;}const best=unique[0]??{};return {pairedItem:{item:i},json:{...c,...best,image_candidates_json:JSON.stringify(unique),image_candidate_count:unique.length,image_found:unique.length>0,image_partial_failure:unique.length===0,observed_at:$now.toISO()}};});

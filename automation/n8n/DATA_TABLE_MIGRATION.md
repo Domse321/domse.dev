@@ -1,21 +1,17 @@
-# Data-Table-Migration
+# Data-Table-Inbetriebnahme V2
 
-## Ziel
+## Sicherheitsentscheidung
 
-Tabelle **`ebike_route_research`** im selben n8n-Projekt wie der Workflow. Das Schema ist in `data-table.schema.json` kanonisch beschrieben.
+V2 schreibt ausschließlich in die neue Tabelle **`ebike_route_evidence_v2`**. Die bestehende Review-Tabelle wird weder gelesen noch verändert. Damit können `review_status` und `first_seen` durch einen Recherchelauf nicht überschrieben werden. Die Verbindung zwischen späterem menschlichem Review und Evidenz erfolgt ausschließlich über `stable_key` (`osm_relation_<id>`).
 
 ## Einmalige Anlage in n8n 2.20.9
 
-1. **Data Tables → Create Data Table**, Name exakt `ebike_route_research`.
-2. Alle 20 Spalten aus `data-table.schema.json` in angegebener Reihenfolge anlegen. Für `score` den Typ **Number**, für `discovered_at` und `updated_at` **Date**, sonst **String** wählen.
-3. Keine eigene Spalte `id` anlegen; n8n verwaltet die Row-ID selbst.
-4. Workflow in dasselbe Projekt importieren. Node **Upsert Review Data Table** öffnen, Tabelle aus der Liste neu auswählen und das geladene Mapping gegen das Schema prüfen. Upsert-Bedingung bleibt `stable_key = {{$json.stable_key}}`.
-5. Einen manuellen Lauf ausführen, Ergebnis-Tabelle und **Final Run Summary** prüfen. Erst danach bei Bedarf aktivieren.
-
-## Migration bestehender Tabellen
-
-Die öffentliche n8n-API kann Spaltenschemata nach Anlage nicht ändern. Für abweichende Alt-Schemata daher eine neue Tabelle `ebike_route_research_v2` mit diesem Schema anlegen, Daten kontrolliert kopieren, anschließend den Table Locator im Upsert-Node ändern. Keine direkte Datenbankänderung.
+1. Im selben n8n-Projekt eine Data Table exakt namens `ebike_route_evidence_v2` anlegen.
+2. Die 30 Spalten aus `data-table.schema.json` in der angegebenen Reihenfolge anlegen: `number` → Number, `boolean` → Boolean, `date` → Date, alle übrigen → String. Keine eigene `id`-Spalte.
+3. Workflow inaktiv importieren. Im Node **Upsert Machine Evidence V2** die lokale Tabelle neu auswählen und das Mapping neu laden. Match bleibt `stable_key`.
+4. Eine eventuell vorhandene Review-Tabelle bleibt separat. Falls Reviewdaten angebunden werden, nur lesend/joinend über `stable_key`; niemals Reviewfelder in dieses Workflowmapping aufnehmen.
+5. Erst manuellen Lauf und Summary prüfen. Aktivierung des Sonntagsplans ist eine separate, bewusste Betriebsentscheidung.
 
 ## Rollback
 
-Workflow deaktivieren. Die Tabelle bleibt als Review-Historie erhalten; sie ist kein Website-Publishing-Ziel. Bei falschem Mapping den Workflowexport erneut inaktiv importieren und die Tabellenauswahl korrigieren.
+Workflow deaktivieren. Evidence-Tabelle kann zur Diagnose erhalten oder separat gelöscht werden; Review- und Website-Daten sind nicht betroffen.

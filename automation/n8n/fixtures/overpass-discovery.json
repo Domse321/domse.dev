@@ -1,0 +1,8 @@
+{
+  "elements": [
+    {"type":"relation","id":101,"center":{"lat":52.1,"lon":9.35},"tags":{"type":"route","route":"mtb","name":"Süntel Test-Runde"}},
+    {"type":"relation","id":102,"center":{"lat":52.2,"lon":9.4},"tags":{"type":"route","route":"bicycle","name":"Weser-Runde"}},
+    {"type":"relation","id":103,"tags":{"type":"route","route":"hiking","name":"Kein Radweg"}},
+    {"type":"relation","id":104,"tags":{"type":"route","route":"bicycle"}}
+  ]
+}

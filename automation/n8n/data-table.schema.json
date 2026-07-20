@@ -1,31 +1,17 @@
 {
-  "table": "ebike_route_research",
-  "description": "Interne Kandidatenablage für die private E-Bike-App; kein Publishing-Ziel.",
+  "table": "ebike_route_evidence_v2",
+  "description": "Nur maschinelle, pro Lauf aktualisierte OSM-/Commons-Evidenz. Menschlicher Review bleibt in einer getrennten Tabelle.",
   "columns": [
-    {"name":"stable_key","type":"string","purpose":"Upsert-/Deduplizierungsschlüssel"},
-    {"name":"name_region_key","type":"string"},
-    {"name":"route_name","type":"string"},
-    {"name":"region","type":"string"},
-    {"name":"bike_type","type":"string"},
-    {"name":"description","type":"string"},
-    {"name":"source_url","type":"string"},
-    {"name":"source_host","type":"string"},
-    {"name":"score","type":"number"},
-    {"name":"review_status","type":"string"},
-    {"name":"image_title","type":"string"},
-    {"name":"image_thumb_url","type":"string"},
-    {"name":"image_page_url","type":"string"},
-    {"name":"image_artist","type":"string"},
-    {"name":"image_license","type":"string"},
-    {"name":"image_license_url","type":"string"},
-    {"name":"search_query","type":"string"},
-    {"name":"discovered_at","type":"date"},
-    {"name":"updated_at","type":"date"},
-    {"name":"run_id","type":"string"}
+    {"name":"stable_key","type":"string"},{"name":"osm_relation_id","type":"string"},{"name":"route_name","type":"string"},
+    {"name":"region","type":"string"},{"name":"bike_type","type":"string"},{"name":"osm_url","type":"string"},
+    {"name":"geometry_json","type":"string"},{"name":"geometry_points","type":"number"},{"name":"distance_km","type":"number"},
+    {"name":"max_gap_km","type":"number"},{"name":"tag_distance_km","type":"number"},{"name":"closure_km","type":"number"},{"name":"closure_ratio","type":"number"},
+    {"name":"geometry_ratio","type":"number"},{"name":"bounds_json","type":"string"},{"name":"evidence_score","type":"number"},
+    {"name":"evidence_json","type":"string"},{"name":"gate_reasons","type":"string"},{"name":"image_title","type":"string"},
+    {"name":"image_thumb_url","type":"string"},{"name":"image_creator","type":"string"},{"name":"image_license","type":"string"},
+    {"name":"image_license_url","type":"string"},{"name":"image_page_url","type":"string"},{"name":"image_distance_km","type":"number"},
+    {"name":"image_candidates_json","type":"string"},{"name":"partial_failure","type":"boolean"},{"name":"http_status_json","type":"string"},
+    {"name":"observed_at","type":"date"},{"name":"run_id","type":"string"}
   ],
-  "invariants": {
-    "upsert_match": ["stable_key"],
-    "allowed_review_status": ["offen", "angenommen", "abgelehnt", "archiviert"],
-    "website_fields": false
-  }
+  "invariants": {"upsert_match":["stable_key"],"identity":"osm_relation_<OSM relation id>","human_review_fields":false,"website_fields":false}
 }
