@@ -74,9 +74,17 @@ class ReleaseSecurityTests(unittest.TestCase):
         self.assertIsNone(re.search(r"\s(?:on(?:click|error|load)|style)\s*=\s*[\"']", source, re.I))
         self.assertNotIn("javascript:", source.lower())
 
-    def test_source_labels_are_not_rendered(self):
-        visible_source = "\n".join(path.read_text() for path in [ROOT / "index.html", ROOT / "app.js", ROOT / "style.css", *sorted((ROOT / "js").glob("*.js"))])
-        self.assertNotRegex(visible_source, r"(?i)wikimedia commons|quellen?:|lizenz")
+    def test_commons_attribution_is_explicit_and_url_guarded(self):
+        html = (ROOT / "index.html").read_text()
+        app = (ROOT / "app.js").read_text()
+        security = (ROOT / "js/security.js").read_text()
+        self.assertIn('id="imageViewerLicense"', html)
+        self.assertIn('id="imageViewerSource"', html)
+        self.assertIn('class="gallery-attribution"', app)
+        self.assertIn("safeExternalUrl(image.license_url, 'license')", app)
+        self.assertIn("safeExternalUrl(image.commons_url, 'commons')", app)
+        self.assertIn("commons.wikimedia.org", security)
+        self.assertNotIn('target="_blank" rel="noopener noreferrer" href="${', app)
 
 
 if __name__ == "__main__":

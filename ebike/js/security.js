@@ -5,10 +5,17 @@
   const ROUTE_ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
   const DATA_FILE_RE = /^(?:gpx|tracks)\/[a-z0-9]+(?:-[a-z0-9]+)*\.(?:gpx|geojson)$/;
   const EXTERNAL_RULES = Object.freeze({
-    gallery: { origin: 'https://upload.wikimedia.org', path: /^\/wikipedia\/commons\// },
-    navigation: { origin: 'https://www.google.com', path: /^\/maps\// },
+    gallery: { origin: 'https://upload.wikimedia.org', path: /^\/wikipedia\/commons\/(?:thumb\/)?[0-9a-f]\/[0-9a-f]{2}\// },
+    commons: { origin: 'https://commons.wikimedia.org', path: /^\/wiki\/File:[^/]+$/ },
+    license: {
+      paths: new Map([
+        ['https://creativecommons.org', /^\/(?:licenses\/(?:by|by-sa)\/(?:2\.0\/de|3\.0(?:\/de)?|4\.0)|publicdomain\/zero\/1\.0)(?:\/|\/deed\.[a-z]{2})?$/],
+        ['https://commons.wikimedia.org', /^\/wiki\/Commons:Public_domain$/]
+      ])
+    },
+    navigation: { origin: 'https://www.google.com', path: /^\/maps\//, allowSearch: true },
     komoot: { origin: 'https://www.komoot.com', path: /^\// },
-    planner: { origin: 'https://brouter.de', path: /^\/brouter-web\// }
+    planner: { origin: 'https://brouter.de', path: /^\/brouter-web\//, allowHash: true }
   });
 
   function escapeHtml(value) {
@@ -32,7 +39,10 @@
     if (!rule || typeof value !== 'string' || value.length > 4096) return null;
     try {
       const url = new URL(value);
-      if (url.protocol !== 'https:' || url.username || url.password || url.origin !== rule.origin || !rule.path.test(url.pathname)) return null;
+      const pathRule = rule.paths ? rule.paths.get(url.origin) : rule.path;
+      const originAllowed = rule.paths ? Boolean(pathRule) : url.origin === rule.origin;
+      if (url.protocol !== 'https:' || url.username || url.password || !originAllowed || !pathRule.test(url.pathname) ||
+          (!rule.allowSearch && url.search) || (!rule.allowHash && url.hash)) return null;
       return url.href;
     } catch (_) {
       return null;
@@ -112,9 +122,12 @@
         !['eco', 'tour', 'emtb', 'turbo', 'reserve_percent', 'note'].includes(key) ||
         (key === 'note' ? typeof value !== 'string' : !Number.isFinite(value)))) return false;
       if ((route.gallery || []).some(image =>
-        !isPlainObject(image) || Object.keys(image).some(key => !['artist', 'license', 'source', 'title', 'url'].includes(key)) ||
+        !isPlainObject(image) || Object.keys(image).some(key => !['artist', 'commons_url', 'height', 'license', 'license_url', 'mime', 'source', 'title', 'url', 'width'].includes(key)) ||
         !safeExternalUrl(image.url, 'gallery') ||
-        ['artist', 'license', 'source', 'title'].some(key => image[key] !== undefined && typeof image[key] !== 'string'))) return false;
+        (image.commons_url !== undefined && !safeExternalUrl(image.commons_url, 'commons')) ||
+        (image.license_url !== undefined && !safeExternalUrl(image.license_url, 'license')) ||
+        ['artist', 'commons_url', 'license', 'license_url', 'mime', 'source', 'title'].some(key => image[key] !== undefined && typeof image[key] !== 'string') ||
+        ['width', 'height'].some(key => image[key] !== undefined && !Number.isFinite(image[key])))) return false;
       for (const [field, purpose] of [['navigation_link', 'navigation'], ['komoot_link', 'komoot'], ['planner_link', 'planner']]) {
         if (route[field] !== undefined && route[field] !== '' && !safeExternalUrl(route[field], purpose)) return false;
       }

@@ -15,14 +15,20 @@ test('Hash-Routen-IDs müssen syntaktisch gültig und bekannt sein', () => {
 });
 
 test('externe URLs sind auf Zweck, HTTPS, Host und Pfad begrenzt', () => {
-  assert.ok(security.safeExternalUrl('https://upload.wikimedia.org/wikipedia/commons/a/a.jpg', 'gallery'));
+  assert.ok(security.safeExternalUrl('https://upload.wikimedia.org/wikipedia/commons/a/ab/example.jpg', 'gallery'));
+  assert.ok(security.safeExternalUrl('https://commons.wikimedia.org/wiki/File:Example.jpg', 'commons'));
+  assert.ok(security.safeExternalUrl('https://creativecommons.org/licenses/by-sa/4.0/', 'license'));
+  assert.ok(security.safeExternalUrl('https://commons.wikimedia.org/wiki/Commons:Public_domain', 'license'));
   assert.ok(security.safeExternalUrl('https://www.google.com/maps/dir/?api=1', 'navigation'));
   assert.ok(security.safeExternalUrl('https://www.komoot.com/search/foo', 'komoot'));
   assert.ok(security.safeExternalUrl('https://brouter.de/brouter-web/#map=1', 'planner'));
-  for (const bad of ['javascript:alert(1)', 'https://upload.wikimedia.org.evil.test/wikipedia/commons/a.jpg', 'http://upload.wikimedia.org/wikipedia/commons/a.jpg', 'https://user@upload.wikimedia.org/wikipedia/commons/a.jpg']) {
+  for (const bad of ['javascript:alert(1)', 'https://upload.wikimedia.org.evil.test/wikipedia/commons/a/ab/a.jpg', 'http://upload.wikimedia.org/wikipedia/commons/a/ab/a.jpg', 'https://user@upload.wikimedia.org/wikipedia/commons/a/ab/a.jpg', 'https://upload.wikimedia.org/wikipedia/commons/not-a-hash/a.jpg?x=1']) {
     assert.equal(security.safeExternalUrl(bad, 'gallery'), null);
   }
-  assert.equal(security.safeExternalUrl('https://upload.wikimedia.org/wikipedia/commons/a.jpg', 'navigation'), null);
+  for (const bad of ['https://creativecommons.org/', 'https://creativecommons.org/licenses/by-nc/4.0', 'https://commons.wikimedia.org/wiki/Main_Page', 'https://evil.example/licenses/by-sa/4.0']) {
+    assert.equal(security.safeExternalUrl(bad, 'license'), null);
+  }
+  assert.equal(security.safeExternalUrl('https://upload.wikimedia.org/wikipedia/commons/a/ab/a.jpg', 'navigation'), null);
 });
 
 test('lokale Datendateien verhindern Traversal und Typwechsel', () => {

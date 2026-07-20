@@ -259,6 +259,9 @@ function renderImageViewerItem() {
   const counter = document.getElementById('imageViewerCounter');
   const previous = document.getElementById('btnImageViewerPrev');
   const next = document.getElementById('btnImageViewerNext');
+  const artist = document.getElementById('imageViewerArtist');
+  const license = document.getElementById('imageViewerLicense');
+  const source = document.getElementById('imageViewerSource');
   if (!image || !title || !counter) return;
 
   resetImageViewerTransform();
@@ -268,6 +271,12 @@ function renderImageViewerItem() {
   image.classList.add('is-loading');
   image.classList.remove('is-error');
   image.src = item.safeUrl;
+  if (artist) artist.textContent = item.artist;
+  if (license) {
+    license.textContent = item.license;
+    license.href = item.safeLicenseUrl;
+  }
+  if (source) source.href = item.safeCommonsUrl;
   const single = ImageViewerState.items.length < 2;
   if (previous) previous.hidden = single;
   if (next) next.hidden = single;
@@ -277,7 +286,15 @@ function openImageViewer(items, index, opener) {
   if (typeof document === 'undefined' || !Array.isArray(items) || items.length === 0) return;
   const overlay = document.getElementById('imageViewerOverlay');
   if (!overlay) return;
-  ImageViewerState.items = items.map(item => ({ safeUrl: item.safeUrl, title: String(item.title || 'Tourenbild') }));
+  ImageViewerState.items = items.map(item => ({
+    safeUrl: item.safeUrl,
+    title: String(item.title || 'Tourenbild'),
+    artist: String(item.artist || 'Urheber unbekannt'),
+    license: String(item.license || 'Lizenzangabe fehlt'),
+    safeLicenseUrl: _Security.safeExternalUrl(item.license_url, 'license'),
+    safeCommonsUrl: _Security.safeExternalUrl(item.commons_url, 'commons')
+  })).filter(item => item.safeLicenseUrl && item.safeCommonsUrl);
+  if (ImageViewerState.items.length === 0) return;
   ImageViewerState.index = Math.max(0, Math.min(ImageViewerState.items.length - 1, Number(index) || 0));
   ImageViewerState.previousFocus = opener || document.activeElement;
   overlay.classList.add('open');
@@ -377,7 +394,24 @@ function setupImageViewerEvents() {
   stage.addEventListener('pointercancel', releasePointer);
   document.addEventListener('keydown', event => {
     if (!overlay.classList.contains('open')) return;
-    if (event.key === 'Escape') closeImageViewer();
+    if (event.key === 'Tab') {
+      const focusable = [...overlay.querySelectorAll('a[href], button:not([disabled]):not([hidden]), [tabindex]:not([tabindex="-1"])')]
+        .filter(element => !element.hidden && element.getAttribute('aria-hidden') !== 'true');
+      if (!focusable.length) {
+        event.preventDefault();
+        overlay.focus();
+        return;
+      }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !overlay.contains(document.activeElement))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    } else if (event.key === 'Escape') closeImageViewer();
     else if (event.key === 'ArrowLeft') moveImageViewer(-1);
     else if (event.key === 'ArrowRight') moveImageViewer(1);
     else if (event.key === '+' || event.key === '=') setImageViewerScale(ImageViewerState.scale + 0.5);
@@ -1024,24 +1058,32 @@ async function renderTourDetailView(routeId) {
   const galleryContainer = document.getElementById('galleryOrPosterContainer');
   if (galleryContainer) {
     const safeGallery = (route.gallery || [])
-      .map(image => ({ ...image, safeUrl: _Security.safeExternalUrl(image.url, 'gallery') }))
-      .filter(image => image.safeUrl);
+      .map(image => ({
+        ...image,
+        safeUrl: _Security.safeExternalUrl(image.url, 'gallery'),
+        safeLicenseUrl: _Security.safeExternalUrl(image.license_url, 'license'),
+        safeCommonsUrl: _Security.safeExternalUrl(image.commons_url, 'commons')
+      }))
+      .filter(image => image.safeUrl && image.safeLicenseUrl && image.safeCommonsUrl && image.artist && image.license);
     if (safeGallery.length > 0) {
       galleryContainer.innerHTML = `
         <div class="gallery-grid">
           ${safeGallery.map((img, index) => `
-            <button class="gallery-item gallery-open" type="button" data-gallery-index="${index}" aria-label="${h(img.title || route.name)} groß ansehen">
-              <img src="${h(img.safeUrl)}" class="gallery-img" alt="${h(img.title || route.name)}" loading="lazy">
-              <span class="gallery-caption">
-                <span>${h(img.title || route.name)}</span>
-                <span class="gallery-open-hint" aria-hidden="true">Vergrößern</span>
-              </span>
-            </button>
+            <article class="gallery-card">
+              <button class="gallery-item gallery-open" type="button" data-gallery-index="${index}" aria-label="${h(img.title || route.name)} groß ansehen">
+                <img src="${h(img.safeUrl)}" class="gallery-img" alt="${h(img.title || route.name)}" loading="lazy">
+                <span class="gallery-caption">
+                  <span>${h(img.title || route.name)}</span>
+                  <span class="gallery-open-hint" aria-hidden="true">Vergrößern</span>
+                </span>
+              </button>
+              <p class="gallery-attribution">Foto: ${h(img.artist)} · <a href="${h(img.safeLicenseUrl)}" target="_blank" rel="noopener noreferrer">${h(img.license)}</a> · <a href="${h(img.safeCommonsUrl)}" target="_blank" rel="noopener noreferrer">Commons</a></p>
+            </article>
           `).join('')}
         </div>
       `;
       galleryContainer.querySelectorAll('.gallery-img').forEach(image => {
-        image.addEventListener('error', () => image.closest('.gallery-item')?.remove(), { once: true });
+        image.addEventListener('error', () => image.closest('.gallery-card')?.remove(), { once: true });
       });
       galleryContainer.querySelectorAll('[data-gallery-index]').forEach(button => {
         button.addEventListener('click', () => openImageViewer(safeGallery, Number(button.dataset.galleryIndex), button));

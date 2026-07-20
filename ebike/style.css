@@ -1113,15 +1113,23 @@ button {
   gap: 1.25rem;
 }
 
+.gallery-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+}
+
 .gallery-item {
   position: relative;
   width: 100%;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   overflow: hidden;
   height: 280px;
   background: #14281d;
   box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
+  border: 0;
   color: #ffffff;
   text-align: left;
   cursor: zoom-in;
@@ -1167,6 +1175,27 @@ button {
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.02em;
+}
+
+.gallery-attribution,
+.image-viewer-attribution {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.gallery-attribution {
+  min-height: 2.6rem;
+  padding: 0.55rem 0.7rem;
+  color: var(--text-muted);
+}
+
+.gallery-attribution a,
+.image-viewer-attribution a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* Critique (6): 2-Column Grid after map — no empty left column */
@@ -1570,6 +1599,11 @@ button {
   line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.image-viewer-attribution {
+  margin-top: 0.2rem;
+  color: rgba(255, 255, 255, 0.76);
 }
 
 .image-viewer-eyebrow {

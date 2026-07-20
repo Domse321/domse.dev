@@ -6,3 +6,4 @@ automation/n8n/.imported-workflow-id
 ebike/data/routes.json
 ebike/data/gpx/
 ebike/data/tracks/
+ebike/data/runtime/

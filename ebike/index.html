@@ -88,12 +88,13 @@
   </div>
 
   <!-- Full-screen gallery viewer with mouse, keyboard and touch zoom. -->
-  <div class="image-viewer-overlay" id="imageViewerOverlay" role="dialog" aria-modal="true" aria-labelledby="imageViewerTitle" aria-hidden="true">
+  <div class="image-viewer-overlay" id="imageViewerOverlay" role="dialog" aria-modal="true" aria-labelledby="imageViewerTitle" aria-hidden="true" tabindex="-1">
     <div class="image-viewer-shell">
       <header class="image-viewer-header">
         <div class="image-viewer-heading">
           <span class="image-viewer-eyebrow" id="imageViewerCounter">Bild</span>
           <h2 id="imageViewerTitle">Tourenbild</h2>
+          <p class="image-viewer-attribution">Foto: <span id="imageViewerArtist">Urheber</span> · <a id="imageViewerLicense" target="_blank" rel="noopener noreferrer">Lizenz</a> · <a id="imageViewerSource" target="_blank" rel="noopener noreferrer">Commons</a></p>
         </div>
         <button class="image-viewer-control image-viewer-close" id="btnImageViewerClose" type="button" aria-label="Bildansicht schließen">✕</button>
       </header>

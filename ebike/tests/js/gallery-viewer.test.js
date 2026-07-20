@@ -23,6 +23,14 @@ test('image viewer exposes labelled controls and modal semantics', () => {
   assert.match(html, /aria-hidden="true"/);
 });
 
+test('image viewer traps focus and restores the opening control', () => {
+  assert.match(html, /id="imageViewerOverlay"[^>]*tabindex="-1"/);
+  assert.match(app, /event\.key === 'Tab'/);
+  assert.match(app, /overlay\.querySelectorAll\('a\[href\], button:not/);
+  assert.match(app, /document\.activeElement === last/);
+  assert.match(app, /ImageViewerState\.previousFocus\?\.focus\?\.\(\)/);
+});
+
 test('zoom is bounded and supports wheel, pinch, drag and keyboard', () => {
   assert.match(app, /Math\.min\(5, Math\.max\(1,/);
   assert.match(app, /addEventListener\('wheel'/);
@@ -36,6 +44,17 @@ test('zoom is bounded and supports wheel, pinch, drag and keyboard', () => {
 
 test('viewer keeps external image URLs behind the existing gallery allowlist', () => {
   assert.match(app, /safeUrl: _Security\.safeExternalUrl\(image\.url, 'gallery'\)/);
-  assert.match(app, /ImageViewerState\.items = items\.map\(item => \(\{ safeUrl: item\.safeUrl,/);
+  assert.match(app, /ImageViewerState\.items = items\.map\(item => \(\{/);
   assert.doesNotMatch(app, /openImageViewer\(route\.gallery/);
+});
+
+test('gallery and viewer expose compact, linked Commons attribution', () => {
+  assert.match(app, /class="gallery-attribution">Foto: \$\{h\(img\.artist\)\}/);
+  assert.match(app, /safeLicenseUrl: _Security\.safeExternalUrl\(image\.license_url, 'license'\)/);
+  assert.match(app, /safeCommonsUrl: _Security\.safeExternalUrl\(image\.commons_url, 'commons'\)/);
+  for (const id of ['imageViewerArtist', 'imageViewerLicense', 'imageViewerSource']) {
+    assert.match(html, new RegExp(`id="${id}"`));
+  }
+  assert.match(css, /\.gallery-attribution[\s\S]*?font-size:\s*0\.72rem/);
+  assert.match(html, /rel="noopener noreferrer"/);
 });
