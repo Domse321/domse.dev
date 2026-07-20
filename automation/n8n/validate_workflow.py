@@ -2,7 +2,7 @@
 """Fail-closed-Validator für den E-Bike-OSM-Evidenzworkflow V2."""
 import json, pathlib, sys
 
-ALLOWED={"https://overpass-api.de/api/interpreter","https://commons.wikimedia.org/w/api.php"}
+ALLOWED={"https://z.overpass-api.de/api/interpreter","https://commons.wikimedia.org/w/api.php"}
 REQUIRED={"Manual Trigger","Weekly Sunday 07:00","Build Overpass Discovery","Discover Named OSM Relations",
  "Normalize Relation Discovery","Discovery Has Candidates","Build Relation Geometry Jobs","Fetch Real Relation Geometry","Gate Score and Fair Limit",
  "Gate Has Accepted Candidates","Build Track-near Image Jobs","Commons Track-near Raster Search","Select Licensed Raster Photos",
@@ -21,7 +21,7 @@ def validate(path):
     except (IndexError,KeyError,TypeError): errors.append('SCHEDULE_INVALID')
     http=[n for n in nodes if n.get('type')=='n8n-nodes-base.httpRequest']
     if len(http)!=3: errors.append('EXACTLY_THREE_ACQUISITION_HTTP_NODES_REQUIRED')
-    if sum(n.get('parameters',{}).get('url')=='https://overpass-api.de/api/interpreter' for n in http)!=2: errors.append('TWO_OVERPASS_STAGES_REQUIRED')
+    if sum(n.get('parameters',{}).get('url')=='https://z.overpass-api.de/api/interpreter' for n in http)!=2: errors.append('TWO_OVERPASS_STAGES_REQUIRED')
     for n in nodes:
         typ=n.get('type','').lower(); text=json.dumps(n,ensure_ascii=False).lower()
         if any(x in typ for x in FORBIDDEN): errors.append('PUBLISH_OR_SIDE_EFFECT_NODE_DENIED')

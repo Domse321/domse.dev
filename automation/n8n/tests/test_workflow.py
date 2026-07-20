@@ -31,8 +31,8 @@ class WorkflowV2Tests(unittest.TestCase):
     def test_overpass_discovery_and_real_relation_geometry(self):
         discovery=self.nodes['Discover Named OSM Relations']
         geometry=self.nodes['Fetch Real Relation Geometry']
-        self.assertEqual(discovery['parameters']['url'],'https://overpass-api.de/api/interpreter')
-        self.assertEqual(geometry['parameters']['url'],'https://overpass-api.de/api/interpreter')
+        self.assertEqual(discovery['parameters']['url'],'https://z.overpass-api.de/api/interpreter')
+        self.assertEqual(geometry['parameters']['url'],'https://z.overpass-api.de/api/interpreter')
         for n in (discovery,geometry):
             self.assertEqual(n['parameters']['method'],'GET')
             self.assertTrue(n['parameters']['sendQuery'])
@@ -124,7 +124,7 @@ class WorkflowV2Tests(unittest.TestCase):
         for marker in ('BITMAP','image/jpeg','image/png','image/webp','public domain','image_creator','image_license_url','image_page_url','image_distance_km','image_anchor_fraction','image_relevance_score'):
             self.assertIn(marker,code)
         self.assertNotIn("'image/tiff'",code)
-        for rejected_title in ('schild','informationstafel','luftbild','orthophoto','dop20'):
+        for rejected_title in ('schild','informationstafel','luftbild','orthophoto','dop20','kriegsgräber','friedhof','cemetery'):
             self.assertIn(rejected_title,code)
         fixture=json.loads((ROOT/'fixtures/commons-adversarial.json').read_text())
         route={'json':{'relation_id':101,'centroid':{'lat':52.1,'lon':9.35}}}

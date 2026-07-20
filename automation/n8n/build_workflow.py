@@ -35,7 +35,7 @@ overpass_headers={"parameters":[
 
 def overpass(node_id, name, expression, x):
     return node(node_id,name,"n8n-nodes-base.httpRequest",4.4,x,{
-        "method":"GET","url":"https://overpass-api.de/api/interpreter","sendHeaders":True,
+        "method":"GET","url":"https://z.overpass-api.de/api/interpreter","sendHeaders":True,
         "headerParameters":overpass_headers,"sendQuery":True,
         "queryParameters":{"parameters":[{"name":"data","value":expression}]},
         "options":http_common(60000,2500)

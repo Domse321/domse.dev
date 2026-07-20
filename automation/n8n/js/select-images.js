@@ -3,7 +3,7 @@ const jobs=$('Build Track-near Image Jobs').all();
 const byRelation=new Map();
 const allow=/^(?:cc0(?: 1\.0)?|public domain|pd|cc by(?:-sa)?(?: [1-4]\.0)?)$/i;
 const raster=new Set(['image/jpeg','image/png','image/webp']);
-const badTitle=/(^|[ _-])(map|karte|wappen|coat[ _-]?of[ _-]?arms|diagram|logo|schild|informationstafel|tafel|luftbild|orthophoto|dop20|scan)([ _.-]|$)/i;
+const badTitle=/(^|[ _-])(map|karte|wappen|coat[ _-]?of[ _-]?arms|diagram|logo|schild|informationstafel|tafel|luftbild|orthophoto|dop20|scan|kriegsgräber(?:stätte)?|friedhof|cemetery|grab)([ _.-]|$)/i;
 const stop=new Set(['rund','ueber','über','unter','durch','tour','route','radroute','naturpark','basisring','alte','bahnlinie','the','und','der','die','das','den','von','zum','zur']);
 function plain(v){return String(v??'').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim();}
 function fold(v){return plain(v).toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9äöüß]+/g,' ');}
