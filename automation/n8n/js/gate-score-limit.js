@@ -2,10 +2,10 @@ const candidates=$('Normalize Relation Discovery').all().map(item=>item.json).fi
 const SEARCH={s:51.70,w:8.45,n:52.62,e:10.25};
 const REGIONS=[
  ['Deister',52.17,9.20,52.45,9.65],['Süntel',52.12,9.25,52.30,9.55],['Ith',51.91,9.43,52.15,9.75],
+ ['Solling-Vogler',51.88,9.48,52.02,9.70],
  ['Hils',51.88,9.70,52.12,9.98],['Hameln',52.02,9.20,52.20,9.55],['Emmerthal',51.90,9.25,52.08,9.52],
  ['Hessisch Oldendorf',52.10,9.05,52.27,9.38],['Bad Pyrmont',51.90,8.98,52.05,9.32],
  ['Ottensteiner Hochfläche',51.88,9.25,52.02,9.55],['Coppenbrügge',52.03,9.45,52.17,9.72],
- ['Weserbergland',51.70,8.45,52.62,10.25]
 ];
 function rad(x){return x*Math.PI/180;} function km(a,b){const dlat=rad(b.lat-a.lat),dlon=rad(b.lon-a.lon); const q=Math.sin(dlat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dlon/2)**2; return 12742*Math.asin(Math.sqrt(q));}
 function clean(v){return String(v??'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();}
@@ -32,8 +32,11 @@ for(const job of candidates){
  const lats=p.map(x=>x.lat),lons=p.map(x=>x.lon); const bounds=p.length?{south:Math.min(...lats),west:Math.min(...lons),north:Math.max(...lats),east:Math.max(...lons)}:null;
  const diagonal=bounds?km({lat:bounds.south,lon:bounds.west},{lat:bounds.north,lon:bounds.east}):0; const geometryRatio=diagonal?length/diagonal:0; if(geometryRatio<1.2||geometryRatio>45)reasons.push('GEOMETRY_RATIO_IMPLAUSIBLE');
  const c=p.length?{lat:p.reduce((s,x)=>s+x.lat,0)/p.length,lon:p.reduce((s,x)=>s+x.lon,0)/p.length}:{lat:0,lon:0};
- const region=(REGIONS.find(r=>c.lat>=r[1]&&c.lon>=r[2]&&c.lat<=r[3]&&c.lon<=r[4])??REGIONS[REGIONS.length-1])[0];
- const tags=rel?.tags??job.discovery_tags??{}; const tagDistance=taggedKm(tags.distance); const distanceDelta=tagDistance?Math.abs(length-tagDistance)/tagDistance:null; if(distanceDelta!==null&&distanceDelta>0.35)reasons.push('TAG_DISTANCE_CONFLICT');
+ const tags=rel?.tags??job.discovery_tags??{};
+ const namedRegion=/solling|vogler|ebersnacken/i.test(`${tags.name??''} ${tags.description??''}`)?'Solling-Vogler':null;
+ const region=namedRegion??REGIONS.find(r=>c.lat>=r[1]&&c.lon>=r[2]&&c.lat<=r[3]&&c.lon<=r[4])?.[0]??'';
+ if(!region)reasons.push('OUTSIDE_TARGET_REGIONS');
+ const tagDistance=taggedKm(tags.distance); const distanceDelta=tagDistance?Math.abs(length-tagDistance)/tagDistance:null; if(distanceDelta!==null&&distanceDelta>0.35)reasons.push('TAG_DISTANCE_CONFLICT');
  const evidence=[]; let score=0; function add(code,points,why){score+=points;evidence.push({code,points,why});}
  add('named_osm_relation',20,'Benannte OSM-Relation'); add('real_geometry',20,`${p.length} normalisierte Punkte`); add('plausible_distance',15,`${length.toFixed(1)} km`); add('loop_closure',15,`${closure.toFixed(2)} km / ${(closureRatio*100).toFixed(1)} %`); add('region_fit',10,region); if(tagDistance)add('distance_tag_agrees',10,`${tagDistance.toFixed(1)} km`);
  const mtb=String(tags.route??job.route_tag)==='mtb'||/mtb|mountainbike/i.test(`${tags.network??''} ${tags.name??''} ${tags.description??''}`); const bikeType=mtb?'E-MTB':'E-Bike/Trekking'; add(mtb?'mtb_tag_evidence':'bicycle_tag_evidence',10,mtb?'route=mtb/MTB-Tag':'route=bicycle ohne MTB-Evidenz');

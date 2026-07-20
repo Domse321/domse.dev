@@ -227,8 +227,8 @@ function scenarioFailures(id, kind, audit, runtime) {
   return failures;
 }
 
-async function exerciseTrustedInteractions(page) {
-  const result = { click: false, keyboardEnter: false, keyboardSpace: false, inventory: {} };
+async function exerciseTrustedInteractions(page, pageUrl) {
+  const result = { click: false, keyboardEnter: false, keyboardSpace: false, logoHome: false, inventory: {} };
   const compare = page.locator('#btnOpenCompare');
   await compare.click();
   result.click = await page.locator('#compareModalOverlay.open').isVisible();
@@ -248,6 +248,9 @@ async function exerciseTrustedInteractions(page) {
     throw new Error('sport/log form inventory is empty');
   }
   await page.locator('#logoLink').click();
+  await page.waitForURL(url => new URL(url).pathname === '/');
+  result.logoHome = new URL(page.url()).pathname === '/';
+  await page.goto(pageUrl, { waitUntil: 'domcontentloaded' });
   if (HAS_PRIVATE_DATA) await page.waitForSelector('.route-card');
   return result;
 }
@@ -298,8 +301,8 @@ async function exerciseTrustedInteractions(page) {
     await page.goto(pageUrl, { waitUntil: 'domcontentloaded' });
     if (HAS_PRIVATE_DATA) await page.waitForSelector('.route-card');
     else await page.waitForSelector('.data-load-error');
-    report.interactions = await exerciseTrustedInteractions(page);
-    if (!report.interactions.click || !report.interactions.keyboardEnter || !report.interactions.keyboardSpace) {
+    report.interactions = await exerciseTrustedInteractions(page, pageUrl);
+    if (!report.interactions.click || !report.interactions.keyboardEnter || !report.interactions.keyboardSpace || !report.interactions.logoHome) {
       report.failures.push('trusted click/keyboard interaction assertions failed');
     }
     const interactionBlocking = runtime.blocking();

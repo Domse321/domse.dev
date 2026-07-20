@@ -29,6 +29,7 @@ _spec.loader.exec_module(auditor)
 
 # A plausible audit-looking key must not silently bypass this boundary.
 GALLERY_AUDIT_TOP_LEVEL_FIELDS = frozenset({"gallery_audit", "gallery_audit_metadata"})
+GALLERY_ROUTE_FIELDS = frozenset({"gallery", "photo_note"})
 
 
 def digest(data: bytes) -> str:
@@ -82,8 +83,8 @@ def validate_gallery_only_change(source: dict, target: dict) -> None:
         raise ValueError("promotion rejected: route IDs and order must exactly match target")
 
     for route_id, source_route, target_route in zip(source_ids, source_routes, target_routes):
-        source_non_gallery = {key: value for key, value in source_route.items() if key != "gallery"}
-        target_non_gallery = {key: value for key, value in target_route.items() if key != "gallery"}
+        source_non_gallery = {key: value for key, value in source_route.items() if key not in GALLERY_ROUTE_FIELDS}
+        target_non_gallery = {key: value for key, value in target_route.items() if key not in GALLERY_ROUTE_FIELDS}
         if not semantically_equal(source_non_gallery, target_non_gallery):
             raise ValueError(f"promotion rejected: non-gallery data changed for route {route_id!r}")
 

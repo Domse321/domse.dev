@@ -132,6 +132,16 @@ class CommonsGalleryAuditTests(unittest.TestCase):
             self.assertEqual(original, backup.read_bytes())
             self.assertEqual(self.catalog(), json.loads(target.read_text(encoding="utf-8")))
 
+    def test_promotion_allows_photo_note_as_gallery_metadata(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            source_catalog = self.catalog()
+            source_catalog["routes"][0]["photo_note"] = "Curated Commons photos with attribution."
+            target_catalog = self.catalog()
+            target_catalog["routes"][0]["photo_note"] = "No photos yet."
+            source, target = self.write_promotion_pair(root, source_catalog, target_catalog)
+            self.assertIsNone(promotion.promote(source, target, apply=False))
+
     def test_promotion_rejects_one_route_source_against_30_route_target_in_dry_run(self):
         with tempfile.TemporaryDirectory() as directory:
             root = pathlib.Path(directory)

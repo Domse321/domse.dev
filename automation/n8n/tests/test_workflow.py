@@ -33,6 +33,14 @@ class WorkflowV2Tests(unittest.TestCase):
         geometry=self.nodes['Fetch Real Relation Geometry']
         self.assertEqual(discovery['parameters']['url'],'https://overpass-api.de/api/interpreter')
         self.assertEqual(geometry['parameters']['url'],'https://overpass-api.de/api/interpreter')
+        for n in (discovery,geometry):
+            self.assertEqual(n['parameters']['method'],'GET')
+            self.assertTrue(n['parameters']['sendQuery'])
+            query_params={p['name']:p['value'] for p in n['parameters']['queryParameters']['parameters']}
+            self.assertEqual(set(query_params),{'data'})
+            self.assertNotIn('sendBody',n['parameters'])
+            headers={p['name']:p['value'] for p in n['parameters']['headerParameters']['parameters']}
+            self.assertEqual(headers['Accept-Encoding'],'identity')
         query=self.nodes['Build Overpass Discovery']['parameters']['jsCode']
         self.assertIn('["route"~"^(bicycle|mtb)$"]["name"]',query)
         self.assertIn('out tags center',query)
@@ -43,10 +51,12 @@ class WorkflowV2Tests(unittest.TestCase):
         self.assertIn('offset+=20',geometry_jobs)
         self.assertNotIn('relation(${Number(item.json.relation_id)',geometry_jobs)
         for n in (discovery,geometry):
-            self.assertTrue(n['retryOnFail']); self.assertEqual(n['maxTries'],3)
+            self.assertTrue(n['retryOnFail']); self.assertEqual(n['maxTries'],4)
+            self.assertEqual(n['waitBetweenTries'],30000)
             self.assertEqual(n['onError'],'continueRegularOutput')
-            self.assertTrue(n['parameters']['options']['response']['response']['neverError'])
-            self.assertTrue(n['parameters']['options']['response']['response']['fullResponse'])
+            response=n['parameters']['options']['response']['response']
+            self.assertFalse(response['neverError']); self.assertTrue(response['fullResponse'])
+            self.assertEqual(response['responseFormat'],'json')
 
     def test_empty_and_all_rejected_paths_always_reach_summary_without_sentinel_upsert(self):
         empty=run_code('normalize-discovery.js',[{'json':{'statusCode':200,'body':{'elements':[]}}}],
@@ -82,7 +92,7 @@ class WorkflowV2Tests(unittest.TestCase):
 
     def test_stable_osm_identity_gates_metrics_and_fairness(self):
         code=self.nodes['Gate Score and Fair Limit']['parameters']['jsCode']
-        for marker in ('TOO_FEW_POINTS','OUTSIDE_SEARCH_BBOX','DISTANCE_IMPLAUSIBLE','GEOMETRY_DISCONTINUITY','NOT_PLAUSIBLE_LOOP','GEOMETRY_RATIO_IMPLAUSIBLE','TAG_DISTANCE_CONFLICT'):
+        for marker in ('TOO_FEW_POINTS','OUTSIDE_SEARCH_BBOX','OUTSIDE_TARGET_REGIONS','DISTANCE_IMPLAUSIBLE','GEOMETRY_DISCONTINUITY','NOT_PLAUSIBLE_LOOP','GEOMETRY_RATIO_IMPLAUSIBLE','TAG_DISTANCE_CONFLICT'):
             self.assertIn(marker,code)
         for metric in ('closure_ratio','geometry_ratio','geometry_points','distance_km'):
             self.assertIn(metric,code)
@@ -107,11 +117,15 @@ class WorkflowV2Tests(unittest.TestCase):
 
     def test_commons_geosearch_multiple_real_raster_license_candidates(self):
         node=self.nodes['Commons Track-near Raster Search']; params={p['name']:p['value'] for p in node['parameters']['queryParameters']['parameters']}
+        self.assertEqual(node['parameters']['options']['response']['response']['responseFormat'],'json')
         self.assertEqual(params['generator'],'geosearch'); self.assertEqual(params['ggslimit'],'10'); self.assertEqual(params['ggsradius'],'10000')
         self.assertEqual(params['prop'],'imageinfo|coordinates')
         code=self.nodes['Select Licensed Raster Photos']['parameters']['jsCode']
-        for marker in ('BITMAP','image/jpeg','image/png','image/webp','image/tiff','public domain','image_creator','image_license_url','image_page_url','image_distance_km'):
+        for marker in ('BITMAP','image/jpeg','image/png','image/webp','public domain','image_creator','image_license_url','image_page_url','image_distance_km','image_anchor_fraction','image_relevance_score'):
             self.assertIn(marker,code)
+        self.assertNotIn("'image/tiff'",code)
+        for rejected_title in ('schild','informationstafel','luftbild','orthophoto','dop20'):
+            self.assertIn(rejected_title,code)
         fixture=json.loads((ROOT/'fixtures/commons-adversarial.json').read_text())
         route={'json':{'relation_id':101,'centroid':{'lat':52.1,'lon':9.35}}}
         jobs=[{'json':{'relation_id':101,'image_anchor_lat':52.1,'image_anchor_lon':9.35}}]

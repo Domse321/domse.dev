@@ -25,19 +25,21 @@ def has_stable_key_if(node_id, name, x):
 
 def http_common(timeout, interval):
     return {"timeout":timeout, "batching":{"batch":{"batchSize":1,"batchInterval":interval}},
-            "response":{"response":{"responseFormat":"text","neverError":True,"fullResponse":True}}}
+            "response":{"response":{"responseFormat":"json","neverError":False,"fullResponse":True}}}
 
 overpass_headers={"parameters":[
     {"name":"User-Agent","value":"domse-ebike-evidence-v2/2.0 (private research; contact via domse.dev)"},
     {"name":"Accept","value":"application/json"},
+    {"name":"Accept-Encoding","value":"identity"},
 ]}
 
 def overpass(node_id, name, expression, x):
     return node(node_id,name,"n8n-nodes-base.httpRequest",4.4,x,{
-        "method":"POST","url":"https://overpass-api.de/api/interpreter","sendHeaders":True,
-        "headerParameters":overpass_headers,"sendBody":True,"contentType":"raw",
-        "rawContentType":"text/plain","body":expression,"options":http_common(60000,2500)
-    }, retryOnFail=True, maxTries=3, waitBetweenTries=5000, onError="continueRegularOutput")
+        "method":"GET","url":"https://overpass-api.de/api/interpreter","sendHeaders":True,
+        "headerParameters":overpass_headers,"sendQuery":True,
+        "queryParameters":{"parameters":[{"name":"data","value":expression}]},
+        "options":http_common(60000,2500)
+    }, retryOnFail=True, maxTries=4, waitBetweenTries=30000, onError="continueRegularOutput")
 
 nodes=[
     node("manual","Manual Trigger","n8n-nodes-base.manualTrigger",1,0,{}),
@@ -54,7 +56,10 @@ nodes=[
     code_node("image-jobs","Build Track-near Image Jobs","build-image-jobs.js",1980),
     node("commons","Commons Track-near Raster Search","n8n-nodes-base.httpRequest",4.4,2200,{
         "method":"GET","url":"https://commons.wikimedia.org/w/api.php","sendHeaders":True,
-        "headerParameters":{"parameters":[{"name":"User-Agent","value":"domse-ebike-evidence-v2/2.0 (private research; contact via domse.dev)"}]},
+        "headerParameters":{"parameters":[
+            {"name":"User-Agent","value":"domse-ebike-evidence-v2/2.0 (private research; contact via domse.dev)"},
+            {"name":"Accept-Encoding","value":"identity"}
+        ]},
         "sendQuery":True,"queryParameters":{"parameters":[
             {"name":"action","value":"query"},{"name":"format","value":"json"},{"name":"generator","value":"geosearch"},
             {"name":"ggscoord","value":"={{ $json.image_anchor_lat + '|' + $json.image_anchor_lon }}"},
@@ -62,7 +67,7 @@ nodes=[
             {"name":"prop","value":"imageinfo|coordinates"},{"name":"iiprop","value":"url|extmetadata|mime|mediatype"},
             {"name":"iiurlwidth","value":"1600"},{"name":"origin","value":"*"}
         ]},"options":http_common(30000,1500)
-    },retryOnFail=True,maxTries=3,waitBetweenTries=4000,onError="continueRegularOutput"),
+    },retryOnFail=True,maxTries=4,waitBetweenTries=30000,onError="continueRegularOutput"),
     code_node("select-images","Select Licensed Raster Photos","select-images.js",2420),
     code_node("rows","Build Machine Evidence Rows","build-evidence-rows.js",2640),
 ]

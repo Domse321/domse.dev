@@ -2,7 +2,7 @@
 """
 validate_static.py
 Validates the static E-Bike App against all requirements in PROJECT_BRIEF.md.
-Checks route data integrity, GPX/GeoJSON existence, 88 gallery URLs, absence of forbidden terms and remote UI dependencies.
+Checks route data integrity, GPX/GeoJSON existence, non-empty galleries, absence of forbidden terms and remote UI dependencies.
 """
 
 import json
@@ -66,11 +66,12 @@ def run_validation():
 
         gallery = r.get('gallery', [])
         total_gallery += len(gallery)
+        if not gallery:
+            errors.append(f"Route '{rid}' has no gallery images")
 
     print(f"✔️ All 30 routes have corresponding GPX and GeoJSON files on disk.")
     print(f"✔️ Total gallery image URLs across all routes: {total_gallery}")
-    if total_gallery != 88:
-        warnings.append(f"Expected 88 gallery URLs across dataset, found {total_gallery}")
+
 
     # 3. Check code files for forbidden terms and external dependencies
     files_to_check = ['index.html', 'style.css', 'app.js',

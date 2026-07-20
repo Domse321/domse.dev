@@ -1180,18 +1180,21 @@ button {
 .gallery-attribution,
 .image-viewer-attribution {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   line-height: 1.4;
 }
 
 .gallery-attribution {
-  min-height: 2.6rem;
-  padding: 0.55rem 0.7rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.7rem;
   color: var(--text-muted);
 }
 
 .gallery-attribution a,
 .image-viewer-attribution a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   color: inherit;
   font-weight: 700;
   text-decoration: underline;
