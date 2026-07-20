@@ -3,11 +3,17 @@
 import json, pathlib, sys
 
 ALLOWED={"https://z.overpass-api.de/api/interpreter","https://commons.wikimedia.org/w/api.php"}
-REQUIRED={"Manual Trigger","Weekly Sunday 07:00","Build Overpass Discovery","Discover Named OSM Relations",
+REQUIRED={"Manual Trigger","Sunday 05:00 Monthly Check","Allow First Sunday Only","Build Overpass Discovery","Discover Named OSM Relations",
  "Normalize Relation Discovery","Discovery Has Candidates","Build Relation Geometry Jobs","Fetch Real Relation Geometry","Gate Score and Fair Limit",
  "Gate Has Accepted Candidates","Build Track-near Image Jobs","Commons Track-near Raster Search","Select Licensed Raster Photos",
  "Build Machine Evidence Rows","Upsert Machine Evidence V2","Final Quality Summary"}
 FORBIDDEN=("webhook","respondtowebhook","executecommand","ssh","ftp","git","email","gmail","wordpress")
+EXPECTED_SCHEDULE={'field':'weeks','weeksInterval':1,'triggerAtDay':[0],'triggerAtHour':5,'triggerAtMinute':0}
+EXPECTED_GATE="const berlin = $now.setZone('Europe/Berlin');\nif (berlin.weekday !== 7 || berlin.day > 7) return [];\nreturn $input.all();\n"
+
+def main_targets(connections, source):
+    try: return connections[source]['main']
+    except (KeyError,TypeError): return None
 
 def validate(path):
     w=json.loads(pathlib.Path(path).read_text(encoding='utf-8')); errors=[]; nodes=w.get('nodes',[]); names={n.get('name') for n in nodes}
@@ -15,10 +21,26 @@ def validate(path):
     if w.get('settings',{}).get('timezone')!='Europe/Berlin': errors.append('TIMEZONE_INVALID')
     if not REQUIRED<=names: errors.append('REQUIRED_NODES_MISSING')
     schedules=[n for n in nodes if n.get('type')=='n8n-nodes-base.scheduleTrigger']
+    if len(schedules)!=1: errors.append('EXACTLY_ONE_SCHEDULE_REQUIRED')
     try:
         r=schedules[0]['parameters']['rule']['interval'][0]
-        if r!={'field':'weeks','weeksInterval':1,'triggerAtDay':[0],'triggerAtHour':7,'triggerAtMinute':0}: errors.append('SCHEDULE_INVALID')
+        if r!=EXPECTED_SCHEDULE: errors.append('SCHEDULE_INVALID')
     except (IndexError,KeyError,TypeError): errors.append('SCHEDULE_INVALID')
+    gates=[n for n in nodes if n.get('name')=='Allow First Sunday Only']
+    if len(gates)!=1 or gates[0].get('type')!='n8n-nodes-base.code' or gates[0].get('disabled') is True or gates[0].get('parameters',{}).get('jsCode')!=EXPECTED_GATE:
+        errors.append('FIRST_SUNDAY_GATE_INVALID')
+    connections=w.get('connections',{})
+    expected_schedule=[[{'node':'Allow First Sunday Only','type':'main','index':0}]]
+    expected_gate=[[{'node':'Build Overpass Discovery','type':'main','index':0}]]
+    expected_manual=[[{'node':'Build Overpass Discovery','type':'main','index':0}]]
+    if main_targets(connections,'Sunday 05:00 Monthly Check')!=expected_schedule: errors.append('SCHEDULE_GATE_CONNECTION_INVALID')
+    if main_targets(connections,'Allow First Sunday Only')!=expected_gate: errors.append('GATE_DISCOVERY_CONNECTION_INVALID')
+    if main_targets(connections,'Manual Trigger')!=expected_manual: errors.append('MANUAL_BYPASS_CONNECTION_INVALID')
+    inbound=set()
+    for source, outputs in connections.items():
+        for stream in outputs.get('main',[]) if isinstance(outputs,dict) else []:
+            if any(edge.get('node')=='Build Overpass Discovery' for edge in stream): inbound.add(source)
+    if inbound!={'Manual Trigger','Allow First Sunday Only'}: errors.append('DISCOVERY_INBOUND_INVALID')
     http=[n for n in nodes if n.get('type')=='n8n-nodes-base.httpRequest']
     if len(http)!=3: errors.append('EXACTLY_THREE_ACQUISITION_HTTP_NODES_REQUIRED')
     if sum(n.get('parameters',{}).get('url')=='https://z.overpass-api.de/api/interpreter' for n in http)!=2: errors.append('TWO_OVERPASS_STAGES_REQUIRED')
@@ -46,7 +68,7 @@ def validate(path):
         if p.get('dataTableId',{}).get('value')!='ebike_route_evidence_v2': errors.append('EVIDENCE_TABLE_INVALID')
         if any(x in mapping for x in ('review_status','first_seen')): errors.append('HUMAN_REVIEW_FIELDS_FORBIDDEN')
         if not any(c.get('keyName')=='stable_key' for c in p.get('filters',{}).get('conditions',[])): errors.append('STABLE_KEY_MATCH_REQUIRED')
-    targets={e.get('node') for output in w.get('connections',{}).values() for streams in output.values() for stream in streams for e in stream}
+    targets={e.get('node') for output in connections.values() for streams in output.values() for stream in streams for e in stream}
     if not targets<=names: errors.append('CONNECTION_TARGET_MISSING')
     return sorted(set(errors))
 
@@ -54,6 +76,6 @@ def main():
     if len(sys.argv)!=2: print('Aufruf: validate_workflow.py WORKFLOW.json',file=sys.stderr); return 2
     errors=validate(sys.argv[1])
     if errors: print('\n'.join(errors),file=sys.stderr); return 1
-    print('OK V2: inaktiv; Manual + So 07:00; OSM-Discovery/Geometrie; harte Gates; Commons-Raster-Allowlist; separate Evidence-Tabelle; kein Publishing')
+    print('OK V2: inaktiv; Manual + erster Sonntag 05:00; OSM-Discovery/Geometrie; harte Gates; Commons-Raster-Allowlist; separate Evidence-Tabelle; kein Publishing')
     return 0
 if __name__=='__main__': raise SystemExit(main())

@@ -1,5 +1,5 @@
 {
-  "name": "E-Bike OSM-Evidenzrecherche Weserbergland V2 (inactive)",
+  "name": "E-Bike OSM-Evidenzrecherche Weserbergland V2",
   "active": false,
   "settings": {
     "executionOrder": "v1",
@@ -22,8 +22,8 @@
       "parameters": {}
     },
     {
-      "id": "weekly",
-      "name": "Weekly Sunday 07:00",
+      "id": "monthly-sunday",
+      "name": "Sunday 05:00 Monthly Check",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.3,
       "position": [
@@ -39,11 +39,26 @@
               "triggerAtDay": [
                 0
               ],
-              "triggerAtHour": 7,
+              "triggerAtHour": 5,
               "triggerAtMinute": 0
             }
           ]
         }
+      }
+    },
+    {
+      "id": "first-sunday-gate",
+      "name": "Allow First Sunday Only",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        110,
+        320
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const berlin = $now.setZone('Europe/Berlin');\nif (berlin.weekday !== 7 || berlin.day > 7) return [];\nreturn $input.all();\n"
       }
     },
     {
@@ -529,7 +544,18 @@
         ]
       ]
     },
-    "Weekly Sunday 07:00": {
+    "Sunday 05:00 Monthly Check": {
+      "main": [
+        [
+          {
+            "node": "Allow First Sunday Only",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Allow First Sunday Only": {
       "main": [
         [
           {

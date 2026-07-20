@@ -4,7 +4,7 @@ Reproduzierbarer, **inaktiv exportierter** Kandidatenworkflow für n8n 2.20.9. E
 
 ## Datenfluss
 
-1. **Manual Trigger** und sonntags 07:00 (`Europe/Berlin`).
+1. **Manual Trigger** sowie automatisch einmal monatlich am ersten Sonntag um 05:00 Uhr (`Europe/Berlin`). Der Schedule prüft sonntags um 05:00 Uhr, ein vorgeschaltetes Kalender-Gate lässt ausschließlich den ersten Sonntag des Monats in die Recherche weiter.
 2. Overpass-Discovery benannter `route=bicycle|mtb`-Relationen im festen Weserbergland-Suchraum (51.70–52.62 N, 8.45–10.25 E).
 3. Discovery wird vor dem 250er-Cap fachlich (MTB, Netz, Distanz, Rundtour) und regional gerankt. Der zweite Overpass-Aufruf nutzt je stabiler OSM-Relations-ID `out geom`; nur dies liefert `members[].geometry`. Geometrien werden zusammengeführt und aufeinanderfolgende Dubletten entfernt.
 4. Fail-closed-Gates: mindestens 20 Punkte, jeder Punkt in der Such-BBox, 5–180 km, höchstens 2 km Lücke zwischen zusammengesetzten Segmenten, plausibler Schlussabstand (≤ 2,5 km oder 12 %), Geometrie/Diagonal-Verhältnis und maximal 35 % Abweichung zu einem vorhandenen OSM-Distanz-Tag.

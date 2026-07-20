@@ -8,8 +8,9 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 WORKFLOW=ROOT/'ebike-research.workflow.json'
 HARNESS=ROOT/'tests/code_node_harness.js'
 
-def run_code(script, inputs, refs):
+def run_code(script, inputs, refs, now=None):
     payload={'script':str(ROOT/'js'/script),'inputs':inputs,'refs':refs}
+    if now is not None: payload['now']=now
     result=subprocess.run(['node',str(HARNESS)],input=json.dumps(payload),text=True,capture_output=True,check=True)
     return json.loads(result.stdout)
 
@@ -18,11 +19,23 @@ class WorkflowV2Tests(unittest.TestCase):
         self.workflow=json.loads(WORKFLOW.read_text())
         self.nodes={n['name']:n for n in self.workflow['nodes']}
 
-    def test_inactive_schedule_and_no_publish_boundary(self):
+    def test_first_sunday_monthly_schedule_and_no_publish_boundary(self):
         self.assertFalse(self.workflow['active'])
         self.assertEqual(self.workflow['settings']['timezone'],'Europe/Berlin')
-        rule=self.nodes['Weekly Sunday 07:00']['parameters']['rule']['interval'][0]
-        self.assertEqual(rule,{'field':'weeks','weeksInterval':1,'triggerAtDay':[0],'triggerAtHour':7,'triggerAtMinute':0})
+        rule=self.nodes['Sunday 05:00 Monthly Check']['parameters']['rule']['interval'][0]
+        self.assertEqual(rule,{'field':'weeks','weeksInterval':1,'triggerAtDay':[0],'triggerAtHour':5,'triggerAtMinute':0})
+        gate=self.nodes['Allow First Sunday Only']['parameters']['jsCode']
+        self.assertIn("setZone('Europe/Berlin')",gate)
+        self.assertIn('weekday !== 7',gate)
+        self.assertIn('day > 7',gate)
+        connections=self.workflow['connections']
+        self.assertEqual(connections['Sunday 05:00 Monthly Check']['main'][0][0]['node'],'Allow First Sunday Only')
+        self.assertEqual(connections['Allow First Sunday Only']['main'][0][0]['node'],'Build Overpass Discovery')
+        self.assertEqual(connections['Manual Trigger']['main'][0][0]['node'],'Build Overpass Discovery')
+        scheduled=[{'json':{'scheduled':True}}]
+        self.assertEqual(run_code('first-sunday-gate.js',scheduled,{}, {'weekday':7,'day':6}),scheduled)
+        self.assertEqual(run_code('first-sunday-gate.js',scheduled,{}, {'weekday':7,'day':13}),[])
+        self.assertEqual(run_code('first-sunday-gate.js',scheduled,{}, {'weekday':1,'day':1}),[])
         types=' '.join(n['type'].lower() for n in self.workflow['nodes'])
         for forbidden in ('webhook','wordpress','ssh','executecommand','email','ftp'):
             self.assertNotIn(forbidden,types)

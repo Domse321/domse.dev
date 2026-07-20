@@ -43,8 +43,9 @@ def overpass(node_id, name, expression, x):
 
 nodes=[
     node("manual","Manual Trigger","n8n-nodes-base.manualTrigger",1,0,{}),
-    node("weekly","Weekly Sunday 07:00","n8n-nodes-base.scheduleTrigger",1.3,0,
-         {"rule":{"interval":[{"field":"weeks","weeksInterval":1,"triggerAtDay":[0],"triggerAtHour":7,"triggerAtMinute":0}]}}),
+    node("monthly-sunday","Sunday 05:00 Monthly Check","n8n-nodes-base.scheduleTrigger",1.3,0,
+         {"rule":{"interval":[{"field":"weeks","weeksInterval":1,"triggerAtDay":[0],"triggerAtHour":5,"triggerAtMinute":0}]}}),
+    code_node("first-sunday-gate","Allow First Sunday Only","first-sunday-gate.js",110),
     code_node("discovery-query","Build Overpass Discovery","build-discovery.js",220),
     overpass("discover","Discover Named OSM Relations","={{ $json.overpass_query }}",440),
     code_node("normalize-discovery","Normalize Relation Discovery","normalize-discovery.js",660),
@@ -88,7 +89,8 @@ nodes += [
 ]
 connections={
     "Manual Trigger":{"main":[[{"node":"Build Overpass Discovery","type":"main","index":0}]]},
-    "Weekly Sunday 07:00":{"main":[[{"node":"Build Overpass Discovery","type":"main","index":0}]]},
+    "Sunday 05:00 Monthly Check":{"main":[[{"node":"Allow First Sunday Only","type":"main","index":0}]]},
+    "Allow First Sunday Only":{"main":[[{"node":"Build Overpass Discovery","type":"main","index":0}]]},
     "Build Overpass Discovery":{"main":[[{"node":"Discover Named OSM Relations","type":"main","index":0}]]},
     "Discover Named OSM Relations":{"main":[[{"node":"Normalize Relation Discovery","type":"main","index":0}]]},
     "Normalize Relation Discovery":{"main":[[{"node":"Discovery Has Candidates","type":"main","index":0}]]},
@@ -108,7 +110,7 @@ connections={
     "Upsert Machine Evidence V2":{"main":[[{"node":"Final Quality Summary","type":"main","index":0}]]},
 }
 workflow={
-    "name":"E-Bike OSM-Evidenzrecherche Weserbergland V2 (inactive)","active":False,
+    "name":"E-Bike OSM-Evidenzrecherche Weserbergland V2","active":False,
     "settings":{"executionOrder":"v1","timezone":"Europe/Berlin","saveDataErrorExecution":"all",
                 "saveDataSuccessExecution":"none","saveManualExecutions":True,"executionTimeout":900},
     "nodes":nodes,"connections":connections,"pinData":{},"meta":{"templateCredsSetupCompleted":True},"tags":[]
