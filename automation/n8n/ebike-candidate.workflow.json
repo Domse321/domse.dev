@@ -436,12 +436,61 @@
       }
     },
     {
+      "id": "require-images",
+      "name": "Require Licensed Route Image",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        320
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const items=$input.all();\nfunction present(value){return typeof value==='string'&&value.trim().length>0;}\nfunction ready(row){\n return row.image_found===true&&present(row.image_title)&&present(row.image_thumb_url)&&present(row.image_page_url)&&present(row.image_license)&&present(row.image_license_url)&&Number.isFinite(Number(row.image_distance_km))&&Number(row.image_distance_km)<=5;\n}\nconst accepted=items.filter(item=>ready(item.json));\nif(accepted.length)return accepted;\nreturn [{json:{pipeline_signal:'NO_ROUTE_WITH_REQUIRED_IMAGE',image_rejected_count:items.length,observed_at:$now.toISO()}}];\n"
+      }
+    },
+    {
+      "id": "image-if",
+      "name": "Image Gate Has Candidates",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2860,
+        320
+      ],
+      "parameters": {
+        "options": {},
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "image-if-condition",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "leftValue": "={{ Boolean($json.stable_key) }}",
+              "rightValue": ""
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "rows",
       "name": "Build Machine Evidence Rows",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2640,
+        3080,
         320
       ],
       "parameters": {
@@ -456,7 +505,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        2860,
+        3300,
         320
       ],
       "parameters": {
@@ -522,13 +571,13 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3080,
+        3520,
         320
       ],
       "parameters": {
         "mode": "runOnceForAllItems",
         "language": "javaScript",
-        "jsCode": "const input=$input.all().map(i=>i.json);const signals=input.filter(r=>r.pipeline_signal);const rows=input.filter(r=>!r.pipeline_signal&&r.stable_key);const byRegion={},byBike={};let images=0,partial=0,points=0,distance=0,score=0;\nfor(const r of rows){byRegion[r.region]=(byRegion[r.region]??0)+1;byBike[r.bike_type]=(byBike[r.bike_type]??0)+1;images+=r.image_page_url?1:0;partial+=r.partial_failure?1:0;points+=Number(r.geometry_points||0);distance+=Number(r.distance_km||0);score+=Number(r.evidence_score||0);}\nlet gateRejected=Number(signals.find(s=>s.pipeline_signal==='ALL_CANDIDATES_REJECTED')?.gate_rejected_count??0);try{const gate=$('Gate Score and Fair Limit').all();gateRejected=Math.max(gateRejected,...gate.map(i=>Number(i.json.gate_rejected_count||0)));}catch{}\nconst noData=rows.length===0;return [{json:{status:noData?'no_data':partial?'partial':'ok',pipeline_signals:signals.map(s=>s.pipeline_signal),publish_performed:false,target:'Data Table: ebike_route_evidence_v2',accepted_and_upserted:rows.length,rejected_by_hard_gates:gateRejected,with_licensed_track_near_image:images,partial_failure_rows:partial,total_geometry_points:points,total_distance_km:Number(distance.toFixed(1)),average_evidence_score:rows.length?Number((score/rows.length).toFixed(1)):0,by_region:byRegion,by_bike_type:byBike,finished_at:$now.toISO(),message:'Nur maschinelle Evidenz; Review bleibt in separater Tabelle, kein Publishing.'}}];\n"
+        "jsCode": "const input=$input.all().map(i=>i.json);const signals=input.filter(r=>r.pipeline_signal);const rows=input.filter(r=>!r.pipeline_signal&&r.stable_key);const byRegion={},byBike={};let images=0,partial=0,points=0,distance=0,score=0;\nfunction present(value){return typeof value==='string'&&value.trim().length>0;}function imageReady(r){return present(r.image_title)&&present(r.image_thumb_url)&&present(r.image_page_url)&&present(r.image_license)&&present(r.image_license_url);}\nfor(const r of rows){if(!imageReady(r))throw new Error(`IMAGE_INVARIANT_BROKEN:${r.stable_key}`);byRegion[r.region]=(byRegion[r.region]??0)+1;byBike[r.bike_type]=(byBike[r.bike_type]??0)+1;images+=1;partial+=r.partial_failure?1:0;points+=Number(r.geometry_points||0);distance+=Number(r.distance_km||0);score+=Number(r.evidence_score||0);}\nlet gateRejected=Number(signals.find(s=>s.pipeline_signal==='ALL_CANDIDATES_REJECTED')?.gate_rejected_count??0);try{const gate=$('Gate Score and Fair Limit').all();gateRejected=Math.max(gateRejected,...gate.map(i=>Number(i.json.gate_rejected_count||0)));}catch{}\nlet imageRejected=Number(signals.find(s=>s.pipeline_signal==='NO_ROUTE_WITH_REQUIRED_IMAGE')?.image_rejected_count??0);try{const selected=$('Select Licensed Raster Photos').all().map(i=>i.json);imageRejected=Math.max(imageRejected,selected.filter(r=>r.image_found!==true||!imageReady(r)).length);}catch{}\nconst noData=rows.length===0;return [{json:{status:noData?'no_data':partial?'partial':'ok',pipeline_signals:signals.map(s=>s.pipeline_signal),publish_performed:false,target:'Data Table: ebike_route_evidence_v2',accepted_and_upserted:rows.length,rejected_by_hard_gates:gateRejected,rejected_without_required_image:imageRejected,with_licensed_track_near_image:images,image_invariant_ok:images===rows.length,partial_failure_rows:partial,total_geometry_points:points,total_distance_km:Number(distance.toFixed(1)),average_evidence_score:rows.length?Number((score/rows.length).toFixed(1)):0,by_region:byRegion,by_bike_type:byBike,finished_at:$now.toISO(),message:'Nur Routen mit vollständigem, lizenziertem Streckenbild gelangen in die Evidenztabelle; kein Publishing.'}}];\n"
       }
     }
   ],
@@ -694,7 +743,36 @@
       "main": [
         [
           {
+            "node": "Require Licensed Route Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Require Licensed Route Image": {
+      "main": [
+        [
+          {
+            "node": "Image Gate Has Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Gate Has Candidates": {
+      "main": [
+        [
+          {
             "node": "Build Machine Evidence Rows",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Final Quality Summary",
             "type": "main",
             "index": 0
           }

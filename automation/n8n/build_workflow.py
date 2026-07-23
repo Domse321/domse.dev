@@ -70,7 +70,9 @@ nodes=[
         ]},"options":http_common(45000,1500)
     },retryOnFail=True,maxTries=4,waitBetweenTries=10000,onError="continueRegularOutput"),
     code_node("select-images","Select Licensed Raster Photos","select-images.js",2420),
-    code_node("rows","Build Machine Evidence Rows","build-evidence-rows.js",2640),
+    code_node("require-images","Require Licensed Route Image","require-images.js",2640),
+    has_stable_key_if("image-if","Image Gate Has Candidates",2860),
+    code_node("rows","Build Machine Evidence Rows","build-evidence-rows.js",3080),
 ]
 
 mapping={field:f"={{{{ $json.{field} }}}}" for field in [
@@ -80,12 +82,12 @@ mapping={field:f"={{{{ $json.{field} }}}}" for field in [
     "image_page_url","image_distance_km","image_candidates_json","partial_failure","http_status_json","observed_at","run_id"
 ]}
 nodes += [
-    node("upsert","Upsert Machine Evidence V2","n8n-nodes-base.dataTable",1.1,2860,{
+    node("upsert","Upsert Machine Evidence V2","n8n-nodes-base.dataTable",1.1,3300,{
         "resource":"row","operation":"upsert","dataTableId":{"mode":"name","value":"ebike_route_evidence_v2"},
         "matchType":"allConditions","filters":{"conditions":[{"keyName":"stable_key","condition":"eq","keyValue":"={{ $json.stable_key }}"}]},
         "columns":{"mappingMode":"defineBelow","value":mapping,"matchingColumns":[],"schema":[]},"options":{}
     }),
-    code_node("summary","Final Quality Summary","summary.js",3080),
+    code_node("summary","Final Quality Summary","summary.js",3520),
 ]
 connections={
     "Manual Trigger":{"main":[[{"node":"Build Overpass Discovery","type":"main","index":0}]]},
@@ -105,7 +107,11 @@ connections={
         [{"node":"Final Quality Summary","type":"main","index":0}]]},
     "Build Track-near Image Jobs":{"main":[[{"node":"Commons Track-near Raster Search","type":"main","index":0}]]},
     "Commons Track-near Raster Search":{"main":[[{"node":"Select Licensed Raster Photos","type":"main","index":0}]]},
-    "Select Licensed Raster Photos":{"main":[[{"node":"Build Machine Evidence Rows","type":"main","index":0}]]},
+    "Select Licensed Raster Photos":{"main":[[{"node":"Require Licensed Route Image","type":"main","index":0}]]},
+    "Require Licensed Route Image":{"main":[[{"node":"Image Gate Has Candidates","type":"main","index":0}]]},
+    "Image Gate Has Candidates":{"main":[
+        [{"node":"Build Machine Evidence Rows","type":"main","index":0}],
+        [{"node":"Final Quality Summary","type":"main","index":0}]]},
     "Build Machine Evidence Rows":{"main":[[{"node":"Upsert Machine Evidence V2","type":"main","index":0}]]},
     "Upsert Machine Evidence V2":{"main":[[{"node":"Final Quality Summary","type":"main","index":0}]]},
 }

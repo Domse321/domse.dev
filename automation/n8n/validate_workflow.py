@@ -6,7 +6,7 @@ OVERPASS="https://overpass.kumi.systems/api/interpreter"
 ALLOWED={OVERPASS,"https://commons.wikimedia.org/w/api.php"}
 REQUIRED={"Manual Trigger","Sunday 05:00 Monthly Check","Allow First Sunday Only","Build Overpass Discovery","Discover Named OSM Relations",
  "Normalize Relation Discovery","Discovery Has Candidates","Build Relation Geometry Jobs","Fetch Real Relation Geometry","Gate Score and Fair Limit",
- "Gate Has Accepted Candidates","Build Track-near Image Jobs","Commons Track-near Raster Search","Select Licensed Raster Photos",
+ "Gate Has Accepted Candidates","Build Track-near Image Jobs","Commons Track-near Raster Search","Select Licensed Raster Photos","Require Licensed Route Image","Image Gate Has Candidates",
  "Build Machine Evidence Rows","Upsert Machine Evidence V2","Final Quality Summary"}
 FORBIDDEN=("webhook","respondtowebhook","executecommand","ssh","ftp","git","email","gmail","wordpress")
 EXPECTED_SCHEDULE={'field':'weeks','weeksInterval':1,'triggerAtDay':[0],'triggerAtHour':5,'triggerAtMinute':0}
@@ -37,6 +37,9 @@ def validate(path):
     if main_targets(connections,'Sunday 05:00 Monthly Check')!=expected_schedule: errors.append('SCHEDULE_GATE_CONNECTION_INVALID')
     if main_targets(connections,'Allow First Sunday Only')!=expected_gate: errors.append('GATE_DISCOVERY_CONNECTION_INVALID')
     if main_targets(connections,'Manual Trigger')!=expected_manual: errors.append('MANUAL_BYPASS_CONNECTION_INVALID')
+    if main_targets(connections,'Select Licensed Raster Photos')!=[[{'node':'Require Licensed Route Image','type':'main','index':0}]]: errors.append('IMAGE_GATE_INPUT_INVALID')
+    if main_targets(connections,'Require Licensed Route Image')!=[[{'node':'Image Gate Has Candidates','type':'main','index':0}]]: errors.append('IMAGE_GATE_IF_INVALID')
+    if main_targets(connections,'Image Gate Has Candidates')!=[[{'node':'Build Machine Evidence Rows','type':'main','index':0}],[{'node':'Final Quality Summary','type':'main','index':0}]]: errors.append('IMAGE_GATE_OUTPUT_INVALID')
     inbound=set()
     for source, outputs in connections.items():
         for stream in outputs.get('main',[]) if isinstance(outputs,dict) else []:
@@ -58,7 +61,7 @@ def validate(path):
     all_text=json.dumps(w,ensure_ascii=False).lower()
     markers=('out geom','osm_relation_','too_few_points','outside_search_bbox','not_plausible_loop','evidence_json',
              'generator","value":"geosearch','bitmap','svg|pdf|wav|ogg','ebike_route_evidence_v2','publish_performed:false',
-             'discovery_empty_or_failed','all_candidates_rejected')
+             'discovery_empty_or_failed','all_candidates_rejected','no_route_with_required_image','rejected_without_required_image')
     compact=all_text.replace(' ','')
     for marker in markers:
         if marker.replace(' ','') not in compact: errors.append('V2_MARKER_MISSING:'+marker)

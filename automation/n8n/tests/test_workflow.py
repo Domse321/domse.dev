@@ -35,6 +35,12 @@ class WorkflowV2Tests(unittest.TestCase):
         self.assertEqual(connections['Sunday 05:00 Monthly Check']['main'][0][0]['node'],'Allow First Sunday Only')
         self.assertEqual(connections['Allow First Sunday Only']['main'][0][0]['node'],'Build Overpass Discovery')
         self.assertEqual(connections['Manual Trigger']['main'][0][0]['node'],'Build Overpass Discovery')
+        self.assertIn('Require Licensed Route Image',self.nodes)
+        self.assertIn('Image Gate Has Candidates',self.nodes)
+        self.assertEqual(connections['Select Licensed Raster Photos']['main'][0][0]['node'],'Require Licensed Route Image')
+        self.assertEqual(connections['Require Licensed Route Image']['main'][0][0]['node'],'Image Gate Has Candidates')
+        self.assertEqual(connections['Image Gate Has Candidates']['main'][0][0]['node'],'Build Machine Evidence Rows')
+        self.assertEqual(connections['Image Gate Has Candidates']['main'][1][0]['node'],'Final Quality Summary')
         scheduled=[{'json':{'scheduled':True}}]
         self.assertEqual(run_code('first-sunday-gate.js',scheduled,{}, {'weekday':7,'day':6}),scheduled)
         self.assertEqual(run_code('first-sunday-gate.js',scheduled,{}, {'weekday':7,'day':13}),[])
@@ -281,6 +287,18 @@ class WorkflowV2Tests(unittest.TestCase):
         self.assertGreater(out[0]['json']['image_anchor_lon'],9.015)
         self.assertAlmostEqual(out[1]['json']['image_anchor_lon'],9.05,delta=.005)
 
+    def test_required_image_gate_allows_only_complete_licensed_images(self):
+        good={'json':{'stable_key':'osm_relation_1','image_found':True,'image_title':'Waldweg','image_thumb_url':'https://upload.wikimedia.org/a.jpg','image_page_url':'https://commons.wikimedia.org/wiki/File:a.jpg','image_license':'CC BY-SA 4.0','image_license_url':'https://creativecommons.org/licenses/by-sa/4.0/','image_distance_km':1.2}}
+        missing={'json':{'stable_key':'osm_relation_2','image_found':False,'image_title':'','image_thumb_url':'','image_page_url':'','image_license':'','image_license_url':''}}
+        incomplete={'json':{'stable_key':'osm_relation_3','image_found':True,'image_title':'Wald','image_thumb_url':'https://upload.wikimedia.org/c.jpg','image_page_url':'https://commons.wikimedia.org/wiki/File:c.jpg','image_license':'CC BY-SA 4.0','image_license_url':''}}
+        accepted=run_code('require-images.js',[good,missing,incomplete],{})
+        self.assertEqual([item['json']['stable_key'] for item in accepted],['osm_relation_1'])
+        signal=run_code('require-images.js',[missing,incomplete],{})
+        self.assertEqual(len(signal),1)
+        self.assertEqual(signal[0]['json']['pipeline_signal'],'NO_ROUTE_WITH_REQUIRED_IMAGE')
+        self.assertEqual(signal[0]['json']['image_rejected_count'],2)
+        self.assertNotIn('stable_key',signal[0]['json'])
+
     def test_review_fields_never_written_and_summary_has_quality_metrics(self):
         upsert=self.nodes['Upsert Machine Evidence V2']; self.assertEqual(upsert['parameters']['dataTableId']['value'],'ebike_route_evidence_v2')
         mapping=upsert['parameters']['columns']['value']
@@ -289,7 +307,7 @@ class WorkflowV2Tests(unittest.TestCase):
             self.assertEqual(expression, f'={{{{ $json.{field} }}}}')
         self.assertEqual(upsert['parameters']['filters']['conditions'][0]['keyName'],'stable_key')
         summary=self.nodes['Final Quality Summary']['parameters']['jsCode']
-        for metric in ('rejected_by_hard_gates','total_geometry_points','total_distance_km','average_evidence_score','partial_failure_rows'):
+        for metric in ('rejected_by_hard_gates','rejected_without_required_image','total_geometry_points','total_distance_km','average_evidence_score','partial_failure_rows'):
             self.assertIn(metric,summary)
 
 if __name__=='__main__': unittest.main()

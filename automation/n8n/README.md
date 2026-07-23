@@ -12,7 +12,8 @@ Reproduzierbarer, **inaktiv exportierter** Kandidatenworkflow für n8n 2.20.9. E
 6. Faire Begrenzung: höchstens zwei Kandidaten je Region/Bike-Typ und 30 insgesamt.
 7. Drei Trackanker bei 20/50/80 % der **kumulativen Streckenlänge** je Kandidat; Commons-`geosearch` prüft je Anker bis zu 25 Dateien. Verwendet werden nur Bilder bis 5 km vom jeweiligen Trackanker. Primärbilder sind innerhalb eines Laufs routenübergreifend eindeutig.
 8. Zulässig sind nur mindestens 1200 × 600 px große, landschaftstaugliche Bilder im Seitenverhältnis 1,2:1 bis 1,9:1: `BITMAP` mit JPEG/PNG/WebP und CC0, Public Domain/PD, CC BY oder CC BY-SA. CC BY/CC BY-SA wird ohne Creator, Lizenz-URL, Thumbnail oder explizite Commons-Seite fail-closed verworfen. SVG/PDF/WAV/OGG/TIFF, Karten, Schilder, Tafeln, Wappen, Luftbilder, Scans, Friedhofs-/Grabdokumentation, historische Scans sowie extreme 360°-Panoramen werden ebenfalls verworfen. Zusätzlich ist ein landschaftlicher Motivhinweis in den Commons-Metadaten erforderlich.
-9. Upsert nur in **`ebike_route_evidence_v2`**. Keine Review-/`first_seen`-Felder, kein Websitezugriff. Summary meldet akzeptierte/abgewiesene Datensätze, Geometriepunkte/-kilometer, Bildquote, Evidenzscore, Verteilungen und Partial-Failure-Zeilen.
+9. Vor dem Upsert erzwingt `Require Licensed Route Image` eine harte Bild-Invariante: Nur Routen mit Titel, Thumbnail, Commons-Seite, Lizenz, Lizenz-URL und maximal 5 km Bildabstand gelangen weiter. Fehlt ein vollständiges Bild, wird die Route verworfen statt mit einem Platzhalter oder leerem Bildfeld gespeichert.
+10. Upsert nur in **`ebike_route_evidence_v2`**. Jede neu geschriebene Zeile besitzt damit ein vollständiges, lizenziertes Streckenbild. Keine Review-/`first_seen`-Felder, kein Websitezugriff. Summary meldet akzeptierte/abgewiesene Datensätze, fehlende Pflichtbilder, Geometriepunkte/-kilometer, Bildquote, Evidenzscore, Verteilungen und Partial-Failure-Zeilen.
 
 ## Reproduzierbarkeit und Prüfung
 
@@ -30,6 +31,7 @@ Der Generator liest versionierte Scripts aus `js/`; beide Exporte sind byte-iden
 - Tabelle gemäß `DATA_TABLE_MIGRATION.md` anlegen und im Data-Table-Node lokal neu auswählen.
 - Overpass-Nutzungsregeln beachten. Overpass-Nodes haben 120-s-Timeout, vier Versuche und Backoff/Batches; Commons hat 45-s-Timeout. Fehler werden als Partial-Failure-Signal weitergegeben; Workflow-Timeout 1800 s.
 - Ein manueller Lauf muss zuerst Summary, Gatequote, Bildlizenzen und Mapping bestätigen. Der Export bleibt inaktiv. Eventuelle Aktivierung erfolgt manuell.
-- Leere Discovery und 100 % Gate-Reject werden über separate IF-Signalpfade direkt zur Summary geführt. Signale besitzen keinen `stable_key` und erreichen den Data-Table-Upsert nicht.
+- Leere Discovery, 100 % Gate-Reject und 100 % Bild-Reject werden über separate IF-Signalpfade direkt zur Summary geführt. Signale besitzen keinen `stable_key` und erreichen den Data-Table-Upsert nicht.
+- **Bild-Invariante:** Ein Lauf darf weniger Routen liefern, aber niemals eine neue Evidenzzeile ohne vollständiges Bild. Bildlose Kandidaten zählen als `rejected_without_required_image`; sie werden weder gespeichert noch durch generische Platzhalter ersetzt.
 - **Snapshot-Grenze:** Die Tabelle ist ein Upsert-Bestand, kein vollständiger aktueller Snapshot. `observed_at` und `run_id` kennzeichnen die letzte Beobachtung einer Route; Zeilen mit anderer `run_id` als der betrachtete erfolgreiche Lauf sind als stale zu behandeln. Ein Lauf mit `no_data` löscht bewusst keine historische Evidenz.
 - Keine automatische Freigabe, kein Komoot-Scraping, keine erfundenen Tracks und keine Websiteänderung.
