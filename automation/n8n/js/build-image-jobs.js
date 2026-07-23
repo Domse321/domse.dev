@@ -13,6 +13,6 @@ function anchor(points,fraction,fallback){
 for(const [i,item] of $input.all().entries()){
  const c=item.json; let p=[]; try{p=JSON.parse(c.geometry_json)}catch{}
  p=p.filter(x=>Number.isFinite(Number(x?.lat))&&Number.isFinite(Number(x?.lon))).map(x=>({lat:Number(x.lat),lon:Number(x.lon)}));
- for(const fraction of [0.2,0.5,0.8]){const point=anchor(p,fraction,c.centroid);out.push({pairedItem:{item:i},json:{...c,image_anchor_lat:point.lat,image_anchor_lon:point.lon,image_anchor_fraction:fraction}});}
+ for(const fraction of [0.1,0.3,0.5,0.7,0.9]){const point=anchor(p,fraction,c.centroid);out.push({pairedItem:{item:i},json:{...c,image_anchor_lat:point.lat,image_anchor_lon:point.lon,image_anchor_fraction:fraction}});}
 }
 return out;

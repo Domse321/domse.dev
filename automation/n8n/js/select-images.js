@@ -7,7 +7,7 @@ for(const {json:job} of jobs){const key=Number(job.relation_id);expectedByRelati
 const allow=/^(?:cc0(?: 1\.0)?|public domain|pd|cc by(?:-sa)?(?: [1-4]\.0)?)$/i;
 const raster=new Set(['image/jpeg','image/png','image/webp']);
 const badTitle=/(^|[ _-])(map|karte|wappen|coat[ _-]?of[ _-]?arms|diagram|logo|schild|wegweiser|haltestelle|bushaltestelle|busstop|wegekreuz|wegkreuz|bildstock|shrine|informationstafel|informationtafel|tafel|luftbild|landschaftsschutzgebiet(?:nds)?|orthophoto|dop20|scan|kriegsgraber(?:statte)?|friedhof|cemetery|grab|memorial|denkmaltafel)([ _.-]|$)/i;
-const stop=new Set(['rund','ueber','über','unter','durch','tour','route','radroute','naturpark','basisring','alte','bahnlinie','the','und','der','die','das','den','von','zum','zur']);
+const stop=new Set(['rund','runde','ueber','über','unter','durch','tour','route','radroute','radweg','strecke','weg','test','naturpark','basisring','alte','bahnlinie','the','und','der','die','das','den','von','zum','zur']);
 function plain(v){return String(v??'').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim();}
 function fold(v){return plain(v).toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9äöüß]+/g,' ');}
 function tokens(v){return [...new Set(fold(v).split(/\s+/).filter(t=>t.length>=4&&!stop.has(t)))];}
@@ -30,15 +30,16 @@ for(const [i,item] of $input.all().entries()){
   const titleForGate=fold(title.replace(/^file:/i,'')); const width=Number(info?.width??0),height=Number(info?.height??0),lat=Number(coord?.lat),lon=Number(coord?.lon);
   if(!info||info.mediatype!=='BITMAP'||!raster.has(mime)||!allow.test(license)||badTitle.test(titleForGate)||/(?:^|\D)(?:18|19)\d{2}(?:\D|$)/.test(titleForGate)||/\.(svg|pdf|wav|ogg|tiff?)$/i.test(title)||!Number.isFinite(width)||!Number.isFinite(height)||!Number.isFinite(lat)||!Number.isFinite(lon)||lat < -90||lat > 90||lon < -180||lon > 180||width<1200||height<600||width/height<1.2||width/height>1.9)continue;
   const distance=km({lat:anchorLat,lon:anchorLon},{lat,lon});
-  if(!Number.isFinite(distance)||distance>5)continue;
+  if(!Number.isFinite(distance)||distance>10)continue;
   const creator=plain(ext.Artist?.value).slice(0,300),licenseUrl=String(ext.LicenseUrl?.value??'').trim(),thumbUrl=String(info.thumburl??'').trim(),pageUrl=String(info.descriptionurl??'').trim();
   if(/^cc by/i.test(license)&&(!creator||!licenseUrl||!thumbUrl||!pageUrl))continue;
   if(!safeUrl(thumbUrl,new Set(['upload.wikimedia.org']))||!safeUrl(pageUrl,new Set(['commons.wikimedia.org']))||(licenseUrl&&!safeUrl(licenseUrl,new Set(['creativecommons.org','commons.wikimedia.org']))))continue;
   const searchable=fold(`${title} ${ext.ImageDescription?.value??''} ${ext.Categories?.value??''}`);
-  const tokenMatches=routeTokens.filter(token=>searchable.includes(token)).length;
+  const searchableWords=new Set(searchable.split(/\s+/).filter(Boolean));
+  const tokenMatches=routeTokens.filter(token=>searchableWords.has(token)).length;
   const scenicWords=new Set(['wald','forest','berge','aussicht','panorama','weser','fluss','river','tal','valley','weg','trail','landschaft','landscape','nature','natur','heide','wiese','meadow','see','lake']);
   const scenicMatches=searchable.split(/\s+/).filter(word=>scenicWords.has(word)||word.startsWith('landschaft')||word.startsWith('panorama')).length;
-  if(scenicMatches===0)continue;
+  if(scenicMatches===0&&tokenMatches===0)continue;
   const relevanceScore=tokenMatches*30+Math.min(18,scenicMatches*3)-Math.min(15,distance*2);
   const candidate={image_title:title,image_thumb_url:thumbUrl,image_creator:creator,image_license:license,image_license_url:licenseUrl,image_page_url:pageUrl,image_distance_km:Number(distance.toFixed(3)),image_mime:mime,image_anchor_fraction:Number(job.image_anchor_fraction??0.5),image_relevance_score:Number(relevanceScore.toFixed(2)),image_token_matches:tokenMatches};
   const key=Number(job.relation_id),list=byRelation.get(key)??[];list.push(candidate);byRelation.set(key,list);
@@ -49,7 +50,7 @@ return routes.map((item,i)=>{
  const route=item.json,all=byRelation.get(Number(route.relation_id))??[],chosen=[],seen=new Set();
  const commonsStatuses=commonsByRelation.get(Number(route.relation_id))??[];
  const commonsPartial=commonsStatuses.length!==(expectedByRelation.get(Number(route.relation_id))??0)||commonsStatuses.some(entry=>!entry.ok);
- for(const fraction of [0.2,0.5,0.8]){
+ for(const fraction of [0.1,0.3,0.5,0.7,0.9]){
   const best=all.filter(image=>Math.abs(image.image_anchor_fraction-fraction)<0.01&&!seen.has(image.image_page_url)).sort((a,b)=>b.image_relevance_score-a.image_relevance_score||a.image_distance_km-b.image_distance_km)[0];
   if(best){chosen.push(best);seen.add(best.image_page_url);}
  }

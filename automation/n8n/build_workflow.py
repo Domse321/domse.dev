@@ -64,7 +64,7 @@ nodes=[
         "sendQuery":True,"queryParameters":{"parameters":[
             {"name":"action","value":"query"},{"name":"format","value":"json"},{"name":"generator","value":"geosearch"},
             {"name":"ggscoord","value":"={{ $json.image_anchor_lat + '|' + $json.image_anchor_lon }}"},
-            {"name":"ggsradius","value":"10000"},{"name":"ggslimit","value":"25"},{"name":"ggsnamespace","value":"6"},
+            {"name":"ggsradius","value":"10000"},{"name":"ggslimit","value":"50"},{"name":"ggsnamespace","value":"6"},
             {"name":"prop","value":"imageinfo|coordinates"},{"name":"iiprop","value":"url|extmetadata|mime|mediatype|size"},
             {"name":"iiurlwidth","value":"1600"},{"name":"origin","value":"*"}
         ]},"options":http_common(45000,1500)

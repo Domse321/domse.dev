@@ -141,7 +141,7 @@ class WorkflowV2Tests(unittest.TestCase):
     def test_commons_geosearch_multiple_real_raster_license_candidates(self):
         node=self.nodes['Commons Track-near Raster Search']; params={p['name']:p['value'] for p in node['parameters']['queryParameters']['parameters']}
         self.assertEqual(node['parameters']['options']['response']['response']['responseFormat'],'json')
-        self.assertEqual(params['generator'],'geosearch'); self.assertEqual(params['ggslimit'],'25'); self.assertEqual(params['ggsradius'],'10000')
+        self.assertEqual(params['generator'],'geosearch'); self.assertEqual(params['ggslimit'],'50'); self.assertEqual(params['ggsradius'],'10000')
         self.assertEqual(params['prop'],'imageinfo|coordinates')
         self.assertIn('size',params['iiprop'])
         code=self.nodes['Select Licensed Raster Photos']['parameters']['jsCode']
@@ -151,12 +151,28 @@ class WorkflowV2Tests(unittest.TestCase):
         for rejected_title in ('schild','informationstafel','luftbild','orthophoto','dop20','kriegsgraber','friedhof','cemetery'):
             self.assertIn(rejected_title,code)
         fixture=json.loads((ROOT/'fixtures/commons-adversarial.json').read_text())
-        route={'json':{'relation_id':101,'centroid':{'lat':52.1,'lon':9.35}}}
-        jobs=[{'json':{'relation_id':101,'image_anchor_lat':52.1,'image_anchor_lon':9.35}}]
+        route={'json':{'relation_id':101,'route_name':'Süntel Test-Runde','region':'Süntel','centroid':{'lat':52.1,'lon':9.35}}}
+        jobs=[{'json':{'relation_id':101,'route_name':'Süntel Test-Runde','region':'Süntel','image_anchor_lat':52.1,'image_anchor_lon':9.35}}]
         out=run_code('select-images.js',[commons_item(fixture)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
         self.assertEqual(out[0]['json']['image_candidate_count'],1)
         self.assertEqual(out[0]['json']['image_title'],'File:Suentel forest trail.jpg')
         self.assertEqual(out[0]['json']['image_creator'],'Erika Beispiel')
+
+        named_place=copy.deepcopy(fixture)
+        named_place['query']['pages']['1']['title']='File:Süntel Hochfläche.jpg'
+        named_place['query']['pages']['1']['imageinfo'][0]['extmetadata']['ImageDescription']={'value':''}
+        named_place['query']['pages']['1']['imageinfo'][0]['extmetadata']['Categories']={'value':''}
+        out=run_code('select-images.js',[commons_item(named_place)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+        self.assertEqual(out[0]['json']['image_candidate_count'],1)
+
+        substring_only=copy.deepcopy(fixture)
+        substring_only['query']['pages']['1']['title']='File:Harzburg Rathaus.jpg'
+        substring_only['query']['pages']['1']['imageinfo'][0]['extmetadata']['ImageDescription']={'value':''}
+        substring_only['query']['pages']['1']['imageinfo'][0]['extmetadata']['Categories']={'value':''}
+        harz_route={'json':{'relation_id':202,'route_name':'Harz Runde','region':'Harz'}}
+        harz_jobs=[{'json':{'relation_id':202,'route_name':'Harz Runde','region':'Harz','image_anchor_lat':52.1,'image_anchor_lon':9.35}}]
+        out=run_code('select-images.js',[commons_item(substring_only)],{'Gate Score and Fair Limit':[harz_route],'Build Track-near Image Jobs':harz_jobs})
+        self.assertEqual(out[0]['json']['image_candidate_count'],0)
 
         incomplete=copy.deepcopy(fixture)
         incomplete['query']['pages']['1']['imageinfo'][0]['extmetadata']['Artist']['value']=''
@@ -283,12 +299,14 @@ class WorkflowV2Tests(unittest.TestCase):
             {'lat':52.0,'lon':9.0},{'lat':52.0,'lon':9.001},{'lat':52.0,'lon':9.002},{'lat':52.0,'lon':9.100}
         ])}
         out=run_code('build-image-jobs.js',[{'json':route}],{})
-        self.assertEqual(len(out),3)
-        self.assertGreater(out[0]['json']['image_anchor_lon'],9.015)
-        self.assertAlmostEqual(out[1]['json']['image_anchor_lon'],9.05,delta=.005)
+        self.assertEqual(len(out),5)
+        self.assertIn('[0.1,0.3,0.5,0.7,0.9]',self.nodes['Build Track-near Image Jobs']['parameters']['jsCode'])
+        self.assertIn('[0.1,0.3,0.5,0.7,0.9]',self.nodes['Select Licensed Raster Photos']['parameters']['jsCode'])
+        self.assertGreater(out[0]['json']['image_anchor_lon'],9.005)
+        self.assertAlmostEqual(out[2]['json']['image_anchor_lon'],9.05,delta=.005)
 
     def test_required_image_gate_allows_only_complete_licensed_images(self):
-        good={'json':{'stable_key':'osm_relation_1','image_found':True,'image_title':'Waldweg','image_thumb_url':'https://upload.wikimedia.org/a.jpg','image_page_url':'https://commons.wikimedia.org/wiki/File:a.jpg','image_license':'CC BY-SA 4.0','image_license_url':'https://creativecommons.org/licenses/by-sa/4.0/','image_distance_km':1.2}}
+        good={'json':{'stable_key':'osm_relation_1','image_found':True,'image_title':'Waldweg','image_thumb_url':'https://upload.wikimedia.org/a.jpg','image_page_url':'https://commons.wikimedia.org/wiki/File:a.jpg','image_license':'CC BY-SA 4.0','image_license_url':'https://creativecommons.org/licenses/by-sa/4.0/','image_distance_km':9.9}}
         missing={'json':{'stable_key':'osm_relation_2','image_found':False,'image_title':'','image_thumb_url':'','image_page_url':'','image_license':'','image_license_url':''}}
         incomplete={'json':{'stable_key':'osm_relation_3','image_found':True,'image_title':'Wald','image_thumb_url':'https://upload.wikimedia.org/c.jpg','image_page_url':'https://commons.wikimedia.org/wiki/File:c.jpg','image_license':'CC BY-SA 4.0','image_license_url':''}}
         accepted=run_code('require-images.js',[good,missing,incomplete],{})
@@ -298,6 +316,8 @@ class WorkflowV2Tests(unittest.TestCase):
         self.assertEqual(signal[0]['json']['pipeline_signal'],'NO_ROUTE_WITH_REQUIRED_IMAGE')
         self.assertEqual(signal[0]['json']['image_rejected_count'],2)
         self.assertNotIn('stable_key',signal[0]['json'])
+        too_far=copy.deepcopy(good); too_far['json']['image_distance_km']=10.1
+        self.assertEqual(run_code('require-images.js',[too_far],{})[0]['json']['pipeline_signal'],'NO_ROUTE_WITH_REQUIRED_IMAGE')
 
     def test_review_fields_never_written_and_summary_has_quality_metrics(self):
         upsert=self.nodes['Upsert Machine Evidence V2']; self.assertEqual(upsert['parameters']['dataTableId']['value'],'ebike_route_evidence_v2')
