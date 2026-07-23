@@ -63,6 +63,13 @@ class ReleaseSecurityTests(unittest.TestCase):
                 self.assertEqual(parsed.hostname, "upload.wikimedia.org")
                 self.assertTrue(parsed.path.startswith("/wikipedia/commons/"))
 
+    def test_route_counts_are_data_driven(self):
+        app = (ROOT / "app.js").read_text()
+        self.assertIn("${AppState.allRoutes.length} E-Bike", app)
+        self.assertIn("Alle ${AppState.allRoutes.length} Touren", app)
+        self.assertIn("${AppState.allRoutes.length} Strecken", app)
+        self.assertNotRegex(app, r"(?:Entdecke|Alle) 30 (?:E-Bike|Touren)")
+
     def test_csp_referrer_and_no_inline_handlers(self):
         html = (ROOT / "index.html").read_text()
         self.assertIn("Content-Security-Policy", html)

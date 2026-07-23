@@ -6,6 +6,7 @@ const http = require('node:http');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
+const EXPECTED_ROUTE_COUNT = JSON.parse(fs.readFileSync(path.join(ROOT, 'ebike/data/routes.json'), 'utf8')).routes.length;
 const OUT = process.env.EBIKE_PRODUCT_EVIDENCE || '/tmp/ebike-product-e2e';
 const PLAYWRIGHT_MODULE = process.env.EBIKE_PLAYWRIGHT_MODULE || 'playwright';
 const REMOTE_BASE_URL = String(process.env.EBIKE_BASE_URL || '').replace(/\/+$/, '');
@@ -28,7 +29,7 @@ const MATRIX = [
 
 const EXPECTED_FUNCTION_IDS = [
   'theme', 'profile-E-MTB / Trail', 'profile-E-Bike / Genuss',
-  'mood-Alle 30 Touren', 'mood-Spontan / Feierabend', 'mood-Halbtagestour & Genuss', 'mood-Tagestour & Wochenende',
+  `mood-Alle ${EXPECTED_ROUTE_COUNT} Touren`, 'mood-Spontan / Feierabend', 'mood-Halbtagestour & Genuss', 'mood-Tagestour & Wochenende',
   'filter-Leicht', 'filter-Mittel', 'filter-Sportlich', 'search-continuous',
   'sort-score_desc', 'sort-dist_asc', 'sort-dist_desc', 'sort-elev_desc', 'load-more',
   'favorite', 'favorite-filter', 'compare-empty-open-close', 'compare-remove', 'compare-open-route',

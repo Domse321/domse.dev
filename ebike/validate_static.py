@@ -46,8 +46,8 @@ def run_validation():
 
     routes = data.get('routes', [])
     print(f"✔️ Found {len(routes)} routes in data/routes.json")
-    if len(routes) != 30:
-        errors.append(f"Expected exactly 30 routes, but found {len(routes)}")
+    if len(routes) < 1 or len(routes) > 500:
+        errors.append(f"Expected between 1 and 500 routes, but found {len(routes)}")
 
     # 2. Check each route has GPX and GeoJSON files and count gallery URLs
     total_gallery = 0
@@ -69,7 +69,7 @@ def run_validation():
         if not gallery:
             errors.append(f"Route '{rid}' has no gallery images")
 
-    print(f"✔️ All 30 routes have corresponding GPX and GeoJSON files on disk.")
+    print(f"✔️ All {len(routes)} routes have corresponding GPX and GeoJSON files on disk.")
     print(f"✔️ Total gallery image URLs across all routes: {total_gallery}")
 
 

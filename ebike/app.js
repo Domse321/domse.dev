@@ -610,7 +610,7 @@ function renderEbikeExplorerView() {
       <div class="hero-content-layer">
         <div class="hero-text-block">
           <span class="hero-eyebrow">Weserbergland Trail Archiv</span>
-          <h1 class="hero-title">Entdecke 30 E-Bike &amp; Trail Strecken</h1>
+          <h1 class="hero-title">Entdecke ${AppState.allRoutes.length} E-Bike &amp; Trail Strecken</h1>
           <p class="hero-subtitle">Von der schnellen Feierabendrunde am Klüt bis zur epischen Deister-Tagestour — dein persönliches Streckenbuch für Hameln und Umgebung.</p>
         </div>
         ${featured ? `
@@ -652,10 +652,10 @@ function renderEbikeExplorerView() {
       <div class="mood-decision-card ${AppState.activeFilter.mood === 'alle' ? 'active' : ''}" data-mood="alle">
         <div>
           <div class="mood-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <h3 class="mood-title">Alle 30 Touren</h3>
+          <h3 class="mood-title">Alle ${AppState.allRoutes.length} Touren</h3>
           <p class="mood-desc">Das komplette Tourenarchiv vom Klütturm über den Süntel bis zum Deister.</p>
         </div>
-        <span class="mood-badge">30 Strecken</span>
+        <span class="mood-badge">${AppState.allRoutes.length} Strecken</span>
       </div>
 
       <div class="mood-decision-card ${AppState.activeFilter.mood === 'feierabend' ? 'active' : ''}" data-mood="feierabend">
