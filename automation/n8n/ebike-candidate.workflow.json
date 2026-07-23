@@ -7,7 +7,7 @@
     "saveDataErrorExecution": "all",
     "saveDataSuccessExecution": "none",
     "saveManualExecutions": true,
-    "executionTimeout": 900
+    "executionTimeout": 1800
   },
   "nodes": [
     {
@@ -87,7 +87,7 @@
       ],
       "parameters": {
         "method": "GET",
-        "url": "https://z.overpass-api.de/api/interpreter",
+        "url": "https://overpass.kumi.systems/api/interpreter",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -115,7 +115,7 @@
           ]
         },
         "options": {
-          "timeout": 60000,
+          "timeout": 120000,
           "batching": {
             "batch": {
               "batchSize": 1,
@@ -133,7 +133,7 @@
       },
       "retryOnFail": true,
       "maxTries": 4,
-      "waitBetweenTries": 30000,
+      "waitBetweenTries": 15000,
       "onError": "continueRegularOutput"
     },
     {
@@ -148,7 +148,7 @@
       "parameters": {
         "mode": "runOnceForAllItems",
         "language": "javaScript",
-        "jsCode": "const source = $('Build Overpass Discovery').first().json;\nconst input = $input.first().json;\nlet body = input.body ?? input.data ?? input;\nif (typeof body === 'string') { try { body=JSON.parse(body); } catch { body={}; } }\nconst status = Number(input.statusCode ?? 0);\nconst elements = Array.isArray(body.elements) ? body.elements : [];\nconst out=[]; const seen=new Set();\nfunction rank(tags, center) {\n  let score=0;\n  const lat=Number(center?.lat), lon=Number(center?.lon);\n  if(Number.isFinite(lat)&&Number.isFinite(lon)) {\n    if(lat>=51.85&&lat<=52.45&&lon>=8.95&&lon<=10.05) score+=25;\n    if(lat>=52.00&&lat<=52.32&&lon>=9.15&&lon<=9.75) score+=15;\n  }\n  if(String(tags.route).toLowerCase()==='mtb') score+=20;\n  if(/^(?:lcn|rcn|ncn|icn)$/i.test(String(tags.network??''))) score+=10;\n  if(String(tags.distance??'').trim()) score+=10;\n  if(/^(?:yes|true|1)$/i.test(String(tags.roundtrip??''))) score+=10;\n  if(/mtb|mountainbike|rad|bike|runde|weser|deister|süntel|ith|hils/i.test(`${tags.name??''} ${tags.description??''}`)) score+=10;\n  return score;\n}\nfor (const e of elements) {\n  const tags=e.tags ?? {}; const id=Number(e.id); const route=String(tags.route ?? '').toLowerCase();\n  const name=String(tags.name ?? '').trim();\n  if (e.type !== 'relation' || !Number.isSafeInteger(id) || id <= 0 || !name || !['bicycle','mtb'].includes(route) || seen.has(id)) continue;\n  seen.add(id);\n  out.push({json:{...source, relation_id:id, stable_key:`osm_relation_${id}`, route_name:name.slice(0,240), route_tag:route, discovery_tags:tags, discovery_center:e.center??null, discovery_rank_score:rank(tags,e.center), discovery_ok:status>=200&&status<300, discovery_http_status:status}});\n}\nif (!out.length) return [{json:{...source, pipeline_signal:'DISCOVERY_EMPTY_OR_FAILED', discovery_ok:false, discovery_http_status:status}}];\nreturn out.sort((a,b)=>b.json.discovery_rank_score-a.json.discovery_rank_score||a.json.route_name.localeCompare(b.json.route_name,'de')||a.json.relation_id-b.json.relation_id).slice(0,250);\n"
+        "jsCode": "const source = $('Build Overpass Discovery').first().json;\nconst input = $input.first().json;\nlet body = input.body ?? input.data ?? input;\nif (typeof body === 'string') { try { body=JSON.parse(body); } catch { body={}; } }\nconst status = Number(input.statusCode ?? 0);\nconst elements = Array.isArray(body.elements) ? body.elements : [];\nconst out=[]; const seen=new Set();\nfunction rank(tags, center) {\n  let score=0;\n  const lat=Number(center?.lat), lon=Number(center?.lon);\n  if(Number.isFinite(lat)&&Number.isFinite(lon)) {\n    if(lat>=51.85&&lat<=52.45&&lon>=8.95&&lon<=10.05) score+=25;\n    if(lat>=52.00&&lat<=52.32&&lon>=9.15&&lon<=9.75) score+=15;\n  }\n  if(String(tags.route).toLowerCase()==='mtb') score+=20;\n  if(/^(?:lcn|rcn|ncn|icn)$/i.test(String(tags.network??''))) score+=10;\n  if(String(tags.distance??'').trim()) score+=10;\n  if(/^(?:yes|true|1)$/i.test(String(tags.roundtrip??''))) score+=10;\n  if(/mtb|mountainbike|rad|bike|runde|weser|deister|süntel|ith|hils/i.test(`${tags.name??''} ${tags.description??''}`)) score+=10;\n  return score;\n}\nfor (const e of elements) {\n  const tags=e.tags ?? {}; const id=Number(e.id); const route=String(tags.route ?? '').toLowerCase();\n  const name=String(tags.name ?? '').trim();\n  if (e.type !== 'relation' || !Number.isSafeInteger(id) || id <= 0 || !name || !['bicycle','mtb'].includes(route) || seen.has(id)) continue;\n  seen.add(id);\n  out.push({json:{...source, relation_id:id, stable_key:`osm_relation_${id}`, route_name:name.slice(0,240), route_tag:route, discovery_tags:tags, discovery_center:e.center??null, discovery_rank_score:rank(tags,e.center), discovery_ok:status>=200&&status<300, discovery_http_status:status}});\n}\nif (!out.length) return [{json:{...source, pipeline_signal:'DISCOVERY_EMPTY_OR_FAILED', discovery_ok:false, discovery_http_status:status}}];\nreturn out.sort((a,b)=>b.json.discovery_rank_score-a.json.discovery_rank_score||a.json.route_name.localeCompare(b.json.route_name,'de')||a.json.relation_id-b.json.relation_id).slice(0,120);\n"
       }
     },
     {
@@ -211,7 +211,7 @@
       ],
       "parameters": {
         "method": "GET",
-        "url": "https://z.overpass-api.de/api/interpreter",
+        "url": "https://overpass.kumi.systems/api/interpreter",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -239,7 +239,7 @@
           ]
         },
         "options": {
-          "timeout": 60000,
+          "timeout": 120000,
           "batching": {
             "batch": {
               "batchSize": 1,
@@ -257,7 +257,7 @@
       },
       "retryOnFail": true,
       "maxTries": 4,
-      "waitBetweenTries": 30000,
+      "waitBetweenTries": 15000,
       "onError": "continueRegularOutput"
     },
     {
@@ -374,7 +374,7 @@
             },
             {
               "name": "ggslimit",
-              "value": "10"
+              "value": "25"
             },
             {
               "name": "ggsnamespace",
@@ -386,7 +386,7 @@
             },
             {
               "name": "iiprop",
-              "value": "url|extmetadata|mime|mediatype"
+              "value": "url|extmetadata|mime|mediatype|size"
             },
             {
               "name": "iiurlwidth",
@@ -399,7 +399,7 @@
           ]
         },
         "options": {
-          "timeout": 30000,
+          "timeout": 45000,
           "batching": {
             "batch": {
               "batchSize": 1,
@@ -417,7 +417,7 @@
       },
       "retryOnFail": true,
       "maxTries": 4,
-      "waitBetweenTries": 30000,
+      "waitBetweenTries": 10000,
       "onError": "continueRegularOutput"
     },
     {
@@ -432,7 +432,7 @@
       "parameters": {
         "mode": "runOnceForAllItems",
         "language": "javaScript",
-        "jsCode": "const routes=$('Gate Score and Fair Limit').all();\nconst jobs=$('Build Track-near Image Jobs').all();\nconst byRelation=new Map();\nconst allow=/^(?:cc0(?: 1\\.0)?|public domain|pd|cc by(?:-sa)?(?: [1-4]\\.0)?)$/i;\nconst raster=new Set(['image/jpeg','image/png','image/webp']);\nconst badTitle=/(^|[ _-])(map|karte|wappen|coat[ _-]?of[ _-]?arms|diagram|logo|schild|informationstafel|tafel|luftbild|orthophoto|dop20|scan|kriegsgräber(?:stätte)?|friedhof|cemetery|grab)([ _.-]|$)/i;\nconst stop=new Set(['rund','ueber','über','unter','durch','tour','route','radroute','naturpark','basisring','alte','bahnlinie','the','und','der','die','das','den','von','zum','zur']);\nfunction plain(v){return String(v??'').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/\\s+/g,' ').trim();}\nfunction fold(v){return plain(v).toLocaleLowerCase('de').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9äöüß]+/g,' ');}\nfunction tokens(v){return [...new Set(fold(v).split(/\\s+/).filter(t=>t.length>=4&&!stop.has(t)))];}\nfunction rad(x){return x*Math.PI/180;}\nfunction km(a,b){const q=Math.sin(rad(b.lat-a.lat)/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(rad(b.lon-a.lon)/2)**2;return 12742*Math.asin(Math.sqrt(q));}\nfor(const [i,item] of $input.all().entries()){\n const pair=Array.isArray(item.pairedItem)?item.pairedItem[0]:item.pairedItem;\n const job=jobs[pair?.item??i]?.json??{};\n let body=item.json.body??item.json.data??item.json;\n if(typeof body==='string'){try{body=JSON.parse(body)}catch{body={}}}\n const routeTokens=tokens(`${job.route_name??''} ${job.region??''}`);\n for(const page of Object.values(body?.query?.pages??{})){\n  const info=page.imageinfo?.[0],ext=info?.extmetadata??{},mime=String(info?.mime??'').toLowerCase(),title=String(page.title??''),license=plain(ext.LicenseShortName?.value),coord=page.coordinates?.[0];\n  if(!info||info.mediatype!=='BITMAP'||!raster.has(mime)||!allow.test(license)||badTitle.test(title)||/\\.(svg|pdf|wav|ogg|tiff?)$/i.test(title)||!coord)continue;\n  const distance=km({lat:job.image_anchor_lat,lon:job.image_anchor_lon},{lat:Number(coord.lat),lon:Number(coord.lon)});\n  if(distance>12)continue;\n  const creator=plain(ext.Artist?.value).slice(0,300),licenseUrl=String(ext.LicenseUrl?.value??'').trim(),thumbUrl=String(info.thumburl??'').trim(),pageUrl=String(info.descriptionurl??'').trim();\n  if(/^cc by/i.test(license)&&(!creator||!licenseUrl||!thumbUrl||!pageUrl))continue;\n  if(!thumbUrl||!pageUrl)continue;\n  const searchable=fold(`${title} ${ext.ImageDescription?.value??''} ${ext.Categories?.value??''}`);\n  const tokenMatches=routeTokens.filter(token=>searchable.includes(token)).length;\n  const scenicMatches=(searchable.match(/wald|forest|berg|aussicht|panorama|weser|fluss|tal|weg|trail|landschaft|nature|natur/g)||[]).length;\n  const relevanceScore=tokenMatches*30+Math.min(15,scenicMatches*3)-Math.min(12,distance);\n  const candidate={image_title:title,image_thumb_url:thumbUrl,image_creator:creator,image_license:license,image_license_url:licenseUrl,image_page_url:pageUrl,image_distance_km:Number(distance.toFixed(3)),image_mime:mime,image_anchor_fraction:Number(job.image_anchor_fraction??0.5),image_relevance_score:Number(relevanceScore.toFixed(2)),image_token_matches:tokenMatches};\n  const key=Number(job.relation_id),list=byRelation.get(key)??[];list.push(candidate);byRelation.set(key,list);\n }\n}\nreturn routes.map((item,i)=>{\n const route=item.json,all=byRelation.get(Number(route.relation_id))??[],chosen=[],seen=new Set();\n for(const fraction of [0.2,0.5,0.8]){\n  const best=all.filter(image=>Math.abs(image.image_anchor_fraction-fraction)<0.01&&!seen.has(image.image_page_url)).sort((a,b)=>b.image_relevance_score-a.image_relevance_score||a.image_distance_km-b.image_distance_km)[0];\n  if(best){chosen.push(best);seen.add(best.image_page_url);}\n }\n for(const image of all.sort((a,b)=>b.image_relevance_score-a.image_relevance_score||a.image_distance_km-b.image_distance_km)){\n  if(!seen.has(image.image_page_url)){chosen.push(image);seen.add(image.image_page_url);}if(chosen.length===3)break;\n }\n chosen.sort((a,b)=>b.image_relevance_score-a.image_relevance_score||a.image_distance_km-b.image_distance_km);\n const unique=chosen.slice(0,3),best=unique[0]??{};\n return {pairedItem:{item:i},json:{...route,...best,image_candidates_json:JSON.stringify(unique),image_candidate_count:unique.length,image_found:unique.length>0,image_partial_failure:unique.length===0,observed_at:$now.toISO()}};\n});\n"
+        "jsCode": "const routes=$('Gate Score and Fair Limit').all();\nconst jobs=$('Build Track-near Image Jobs').all();\nconst byRelation=new Map();\nconst commonsByRelation=new Map();\nconst expectedByRelation=new Map();\nfor(const {json:job} of jobs){const key=Number(job.relation_id);expectedByRelation.set(key,(expectedByRelation.get(key)??0)+1);}\nconst allow=/^(?:cc0(?: 1\\.0)?|public domain|pd|cc by(?:-sa)?(?: [1-4]\\.0)?)$/i;\nconst raster=new Set(['image/jpeg','image/png','image/webp']);\nconst badTitle=/(^|[ _-])(map|karte|wappen|coat[ _-]?of[ _-]?arms|diagram|logo|schild|wegweiser|haltestelle|bushaltestelle|busstop|wegekreuz|wegkreuz|bildstock|shrine|informationstafel|informationtafel|tafel|luftbild|landschaftsschutzgebiet(?:nds)?|orthophoto|dop20|scan|kriegsgraber(?:statte)?|friedhof|cemetery|grab|memorial|denkmaltafel)([ _.-]|$)/i;\nconst stop=new Set(['rund','ueber','über','unter','durch','tour','route','radroute','naturpark','basisring','alte','bahnlinie','the','und','der','die','das','den','von','zum','zur']);\nfunction plain(v){return String(v??'').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/\\s+/g,' ').trim();}\nfunction fold(v){return plain(v).toLocaleLowerCase('de').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9äöüß]+/g,' ');}\nfunction tokens(v){return [...new Set(fold(v).split(/\\s+/).filter(t=>t.length>=4&&!stop.has(t)))];}\nfunction safeUrl(value,hosts){const match=String(value??'').match(/^https:\\/\\/([^\\/?#]+)(?:[\\/?#]|$)/i);if(!match)return false;const authority=match[1].toLowerCase();return !authority.includes('@')&&!authority.includes(':')&&hosts.has(authority);}\nfunction rad(x){return x*Math.PI/180;}\nfunction km(a,b){const q=Math.sin(rad(b.lat-a.lat)/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(rad(b.lon-a.lon)/2)**2;return 12742*Math.asin(Math.sqrt(q));}\nfor(const [i,item] of $input.all().entries()){\n const pair=Array.isArray(item.pairedItem)?item.pairedItem[0]:item.pairedItem;\n const job=jobs[pair?.item??i]?.json??{};\n const relationKey=Number(job.relation_id),status=Number(item.json.statusCode??item.json.error?.status??item.json.error?.statusCode??0);\n const statuses=commonsByRelation.get(relationKey)??[];statuses.push({fraction:Number(job.image_anchor_fraction??0),status:Number.isFinite(status)?status:0,ok:status>=200&&status<300});commonsByRelation.set(relationKey,statuses);\n if(!(status>=200&&status<300))continue;\n let body=item.json.body??item.json.data??item.json;\n if(typeof body==='string'){try{body=JSON.parse(body)}catch{body={}}}\n const anchorLat=Number(job.image_anchor_lat),anchorLon=Number(job.image_anchor_lon);\n if(!Number.isFinite(anchorLat)||!Number.isFinite(anchorLon)||anchorLat < -90||anchorLat > 90||anchorLon < -180||anchorLon > 180)continue;\n const routeTokens=tokens(`${job.route_name??''} ${job.region??''}`);\n for(const page of Object.values(body?.query?.pages??{})){\n  const info=page.imageinfo?.[0],ext=info?.extmetadata??{},mime=String(info?.mime??'').toLowerCase(),title=String(page.title??''),license=plain(ext.LicenseShortName?.value),coord=page.coordinates?.[0];\n  const titleForGate=fold(title.replace(/^file:/i,'')); const width=Number(info?.width??0),height=Number(info?.height??0),lat=Number(coord?.lat),lon=Number(coord?.lon);\n  if(!info||info.mediatype!=='BITMAP'||!raster.has(mime)||!allow.test(license)||badTitle.test(titleForGate)||/(?:^|\\D)(?:18|19)\\d{2}(?:\\D|$)/.test(titleForGate)||/\\.(svg|pdf|wav|ogg|tiff?)$/i.test(title)||!Number.isFinite(width)||!Number.isFinite(height)||!Number.isFinite(lat)||!Number.isFinite(lon)||lat < -90||lat > 90||lon < -180||lon > 180||width<1200||height<600||width/height<1.2||width/height>1.9)continue;\n  const distance=km({lat:anchorLat,lon:anchorLon},{lat,lon});\n  if(!Number.isFinite(distance)||distance>5)continue;\n  const creator=plain(ext.Artist?.value).slice(0,300),licenseUrl=String(ext.LicenseUrl?.value??'').trim(),thumbUrl=String(info.thumburl??'').trim(),pageUrl=String(info.descriptionurl??'').trim();\n  if(/^cc by/i.test(license)&&(!creator||!licenseUrl||!thumbUrl||!pageUrl))continue;\n  if(!safeUrl(thumbUrl,new Set(['upload.wikimedia.org']))||!safeUrl(pageUrl,new Set(['commons.wikimedia.org']))||(licenseUrl&&!safeUrl(licenseUrl,new Set(['creativecommons.org','commons.wikimedia.org']))))continue;\n  const searchable=fold(`${title} ${ext.ImageDescription?.value??''} ${ext.Categories?.value??''}`);\n  const tokenMatches=routeTokens.filter(token=>searchable.includes(token)).length;\n  const scenicWords=new Set(['wald','forest','berge','aussicht','panorama','weser','fluss','river','tal','valley','weg','trail','landschaft','landscape','nature','natur','heide','wiese','meadow','see','lake']);\n  const scenicMatches=searchable.split(/\\s+/).filter(word=>scenicWords.has(word)||word.startsWith('landschaft')||word.startsWith('panorama')).length;\n  if(scenicMatches===0)continue;\n  const relevanceScore=tokenMatches*30+Math.min(18,scenicMatches*3)-Math.min(15,distance*2);\n  const candidate={image_title:title,image_thumb_url:thumbUrl,image_creator:creator,image_license:license,image_license_url:licenseUrl,image_page_url:pageUrl,image_distance_km:Number(distance.toFixed(3)),image_mime:mime,image_anchor_fraction:Number(job.image_anchor_fraction??0.5),image_relevance_score:Number(relevanceScore.toFixed(2)),image_token_matches:tokenMatches};\n  const key=Number(job.relation_id),list=byRelation.get(key)??[];list.push(candidate);byRelation.set(key,list);\n }\n}\nconst usedPrimaryPages=new Set();\nreturn routes.map((item,i)=>{\n const route=item.json,all=byRelation.get(Number(route.relation_id))??[],chosen=[],seen=new Set();\n const commonsStatuses=commonsByRelation.get(Number(route.relation_id))??[];\n const commonsPartial=commonsStatuses.length!==(expectedByRelation.get(Number(route.relation_id))??0)||commonsStatuses.some(entry=>!entry.ok);\n for(const fraction of [0.2,0.5,0.8]){\n  const best=all.filter(image=>Math.abs(image.image_anchor_fraction-fraction)<0.01&&!seen.has(image.image_page_url)).sort((a,b)=>b.image_relevance_score-a.image_relevance_score||a.image_distance_km-b.image_distance_km)[0];\n  if(best){chosen.push(best);seen.add(best.image_page_url);}\n }\n for(const image of all.sort((a,b)=>b.image_relevance_score-a.image_relevance_score||a.image_distance_km-b.image_distance_km)){\n  if(!seen.has(image.image_page_url)){chosen.push(image);seen.add(image.image_page_url);}\n }\n chosen.sort((a,b)=>b.image_relevance_score-a.image_relevance_score||a.image_distance_km-b.image_distance_km);\n const best=chosen.find(image=>!usedPrimaryPages.has(image.image_page_url))??{};\n if(best.image_page_url)usedPrimaryPages.add(best.image_page_url);\n const ordered=(best.image_page_url?[best,...chosen.filter(image=>image.image_page_url!==best.image_page_url)]:chosen).slice(0,3);\n return {pairedItem:{item:i},json:{...route,...best,image_candidates_json:JSON.stringify(ordered),image_candidate_count:ordered.length,image_found:Boolean(best.image_page_url),image_partial_failure:commonsPartial||!best.image_page_url,commons_http_statuses:commonsStatuses,observed_at:$now.toISO()}};\n});\n"
       }
     },
     {
@@ -447,7 +447,7 @@
       "parameters": {
         "mode": "runOnceForAllItems",
         "language": "javaScript",
-        "jsCode": "return $input.all().map(({json:c})=>({json:{stable_key:c.stable_key,osm_relation_id:String(c.relation_id),route_name:c.route_name,region:c.region,bike_type:c.bike_type,osm_url:c.osm_url,geometry_json:c.geometry_json,geometry_points:c.geometry_points,distance_km:c.distance_km,max_gap_km:c.max_gap_km,tag_distance_km:c.tag_distance_km,closure_km:c.closure_km,closure_ratio:c.closure_ratio,geometry_ratio:c.geometry_ratio,bounds_json:JSON.stringify(c.bounds),evidence_score:c.evidence_score,evidence_json:c.evidence_json,gate_reasons:c.gate_reasons,image_title:c.image_title??'',image_thumb_url:c.image_thumb_url??'',image_creator:c.image_creator??'',image_license:c.image_license??'',image_license_url:c.image_license_url??'',image_page_url:c.image_page_url??'',image_distance_km:c.image_distance_km??null,image_candidates_json:c.image_candidates_json,partial_failure:Boolean(c.partial_failure||c.image_partial_failure),http_status_json:JSON.stringify({discovery:c.discovery_http_status,geometry:c.geometry_http_status}),observed_at:c.observed_at,run_id:c.run_id}}));\n"
+        "jsCode": "return $input.all().map(({json:c})=>({json:{stable_key:c.stable_key,osm_relation_id:String(c.relation_id),route_name:c.route_name,region:c.region,bike_type:c.bike_type,osm_url:c.osm_url,geometry_json:c.geometry_json,geometry_points:c.geometry_points,distance_km:c.distance_km,max_gap_km:c.max_gap_km,tag_distance_km:c.tag_distance_km,closure_km:c.closure_km,closure_ratio:c.closure_ratio,geometry_ratio:c.geometry_ratio,bounds_json:JSON.stringify(c.bounds),evidence_score:c.evidence_score,evidence_json:c.evidence_json,gate_reasons:c.gate_reasons,image_title:c.image_title??'',image_thumb_url:c.image_thumb_url??'',image_creator:c.image_creator??'',image_license:c.image_license??'',image_license_url:c.image_license_url??'',image_page_url:c.image_page_url??'',image_distance_km:c.image_distance_km??null,image_candidates_json:c.image_candidates_json,partial_failure:Boolean(c.partial_failure||c.image_partial_failure),http_status_json:JSON.stringify({discovery:c.discovery_http_status,geometry:c.geometry_http_status,commons:(c.commons_http_statuses??[]).map(entry=>entry.status)}),observed_at:c.observed_at,run_id:c.run_id}}));\n"
       }
     },
     {

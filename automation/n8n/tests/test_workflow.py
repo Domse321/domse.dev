@@ -14,6 +14,9 @@ def run_code(script, inputs, refs, now=None):
     result=subprocess.run(['node',str(HARNESS)],input=json.dumps(payload),text=True,capture_output=True,check=True)
     return json.loads(result.stdout)
 
+def commons_item(body, item=0, status=200):
+    return {'json':{'statusCode':status,'body':body},'pairedItem':{'item':item}}
+
 class WorkflowV2Tests(unittest.TestCase):
     def setUp(self):
         self.workflow=json.loads(WORKFLOW.read_text())
@@ -44,8 +47,8 @@ class WorkflowV2Tests(unittest.TestCase):
     def test_overpass_discovery_and_real_relation_geometry(self):
         discovery=self.nodes['Discover Named OSM Relations']
         geometry=self.nodes['Fetch Real Relation Geometry']
-        self.assertEqual(discovery['parameters']['url'],'https://z.overpass-api.de/api/interpreter')
-        self.assertEqual(geometry['parameters']['url'],'https://z.overpass-api.de/api/interpreter')
+        self.assertEqual(discovery['parameters']['url'],'https://overpass.kumi.systems/api/interpreter')
+        self.assertEqual(geometry['parameters']['url'],'https://overpass.kumi.systems/api/interpreter')
         for n in (discovery,geometry):
             self.assertEqual(n['parameters']['method'],'GET')
             self.assertTrue(n['parameters']['sendQuery'])
@@ -65,7 +68,8 @@ class WorkflowV2Tests(unittest.TestCase):
         self.assertNotIn('relation(${Number(item.json.relation_id)',geometry_jobs)
         for n in (discovery,geometry):
             self.assertTrue(n['retryOnFail']); self.assertEqual(n['maxTries'],4)
-            self.assertEqual(n['waitBetweenTries'],30000)
+            self.assertEqual(n['waitBetweenTries'],15000)
+            self.assertEqual(n['parameters']['options']['timeout'],120000)
             self.assertEqual(n['onError'],'continueRegularOutput')
             response=n['parameters']['options']['response']['response']
             self.assertFalse(response['neverError']); self.assertTrue(response['fullResponse'])
@@ -98,7 +102,7 @@ class WorkflowV2Tests(unittest.TestCase):
         out=run_code('normalize-discovery.js',[{'json':{'statusCode':200,'body':{'elements':elements}}}],
                      {'Build Overpass Discovery':[{'json':{'run_id':'rank'}}]})
         ids=[x['json']['relation_id'] for x in out]
-        self.assertEqual(len(ids),250)
+        self.assertEqual(len(ids),120)
         self.assertIn(999999,ids)
         self.assertEqual(ids[0],999999)
         self.assertGreater(out[0]['json']['discovery_rank_score'],0)
@@ -131,26 +135,142 @@ class WorkflowV2Tests(unittest.TestCase):
     def test_commons_geosearch_multiple_real_raster_license_candidates(self):
         node=self.nodes['Commons Track-near Raster Search']; params={p['name']:p['value'] for p in node['parameters']['queryParameters']['parameters']}
         self.assertEqual(node['parameters']['options']['response']['response']['responseFormat'],'json')
-        self.assertEqual(params['generator'],'geosearch'); self.assertEqual(params['ggslimit'],'10'); self.assertEqual(params['ggsradius'],'10000')
+        self.assertEqual(params['generator'],'geosearch'); self.assertEqual(params['ggslimit'],'25'); self.assertEqual(params['ggsradius'],'10000')
         self.assertEqual(params['prop'],'imageinfo|coordinates')
+        self.assertIn('size',params['iiprop'])
         code=self.nodes['Select Licensed Raster Photos']['parameters']['jsCode']
         for marker in ('BITMAP','image/jpeg','image/png','image/webp','public domain','image_creator','image_license_url','image_page_url','image_distance_km','image_anchor_fraction','image_relevance_score'):
             self.assertIn(marker,code)
         self.assertNotIn("'image/tiff'",code)
-        for rejected_title in ('schild','informationstafel','luftbild','orthophoto','dop20','kriegsgräber','friedhof','cemetery'):
+        for rejected_title in ('schild','informationstafel','luftbild','orthophoto','dop20','kriegsgraber','friedhof','cemetery'):
             self.assertIn(rejected_title,code)
         fixture=json.loads((ROOT/'fixtures/commons-adversarial.json').read_text())
         route={'json':{'relation_id':101,'centroid':{'lat':52.1,'lon':9.35}}}
         jobs=[{'json':{'relation_id':101,'image_anchor_lat':52.1,'image_anchor_lon':9.35}}]
-        out=run_code('select-images.js',[{'json':fixture,'pairedItem':{'item':0}}],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+        out=run_code('select-images.js',[commons_item(fixture)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
         self.assertEqual(out[0]['json']['image_candidate_count'],1)
         self.assertEqual(out[0]['json']['image_title'],'File:Suentel forest trail.jpg')
         self.assertEqual(out[0]['json']['image_creator'],'Erika Beispiel')
 
         incomplete=copy.deepcopy(fixture)
         incomplete['query']['pages']['1']['imageinfo'][0]['extmetadata']['Artist']['value']=''
-        out=run_code('select-images.js',[{'json':incomplete,'pairedItem':{'item':0}}],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+        out=run_code('select-images.js',[commons_item(incomplete)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
         self.assertEqual(out[0]['json']['image_candidate_count'],0)
+
+        too_small=copy.deepcopy(fixture)
+        too_small['query']['pages']['1']['imageinfo'][0]['width']=700
+        out=run_code('select-images.js',[commons_item(too_small)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+        self.assertEqual(out[0]['json']['image_candidate_count'],0)
+
+        for bad_title in ('File:Bushaltestelle Suentel.jpg','File:Suentel Wegekreuz.jpg','File:Suentel Landschaft 1957.jpg','File:Suentel Kriegsgräberstätte.jpg','File:LandschaftsschutzgebietNDS.jpg'):
+            unsuitable=copy.deepcopy(fixture)
+            unsuitable['query']['pages']['1']['title']=bad_title
+            out=run_code('select-images.js',[commons_item(unsuitable)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+            self.assertEqual(out[0]['json']['image_candidate_count'],0,bad_title)
+
+        portrait=copy.deepcopy(fixture)
+        portrait['query']['pages']['1']['imageinfo'][0]['width']=1200
+        portrait['query']['pages']['1']['imageinfo'][0]['height']=1600
+        out=run_code('select-images.js',[commons_item(portrait)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+        self.assertEqual(out[0]['json']['image_candidate_count'],0)
+
+        panorama=copy.deepcopy(fixture)
+        panorama['query']['pages']['1']['imageinfo'][0]['width']=2400
+        panorama['query']['pages']['1']['imageinfo'][0]['height']=1000
+        out=run_code('select-images.js',[commons_item(panorama)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+        self.assertEqual(out[0]['json']['image_candidate_count'],0)
+
+        for field,value in (
+            ('thumburl','https://evil.example/photo.jpg'),
+            ('descriptionurl','http://commons.wikimedia.org/wiki/File:Suentel_forest_trail.jpg'),
+        ):
+            unsafe_url=copy.deepcopy(fixture)
+            unsafe_url['query']['pages']['1']['imageinfo'][0][field]=value
+            out=run_code('select-images.js',[commons_item(unsafe_url)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+            self.assertEqual(out[0]['json']['image_candidate_count'],0)
+        unsafe_license=copy.deepcopy(fixture)
+        unsafe_license['query']['pages']['1']['imageinfo'][0]['extmetadata']['LicenseUrl']['value']='https://evil.example/license'
+        out=run_code('select-images.js',[commons_item(unsafe_license)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+        self.assertEqual(out[0]['json']['image_candidate_count'],0)
+
+        malformed_size=copy.deepcopy(fixture)
+        malformed_size['query']['pages']['1']['imageinfo'][0]['width']='not-a-number'
+        out=run_code('select-images.js',[commons_item(malformed_size)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+        self.assertEqual(out[0]['json']['image_candidate_count'],0)
+
+        for bad_coord in ({'lat':'bad','lon':9.351},{'lat':95,'lon':9.351},{'lat':52.101,'lon':181}):
+            malformed_coord=copy.deepcopy(fixture)
+            malformed_coord['query']['pages']['1']['coordinates']=[bad_coord]
+            out=run_code('select-images.js',[commons_item(malformed_coord)],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+            self.assertEqual(out[0]['json']['image_candidate_count'],0)
+
+    def test_primary_images_are_unique_across_distinct_routes(self):
+        fixture=json.loads((ROOT/'fixtures/commons-adversarial.json').read_text())
+        routes=[
+            {'json':{'relation_id':101,'route_name':'Süntel Runde','region':'Süntel'}},
+            {'json':{'relation_id':202,'route_name':'Süntel Höhenweg','region':'Süntel'}},
+        ]
+        jobs=[
+            {'json':{'relation_id':101,'route_name':'Süntel Runde','region':'Süntel','image_anchor_lat':52.1,'image_anchor_lon':9.35,'image_anchor_fraction':.5}},
+            {'json':{'relation_id':202,'route_name':'Süntel Höhenweg','region':'Süntel','image_anchor_lat':52.1,'image_anchor_lon':9.35,'image_anchor_fraction':.5}},
+        ]
+        inputs=[
+            commons_item(copy.deepcopy(fixture),0),
+            commons_item(copy.deepcopy(fixture),1),
+        ]
+        out=run_code('select-images.js',inputs,{'Gate Score and Fair Limit':routes,'Build Track-near Image Jobs':jobs})
+        self.assertTrue(out[0]['json']['image_found'])
+        self.assertFalse(out[1]['json']['image_found'])
+        self.assertNotEqual(out[0]['json'].get('image_page_url'),out[1]['json'].get('image_page_url'))
+
+    def test_primary_image_uniqueness_falls_back_beyond_top_three(self):
+        pages={}
+        for index,name in enumerate(('Alpha','Bravo','Charlie','Delta'),1):
+            pages[str(index)]={
+                'pageid':index,'title':f'File:Suentel forest trail {name}.jpg',
+                'coordinates':[{'lat':52.101,'lon':9.351}],
+                'imageinfo':[{'thumburl':f'https://upload.wikimedia.org/{name}.jpg',
+                    'descriptionurl':f'https://commons.wikimedia.org/wiki/File:Suentel_forest_trail_{name}.jpg',
+                    'mime':'image/jpeg','mediatype':'BITMAP','width':1600,'height':1000,
+                    'extmetadata':{'Artist':{'value':'Erika Beispiel'},'LicenseShortName':{'value':'CC BY-SA 4.0'},
+                        'LicenseUrl':{'value':'https://creativecommons.org/licenses/by-sa/4.0/'}}}]
+            }
+        fixture={'query':{'pages':pages}}
+        routes=[{'json':{'relation_id':rid,'route_name':f'Süntel Runde {rid}','region':'Süntel'}} for rid in (101,202,303,404)]
+        jobs=[{'json':{'relation_id':rid,'route_name':f'Süntel Runde {rid}','region':'Süntel','image_anchor_lat':52.1,'image_anchor_lon':9.35,'image_anchor_fraction':.5}} for rid in (101,202,303,404)]
+        inputs=[commons_item(copy.deepcopy(fixture),index) for index in range(4)]
+        out=run_code('select-images.js',inputs,{'Gate Score and Fair Limit':routes,'Build Track-near Image Jobs':jobs})
+        primaries=[item['json'].get('image_page_url') for item in out]
+        self.assertEqual(len(set(primaries)),4)
+        self.assertTrue(primaries[3].endswith('_Delta.jpg'))
+
+    def test_non_success_commons_bodies_never_produce_candidates(self):
+        fixture=json.loads((ROOT/'fixtures/commons-adversarial.json').read_text())
+        route={'json':{'relation_id':101,'route_name':'Süntel Runde','region':'Süntel'}}
+        jobs=[{'json':{'relation_id':101,'route_name':'Süntel Runde','region':'Süntel','image_anchor_lat':52.1,'image_anchor_lon':9.35,'image_anchor_fraction':.5}}]
+        for response,expected_status in (({'statusCode':503,'body':fixture},503),({'body':fixture},0)):
+            selected=run_code('select-images.js',[{'json':response,'pairedItem':{'item':0}}],{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+            self.assertFalse(selected[0]['json']['image_found'])
+            self.assertTrue(selected[0]['json']['image_partial_failure'])
+            self.assertEqual(selected[0]['json']['commons_http_statuses'][0]['status'],expected_status)
+
+    def test_mixed_commons_http_failures_are_preserved_as_partial_evidence(self):
+        fixture=json.loads((ROOT/'fixtures/commons-adversarial.json').read_text())
+        route={'json':{'relation_id':101,'route_name':'Süntel Runde','region':'Süntel','stable_key':'osm_relation_101','run_id':'mixed','discovery_http_status':200,'geometry_http_status':200}}
+        jobs=[{'json':{'relation_id':101,'route_name':'Süntel Runde','region':'Süntel','image_anchor_lat':52.1,'image_anchor_lon':9.35,'image_anchor_fraction':fraction}} for fraction in (.2,.5,.8)]
+        inputs=[
+            {'json':{'statusCode':503,'body':{}},'pairedItem':{'item':0}},
+            {'json':{'statusCode':200,'body':fixture},'pairedItem':{'item':1}},
+            {'json':{'error':{'status':503}},'pairedItem':{'item':2}},
+        ]
+        selected=run_code('select-images.js',inputs,{'Gate Score and Fair Limit':[route],'Build Track-near Image Jobs':jobs})
+        self.assertTrue(selected[0]['json']['image_found'])
+        self.assertTrue(selected[0]['json']['image_partial_failure'])
+        self.assertEqual([entry['status'] for entry in selected[0]['json']['commons_http_statuses']],[503,200,503])
+        row=run_code('build-evidence-rows.js',selected,{})[0]['json']
+        self.assertTrue(row['partial_failure'])
+        statuses=json.loads(row['http_status_json'])
+        self.assertEqual(statuses['commons'],[503,200,503])
 
     def test_image_anchors_follow_cumulative_track_length_not_point_index(self):
         route={'relation_id':101,'centroid':{'lat':52.0,'lon':9.0},'geometry_json':json.dumps([

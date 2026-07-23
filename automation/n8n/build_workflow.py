@@ -35,11 +35,11 @@ overpass_headers={"parameters":[
 
 def overpass(node_id, name, expression, x):
     return node(node_id,name,"n8n-nodes-base.httpRequest",4.4,x,{
-        "method":"GET","url":"https://z.overpass-api.de/api/interpreter","sendHeaders":True,
+        "method":"GET","url":"https://overpass.kumi.systems/api/interpreter","sendHeaders":True,
         "headerParameters":overpass_headers,"sendQuery":True,
         "queryParameters":{"parameters":[{"name":"data","value":expression}]},
-        "options":http_common(60000,2500)
-    }, retryOnFail=True, maxTries=4, waitBetweenTries=30000, onError="continueRegularOutput")
+        "options":http_common(120000,2500)
+    }, retryOnFail=True, maxTries=4, waitBetweenTries=15000, onError="continueRegularOutput")
 
 nodes=[
     node("manual","Manual Trigger","n8n-nodes-base.manualTrigger",1,0,{}),
@@ -64,11 +64,11 @@ nodes=[
         "sendQuery":True,"queryParameters":{"parameters":[
             {"name":"action","value":"query"},{"name":"format","value":"json"},{"name":"generator","value":"geosearch"},
             {"name":"ggscoord","value":"={{ $json.image_anchor_lat + '|' + $json.image_anchor_lon }}"},
-            {"name":"ggsradius","value":"10000"},{"name":"ggslimit","value":"10"},{"name":"ggsnamespace","value":"6"},
-            {"name":"prop","value":"imageinfo|coordinates"},{"name":"iiprop","value":"url|extmetadata|mime|mediatype"},
+            {"name":"ggsradius","value":"10000"},{"name":"ggslimit","value":"25"},{"name":"ggsnamespace","value":"6"},
+            {"name":"prop","value":"imageinfo|coordinates"},{"name":"iiprop","value":"url|extmetadata|mime|mediatype|size"},
             {"name":"iiurlwidth","value":"1600"},{"name":"origin","value":"*"}
-        ]},"options":http_common(30000,1500)
-    },retryOnFail=True,maxTries=4,waitBetweenTries=30000,onError="continueRegularOutput"),
+        ]},"options":http_common(45000,1500)
+    },retryOnFail=True,maxTries=4,waitBetweenTries=10000,onError="continueRegularOutput"),
     code_node("select-images","Select Licensed Raster Photos","select-images.js",2420),
     code_node("rows","Build Machine Evidence Rows","build-evidence-rows.js",2640),
 ]
@@ -112,7 +112,7 @@ connections={
 workflow={
     "name":"E-Bike OSM-Evidenzrecherche Weserbergland V2","active":False,
     "settings":{"executionOrder":"v1","timezone":"Europe/Berlin","saveDataErrorExecution":"all",
-                "saveDataSuccessExecution":"none","saveManualExecutions":True,"executionTimeout":900},
+                "saveDataSuccessExecution":"none","saveManualExecutions":True,"executionTimeout":1800},
     "nodes":nodes,"connections":connections,"pinData":{},"meta":{"templateCredsSetupCompleted":True},"tags":[]
 }
 text=json.dumps(workflow,ensure_ascii=False,indent=2)+"\n"

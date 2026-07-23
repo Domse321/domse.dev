@@ -8,5 +8,5 @@ const now={
   toISO:()=>"2026-07-20T07:00:00.000Z",
   setZone:()=>payload.now??{weekday:7,day:5},
 };
-const result=new Function('$input','$','$now','$execution',code)(input,dollar,now,{id:"test-run"});
+const result=new Function('$input','$','$now','$execution','URL',code)(input,dollar,now,{id:"test-run"},undefined);
 process.stdout.write(JSON.stringify(result));

@@ -27,4 +27,4 @@ for (const e of elements) {
   out.push({json:{...source, relation_id:id, stable_key:`osm_relation_${id}`, route_name:name.slice(0,240), route_tag:route, discovery_tags:tags, discovery_center:e.center??null, discovery_rank_score:rank(tags,e.center), discovery_ok:status>=200&&status<300, discovery_http_status:status}});
 }
 if (!out.length) return [{json:{...source, pipeline_signal:'DISCOVERY_EMPTY_OR_FAILED', discovery_ok:false, discovery_http_status:status}}];
-return out.sort((a,b)=>b.json.discovery_rank_score-a.json.discovery_rank_score||a.json.route_name.localeCompare(b.json.route_name,'de')||a.json.relation_id-b.json.relation_id).slice(0,250);
+return out.sort((a,b)=>b.json.discovery_rank_score-a.json.discovery_rank_score||a.json.route_name.localeCompare(b.json.route_name,'de')||a.json.relation_id-b.json.relation_id).slice(0,120);
